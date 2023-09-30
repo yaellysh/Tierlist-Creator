@@ -48,8 +48,10 @@ King 8. Forrest Gump 9.', 10 movies which could then be used to generate a tourn
 
 # Output from running Java code
 
-**Output from running ChatGPTAPIExample.java with example question**
+**Output from running ChatGPTAPIExample.java along with example question**
+<img width="1159" alt="Screenshot 2023-09-30 at 5 16 34 pm" src="https://github.com/yaellysh/207_Project/assets/137076627/c5aa031c-1b6d-4188-835b-29d43cf77c63">
 
-<img width="1161" alt="Screenshot 2023-09-30 at 4 11 57 pm" src="https://github.com/yaellysh/207_Project/assets/137076627/f3e25b57-2f26-4fa1-bc29-9e7fe864eb64">
+**Output from running ChallongeAPIExample.java**
+<img width="1151" alt="Screenshot 2023-09-30 at 5 23 30 pm" src="https://github.com/yaellysh/207_Project/assets/137076627/faed84e2-59c2-4ed9-9ea3-9c72e0997496">
 
 
