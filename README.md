@@ -27,14 +27,23 @@ the user wishes.
 
 # Chosen API(s)
 
-To execute the tournament style challenges we plan to use the Challonge API. This API allows you create new tournaments,
-set specific parameters and
+To execute the tournament style challenges we plan to use the **Challonge API**. This API allows you create new
+tournaments, keep track of wins and losses and set specific parameters regarding the matches.
 
 - https://api.challonge.com/v1
 
+As well as this, we decided we would allow users to create their own tournaments by entering topics/genres. To allow
+this personalisation, we can use the **ChatGPT OpenAI API** which can easily be used to generate lists of relevant words
+given a prompt. E.g. when asked 'List the names of 10 famous movies', ChatGPT returns
+'1. Titanic 2. The Godfather 3. Star Wars 4. Gone with the Wind 5. The Shawshank Redemption 6. Inception 7. The Lion
+King 8. Forrest Gump 9.', 10 movies which could then be used to generate a tournament with the Challonge API.
 
+- https://platform.openai.com/docs/guides/gpt
 
 # Using Postman to access API
+
+**Challonge API**
+
 
 # Output from running Java code
 
