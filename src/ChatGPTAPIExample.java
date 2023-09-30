@@ -6,11 +6,8 @@ public class ChatGPTAPIExample {
 
     public static String chatGPT(String prompt) throws IOException {
 
-        File f = new File("/Users/yaellyshkow/IdeaProjects/207_Project/src/API_KEY");
 
-        BufferedReader reader = new BufferedReader(new FileReader(f));
-        String apiKey = reader.readLine();
-
+        String apiKey = System.getenv("OPENAI_API_KEY");
         String url = "https://api.openai.com/v1/chat/completions";
         String model = "gpt-3.5-turbo";
 
@@ -39,7 +36,7 @@ public class ChatGPTAPIExample {
                 response.append(line);
             }
             br.close();
-
+            System.out.println(response.toString());
             // calls the method to extract the message.
             return extractMessageFromJSONResponse(response.toString());
 

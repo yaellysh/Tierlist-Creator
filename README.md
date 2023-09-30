@@ -46,7 +46,10 @@ King 8. Forrest Gump 9.', 10 movies which could then be used to generate a tourn
 <img width="1149" alt="Screenshot 2023-09-30 at 3 15 20 pm" src="https://github.com/yaellysh/207_Project/assets/137076627/e4ee28bf-2218-41cf-9d8c-3ca5966019a7">
 
 
-
 # Output from running Java code
+
+**Output from running ChatGPTAPIExample.java with example question**
+
 <img width="1161" alt="Screenshot 2023-09-30 at 4 11 57 pm" src="https://github.com/yaellysh/207_Project/assets/137076627/f3e25b57-2f26-4fa1-bc29-9e7fe864eb64">
+
 
