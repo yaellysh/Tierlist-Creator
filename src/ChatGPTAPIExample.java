@@ -1,16 +1,18 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class ChatGPTAPIExample {
 
-    public static String chatGPT(String prompt) {
+    public static String chatGPT(String prompt) throws IOException {
+
+        File f = new File("/Users/yaellyshkow/IdeaProjects/207_Project/src/API_KEY");
+
+        BufferedReader reader = new BufferedReader(new FileReader(f));
+        String apiKey = reader.readLine();
 
         String url = "https://api.openai.com/v1/chat/completions";
-        String apiKey = System.getenv("OPENAI_API_KEY");
+//        String apiKey = System.getenv("OPENAI_API_KEY");
         String model = "gpt-3.5-turbo";
 
         try {
