@@ -12,7 +12,6 @@ public class ChatGPTAPIExample {
         String apiKey = reader.readLine();
 
         String url = "https://api.openai.com/v1/chat/completions";
-//        String apiKey = System.getenv("OPENAI_API_KEY");
         String model = "gpt-3.5-turbo";
 
         try {

@@ -40,7 +40,7 @@ King 8. Forrest Gump 9.', 10 movies which could then be used to generate a tourn
 
 - https://platform.openai.com/docs/guides/gpt
 
-# Using Postman to access API
+# Using Postman to access Challonge API
 
 **Challonge API**
 <img width="1149" alt="Screenshot 2023-09-30 at 3 15 20 pm" src="https://github.com/yaellysh/207_Project/assets/137076627/e4ee28bf-2218-41cf-9d8c-3ca5966019a7">
