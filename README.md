@@ -43,7 +43,7 @@ King 8. Forrest Gump 9.', 10 movies which could then be used to generate a tourn
 # Using Postman to access API
 
 **Challonge API**
-<img width="1151" alt="Screenshot 2023-09-30 at 3 12 09 pm" src="https://github.com/yaellysh/207_Project/assets/137076627/71629186-66c9-4653-a5fd-a67da0f85144">
+
 
 
 # Output from running Java code
