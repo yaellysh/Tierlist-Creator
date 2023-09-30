@@ -6,9 +6,11 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class ChatGPTAPIExample {
+
     public static String chatGPT(String prompt) {
+
         String url = "https://api.openai.com/v1/chat/completions";
-        String apiKey = "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";
+        String apiKey = System.getenv("OPENAI_API_KEY");
         String model = "gpt-3.5-turbo";
 
         try {
@@ -54,10 +56,6 @@ public class ChatGPTAPIExample {
 
     }
 
-    public static void main(String[] args) {
 
-        System.out.println(chatGPT("list the names of 10 famous movies"));
-
-    }
 }
 
