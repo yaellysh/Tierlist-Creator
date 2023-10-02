@@ -11,7 +11,7 @@ and decide on their favourite(s) by comparing them against each other. After the
 matched with other people with similar taste in movies. They are then able to use this as a prompt to start messaging
 any of these selected people if they wish.
 
-Users can create an account and include whatever information about themselves they wise. Upon having completed at least
+Users can create an account and include whatever information about themselves they wish. Upon having completed at least
 one tournament, the app will start suggesting people that the algorithm thinks the user would be compatible with, and
 includes a score based off the similarity of their opinions.
 
