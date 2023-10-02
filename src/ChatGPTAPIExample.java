@@ -1,4 +1,7 @@
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -6,6 +9,8 @@ public class ChatGPTAPIExample {
 
     public static String chatGPT(String prompt) throws IOException {
 
+// https://rollbar.com/blog/how-to-use-chatgpt-api-with-java/ this website was used to help integrate the ChatGPT
+// API with Java
 
         String apiKey = System.getenv("OPENAI_API_KEY");
         String url = "https://api.openai.com/v1/chat/completions";
