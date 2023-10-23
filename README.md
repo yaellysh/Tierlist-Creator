@@ -9,6 +9,9 @@ athletes, movies, music, etc. Users can then post their tierlists, and view othe
 and by following friends and strangers and like/ comment on other people's tier lists. 
 
 They are also able to make their own accounts to save the tier lists they have already worked on and view them later.
+
+<img width="200" alt="Screenshot 2023-10-23 at 5 40 27 pm" src="https://github.com/yaellysh/207_Project/assets/137076627/39a61ec0-1e29-473e-b40a-b6b37d14ec3b">
+
 # Type of Application
 
 The end product for this application would be an app, wherein users can easily sign up, create their own tier lists 
