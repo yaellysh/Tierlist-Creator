@@ -1,4 +1,4 @@
 package use_case.tierlist;
 
-public class TierListInteractor {
+public class TierListInteractor implements TierListInputBoundary {
 }

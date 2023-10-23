@@ -1,4 +1,6 @@
 package interface_adapter.tierlist;
 
-public class TierListPresenter {
+import use_case.tierlist.TierListOutputBoundary;
+
+public class TierListPresenter implements TierListOutputBoundary {
 }
