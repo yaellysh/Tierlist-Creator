@@ -7,6 +7,10 @@ public class User {
     private final String username;
     private List<TierList> tierLists;
 
+    private List<TierList> liked;
+    private List<User> following;
+    private List<User> followers;
+
     public User(String username) {
         this.username = username;
     }
