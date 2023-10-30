@@ -1,16 +1,26 @@
 package data_access;
 
-import entity.Item;
 import entity.Tier;
-import entity.TierList;
 import entity.User;
 import use_case.tierlist.TierListDataAccessInterface;
 
+import java.io.File;
+import java.util.HashMap;
 import java.util.Map;
 
 public class FileUserDataAccessObject implements TierListDataAccessInterface {
 
-    private Map<String, User> users;
+    private final File jsonFile;
+
+    private final Map<String, User> users;
+
+    public FileUserDataAccessObject(String path) {
+        jsonFile = new File(path);
+
+        // TODO: Implement JSON reading
+
+        this.users = new HashMap<>();
+    }
 
     @Override
     public void saveTier(String user, String tierList, String item, Tier tier) {
