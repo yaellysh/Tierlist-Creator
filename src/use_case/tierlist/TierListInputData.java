@@ -7,27 +7,27 @@ import entity.User;
 
 public class TierListInputData {
 
-    private final User user;
-    private final TierList tierList;
-    private final Item item;
+    private final String user;
+    private final String tierList;
+    private final String item;
     private final Tier tier;
 
-    public TierListInputData(User user, TierList tierList, Item item, Tier tier) {
+    public TierListInputData(String user, String tierList, String item, Tier tier) {
         this.user = user;
         this.tierList = tierList;
         this.item = item;
         this.tier = tier;
     }
 
-    public User getUser() {
+    public String getUser() {
         return user;
     }
 
-    public TierList getTierList() {
+    public String getTierList() {
         return tierList;
     }
 
-    public Item getItem() {
+    public String getItem() {
         return item;
     }
 
