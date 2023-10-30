@@ -1,8 +1,10 @@
 package view;
 
 import interface_adapter.tierlist.TierListController;
+import interface_adapter.tierlist.TierListViewModel;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,17 +15,19 @@ public class TierListView extends JPanel implements ActionListener {
     private final TierListViewModel tierListViewModel;
     private final TierListController tierListController;
 
-    public TierListView(TierListViewModel tierListViewModel) {
+    public TierListView(TierListViewModel tierListViewModel, TierListController tierListController) {
         this.tierListViewModel = tierListViewModel;
+        this.tierListController = tierListController;
     }
     public TierListView(TierListController tierListController, TierListViewModel tierListViewModel) {
         this.tierListController = tierListController;
         this.tierListViewModel = tierListViewModel;
 
-        JLavel title = new JLabel(interface_adapter.tierlist.TierListViewModel.TITLE_LABEL);
+        JLabel title = new JLabel(interface_adapter.tierlist.TierListViewModel.TITLE_LABEL);
+        title.setAlignmentX(Component.CENTER_ALIGNMENT);
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-
+            JOptionPane.showConfirmDialog(this, "Cancel not implemented yet.");
     }
 }
