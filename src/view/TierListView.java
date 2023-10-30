@@ -15,16 +15,15 @@ public class TierListView extends JPanel implements ActionListener {
     private final TierListViewModel tierListViewModel;
     private final TierListController tierListController;
 
-    public TierListView(TierListViewModel tierListViewModel, TierListController tierListController) {
-        this.tierListViewModel = tierListViewModel;
-        this.tierListController = tierListController;
-    }
     public TierListView(TierListController tierListController, TierListViewModel tierListViewModel) {
         this.tierListController = tierListController;
         this.tierListViewModel = tierListViewModel;
 
         JLabel title = new JLabel(interface_adapter.tierlist.TierListViewModel.TITLE_LABEL);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        LabelTextPanel usernameInfo = new LabelTextPanel(
+                new JLabel(TierListViewModel));
     }
     @Override
     public void actionPerformed(ActionEvent e) {
