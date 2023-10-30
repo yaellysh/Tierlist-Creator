@@ -10,10 +10,13 @@ import java.util.Map;
 
 public class FileUserDataAccessObject implements TierListDataAccessInterface {
 
-    private Map<User, TierList> userTierListMap;
+    private Map<String, User> users;
 
     @Override
-    public void saveTier(User user, TierList tierList, Item item, Tier tier) {
-
+    public void saveTier(String user, String tierList, String item, Tier tier) {
+        this.users.get(user)
+                .getTierList(tierList)
+                .getItem(item)
+                .setTier(tier);
     }
 }

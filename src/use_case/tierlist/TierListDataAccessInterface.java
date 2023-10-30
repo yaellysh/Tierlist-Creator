@@ -7,7 +7,7 @@ import entity.User;
 
 public interface TierListDataAccessInterface {
 
-    void saveTier(User user, TierList tierList, Item item, Tier tier);
-    
+    void saveTier(String user, String tierList, String item, Tier tier);
+
 
 }
