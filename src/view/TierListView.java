@@ -22,8 +22,6 @@ public class TierListView extends JPanel implements ActionListener {
         JLabel title = new JLabel(interface_adapter.tierlist.TierListViewModel.TITLE_LABEL);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        LabelTextPanel usernameInfo = new LabelTextPanel(
-                new JLabel(TierListViewModel));
     }
     @Override
     public void actionPerformed(ActionEvent e) {
