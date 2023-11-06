@@ -13,14 +13,13 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
         JFrame application = new JFrame("Tier List Example");
-        application.setSize(300, 300);
+        application.setSize(500, 500);
         application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         CardLayout cardLayout = new CardLayout();
-
         JPanel views = new JPanel(cardLayout);
+        views.setSize(application.getWidth(), application.getHeight());
         application.add(views);
-
         ViewManagerModel viewManagerModel = new ViewManagerModel();
         new ViewManager(views, cardLayout, viewManagerModel);
 
@@ -31,13 +30,9 @@ public class Main {
 
         TierListView tierListView = TierListFactory.create(viewManagerModel, tierListViewModel, userDataAccessObject);
         views.add(tierListView, tierListView.viewName);
-
         viewManagerModel.setActiveView(tierListView.viewName);
         viewManagerModel.firePropertyChanged();
 
-        application.pack();
         application.setVisible(true);
-
-
     }
 }
