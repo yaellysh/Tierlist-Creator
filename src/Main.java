@@ -18,7 +18,6 @@ public class Main {
 
         CardLayout cardLayout = new CardLayout();
         JPanel views = new JPanel(cardLayout);
-        views.setSize(application.getWidth(), application.getHeight());
         application.add(views);
         ViewManagerModel viewManagerModel = new ViewManagerModel();
         new ViewManager(views, cardLayout, viewManagerModel);

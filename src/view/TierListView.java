@@ -27,6 +27,7 @@ public class TierListView extends JPanel implements ActionListener {
         tierGrid.setLayout(grid);
 
         for (int i = 0; i < 40; i++) {
+
             if (i==0) {tier = new LabelTextPanel(new JLabel("S"));}
             else if (i==10) {tier = new LabelTextPanel(new JLabel("A"));}
             else if (i==20) {tier = new LabelTextPanel(new JLabel("B"));}
@@ -40,11 +41,10 @@ public class TierListView extends JPanel implements ActionListener {
             else {tier.setBackground(Color.green);}
 
             tier.setBorder(BorderFactory.createLineBorder(Color.black));
-            tier.setSize(20, 20);
+            tier.setPreferredSize(new Dimension(50, 50));
             tierGrid.add(tier);
+
         }
-
-
 
     }
 
