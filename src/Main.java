@@ -13,6 +13,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
         JFrame application = new JFrame("Tier List Example");
+        application.setSize(300, 300);
         application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         CardLayout cardLayout = new CardLayout();

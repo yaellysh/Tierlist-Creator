@@ -16,7 +16,7 @@ public class TierListView extends JPanel implements ActionListener {
 
     private final TierListViewModel tierListViewModel;
     private final TierListController tierListController;
-    final JLabel pinkLabel;
+//    final JLabel pinkLabel;
     final JPanel pinkPanel;
 
     public TierListView(TierListController tierListController, TierListViewModel tierListViewModel) {
@@ -28,22 +28,20 @@ public class TierListView extends JPanel implements ActionListener {
 
 
         JPanel tiers = new JPanel();
-
-        pinkPanel = new JPanel();
+        pinkPanel = new LabelTextPanel(new JLabel("test"));
         pinkPanel.setBackground(Color.pink);
-        pinkLabel = new JLabel(TierListViewModel.PINK_LABEL);
-        pinkPanel.add(pinkLabel);
+//        tiers.setSize(200, 200);
+//
+//        pinkPanel = new JPanel();
+//        pinkPanel.setBackground(Color.pink);
+//        pinkPanel.setSize(200, 200);
+//        pinkLabel = new JLabel(TierListViewModel.PINK_LABEL);
+//        pinkPanel.add(pinkLabel);
 
-        tiers.add(pinkLabel);
         tiers.add(pinkPanel);
 
         this.add(tiers);
 
-//        JPanel buttons = new JPanel();
-//        ok = new JButton(TierListViewModel.OK_BUTTON_LABEL);
-//        buttons.add(ok);
-//        ok.addActionListener(this);
-//        this.add(buttons);
 
 
     }

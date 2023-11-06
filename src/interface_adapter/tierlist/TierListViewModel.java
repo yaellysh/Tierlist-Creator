@@ -10,6 +10,7 @@ public class TierListViewModel extends ViewModel {
 
     public static final String TITLE_LABEL = "Tier List View";
     public static final String PINK_LABEL = "pink";
+
     private TierListState state = new TierListState();
 
     public TierListViewModel() {
