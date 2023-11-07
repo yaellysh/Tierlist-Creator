@@ -3,15 +3,16 @@ package data_access;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import entity.*;
+import entity.Tier;
+import entity.User;
 import use_case.tierlist.TierListDataAccessInterface;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
@@ -19,13 +20,16 @@ import java.util.Map;
 
 public class FileUserDataAccessObject implements TierListDataAccessInterface {
 
+    private final Path path;
+
     private final Map<String, User> users;
 
     public FileUserDataAccessObject(String path) {
+        this.path = Paths.get(path);
         this.users = new HashMap<>();
 
         try {
-            Reader reader = Files.newBufferedReader(Paths.get(path), StandardCharsets.UTF_8);
+            Reader reader = Files.newBufferedReader(this.path, StandardCharsets.UTF_8);
             List<User> users = new Gson().fromJson(reader, new TypeToken<List<User>>() {}.getType());
             users.forEach(s -> this.users.put(s.getUsername(), s));
         } catch (IOException e) {
@@ -34,6 +38,7 @@ public class FileUserDataAccessObject implements TierListDataAccessInterface {
     }
 
     private FileUserDataAccessObject(Map<String, User> users) {
+        this.path = Paths.get("src/main/resources/users.json");
         this.users = users;
     }
 
@@ -66,7 +71,7 @@ public class FileUserDataAccessObject implements TierListDataAccessInterface {
     public void save() {
         try {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            Writer writer = Files.newBufferedWriter(Paths.get("src/main/resources/users.json"), StandardCharsets.UTF_8);
+            Writer writer = Files.newBufferedWriter(this.path, StandardCharsets.UTF_8);
             gson.toJson(this.users.values(), writer);
             writer.close();
         }
