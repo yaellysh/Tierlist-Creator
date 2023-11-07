@@ -1,5 +1,6 @@
 package view;
 
+import entity.Tier;
 import interface_adapter.tierlist.TierListController;
 import interface_adapter.tierlist.TierListViewModel;
 
@@ -12,7 +13,7 @@ public class TierListView extends JPanel implements ActionListener {
 
     public final String viewName = "tier list";
 
-    LabelTextPanel tier;
+    LabelPanel tier;
 
     public final TierListController tierListController;
     public final TierListViewModel tierListViewModel;
@@ -27,20 +28,20 @@ public class TierListView extends JPanel implements ActionListener {
         this.setLayout(boxLayout);
 
         // added title with padding
-        JLabel tierListTitleLabel = new JLabel("Tier List Example");
+        JLabel tierListTitleLabel = new JLabel(TierListViewModel.TITLE_LABEL);
         tierListTitleLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 10));
-        tierListTitleLabel.setFont(new Font("Arial Bold", Font.PLAIN, 25));
+        tierListTitleLabel.setFont(TierListViewModel.TITLE_FONT);
         this.add(tierListTitleLabel);
 
         // setting up the actual tier list using a JPanel with a GridLayout
-        GridLayout grid = new GridLayout(4, 10);
+        GridLayout grid = new GridLayout(TierListViewModel.NUM_TIERS, 10);
         JPanel tierGrid = new JPanel();
         tierGrid.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
 
         // setting the size of the tier list s.t. the boxes are square
-        int width = this.getWidth();
-        int height = this.getHeight() / 2;
-        tierGrid.setPreferredSize(new Dimension(width, height));
+//        int width = this.getWidth();
+//        int height = this.getHeight() / 2;
+//        tierGrid.setPreferredSize(new Dimension(width, height));
 
         tierGrid.setLayout(grid);
         this.add(tierGrid);
@@ -48,20 +49,18 @@ public class TierListView extends JPanel implements ActionListener {
         // changing the colours of the grid boxes based on their tier
         // this will be changed later when input data is actually brought in
         // then the colour of the box will be dependent on if there is anything in it
-        for (int i = 0; i < 40; i++) {
+        Tier[] tiers = Tier.values();
+        for (int i = 0; i < TierListViewModel.NUM_TIERS * 10; i++) {
 
-            if (i == 0) {
-                tier = new LabelTextPanel(new JLabel("S"));
-            } else if (i == 10) {
-                tier = new LabelTextPanel(new JLabel("A"));
-            } else if (i == 20) {
-                tier = new LabelTextPanel(new JLabel("B"));
-            } else if (i == 30) {
-                tier = new LabelTextPanel(new JLabel("C"));
+            // creates tier labels for first column, otherwise empty boxes
+            if (i % 10 == 0) {
+                tier = new LabelPanel(new JLabel(String.valueOf(tiers[i/10])));
             } else {
-                tier = new LabelTextPanel(new JLabel());
+                tier = new LabelPanel(new JLabel());
             }
 
+            // add colours to the tiers
+            // TODO: change this so is new tiers are added it is automatically changed
             if (i % 10 == 0) {
                 tier.setBackground(Color.lightGray);
             } else if (i < 10) {
@@ -83,9 +82,8 @@ public class TierListView extends JPanel implements ActionListener {
         // added instructions label
         // the <html> tags ensure the instructions wrap to the screen
         JLabel instructions = new JLabel();
-        instructions.setText("<html>In the drop down options below please select the tier you wish to place each item" +
-                " in.\n To view the corresponding tier list, press the 'generate' button.</html>");
-        instructions.setFont(new Font("Arial", Font.PLAIN, 15));
+        instructions.setText("<html>" + TierListViewModel.INSTRUCTIONS + "</html>");
+        instructions.setFont(TierListViewModel.TEXT_FONT);
         instructions.setAlignmentX(Component.CENTER_ALIGNMENT);
         instructions.setBorder(BorderFactory.createEmptyBorder(5, 10, 10, 10));
         this.add(instructions);
@@ -98,12 +96,29 @@ public class TierListView extends JPanel implements ActionListener {
 
         // setting up the two frames to organise the dropdowns into
         JPanel leftPanel = new JPanel();
+        leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
+
         JPanel rightPanel = new JPanel();
+        rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
+
         dropDownFramePanel.add(leftPanel);
         dropDownFramePanel.add(rightPanel);
 
         leftPanel.setBackground(Color.red);
         rightPanel.setBackground(Color.blue);
+
+        String[] options = {"S", "A", "B", "C", "D"};
+        for (int i = 0; i < 10; i++) {
+            if (i < 5) {
+                leftPanel.add(new LabelDropDownPanel(new JLabel("Item " + (i + 1)), new JComboBox<>(options)));
+            } else {
+                rightPanel.add(new LabelDropDownPanel(new JLabel("Item " + (i + 1)), new JComboBox<>(options)));
+            }
+
+        }
+
+
+
     }
 
     @Override
