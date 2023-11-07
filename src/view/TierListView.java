@@ -73,14 +73,16 @@ public class TierListView extends JPanel implements ActionListener {
 
         GridLayout doubleFrame = new GridLayout(1, 2);
         JPanel dropDownFramePanel = new JPanel();
-        dropDownFramePanel.setPreferredSize(new Dimension(600, 162));
+//        dropDownFramePanel.setPreferredSize(new Dimension(600, 162));
         this.add(dropDownFramePanel);
-
         dropDownFramePanel.setLayout(doubleFrame);
+
         JPanel leftPanel = new JPanel();
         JPanel rightPanel = new JPanel();
+
         dropDownFramePanel.add(leftPanel);
         dropDownFramePanel.add(rightPanel);
+
         leftPanel.setBackground(Color.red);
         rightPanel.setBackground(Color.blue);
     }
