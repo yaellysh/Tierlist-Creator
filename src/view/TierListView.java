@@ -38,11 +38,6 @@ public class TierListView extends JPanel implements ActionListener {
         JPanel tierGrid = new JPanel();
         tierGrid.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
 
-        // setting the size of the tier list s.t. the boxes are square
-//        int width = this.getWidth();
-//        int height = this.getHeight() / 2;
-//        tierGrid.setPreferredSize(new Dimension(width, height));
-
         tierGrid.setLayout(grid);
         this.add(tierGrid);
 
@@ -54,13 +49,13 @@ public class TierListView extends JPanel implements ActionListener {
 
             // creates tier labels for first column, otherwise empty boxes
             if (i % 10 == 0) {
-                tier = new LabelPanel(new JLabel(String.valueOf(tiers[i/10])));
+                tier = new LabelPanel(new JLabel(String.valueOf(tiers[i / 10])));
             } else {
                 tier = new LabelPanel(new JLabel());
             }
 
             // add colours to the tiers
-            // TODO: change this so is new tiers are added it is automatically changed
+            // TODO: change this so if new tiers are added it is automatically changed
             if (i % 10 == 0) {
                 tier.setBackground(Color.lightGray);
             } else if (i < 10) {
@@ -90,6 +85,7 @@ public class TierListView extends JPanel implements ActionListener {
 
         // setting up the container the two frames will be placed in
         GridLayout doubleFrame = new GridLayout(1, 2);
+
         JPanel dropDownFramePanel = new JPanel();
         this.add(dropDownFramePanel);
         dropDownFramePanel.setLayout(doubleFrame);
@@ -100,24 +96,28 @@ public class TierListView extends JPanel implements ActionListener {
 
         JPanel rightPanel = new JPanel();
         rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
+        rightPanel.setBorder(BorderFactory.createEmptyBorder());
 
         dropDownFramePanel.add(leftPanel);
         dropDownFramePanel.add(rightPanel);
 
-        leftPanel.setBackground(Color.red);
-        rightPanel.setBackground(Color.blue);
 
-        String[] options = {"S", "A", "B", "C", "D"};
         for (int i = 0; i < 10; i++) {
+            LabelDropDownPanel item = new LabelDropDownPanel(new JLabel("Item " + (i + 1)), new JComboBox<>(Tier.getTiers(Tier.class)));
+            item.setMaximumSize(new Dimension(200, 40));
             if (i < 5) {
-                leftPanel.add(new LabelDropDownPanel(new JLabel("Item " + (i + 1)), new JComboBox<>(options)));
+                leftPanel.add(item);
             } else {
-                rightPanel.add(new LabelDropDownPanel(new JLabel("Item " + (i + 1)), new JComboBox<>(options)));
+                rightPanel.add(item);
             }
 
         }
-
-
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        JButton generateButton = new JButton(TierListViewModel.GENERATE_BUTTON);
+        generateButton.setPreferredSize(new Dimension(100, 40));
+        buttonPanel.add(generateButton);
+        this.add(buttonPanel);
 
     }
 
