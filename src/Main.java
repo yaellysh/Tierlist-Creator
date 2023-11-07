@@ -7,13 +7,12 @@ import view.ViewManager;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
-        JFrame application = new JFrame("Tier List Example");
-        application.setSize(500, 500);
+        JFrame application = new JFrame();
+        application.setSize(600, 500);
         application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         CardLayout cardLayout = new CardLayout();
