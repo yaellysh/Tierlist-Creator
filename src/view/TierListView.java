@@ -4,7 +4,6 @@ import interface_adapter.tierlist.TierListController;
 import interface_adapter.tierlist.TierListViewModel;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,26 +21,33 @@ public class TierListView extends JPanel implements ActionListener {
 
         this.tierListViewModel = tierListViewModel;
         this.tierListController = tierListController;
-        BoxLayout boxLayout = new BoxLayout(this,1);
+
+        // setting up the box layout to help formatting
+        BoxLayout boxLayout = new BoxLayout(this, BoxLayout.Y_AXIS);
         this.setLayout(boxLayout);
 
+        // added title with padding
         JLabel tierListTitleLabel = new JLabel("Tier List Example");
         tierListTitleLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 10));
         tierListTitleLabel.setFont(new Font("Arial Bold", Font.PLAIN, 25));
-        tierListTitleLabel.setAlignmentY(this.getAlignmentY());
-
         this.add(tierListTitleLabel);
 
+        // setting up the actual tier list using a JPanel with a GridLayout
         GridLayout grid = new GridLayout(4, 10);
         JPanel tierGrid = new JPanel();
         tierGrid.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+
+        // setting the size of the tier list s.t. the boxes are square
         int width = this.getWidth();
-        int height = this.getHeight()/2;
+        int height = this.getHeight() / 2;
         tierGrid.setPreferredSize(new Dimension(width, height));
-        this.add(tierGrid);
 
         tierGrid.setLayout(grid);
+        this.add(tierGrid);
 
+        // changing the colours of the grid boxes based on their tier
+        // this will be changed later when input data is actually brought in
+        // then the colour of the box will be dependent on if there is anything in it
         for (int i = 0; i < 40; i++) {
 
             if (i == 0) {
@@ -73,20 +79,26 @@ public class TierListView extends JPanel implements ActionListener {
             tierGrid.add(tier);
 
         }
+
+        // added instructions label
+        // the <html> tags ensure the instructions wrap to the screen
         JLabel instructions = new JLabel();
-        instructions.setText("<html>In the drop down options below please select the tier you wish to place each item in.\n To view the corresponding tier list, press the 'generate' button.</html>");
+        instructions.setText("<html>In the drop down options below please select the tier you wish to place each item" +
+                " in.\n To view the corresponding tier list, press the 'generate' button.</html>");
         instructions.setFont(new Font("Arial", Font.PLAIN, 15));
         instructions.setAlignmentX(Component.CENTER_ALIGNMENT);
         instructions.setBorder(BorderFactory.createEmptyBorder(5, 10, 10, 10));
         this.add(instructions);
+
+        // setting up the container the two frames will be placed in
         GridLayout doubleFrame = new GridLayout(1, 2);
         JPanel dropDownFramePanel = new JPanel();
         this.add(dropDownFramePanel);
         dropDownFramePanel.setLayout(doubleFrame);
 
+        // setting up the two frames to organise the dropdowns into
         JPanel leftPanel = new JPanel();
         JPanel rightPanel = new JPanel();
-
         dropDownFramePanel.add(leftPanel);
         dropDownFramePanel.add(rightPanel);
 
