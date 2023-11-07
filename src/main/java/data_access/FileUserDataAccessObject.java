@@ -37,29 +37,7 @@ public class FileUserDataAccessObject implements TierListDataAccessInterface {
         }
     }
 
-    private FileUserDataAccessObject(Map<String, User> users) {
-        this.path = Paths.get("src/main/resources/users.json");
-        this.users = users;
-    }
-
     public static void main(String[] args) {
-
-//        Item item1 = new Item("item1");
-//        Item item2 = new Item("item2");
-//
-//        item1.setTier(Tier.A);
-//        item2.setTier(Tier.B);
-//
-//        TierList list = new TierList("tierlist", List.of(item1, item2));
-//
-//        User user = new User("jillibean");
-//        user.addTierList(list);
-//
-//        Map<String, User> users = new HashMap<>();
-//        users.put("jillibean", user);
-//
-//        FileUserDataAccessObject object = new FileUserDataAccessObject(users);
-//        object.save();
 
         FileUserDataAccessObject object = new FileUserDataAccessObject("users.json");
         List<User> users = object.users.values().stream().toList();
