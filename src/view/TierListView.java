@@ -21,6 +21,8 @@ public class TierListView extends JPanel implements ActionListener {
 
         this.tierListViewModel = tierListViewModel;
         this.tierListController = tierListController;
+        BoxLayout boxLayout = new BoxLayout(this, BoxLayout.PAGE_AXIS);
+        this.setLayout(boxLayout);
 
         JLabel tierListTitleLabel = new JLabel("Tier List Example");
         tierListTitleLabel.setFont(new Font("Arial Bold", Font.PLAIN, 20));
