@@ -1,12 +1,30 @@
 package entity;
 
+import java.awt.*;
 import java.util.Arrays;
 
-public enum Tier {
-    S, A, B, C;
+public class Tier {
 
-    public static String[] getTiers(Class<? extends Enum<?>> e) {
-        return Arrays.stream(e.getEnumConstants()).map(Enum::name).toArray(String[]::new);
+    public static final Tier S = new Tier("S", Color.RED);
+    public static final Tier A = new Tier("A", Color.ORANGE);
+    public static final Tier B = new Tier("B", Color.YELLOW);
+    public static final Tier C = new Tier("C", Color.GREEN);
+    public static final Tier[] TIERS = {S, A, B, C};
+
+    private final String name;
+    private final Color color;
+
+    public Tier(String name, Color color) {
+        this.name = name;
+        this.color = color;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Color getColor() {
+        return color;
     }
 }
 
