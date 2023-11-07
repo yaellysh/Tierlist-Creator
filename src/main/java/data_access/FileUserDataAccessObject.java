@@ -56,9 +56,7 @@ public class FileUserDataAccessObject implements TierListDataAccessInterface {
 
     public void save() {
         try {
-            Gson gson = new GsonBuilder()
-                    .registerTypeAdapter(Tier.class, new TierAdapter())
-                    .setPrettyPrinting().create();
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
             Writer writer = Files.newBufferedWriter(Paths.get("users.json"), StandardCharsets.UTF_8);
 

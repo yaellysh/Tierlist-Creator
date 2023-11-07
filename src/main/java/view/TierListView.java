@@ -1,6 +1,6 @@
 package view;
 
-import entity.Tier;
+import entity.TierAdapter;
 import interface_adapter.tierlist.TierListController;
 import interface_adapter.tierlist.TierListViewModel;
 
@@ -46,7 +46,7 @@ public class TierListView extends JPanel implements ActionListener {
         // this will be changed later when input data is actually brought in
         // then the colour of the box will be dependent on if there is anything in it
         for (int i = 0; i < TierListViewModel.NUM_TIERS * 10; i++) {
-            Tier currentTier = Tier.TIERS[i / 10];
+            TierAdapter currentTier = TierAdapter.TIERS[i / 10];
 
             // creates tier labels for first column, otherwise empty boxes
             // also adds colours to the tiers
@@ -93,7 +93,7 @@ public class TierListView extends JPanel implements ActionListener {
 
         for (int i = 0; i < 10; i++) {
             LabelDropDownPanel item = new LabelDropDownPanel(new JLabel("Item " + (i + 1)), new JComboBox<>(
-                    Arrays.stream(Tier.TIERS).map(Tier::getName).toArray(String[]::new)));
+                    Arrays.stream(TierAdapter.TIERS).map(TierAdapter::getName).toArray(String[]::new)));
             item.setMaximumSize(new Dimension(200, 40));
             if (i < 5) {
                 leftPanel.add(item);

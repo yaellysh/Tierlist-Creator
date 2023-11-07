@@ -7,15 +7,11 @@
         "items": {
           "item2": {
             "name": "item2",
-            "tier": {
-              "name": "B"
-            }
+            "tier": "B"
           },
           "item1": {
             "name": "item1",
-            "tier": {
-              "name": "A"
-            }
+            "tier": "A"
           }
         }
       }

@@ -1,22 +1,30 @@
 package entity;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import java.awt.*;
 
-import java.io.IOException;
+public class TierAdapter {
 
-public class TierAdapter extends TypeAdapter<Tier> {
-    @Override
-    public void write(JsonWriter jsonWriter, Tier tier) throws IOException {
-        jsonWriter.beginObject();
-        jsonWriter.name("name");
-        jsonWriter.value(tier.getName());
-        jsonWriter.endObject();
+    public static final TierAdapter S = new TierAdapter(Tier.S, Color.RED);
+    public static final TierAdapter A = new TierAdapter(Tier.A, Color.ORANGE);
+    public static final TierAdapter B = new TierAdapter(Tier.B, Color.YELLOW);
+    public static final TierAdapter C = new TierAdapter(Tier.C, Color.GREEN);
+    public static final TierAdapter D = new TierAdapter(Tier.D, Color.BLUE);
+    public static final TierAdapter[] TIERS = {S, A, B, C, D};
+
+    private final Tier tier;
+    private final Color color;
+
+    public TierAdapter(Tier tier, Color color) {
+        this.tier = tier;
+        this.color = color;
     }
 
-    @Override
-    public Tier read(JsonReader jsonReader) throws IOException {
-        return null;
+    public String getName() {
+        return String.valueOf(tier);
+    }
+
+    public Color getColor() {
+        return color;
     }
 }
+
