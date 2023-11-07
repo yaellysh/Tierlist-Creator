@@ -1,0 +1,24 @@
+[
+  {
+    "username": "jillibean",
+    "tierLists": {
+      "tierlist": {
+        "name": "tierlist",
+        "items": {
+          "item2": {
+            "name": "item2",
+            "tier": {
+              "name": "B"
+            }
+          },
+          "item1": {
+            "name": "item1",
+            "tier": {
+              "name": "A"
+            }
+          }
+        }
+      }
+    }
+  }
+]

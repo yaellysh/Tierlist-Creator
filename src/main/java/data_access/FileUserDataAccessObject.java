@@ -2,10 +2,7 @@ package data_access;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import entity.Item;
-import entity.Tier;
-import entity.TierList;
-import entity.User;
+import entity.*;
 import use_case.tierlist.TierListDataAccessInterface;
 
 import java.io.File;
@@ -59,7 +56,9 @@ public class FileUserDataAccessObject implements TierListDataAccessInterface {
 
     public void save() {
         try {
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            Gson gson = new GsonBuilder()
+                    .registerTypeAdapter(Tier.class, new TierAdapter())
+                    .setPrettyPrinting().create();
 
             Writer writer = Files.newBufferedWriter(Paths.get("users.json"), StandardCharsets.UTF_8);
 
