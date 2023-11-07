@@ -1,9 +1,6 @@
 package use_case.tierlist;
 
-import entity.Item;
 import entity.Tier;
-import entity.TierList;
-import entity.User;
 
 public class TierListInteractor implements TierListInputBoundary {
 
