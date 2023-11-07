@@ -12,7 +12,7 @@ public class Main {
     public static void main(String[] args) {
 
         JFrame application = new JFrame();
-        application.setSize(600, 500);
+        application.setSize(700, 700);
         application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         CardLayout cardLayout = new CardLayout();

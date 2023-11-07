@@ -4,6 +4,7 @@ import interface_adapter.tierlist.TierListController;
 import interface_adapter.tierlist.TierListViewModel;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,17 +22,22 @@ public class TierListView extends JPanel implements ActionListener {
 
         this.tierListViewModel = tierListViewModel;
         this.tierListController = tierListController;
-        BoxLayout boxLayout = new BoxLayout(this, BoxLayout.PAGE_AXIS);
+        BoxLayout boxLayout = new BoxLayout(this,1);
         this.setLayout(boxLayout);
 
         JLabel tierListTitleLabel = new JLabel("Tier List Example");
-        tierListTitleLabel.setFont(new Font("Arial Bold", Font.PLAIN, 20));
+        tierListTitleLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 10));
+        tierListTitleLabel.setFont(new Font("Arial Bold", Font.PLAIN, 25));
+        tierListTitleLabel.setAlignmentY(this.getAlignmentY());
 
-        LabelTextPanel tierListTitle = new LabelTextPanel(tierListTitleLabel);
-        this.add(tierListTitle);
+        this.add(tierListTitleLabel);
 
         GridLayout grid = new GridLayout(4, 10);
         JPanel tierGrid = new JPanel();
+        tierGrid.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+        int width = this.getWidth();
+        int height = this.getHeight()/2;
+        tierGrid.setPreferredSize(new Dimension(width, height));
         this.add(tierGrid);
 
         tierGrid.setLayout(grid);
@@ -63,19 +69,18 @@ public class TierListView extends JPanel implements ActionListener {
             }
 
             tier.setBorder(BorderFactory.createLineBorder(Color.black));
-            tier.setPreferredSize(new Dimension(55, 55));
+            tier.setPreferredSize(new Dimension(50, 50));
             tierGrid.add(tier);
 
         }
-        JLabel itemsTitleLabel = new JLabel("Items");
-        itemsTitleLabel.setFont(new Font("Arial Bold", Font.PLAIN, 20));
-
-        LabelTextPanel itemsTitle = new LabelTextPanel(itemsTitleLabel);
-        this.add(itemsTitle);
-
+        JLabel instructions = new JLabel();
+        instructions.setText("<html>In the drop down options below please select the tier you wish to place each item in.\n To view the corresponding tier list, press the 'generate' button.</html>");
+        instructions.setFont(new Font("Arial", Font.PLAIN, 15));
+        instructions.setAlignmentX(Component.CENTER_ALIGNMENT);
+        instructions.setBorder(BorderFactory.createEmptyBorder(5, 10, 10, 10));
+        this.add(instructions);
         GridLayout doubleFrame = new GridLayout(1, 2);
         JPanel dropDownFramePanel = new JPanel();
-//        dropDownFramePanel.setPreferredSize(new Dimension(600, 162));
         this.add(dropDownFramePanel);
         dropDownFramePanel.setLayout(doubleFrame);
 
