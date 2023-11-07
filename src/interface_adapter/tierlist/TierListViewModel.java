@@ -14,7 +14,7 @@ public class TierListViewModel extends ViewModel {
             " to place each item in. To view the corresponding tier list, press the 'generate' button.";
     public static final Font TITLE_FONT = new Font("Arial Bold", Font.PLAIN, 25);
     public static final Font TEXT_FONT = new Font("Arial", Font.PLAIN, 15);
-    public static final int NUM_TIERS = Tier.TIERS.length;
+    public static final int NUM_TIERS = Tier.values().length;
     public static final String GENERATE_BUTTON = "Generate";
 
     private TierListState state = new TierListState();
