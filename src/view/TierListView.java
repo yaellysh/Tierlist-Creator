@@ -45,28 +45,17 @@ public class TierListView extends JPanel implements ActionListener {
         // changing the colours of the grid boxes based on their tier
         // this will be changed later when input data is actually brought in
         // then the colour of the box will be dependent on if there is anything in it
-        Tier[] tiers = Tier.TIERS;
         for (int i = 0; i < TierListViewModel.NUM_TIERS * 10; i++) {
+            Tier currentTier = Tier.TIERS[i / 10];
 
             // creates tier labels for first column, otherwise empty boxes
+            // also adds colours to the tiers
             if (i % 10 == 0) {
-                tier = new LabelPanel(new JLabel(String.valueOf(tiers[i / 10])));
+                tier = new LabelPanel(new JLabel(currentTier.getName()));
+                tier.setBackground(Color.LIGHT_GRAY);
             } else {
                 tier = new LabelPanel(new JLabel());
-            }
-
-            // add colours to the tiers
-            // TODO: change this so if new tiers are added it is automatically changed
-            if (i % 10 == 0) {
-                tier.setBackground(Color.lightGray);
-            } else if (i < 10) {
-                tier.setBackground(Color.red);
-            } else if (i < 20) {
-                tier.setBackground(Color.orange);
-            } else if (i < 30) {
-                tier.setBackground(Color.yellow);
-            } else {
-                tier.setBackground(Color.green);
+                tier.setBackground(currentTier.getColor());
             }
 
             tier.setBorder(BorderFactory.createLineBorder(Color.black));
