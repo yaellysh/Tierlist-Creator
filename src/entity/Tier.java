@@ -1,7 +1,6 @@
 package entity;
 
 import java.awt.*;
-import java.util.Arrays;
 
 public class Tier {
 
