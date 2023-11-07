@@ -2,7 +2,6 @@ package interface_adapter.tierlist;
 
 import entity.Tier;
 import interface_adapter.ViewModel;
-import interface_adapter.tierlist.TierListState;
 
 import java.awt.*;
 import java.beans.PropertyChangeListener;

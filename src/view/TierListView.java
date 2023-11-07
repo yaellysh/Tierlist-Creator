@@ -8,13 +8,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 
 public class TierListView extends JPanel implements ActionListener {
 
     public final String viewName = "tier list";
+
+    LabelPanel tier;
+
     public final TierListController tierListController;
     public final TierListViewModel tierListViewModel;
-    LabelPanel tier;
 
     public TierListView(TierListController tierListController, TierListViewModel tierListViewModel) {
 
@@ -34,7 +37,7 @@ public class TierListView extends JPanel implements ActionListener {
         // setting up the actual tier list using a JPanel with a GridLayout
         GridLayout grid = new GridLayout(TierListViewModel.NUM_TIERS, 10);
         JPanel tierGrid = new JPanel();
-        tierGrid.setBorder(BorderFactory.createEmptyBorder(5, 20, 5, 20));
+        tierGrid.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
 
         tierGrid.setLayout(grid);
         this.add(tierGrid);
@@ -43,26 +46,16 @@ public class TierListView extends JPanel implements ActionListener {
         // this will be changed later when input data is actually brought in
         // then the colour of the box will be dependent on if there is anything in it
         for (int i = 0; i < TierListViewModel.NUM_TIERS * 10; i++) {
+            Tier currentTier = Tier.TIERS[i / 10];
 
             // creates tier labels for first column, otherwise empty boxes
+            // also adds colours to the tiers
             if (i % 10 == 0) {
-                tier = new LabelPanel(new JLabel(String.valueOf(Tier.getTiers()[i / 10])));
+                tier = new LabelPanel(new JLabel(currentTier.getName()));
+                tier.setBackground(Color.LIGHT_GRAY);
             } else {
                 tier = new LabelPanel(new JLabel());
-            }
-
-            // add colours to the tiers
-            // TODO: change this so if new tiers are added it is automatically changed
-            if (i % 10 == 0) {
-                tier.setBackground(Color.lightGray);
-            } else if (i < 10) {
-                tier.setBackground(Color.red);
-            } else if (i < 20) {
-                tier.setBackground(Color.orange);
-            } else if (i < 30) {
-                tier.setBackground(Color.yellow);
-            } else {
-                tier.setBackground(Color.green);
+                tier.setBackground(currentTier.getColor());
             }
 
             tier.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -77,7 +70,7 @@ public class TierListView extends JPanel implements ActionListener {
         instructions.setText("<html>" + TierListViewModel.INSTRUCTIONS + "</html>");
         instructions.setFont(TierListViewModel.TEXT_FONT);
         instructions.setAlignmentX(Component.CENTER_ALIGNMENT);
-        instructions.setBorder(BorderFactory.createEmptyBorder(5, 20, 10, 20));
+        instructions.setBorder(BorderFactory.createEmptyBorder(5, 10, 10, 10));
         this.add(instructions);
 
         // setting up the container the two frames will be placed in
@@ -98,10 +91,9 @@ public class TierListView extends JPanel implements ActionListener {
         dropDownFramePanel.add(leftPanel);
         dropDownFramePanel.add(rightPanel);
 
-
         for (int i = 0; i < 10; i++) {
-            LabelDropDownPanel item = new LabelDropDownPanel(new JLabel("Item " + (i + 1)), new
-                    JComboBox<>(Tier.getTiers()));
+            LabelDropDownPanel item = new LabelDropDownPanel(new JLabel("Item " + (i + 1)), new JComboBox<>(
+                    Arrays.stream(Tier.TIERS).map(Tier::getName).toArray(String[]::new)));
             item.setMaximumSize(new Dimension(200, 40));
             if (i < 5) {
                 leftPanel.add(item);
