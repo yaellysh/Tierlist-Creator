@@ -31,5 +31,9 @@ public class User {
         return this.tierLists.get(name);
     }
 
+    @Override
+    public String toString() {
+        return this.username;
+    }
 
 }
