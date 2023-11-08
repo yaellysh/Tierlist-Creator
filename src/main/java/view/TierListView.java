@@ -58,7 +58,6 @@ public class TierListView extends JPanel implements ActionListener {
                 tierItemMap.put(tierList.getTierList().get(item), new ArrayList<>(Collections.singletonList(item)));
             }
         }
-        System.out.println(tierItemMap);
 
         // changing the colours of the grid boxes based on their tier
         // this will be changed later when input data is actually brought in
@@ -72,7 +71,6 @@ public class TierListView extends JPanel implements ActionListener {
                 tier.setBackground(Color.LIGHT_GRAY);
             } else {
                 if (tierItemMap.get(currentTier.getTier()) != null) {
-                    System.out.println(tierItemMap.get(currentTier.getTier()));
                     if (i % TierListViewModel.NUM_ITEMS < tierItemMap.get(currentTier.getTier()).size()) {
                         tier = new LabelPanel(new JLabel(tierItemMap.get(currentTier.getTier()).get(i %
                                 TierListViewModel.NUM_ITEMS)));
