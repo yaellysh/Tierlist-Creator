@@ -4,8 +4,8 @@ import entity.Tier;
 
 public class TierListInteractor implements TierListInputBoundary {
 
-    private TierListDataAccessInterface dataAccessInterface;
-    private TierListOutputBoundary outputBoundary;
+    private final TierListDataAccessInterface dataAccessInterface;
+    private final TierListOutputBoundary outputBoundary;
 
     public TierListInteractor(TierListDataAccessInterface dataAccessInterface,
                               TierListOutputBoundary outputBoundary) {
