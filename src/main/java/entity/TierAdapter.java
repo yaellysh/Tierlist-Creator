@@ -26,5 +26,7 @@ public class TierAdapter {
     public Color getColor() {
         return color;
     }
+
+    public Tier getTier() { return tier; }
 }
 

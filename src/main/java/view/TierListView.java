@@ -1,27 +1,32 @@
 package view;
 
+import entity.Item;
 import entity.TierAdapter;
+import entity.TierList;
 import interface_adapter.tierlist.TierListController;
 import interface_adapter.tierlist.TierListState;
 import interface_adapter.tierlist.TierListViewModel;
-import use_case.tierlist.TierListInputData;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class TierListView extends JPanel implements ActionListener {
 
     public final String viewName = "tier list";
     public final TierListController tierListController;
     public final TierListViewModel tierListViewModel;
+    public final TierList tierList;
     LabelPanel tier;
 
-    public TierListView(TierListController tierListController, TierListViewModel tierListViewModel) {
+    public TierListView(TierListController tierListController, TierListViewModel tierListViewModel, TierList tierList) {
 
         this.tierListViewModel = tierListViewModel;
         this.tierListController = tierListController;
+        this.tierList = tierList;
+        System.out.println(tierList.getTierList());
 
         // setting up the box layout to help formatting
         BoxLayout boxLayout = new BoxLayout(this, BoxLayout.Y_AXIS);
@@ -47,6 +52,14 @@ public class TierListView extends JPanel implements ActionListener {
         // then the colour of the box will be dependent on if there is anything in it
         for (int i = 0; i < TierListViewModel.NUM_TIERS * 10; i++) {
             TierAdapter currentTier = TierAdapter.TIERS[i / 10];
+
+            ArrayList<String> tierItems = new ArrayList<>();
+            for (String item: tierList.getTierList().keySet()) {
+                if (tierList.getTierList().get(item) == currentTier.getTier()) {
+                    tierItems.add(item);
+                }
+            }
+            System.out.println(tierItems);
 
             // creates tier labels for first column, otherwise empty boxes
             // also adds colours to the tiers
