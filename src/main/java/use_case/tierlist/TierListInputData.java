@@ -7,7 +7,7 @@ public class TierListInputData {
 
     private final String tierList;
 
-    public TierListInputData(User user, String tierList, String item, Tier newTier) {
+    public TierListInputData(String user, String tierList, String item, Tier newTier) {
         this.tierList = tierList;
     }
 
