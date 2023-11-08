@@ -1,16 +1,14 @@
 package interface_adapter.tierlist;
 
-import entity.Tier;
 import entity.TierAdapter;
 import entity.User;
 import use_case.tierlist.TierListInputBoundary;
 import use_case.tierlist.TierListInputData;
-import use_case.tierlist.TierListInteractor;
 
 public class TierListController {
-    final TierListInteractor tierListInteractor;
+    final TierListInputBoundary tierListInteractor;
 
-    public TierListController(TierListInteractor tierListInteractor) {
+    public TierListController(TierListInputBoundary tierListInteractor) {
         this.tierListInteractor = tierListInteractor;
     }
 
