@@ -17,13 +17,16 @@ public class TierListInteractor implements TierListInputBoundary {
     @Override
     public void execute(TierListInputData data) {
         // Precondition: user, tierList and item exist.
-        User user = data.getUser();
+        String username = data.getUser();
         String tierList = data.getTierList();
+        String item = data.getItem();
+        Tier tier = data.getTier();
+        User user = dataAccessInterface.getUser(username);
 
-        dataAccessInterface.saveTier(user, tierList);
+        // Update item with new tier.
+        dataAccessInterface.saveTier(username, tierList, item, tier);
 
         TierListOutputData outputData = new TierListOutputData(user, tierList);
-
         outputBoundary.prepareSuccessView(outputData);
     }
 }
