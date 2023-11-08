@@ -24,11 +24,10 @@ public class TierListView extends JPanel implements ActionListener {
     public final TierList tierList;
     LabelPanel tier;
 
-    public TierListView(TierListController tierListController, TierListViewModel tierListViewModel, TierList tierList) {
+    public TierListView(TierListController tierListController, TierListViewModel tierListViewModel) {
 
         this.tierListViewModel = tierListViewModel;
         this.tierListController = tierListController;
-        this.tierList = tierList;
 
         // setting up the box layout to help formatting
         BoxLayout boxLayout = new BoxLayout(this, BoxLayout.Y_AXIS);
@@ -122,7 +121,6 @@ public class TierListView extends JPanel implements ActionListener {
 
         for (int i = 0; i < TierListViewModel.NUM_ITEMS; i++) {
             LabelDropDownPanel item = new LabelDropDownPanel(new JLabel("Item " + (i + 1)));
-            tierListViewModel.getState().setItem("Item " + (i + 1));
             item.setMaximumSize(new Dimension(200, 40));
             if (i < TierListViewModel.NUM_ITEMS / 2) {
                 leftPanel.add(item);
@@ -139,9 +137,7 @@ public class TierListView extends JPanel implements ActionListener {
 
                                 tierListController.execute(
                                         currentState.getUser(),
-                                        currentState.getTierList(),
-                                        currentState.getItem(),
-                                        currentState.getTier()
+                                        currentState.getTierList()
                                 );
                             }
                         }

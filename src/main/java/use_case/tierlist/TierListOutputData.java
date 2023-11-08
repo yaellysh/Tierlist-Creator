@@ -1,30 +1,20 @@
 package use_case.tierlist;
 
 import entity.Tier;
+import entity.User;
 
 public class TierListOutputData {
 
-    private final String item;
-    private final Tier tier;
-    private final String user;
+    private final User user;
     private final String tierList;
 
-    public TierListOutputData(String item, Tier tier, String user, String tierList) {
-        this.item = item;
-        this.tier = tier;
+    public TierListOutputData(User user, String tierList) {
         this.user = user;
         this.tierList = tierList;
     }
 
-    public String getItem() {
-        return item;
-    }
 
-    public Tier getTier() {
-        return tier;
-    }
-
-    public String getUser() {
+    public User getUser() {
         return user;
     }
 

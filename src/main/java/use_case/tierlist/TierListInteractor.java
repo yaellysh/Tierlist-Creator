@@ -1,6 +1,7 @@
 package use_case.tierlist;
 
 import entity.Tier;
+import entity.User;
 
 public class TierListInteractor implements TierListInputBoundary {
 
@@ -16,14 +17,12 @@ public class TierListInteractor implements TierListInputBoundary {
     @Override
     public void execute(TierListInputData data) {
         // Precondition: user, tierList and item exist.
-        String user = data.getUser();
+        User user = data.getUser();
         String tierList = data.getTierList();
-        String item = data.getItem();
-        Tier tier = data.getTier();
 
-        dataAccessInterface.saveTier(user, tierList, item, tier);
+        dataAccessInterface.saveTier(user, tierList);
 
-        TierListOutputData outputData = new TierListOutputData(item, tier, user, tierList);
+        TierListOutputData outputData = new TierListOutputData(user, tierList);
 
         outputBoundary.prepareSuccessView(outputData);
     }

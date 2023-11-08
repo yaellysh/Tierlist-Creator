@@ -1,21 +1,23 @@
 package interface_adapter.tierlist;
 
 import entity.Tier;
+import entity.User;
 
 public class TierListState {
-    private String user = "";
-    private String tierList = "";
-    private String item = "";
+    private User user;
+    private String tierList;
     private Tier tier;
 
-    TierListState() {
+    TierListState(User user, String tierList) {
+        this.user = user;
+        this.tierList = tierList;
     }
 
-    public String getUser() {
+    public User getUser() {
         return this.user;
     }
 
-    public void setUser(String user) {
+    public void setUser(User user) {
         this.user = user;
     }
 
@@ -26,22 +28,5 @@ public class TierListState {
     public void setTierList(String tierList) {
         this.tierList = tierList;
     }
-
-    public String getItem() {
-        return this.item;
-    }
-
-    public void setItem(String item) {
-        this.item = item;
-    }
-
-    public Tier getTier() {
-        return this.tier;
-    }
-
-    public void setTier(Tier tier) {
-        this.tier = tier;
-    }
-
 
 }

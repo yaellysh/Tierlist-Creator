@@ -2,6 +2,7 @@ package interface_adapter.tierlist;
 
 import entity.Tier;
 import entity.TierAdapter;
+import entity.User;
 import interface_adapter.ViewModel;
 
 import java.awt.*;
@@ -17,9 +18,8 @@ public class TierListViewModel extends ViewModel {
     public static final Font TEXT_FONT = new Font("Arial", Font.PLAIN, 15);
     public static final int NUM_TIERS = TierAdapter.TIERS.length;
     public static final int NUM_ITEMS = 10;
-    public static final String GENERATE_BUTTON = "Generate";
 
-    private TierListState state = new TierListState();
+    private TierListState state = new TierListState(new User("Yael"), "Test");
 
     public TierListViewModel() {
         super("tier list");

@@ -1,6 +1,7 @@
 package interface_adapter.tierlist;
 
 import entity.Tier;
+import entity.User;
 import use_case.tierlist.TierListInputBoundary;
 import use_case.tierlist.TierListInputData;
 import use_case.tierlist.TierListInteractor;
@@ -12,12 +13,10 @@ public class TierListController {
         this.tierListInteractor = tierListInteractor;
     }
 
-    public void execute(String user, String tierList, String item, Tier tier) {
+    public void execute(User user, String tierList) {
         TierListInputData tierListInputData = new TierListInputData(
                 user,
-                tierList,
-                item,
-                tier
+                tierList
         );
         tierListInteractor.execute(tierListInputData);
     }

@@ -1,10 +1,9 @@
 package use_case.tierlist;
 
 import entity.Tier;
+import entity.User;
 
 public interface TierListDataAccessInterface {
 
-    void saveTier(String user, String tierList, String item, Tier tier);
-
-
+    void saveTier(User user, String tierList);
 }
