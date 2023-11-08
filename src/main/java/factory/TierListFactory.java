@@ -3,9 +3,11 @@ package factory;
 import entity.Item;
 import entity.Tier;
 import entity.TierList;
+import entity.User;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.tierlist.TierListController;
 import interface_adapter.tierlist.TierListPresenter;
+import interface_adapter.tierlist.TierListState;
 import interface_adapter.tierlist.TierListViewModel;
 import use_case.tierlist.TierListDataAccessInterface;
 import use_case.tierlist.TierListInteractor;
@@ -22,14 +24,7 @@ public class TierListFactory {
     public static TierListView create(ViewManagerModel viewManagerModel, TierListViewModel tierListViewModel, TierListDataAccessInterface userDataAccessObject) {
 
         TierListController tierListController = createTierListUseCase(viewManagerModel, tierListViewModel, userDataAccessObject);
-        ArrayList<Item> items = new ArrayList<Item>();
-        for (int i = 1; i < 10; i++) {
-            Item item = new Item("Item " + i);
-            item.setTier(Tier.S);
-            items.add(item);
-        }
-        TierList tierList = new TierList("Test", items);
-        tierListViewModel.getState().getUser().addTierList(tierList);
+        tierListViewModel.setState(new TierListState(userDataAccessObject.getUser("Yael"), "Test"));
         return new TierListView(tierListController, tierListViewModel);
     }
     private static TierListController createTierListUseCase(ViewManagerModel viewManagerModel, TierListViewModel tierListViewModel, TierListDataAccessInterface userDataAccessObject) {

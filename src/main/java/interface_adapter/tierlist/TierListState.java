@@ -8,7 +8,7 @@ public class TierListState {
     private String tierList;
     private Tier tier;
 
-    TierListState(User user, String tierList) {
+    public TierListState(User user, String tierList) {
         this.user = user;
         this.tierList = tierList;
     }

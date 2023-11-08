@@ -17,12 +17,12 @@ public class TierListViewModel extends ViewModel {
     public static final Font TITLE_FONT = new Font("Arial Bold", Font.PLAIN, 25);
     public static final Font TEXT_FONT = new Font("Arial", Font.PLAIN, 15);
     public static final int NUM_TIERS = TierAdapter.TIERS.length;
-    public static final int NUM_ITEMS = 10;
+    public static final int NUM_ITEMS = 9;
 
-    private TierListState state = new TierListState(new User("Yael"), "Test");
+    private TierListState state;
 
-    public TierListViewModel() {
-        super("tier list");
+    public TierListViewModel(String name) {
+        super(name);
     }
 
     public void setState(TierListState state) {

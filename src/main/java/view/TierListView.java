@@ -49,51 +49,12 @@ public class TierListView extends JPanel implements ActionListener {
         this.add(tierGrid);
 
         // TODO: move this to presenter
-        TierListState currentState = tierListViewModel.getState();
-        User user = currentState.getUser();
-        Map<Tier, ArrayList<String>> tierItemMap = new HashMap<>();
-        TierList tierList =  user.getTierList(currentState.getTierList());
 
-        for (String item : tierList.getTierList().keySet()) {
-            if (tierItemMap.containsKey(tierList.getTierList().get(item))) {
-                tierItemMap.get(tierList.getTierList().get(item)).add(item);
-            } else {
-                tierItemMap.put(tierList.getTierList().get(item), new ArrayList<>(Collections.singletonList(item)));
-            }
-        }
 
         // changing the colours of the grid boxes based on their tier
         // this will be changed later when input data is actually brought in
         // then the colour of the box will be dependent on if there is anything in it
-        for (int i = 0; i < TierListViewModel.NUM_TIERS * 10; i++) {
-            TierAdapter currentTier = TierAdapter.TIERS[i / 10];
-            // creates tier labels for first column, otherwise empty boxes
-            // also adds colours to the tiers
-            if (i % 10 == 0) {
-                tier = new LabelPanel(new JLabel(currentTier.getName()));
-                tier.setBackground(Color.LIGHT_GRAY);
-            } else {
-                if (tierItemMap.get(currentTier.getTier()) != null) {
-                    if (i % TierListViewModel.NUM_ITEMS < tierItemMap.get(currentTier.getTier()).size()) {
-                        tier = new LabelPanel(new JLabel(tierItemMap.get(currentTier.getTier()).get(i %
-                                TierListViewModel.NUM_ITEMS)));
-                        tier.setBackground(currentTier.getColor());
-                    } else {
-                        tier = new LabelPanel(new JLabel());
-                        tier.setBackground(Color.LIGHT_GRAY);
-                    }
-                } else {
-                    tier = new LabelPanel(new JLabel());
-                    tier.setBackground(Color.LIGHT_GRAY);
-
-                }
-
-            }
-            tier.setBorder(BorderFactory.createLineBorder(Color.black));
-            tier.setPreferredSize(new Dimension(50, 50));
-            tierGrid.add(tier);
-
-        }
+        loadGrid(tierGrid);
 
         // added instructions label
         // the <html> tags ensure the instructions wrap to the screen
@@ -122,11 +83,16 @@ public class TierListView extends JPanel implements ActionListener {
         dropDownFramePanel.add(leftPanel);
         dropDownFramePanel.add(rightPanel);
 
+        TierListState currentState = tierListViewModel.getState();
+        User user = currentState.getUser();
+        Map<Tier, ArrayList<String>> tierItemMap = new HashMap<>();
+        TierList tierList = user.getTierList(currentState.getTierList());
+        java.util.List<String> items = tierList.getTierList().keySet().stream().sorted().toList();
 
-        for (int i = 0; i < TierListViewModel.NUM_ITEMS; i++) {
-            LabelDropDownPanel item = new LabelDropDownPanel(new JLabel("Item " + (i + 1)));
+        for (int i = 0; i < items.size(); i++) {
+            LabelDropDownPanel item = new LabelDropDownPanel(new JLabel(items.get(i)));
             item.setMaximumSize(new Dimension(200, 40));
-            if (i < TierListViewModel.NUM_ITEMS / 2) {
+            if (i < (TierListViewModel.NUM_ITEMS + 1) / 2) {
                 leftPanel.add(item);
             } else {
                 rightPanel.add(item);
@@ -145,6 +111,11 @@ public class TierListView extends JPanel implements ActionListener {
                                         item.getName(),
                                         item.getDropDown().getSelectedItem().toString()
                                 );
+                                tierGrid.removeAll();
+                                loadGrid(tierGrid);
+                                tierGrid.repaint();
+                                tierGrid.revalidate();
+
                             }
                         }
                     }
@@ -161,8 +132,81 @@ public class TierListView extends JPanel implements ActionListener {
 
     }
 
+    private void loadGrid(JPanel tierGrid) {
+
+        TierListState currentState = tierListViewModel.getState();
+        User user = currentState.getUser();
+        Map<Tier, ArrayList<String>> tierItemMap = new HashMap<>();
+        TierList tierList = user.getTierList(currentState.getTierList());
+
+        for (String item : tierList.getTierList().keySet()) {
+            if (tierItemMap.containsKey(tierList.getTierList().get(item))) {
+                tierItemMap.get(tierList.getTierList().get(item)).add(item);
+            } else {
+                tierItemMap.put(tierList.getTierList().get(item), new ArrayList<>(Collections.singletonList(item)));
+            }
+        }
+        for (int i = 0; i < TierListViewModel.NUM_TIERS; i++) {
+            TierAdapter currentTier = TierAdapter.TIERS[i];
+            // creates tier labels for first column, otherwise empty boxes
+            // also adds colours to the tiers
+
+            tier = new LabelPanel(new JLabel(currentTier.getName()));
+            tier.setBackground(Color.LIGHT_GRAY);
+            tier.setBorder(BorderFactory.createLineBorder(Color.black));
+            tier.setPreferredSize(new Dimension(50, 50));
+            tierGrid.add(tier);
+
+            if (tierItemMap.get(currentTier.getTier()) != null) {
+                int lenTier = tierItemMap.get(currentTier.getTier()).size();
+                for (int j = 0; j < lenTier; j++) {
+                    tier = new LabelPanel(new JLabel(tierItemMap.get(currentTier.getTier()).get(j)));
+                    tier.setBackground(currentTier.getColor());
+                    tier.setBorder(BorderFactory.createLineBorder(Color.black));
+                    tier.setPreferredSize(new Dimension(50, 50));
+                    tierGrid.add(tier);
+
+                }
+                for (int j = lenTier; j < TierListViewModel.NUM_ITEMS; j++) {
+                    tier = new LabelPanel(new JLabel());
+                    tier.setBackground(Color.LIGHT_GRAY);
+                    tier.setBorder(BorderFactory.createLineBorder(Color.black));
+                    tier.setPreferredSize(new Dimension(50, 50));
+                    tierGrid.add(tier);
+                }
+            } else {
+                for (int j = 0; j < TierListViewModel.NUM_ITEMS; j++) {
+                    tier = new LabelPanel(new JLabel());
+                    tier.setBackground(Color.LIGHT_GRAY);
+                    tier.setBorder(BorderFactory.createLineBorder(Color.black));
+                    tier.setPreferredSize(new Dimension(50, 50));
+                    tierGrid.add(tier);
+                }
+
+            }
+//                    if (i % (TierListViewModel.NUM_ITEMS) < tierItemMap.get(currentTier.getTier()).size()) {
+//                        tier = new LabelPanel(new JLabel(tierItemMap.get(currentTier.getTier()).get(i %
+//                                (TierListViewModel.NUM_ITEMS))));
+//                        tier.setBackground(currentTier.getColor());
+//                    } else {
+//                        tier = new LabelPanel(new JLabel());
+//                        tier.setBackground(Color.LIGHT_GRAY);
+//                    }
+//                } else {
+//                    tier = new LabelPanel(new JLabel());
+//                    tier.setBackground(Color.LIGHT_GRAY);
+//
+//                }
+
+//            }
+//            tier.setBorder(BorderFactory.createLineBorder(Color.black));
+//            tier.setPreferredSize(new Dimension(50, 50));
+//            tierGrid.add(tier);
+        }
+
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        JOptionPane.showConfirmDialog(this, "Cancel not implemented yet.");
     }
 }
