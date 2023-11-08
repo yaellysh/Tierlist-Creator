@@ -8,7 +8,7 @@ import java.util.Map;
 public class User {
 
     private final String username;
-    private Map<String, TierList> tierLists;
+    private final Map<String, TierList> tierLists;
 
     public User(String username) {
         this.username = username;
@@ -31,5 +31,9 @@ public class User {
         return this.tierLists.get(name);
     }
 
+    @Override
+    public String toString() {
+        return this.username;
+    }
 
 }

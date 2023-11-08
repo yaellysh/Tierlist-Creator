@@ -1,14 +1,11 @@
 package use_case.tierlist;
 
-import entity.Item;
 import entity.Tier;
-import entity.TierList;
-import entity.User;
 
 public class TierListInteractor implements TierListInputBoundary {
 
-    private TierListDataAccessInterface dataAccessInterface;
-    private TierListOutputBoundary outputBoundary;
+    private final TierListDataAccessInterface dataAccessInterface;
+    private final TierListOutputBoundary outputBoundary;
 
     public TierListInteractor(TierListDataAccessInterface dataAccessInterface,
                               TierListOutputBoundary outputBoundary) {

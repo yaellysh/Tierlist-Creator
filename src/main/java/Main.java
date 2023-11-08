@@ -23,8 +23,7 @@ public class Main {
 
         TierListViewModel tierListViewModel = new TierListViewModel();
 
-        FileUserDataAccessObject userDataAccessObject;
-        userDataAccessObject = new FileUserDataAccessObject("./users.csv");
+        FileUserDataAccessObject userDataAccessObject = new FileUserDataAccessObject("src/main/resources/users.json");
 
         TierListView tierListView = TierListFactory.create(viewManagerModel, tierListViewModel, userDataAccessObject);
         views.add(tierListView, tierListView.viewName);
