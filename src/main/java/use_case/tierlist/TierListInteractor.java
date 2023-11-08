@@ -23,7 +23,7 @@ public class TierListInteractor implements TierListInputBoundary {
 
         dataAccessInterface.saveTier(user, tierList, item, tier);
 
-        TierListOutputData outputData = new TierListOutputData(item, tier);
+        TierListOutputData outputData = new TierListOutputData(item, tier, user, tierList);
 
         outputBoundary.prepareSuccessView(outputData);
     }

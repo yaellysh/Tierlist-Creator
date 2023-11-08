@@ -2,22 +2,21 @@ package view;
 
 import entity.TierAdapter;
 import interface_adapter.tierlist.TierListController;
+import interface_adapter.tierlist.TierListState;
 import interface_adapter.tierlist.TierListViewModel;
+import use_case.tierlist.TierListInputData;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Arrays;
 
 public class TierListView extends JPanel implements ActionListener {
 
     public final String viewName = "tier list";
-
-    LabelPanel tier;
-
     public final TierListController tierListController;
     public final TierListViewModel tierListViewModel;
+    LabelPanel tier;
 
     public TierListView(TierListController tierListController, TierListViewModel tierListViewModel) {
 
@@ -32,6 +31,7 @@ public class TierListView extends JPanel implements ActionListener {
         JLabel tierListTitleLabel = new JLabel(TierListViewModel.TITLE_LABEL);
         tierListTitleLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 10));
         tierListTitleLabel.setFont(TierListViewModel.TITLE_FONT);
+        tierListTitleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         this.add(tierListTitleLabel);
 
         // setting up the actual tier list using a JPanel with a GridLayout
@@ -91,23 +91,43 @@ public class TierListView extends JPanel implements ActionListener {
         dropDownFramePanel.add(leftPanel);
         dropDownFramePanel.add(rightPanel);
 
-        for (int i = 0; i < 10; i++) {
-            LabelDropDownPanel item = new LabelDropDownPanel(new JLabel("Item " + (i + 1)), new JComboBox<>(
-                    Arrays.stream(TierAdapter.TIERS).map(TierAdapter::getName).toArray(String[]::new)));
+
+        for (int i = 0; i < TierListViewModel.NUM_ITEMS; i++) {
+            LabelDropDownPanel item = new LabelDropDownPanel(new JLabel("Item " + (i + 1)));
+            tierListViewModel.getState().setItem("Item " + (i + 1));
             item.setMaximumSize(new Dimension(200, 40));
-            if (i < 5) {
+            if (i < TierListViewModel.NUM_ITEMS / 2) {
                 leftPanel.add(item);
             } else {
                 rightPanel.add(item);
             }
 
+            item.getDropDown().addActionListener(
+                    new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            if (e.getSource().equals(item.getDropDown())) {
+                                TierListState currentState = tierListViewModel.getState();
+
+                                tierListController.execute(
+                                        currentState.getUser(),
+                                        currentState.getTierList(),
+                                        currentState.getItem(),
+                                        currentState.getTier()
+                                );
+                            }
+                        }
+                    }
+            );
+
         }
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        JButton generateButton = new JButton(TierListViewModel.GENERATE_BUTTON);
-        generateButton.setPreferredSize(new Dimension(100, 40));
-        buttonPanel.add(generateButton);
-        this.add(buttonPanel);
+
+//        JPanel buttonPanel = new JPanel();
+//        buttonPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+//        JButton generateButton = new JButton(TierListViewModel.GENERATE_BUTTON);
+//        generateButton.setPreferredSize(new Dimension(100, 40));
+//        buttonPanel.add(generateButton);
+//        this.add(buttonPanel);
 
     }
 

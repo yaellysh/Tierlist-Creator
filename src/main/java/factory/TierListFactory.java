@@ -22,7 +22,7 @@ public class TierListFactory {
     }
     private static TierListController createTierListUseCase(ViewManagerModel viewManagerModel, TierListViewModel tierListViewModel, TierListDataAccessInterface userDataAccessObject) {
         TierListOutputBoundary tierListOutputBoundary = new TierListPresenter(viewManagerModel, tierListViewModel);
-        TierListInputBoundary tierInteractor = new TierListInteractor(userDataAccessObject, tierListOutputBoundary);
+        TierListInteractor tierInteractor = new TierListInteractor(userDataAccessObject, tierListOutputBoundary);
         return new TierListController(tierInteractor);
     }
 }

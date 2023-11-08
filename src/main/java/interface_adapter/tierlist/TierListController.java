@@ -1,16 +1,24 @@
 package interface_adapter.tierlist;
 
+import entity.Tier;
 import use_case.tierlist.TierListInputBoundary;
 import use_case.tierlist.TierListInputData;
+import use_case.tierlist.TierListInteractor;
 
 public class TierListController {
-    final TierListInputBoundary tierListInputBoundary;
+    final TierListInteractor tierListInteractor;
 
-    public TierListController(TierListInputBoundary tierListInputBoundary) {
-        this.tierListInputBoundary = tierListInputBoundary;
+    public TierListController(TierListInteractor tierListInteractor) {
+        this.tierListInteractor = tierListInteractor;
     }
 
-    public void execute(TierListInputData tierListInputData) {
-        tierListInputBoundary.execute(tierListInputData);
+    public void execute(String user, String tierList, String item, Tier tier) {
+        TierListInputData tierListInputData = new TierListInputData(
+                user,
+                tierList,
+                item,
+                tier
+        );
+        tierListInteractor.execute(tierListInputData);
     }
 }
