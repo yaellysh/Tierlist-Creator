@@ -1,6 +1,6 @@
 package view;
 
-import entity.Item;
+import entity.Tier;
 import entity.TierAdapter;
 import entity.TierList;
 import interface_adapter.tierlist.TierListController;
@@ -12,6 +12,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 public class TierListView extends JPanel implements ActionListener {
 
@@ -26,7 +29,6 @@ public class TierListView extends JPanel implements ActionListener {
         this.tierListViewModel = tierListViewModel;
         this.tierListController = tierListController;
         this.tierList = tierList;
-        System.out.println(tierList.getTierList());
 
         // setting up the box layout to help formatting
         BoxLayout boxLayout = new BoxLayout(this, BoxLayout.Y_AXIS);
@@ -47,30 +49,45 @@ public class TierListView extends JPanel implements ActionListener {
         tierGrid.setLayout(grid);
         this.add(tierGrid);
 
+        Map<Tier, ArrayList<String>> tierItemMap = new HashMap<>();
+
+        for (String item : tierList.getTierList().keySet()) {
+            if (tierItemMap.containsKey(tierList.getTierList().get(item))) {
+                tierItemMap.get(tierList.getTierList().get(item)).add(item);
+            } else {
+                tierItemMap.put(tierList.getTierList().get(item), new ArrayList<>(Collections.singletonList(item)));
+            }
+        }
+        System.out.println(tierItemMap);
+
         // changing the colours of the grid boxes based on their tier
         // this will be changed later when input data is actually brought in
         // then the colour of the box will be dependent on if there is anything in it
         for (int i = 0; i < TierListViewModel.NUM_TIERS * 10; i++) {
             TierAdapter currentTier = TierAdapter.TIERS[i / 10];
-
-            ArrayList<String> tierItems = new ArrayList<>();
-            for (String item: tierList.getTierList().keySet()) {
-                if (tierList.getTierList().get(item) == currentTier.getTier()) {
-                    tierItems.add(item);
-                }
-            }
-            System.out.println(tierItems);
-
             // creates tier labels for first column, otherwise empty boxes
             // also adds colours to the tiers
             if (i % 10 == 0) {
                 tier = new LabelPanel(new JLabel(currentTier.getName()));
                 tier.setBackground(Color.LIGHT_GRAY);
             } else {
-                tier = new LabelPanel(new JLabel());
-                tier.setBackground(currentTier.getColor());
-            }
+                if (tierItemMap.get(currentTier.getTier()) != null) {
+                    System.out.println(tierItemMap.get(currentTier.getTier()));
+                    if (i % TierListViewModel.NUM_ITEMS < tierItemMap.get(currentTier.getTier()).size()) {
+                        tier = new LabelPanel(new JLabel(tierItemMap.get(currentTier.getTier()).get(i %
+                                TierListViewModel.NUM_ITEMS)));
+                        tier.setBackground(currentTier.getColor());
+                    } else {
+                        tier = new LabelPanel(new JLabel());
+                        tier.setBackground(Color.LIGHT_GRAY);
+                    }
+                } else {
+                    tier = new LabelPanel(new JLabel());
+                    tier.setBackground(Color.LIGHT_GRAY);
 
+                }
+
+            }
             tier.setBorder(BorderFactory.createLineBorder(Color.black));
             tier.setPreferredSize(new Dimension(50, 50));
             tierGrid.add(tier);

@@ -23,12 +23,21 @@ public class TierListFactory {
 
         TierListController tierListController = createTierListUseCase(viewManagerModel, tierListViewModel, userDataAccessObject);
         ArrayList<Item> items = new ArrayList<Item>();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 1; i < 5; i++) {
             Item item = new Item("Item " + i);
             item.setTier(Tier.S);
             items.add(item);
         }
-
+        for (int i = 5; i < 8; i++) {
+            Item item = new Item("Item " + i);
+            item.setTier(Tier.A);
+            items.add(item);
+        }
+        for (int i = 8; i < 10; i++) {
+            Item item = new Item("Item " + i);
+            item.setTier(Tier.C);
+            items.add(item);
+        }
         TierList tierList = new TierList("Test", items);
         return new TierListView(tierListController, tierListViewModel, tierList);
     }
