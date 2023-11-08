@@ -37,7 +37,7 @@ public class TierListView extends JPanel implements ActionListener {
         // setting up the actual tier list using a JPanel with a GridLayout
         GridLayout grid = new GridLayout(TierListViewModel.NUM_TIERS, 10);
         JPanel tierGrid = new JPanel();
-        tierGrid.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+        tierGrid.setBorder(BorderFactory.createEmptyBorder(5, 20, 5, 20));
 
         tierGrid.setLayout(grid);
         this.add(tierGrid);
@@ -70,7 +70,7 @@ public class TierListView extends JPanel implements ActionListener {
         instructions.setText("<html>" + TierListViewModel.INSTRUCTIONS + "</html>");
         instructions.setFont(TierListViewModel.TEXT_FONT);
         instructions.setAlignmentX(Component.CENTER_ALIGNMENT);
-        instructions.setBorder(BorderFactory.createEmptyBorder(5, 10, 10, 10));
+        instructions.setBorder(BorderFactory.createEmptyBorder(5, 20, 10, 20));
         this.add(instructions);
 
         // setting up the container the two frames will be placed in
