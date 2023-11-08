@@ -5,19 +5,12 @@ import entity.User;
 
 public class TierListInputData {
 
-    private final User user;
     private final String tierList;
 
-    public TierListInputData(User user, String tierList) {
-        this.user = user;
+    public TierListInputData(User user, String tierList, String item, Tier newTier) {
         this.tierList = tierList;
     }
 
-
-
-    public User getUser() {
-        return user;
-    }
 
     public String getTierList() {
         return tierList;

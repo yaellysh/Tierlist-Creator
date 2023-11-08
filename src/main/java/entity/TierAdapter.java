@@ -1,6 +1,9 @@
 package entity;
 
 import java.awt.*;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class TierAdapter {
 
@@ -19,6 +22,11 @@ public class TierAdapter {
         this.color = color;
     }
 
+    public static Map<String, Tier> getTiers() {
+        return Stream.of(TIERS).collect(Collectors.toMap(TierAdapter::getName, TierAdapter::getTier));
+
+    }
+
     public String getName() {
         return String.valueOf(tier);
     }
@@ -27,6 +35,8 @@ public class TierAdapter {
         return color;
     }
 
-    public Tier getTier() { return tier; }
+    public Tier getTier() {
+        return tier;
+    }
 }
 

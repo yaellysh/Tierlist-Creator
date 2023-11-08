@@ -3,6 +3,7 @@ package view;
 import entity.Tier;
 import entity.TierAdapter;
 import entity.TierList;
+import entity.User;
 import interface_adapter.tierlist.TierListController;
 import interface_adapter.tierlist.TierListState;
 import interface_adapter.tierlist.TierListViewModel;
@@ -21,7 +22,6 @@ public class TierListView extends JPanel implements ActionListener {
     public final String viewName = "tier list";
     public final TierListController tierListController;
     public final TierListViewModel tierListViewModel;
-    public final TierList tierList;
     LabelPanel tier;
 
     public TierListView(TierListController tierListController, TierListViewModel tierListViewModel) {
@@ -48,7 +48,10 @@ public class TierListView extends JPanel implements ActionListener {
         tierGrid.setLayout(grid);
         this.add(tierGrid);
 
+        TierListState currentState = tierListViewModel.getState();
+        User user = currentState.getUser();
         Map<Tier, ArrayList<String>> tierItemMap = new HashMap<>();
+        TierList tierList =  user.getTierList(currentState.getTierList());
 
         for (String item : tierList.getTierList().keySet()) {
             if (tierItemMap.containsKey(tierList.getTierList().get(item))) {
@@ -137,7 +140,9 @@ public class TierListView extends JPanel implements ActionListener {
 
                                 tierListController.execute(
                                         currentState.getUser(),
-                                        currentState.getTierList()
+                                        currentState.getTierList(),
+                                        item.getName(),
+                                        item.getDropDown().getSelectedItem().toString()
                                 );
                             }
                         }
