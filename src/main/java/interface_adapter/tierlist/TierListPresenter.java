@@ -18,14 +18,12 @@ public class TierListPresenter implements TierListOutputBoundary {
     public void prepareSuccessView(TierListOutputData data) {
 
         TierListState tierListState = tierListViewModel.getState();
-//        tierListState.setUser(data.getUser());
-//        tierListState.setTier(data.getTier());
-//        tierListState.setItem(data.getItem());
         tierListState.setTierList(data.getTierList());
         this.tierListViewModel.setState(tierListState);
         tierListViewModel.firePropertyChanged();
 
         viewManagerModel.setActiveView(tierListViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
+
     }
 }

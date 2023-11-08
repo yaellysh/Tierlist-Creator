@@ -48,6 +48,7 @@ public class TierListView extends JPanel implements ActionListener {
         tierGrid.setLayout(grid);
         this.add(tierGrid);
 
+        // TODO: move this to presenter
         TierListState currentState = tierListViewModel.getState();
         User user = currentState.getUser();
         Map<Tier, ArrayList<String>> tierItemMap = new HashMap<>();
