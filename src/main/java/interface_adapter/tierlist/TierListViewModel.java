@@ -1,8 +1,6 @@
 package interface_adapter.tierlist;
 
-import entity.Tier;
 import entity.TierAdapter;
-import entity.User;
 import interface_adapter.ViewModel;
 
 import java.awt.*;

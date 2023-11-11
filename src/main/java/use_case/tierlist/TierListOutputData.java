@@ -1,6 +1,5 @@
 package use_case.tierlist;
 
-import entity.Tier;
 import entity.User;
 
 public class TierListOutputData {
