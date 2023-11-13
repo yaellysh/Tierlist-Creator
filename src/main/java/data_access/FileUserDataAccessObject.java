@@ -37,15 +37,6 @@ public class FileUserDataAccessObject implements TierListDataAccessInterface {
         }
     }
 
-    public static void main(String[] args) {
-
-        FileUserDataAccessObject object = new FileUserDataAccessObject("src/main/resources/users.json");
-        List<User> users = object.users.values().stream().toList();
-        System.out.println(users.get(0));
-        System.out.println(users.get(0).getTierList("Test").getItem("Item 1").getTier());
-
-    }
-
     public void save() {
         try {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -71,4 +62,10 @@ public class FileUserDataAccessObject implements TierListDataAccessInterface {
     public User getUser(String username) {
         return this.users.get(username);
     }
+
+    // This will be overridden as a part of the signup DAI
+    public void addUser(User user) {
+        this.users.put(user.getUsername(), user);
+    }
+
 }
