@@ -1,5 +1,5 @@
 package use_case.like;
 
-public class LikeOutputBoundary {
-    
+public interface LikeOutputBoundary {
+    void prepareSuccessView();
 }
