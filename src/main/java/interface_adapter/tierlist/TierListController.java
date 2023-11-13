@@ -3,6 +3,7 @@ package interface_adapter.tierlist;
 import entity.TierAdapter;
 import entity.User;
 import use_case.tierlist.TierListInputData;
+import use_case.tierlist.TierListInputBoundary;
 
 public class TierListController {
     final TierListInputBoundary tierListInteractor;
