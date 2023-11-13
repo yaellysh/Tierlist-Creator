@@ -64,6 +64,7 @@ public class FileUserDataAccessObject implements TierListDataAccessInterface {
                 .getTierList(tierList)
                 .getItem(item)
                 .setTier(tier);
+        this.save();
     }
 
     @Override

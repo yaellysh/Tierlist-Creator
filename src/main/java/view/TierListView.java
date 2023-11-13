@@ -45,7 +45,6 @@ public class TierListView extends JPanel implements ActionListener {
         tierGrid.setLayout(grid);
         this.add(tierGrid);
 
-
         // changing the colours of the grid boxes based on their tier
         // this will be changed later when input data is actually brought in
         // then the colour of the box will be dependent on if there is anything in it
@@ -105,9 +104,8 @@ public class TierListView extends JPanel implements ActionListener {
                             );
                             tierGrid.removeAll();
                             loadGrid(tierGrid);
-                            tierGrid.repaint();
                             tierGrid.revalidate();
-
+                            tierGrid.repaint();
                         }
                     }
             );
@@ -116,10 +114,20 @@ public class TierListView extends JPanel implements ActionListener {
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        JButton generateButton = new JButton(TierListViewModel.SAVE_BUTTON);
-        generateButton.setPreferredSize(new Dimension(100, 40));
-        buttonPanel.add(generateButton);
+        JButton saveButton = new JButton(TierListViewModel.HOME_BUTTON);
+        saveButton.setPreferredSize(new Dimension(100, 40));
+        buttonPanel.add(saveButton);
         this.add(buttonPanel);
+
+        saveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                TierListState currentState2 = tierListViewModel.getState();
+
+                // TODO: save data here
+
+            }
+        });
 
     }
 

@@ -16,7 +16,7 @@ public class TierListViewModel extends ViewModel {
     public static final Font TEXT_FONT = new Font("Arial", Font.PLAIN, 15);
     public static final int NUM_TIERS = TierAdapter.TIERS.length;
     public static final int NUM_ITEMS = 9;
-    public static final String SAVE_BUTTON = "Save";
+    public static final String HOME_BUTTON = "Home";
     private TierListState state;
 
     public TierListViewModel(String name) {
