@@ -12,10 +12,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class TierListView extends JPanel implements ActionListener {
 
@@ -47,8 +44,6 @@ public class TierListView extends JPanel implements ActionListener {
 
         tierGrid.setLayout(grid);
         this.add(tierGrid);
-
-        // TODO: move this to presenter
 
 
         // changing the colours of the grid boxes based on their tier
@@ -85,7 +80,6 @@ public class TierListView extends JPanel implements ActionListener {
 
         TierListState currentState = tierListViewModel.getState();
         User user = currentState.getUser();
-        Map<Tier, ArrayList<String>> tierItemMap = new HashMap<>();
         TierList tierList = user.getTierList(currentState.getTierList());
         java.util.List<String> items = tierList.getTierList().keySet().stream().sorted().toList();
 
@@ -99,36 +93,33 @@ public class TierListView extends JPanel implements ActionListener {
             }
 
             item.getDropDown().addActionListener(
-                    new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            if (e.getSource().equals(item.getDropDown())) {
-                                TierListState currentState = tierListViewModel.getState();
+                    e -> {
+                        if (e.getSource().equals(item.getDropDown())) {
+                            TierListState currentState1 = tierListViewModel.getState();
 
-                                tierListController.execute(
-                                        currentState.getUser(),
-                                        currentState.getTierList(),
-                                        item.getName(),
-                                        item.getDropDown().getSelectedItem().toString()
-                                );
-                                tierGrid.removeAll();
-                                loadGrid(tierGrid);
-                                tierGrid.repaint();
-                                tierGrid.revalidate();
+                            tierListController.execute(
+                                    currentState1.getUser(),
+                                    currentState1.getTierList(),
+                                    item.getName(),
+                                    Objects.requireNonNull(item.getDropDown().getSelectedItem()).toString()
+                            );
+                            tierGrid.removeAll();
+                            loadGrid(tierGrid);
+                            tierGrid.repaint();
+                            tierGrid.revalidate();
 
-                            }
                         }
                     }
             );
 
         }
 
-//        JPanel buttonPanel = new JPanel();
-//        buttonPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-//        JButton generateButton = new JButton(TierListViewModel.GENERATE_BUTTON);
-//        generateButton.setPreferredSize(new Dimension(100, 40));
-//        buttonPanel.add(generateButton);
-//        this.add(buttonPanel);
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        JButton generateButton = new JButton(TierListViewModel.SAVE_BUTTON);
+        generateButton.setPreferredSize(new Dimension(100, 40));
+        buttonPanel.add(generateButton);
+        this.add(buttonPanel);
 
     }
 
@@ -146,6 +137,7 @@ public class TierListView extends JPanel implements ActionListener {
                 tierItemMap.put(tierList.getTierList().get(item), new ArrayList<>(Collections.singletonList(item)));
             }
         }
+
         for (int i = 0; i < TierListViewModel.NUM_TIERS; i++) {
             TierAdapter currentTier = TierAdapter.TIERS[i];
             // creates tier labels for first column, otherwise empty boxes
@@ -184,24 +176,7 @@ public class TierListView extends JPanel implements ActionListener {
                 }
 
             }
-//                    if (i % (TierListViewModel.NUM_ITEMS) < tierItemMap.get(currentTier.getTier()).size()) {
-//                        tier = new LabelPanel(new JLabel(tierItemMap.get(currentTier.getTier()).get(i %
-//                                (TierListViewModel.NUM_ITEMS))));
-//                        tier.setBackground(currentTier.getColor());
-//                    } else {
-//                        tier = new LabelPanel(new JLabel());
-//                        tier.setBackground(Color.LIGHT_GRAY);
-//                    }
-//                } else {
-//                    tier = new LabelPanel(new JLabel());
-//                    tier.setBackground(Color.LIGHT_GRAY);
-//
-//                }
 
-//            }
-//            tier.setBorder(BorderFactory.createLineBorder(Color.black));
-//            tier.setPreferredSize(new Dimension(50, 50));
-//            tierGrid.add(tier);
         }
 
     }

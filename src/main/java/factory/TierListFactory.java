@@ -1,9 +1,5 @@
 package factory;
 
-import entity.Item;
-import entity.Tier;
-import entity.TierList;
-import entity.User;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.tierlist.TierListController;
 import interface_adapter.tierlist.TierListPresenter;
@@ -13,8 +9,6 @@ import use_case.tierlist.TierListDataAccessInterface;
 import use_case.tierlist.TierListInteractor;
 import use_case.tierlist.TierListOutputBoundary;
 import view.TierListView;
-
-import java.util.ArrayList;
 
 public class TierListFactory {
 

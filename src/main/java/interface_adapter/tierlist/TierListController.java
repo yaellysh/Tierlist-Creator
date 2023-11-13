@@ -1,9 +1,7 @@
 package interface_adapter.tierlist;
 
-import entity.Tier;
 import entity.TierAdapter;
 import entity.User;
-import use_case.tierlist.TierListInputBoundary;
 import use_case.tierlist.TierListInputData;
 import use_case.tierlist.TierListInteractor;
 

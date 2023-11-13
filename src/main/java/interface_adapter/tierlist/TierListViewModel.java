@@ -1,8 +1,6 @@
 package interface_adapter.tierlist;
 
-import entity.Tier;
 import entity.TierAdapter;
-import entity.User;
 import interface_adapter.ViewModel;
 
 import java.awt.*;
@@ -13,12 +11,12 @@ public class TierListViewModel extends ViewModel {
 
     public static final String TITLE_LABEL = "Tier List View";
     public static final String INSTRUCTIONS = "In the drop down options below please select the tier you wish" +
-            " to place each item in. To view the corresponding tier list, press the 'generate' button.";
+            " to place each item in. The tier list will update accordingly.   ";
     public static final Font TITLE_FONT = new Font("Arial Bold", Font.PLAIN, 25);
     public static final Font TEXT_FONT = new Font("Arial", Font.PLAIN, 15);
     public static final int NUM_TIERS = TierAdapter.TIERS.length;
     public static final int NUM_ITEMS = 9;
-
+    public static final String SAVE_BUTTON = "Save";
     private TierListState state;
 
     public TierListViewModel(String name) {
