@@ -1,12 +1,10 @@
 package interface_adapter.tierlist;
 
-import entity.Tier;
 import entity.User;
 
 public class TierListState {
     private User user;
     private String tierList;
-    private Tier tier;
 
     public TierListState(User user, String tierList) {
         this.user = user;

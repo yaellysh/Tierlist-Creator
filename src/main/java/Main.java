@@ -1,8 +1,6 @@
 import data_access.FileUserDataAccessObject;
-import entity.User;
 import factory.TierListFactory;
 import interface_adapter.ViewManagerModel;
-import interface_adapter.tierlist.TierListState;
 import interface_adapter.tierlist.TierListViewModel;
 import view.TierListView;
 import view.ViewManager;

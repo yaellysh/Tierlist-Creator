@@ -3,9 +3,7 @@ package data_access;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import entity.Item;
 import entity.Tier;
-import entity.TierList;
 import entity.User;
 import use_case.tierlist.TierListDataAccessInterface;
 
@@ -16,7 +14,6 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,21 +40,9 @@ public class FileUserDataAccessObject implements TierListDataAccessInterface {
     public static void main(String[] args) {
 
         FileUserDataAccessObject object = new FileUserDataAccessObject("src/main/resources/users.json");
-        User user = new User("Yael");
-        ArrayList<Item> items = new ArrayList<>();
-        for (int i = 1; i < 10; i++) {
-            Item item = new Item("Item " + i);
-            items.add(item);
-        }
-        TierList tierList = new TierList("Test", items);
-        user.addTierList(tierList);
-        object.users.put("Yael", user);
-        object.save();
-
-//        FileUserDataAccessObject object = new FileUserDataAccessObject("users.json");
-//        List<User> users = object.users.values().stream().toList();
-//        System.out.println(users.get(0));
-//        System.out.println(users.get(0).getTierList("tierlist").getItem("item1").getTier());
+        List<User> users = object.users.values().stream().toList();
+        System.out.println(users.get(0));
+        System.out.println(users.get(0).getTierList("Test").getItem("Item 1").getTier());
 
     }
 
