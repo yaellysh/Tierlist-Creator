@@ -1,5 +1,5 @@
 package use_case.follow;
 
 public interface FollowOutputBoundary {
-    void prepareSuccessView();
+    void prepareSuccessView(FollowOutputData followOutputData);
 }
