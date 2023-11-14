@@ -24,6 +24,7 @@ public class TierListTest {
         ArrayList<Item> items = new ArrayList<>();
         for (int i = 1; i < 10; i++) {
             Item item = new Item("Item " + i);
+            item.setTier(Tier.S);
             items.add(item);
         }
         TierList tierList = new TierList("Test", items);
