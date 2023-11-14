@@ -29,7 +29,7 @@ public class TierListTest {
         }
         TierList tierList = new TierList("Test", items);
         user.addTierList(tierList);
-        object.addUser(user);
+//        object.addUser(user);
         object.save();
 
         // TODO: will assert in the future that the reading works once others are implemented
@@ -87,7 +87,8 @@ public class TierListTest {
         Thread.sleep(1000);
 
         Tier updatedTier = getTierList();
-        System.out.println(updatedTier);
         assert updatedTier.equals(Tier.A);
+        dropDown.setSelectedItem("S");
+        Thread.sleep(1000);
     }
 }
