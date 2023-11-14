@@ -1,6 +1,8 @@
 package use_case.follow;
 
-public class FollowInteractor {
+import entity.User;
+
+public class FollowInteractor implements FollowInputBoundary {
     final FollowUserDataAccessInterface userDataAccessObject;
     final FollowOutputBoundary followPresenter;
 
@@ -10,5 +12,11 @@ public class FollowInteractor {
         followPresenter = loginOutputBoundary;
     }
 
-    public void execute
+    public void execute(FollowInputData followInputData) {
+        User follower = followInputData.getFollower();
+        User userBeingFollowed = followInputData.getUserBeingFollowed();
+        userDataAccessObject.updateFollowing(follower, userBeingFollowed);
+        userDataAccessObject.updateUserBeingFollowed(follower, userBeingFollowed);
+
+    }
 }
