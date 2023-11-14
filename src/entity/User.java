@@ -48,5 +48,13 @@ public class User {
     public List<User> getFollowers() {
         return new ArrayList<>(followers);
     }
+
+    public void addFollower(User user) {
+        followers.add(user);
+    }
+
+    public void addFollowing(User user) {
+        followers.add(user);
+    }
 }
 
