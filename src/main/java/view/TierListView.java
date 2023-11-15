@@ -13,6 +13,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
+import java.util.List;
 
 public class TierListView extends JPanel implements ActionListener {
 
@@ -80,10 +81,15 @@ public class TierListView extends JPanel implements ActionListener {
         TierListState currentState = tierListViewModel.getState();
         User user = currentState.getUser();
         TierList tierList = user.getTierList(currentState.getTierList());
-        java.util.List<String> items = tierList.getTierList().keySet().stream().sorted().toList();
+        List<Map.Entry<String, Tier>> entries = tierList.getTierList().entrySet()
+                .stream()
+                .sorted(Map.Entry.comparingByKey())
+                .toList();
 
-        for (int i = 0; i < items.size(); i++) {
-            LabelDropDownPanel item = new LabelDropDownPanel(new JLabel(items.get(i)));
+        for (int i = 0; i < entries.size(); i++) {
+            Map.Entry<String, Tier> entry = entries.get(i);
+            LabelDropDownPanel item = new LabelDropDownPanel(new JLabel(entry.getKey()));
+            item.getDropDown().setSelectedItem(entry.getValue().toString());
             item.setMaximumSize(new Dimension(200, 40));
             if (i < (TierListViewModel.NUM_ITEMS + 1) / 2) {
                 leftPanel.add(item);
@@ -114,17 +120,16 @@ public class TierListView extends JPanel implements ActionListener {
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        JButton saveButton = new JButton(TierListViewModel.HOME_BUTTON);
-        saveButton.setPreferredSize(new Dimension(100, 40));
-        buttonPanel.add(saveButton);
+        JButton homeButton = new JButton(TierListViewModel.HOME_BUTTON);
+        homeButton.setPreferredSize(new Dimension(100, 40));
+        buttonPanel.add(homeButton);
         this.add(buttonPanel);
 
-        saveButton.addActionListener(new ActionListener() {
+        homeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                TierListState currentState2 = tierListViewModel.getState();
 
-                // TODO: save data here
+                // TODO: go back a screen
 
             }
         });
