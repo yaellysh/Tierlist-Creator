@@ -82,13 +82,13 @@ public class TierListTest {
         Tier initialTier = getTierList();
         assert initialTier.equals(Tier.S);
         JComboBox dropDown = getDropDown();
-        Thread.sleep(1000);
+        Thread.sleep(100);
         dropDown.setSelectedItem("A");
-        Thread.sleep(1000);
+        Thread.sleep(100);
 
         Tier updatedTier = getTierList();
         assert updatedTier.equals(Tier.A);
         dropDown.setSelectedItem("S");
-        Thread.sleep(1000);
+        Thread.sleep(100);
     }
 }
