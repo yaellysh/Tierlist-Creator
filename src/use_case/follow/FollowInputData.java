@@ -2,19 +2,19 @@ package use_case.follow;
 import entity.User;
 
 public class FollowInputData {
-    final private User follower;
-    final private User userBeingFollowed;
+    final private String followerName;
+    final private String userBeingFollowedName;
 
-    public FollowInputData(User follower, User userBeingFollowed) {
-        this.follower = follower;
-        this.userBeingFollowed = userBeingFollowed;
+    public FollowInputData(String follower, String userBeingFollowed) {
+        this.followerName = follower;
+        this.userBeingFollowedName = userBeingFollowed;
     }
 
-    public User getFollower() {
-        return follower;
+    public String getFollower() {
+        return followerName;
     }
 
-    public User getUserBeingFollowed() {
-        return userBeingFollowed;
+    public String getUserBeingFollowed() {
+        return userBeingFollowedName;
     }
 }

@@ -15,9 +15,11 @@ public class FollowInteractor implements FollowInputBoundary {
     }
 
     public void execute(FollowInputData followInputData) {
-        User follower = followInputData.getFollower();
-        User userBeingFollowed = followInputData.getUserBeingFollowed();
+        String followerName = followInputData.getFollower();
+        String userBeingFollowedName = followInputData.getUserBeingFollowed();
 
+        User follower = userDataAccessObject.getUser(followerName);
+        User userBeingFollowed = userDataAccessObject.getUser(userBeingFollowedName);
 
 
         userDataAccessObject.updateFollowing(follower, userBeingFollowed);
