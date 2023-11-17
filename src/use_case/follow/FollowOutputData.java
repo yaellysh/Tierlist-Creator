@@ -5,13 +5,13 @@ import entity.User;
 import java.util.List;
 
 public class FollowOutputData {
-    private final List<User> relatedUsers;
+    private final List<String> relatedUsers;
 
-    public FollowOutputData(List<User> relatedUsers) {
+    public FollowOutputData(List<String> relatedUsers) {
         this.relatedUsers = relatedUsers;
     }
 
-    public List<User> getRelatedUsers() {
+    public List<String> getRelatedUsers() {
         return relatedUsers;
     }
 }
