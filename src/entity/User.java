@@ -10,8 +10,8 @@ public class User {
     private final String username;
     private final Map<String, TierList> tierLists;
     private List<TierList> liked;
-    private List<User> following;
-    private List<User> followers;
+    private List<String> following;
+    private List<String> followers;
 
     public User(String username) {
         this.username = username;
@@ -41,20 +41,20 @@ public class User {
         return this.username;
     }
 
-    public List<User> getFollowing() {
+    public List<String> getFollowing() {
         return new ArrayList<>(following);
     }
 
-    public List<User> getFollowers() {
+    public List<String> getFollowers() {
         return new ArrayList<>(followers);
     }
 
-    public void addFollower(User user) {
+    public void addFollower(String user) {
         followers.add(user);
     }
 
-    public void addFollowing(User user) {
-        followers.add(user);
+    public void addFollowing(String user) {
+        following.add(user);
     }
 }
 
