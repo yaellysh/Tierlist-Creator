@@ -46,9 +46,12 @@ public class FollowInteractor implements FollowInputBoundary {
         Set<String> setRelatedUsers = new HashSet<>(userBeingFollowedRelatedUsers);
 
         String firstMutual;
+        int firstMutualCount;
         String secondMutual;
+        int secondMutualCount;
         String thirdMutual;
-        for (User followerFollower : followerFollowing) {
+        int thirdMutualCount;
+        for (String relatedUser : setRelatedUsers) {
 
         }
 
