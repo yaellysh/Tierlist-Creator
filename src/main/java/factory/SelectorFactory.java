@@ -6,12 +6,9 @@ import interface_adapter.selector.SelectorController;
 import interface_adapter.selector.SelectorPresenter;
 import interface_adapter.selector.SelectorState;
 import interface_adapter.selector.SelectorViewModel;
-import interface_adapter.tierlist.TierListState;
-import use_case.selector.SelectorDataAccessInterface;
 import use_case.selector.SelectorInteractor;
 import use_case.selector.SelectorOutputBoundary;
 import view.SelectorView;
-import view.TierListView;
 
 public class SelectorFactory {
     private SelectorFactory() {}
