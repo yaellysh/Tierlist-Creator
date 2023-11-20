@@ -2,10 +2,7 @@ package use_case.follow;
 
 import entity.User;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class FollowInteractor implements FollowInputBoundary {
     final FollowUserDataAccessInterface userDataAccessObject;
@@ -27,8 +24,8 @@ public class FollowInteractor implements FollowInputBoundary {
         User userBeingFollowed = userDataAccessObject.getUser(userBeingFollowedName);
 
         // update following and followers both in the entity objects and in the database
-        // follower.addFollowing(userBeingFollowedName);
-        // userBeingFollowed.addFollower(followerName);
+        // ** follower.addFollowing(userBeingFollowedName);
+        // ** userBeingFollowed.addFollower(followerName);
         // can put these inside data access object
         userDataAccessObject.updateFollowing(follower, userBeingFollowedName);
         userDataAccessObject.updateUserBeingFollowed(followerName, userBeingFollowed);
@@ -45,13 +42,37 @@ public class FollowInteractor implements FollowInputBoundary {
         List<String> userBeingFollowedRelatedUsers = new ArrayList<>(userBeingFollowedFollowing);
         Set<String> setRelatedUsers = new HashSet<>(userBeingFollowedRelatedUsers);
 
-        String firstMutual;
-        int firstMutualCount;
-        String secondMutual;
-        int secondMutualCount;
-        String thirdMutual;
-        int thirdMutualCount;
+        String[] mutuals = new String[3];
+        int[] mutualsCounts = new int[3];
+
+        // iterate through the users related to the user you just followed
         for (String relatedUser : setRelatedUsers) {
+            int mutualsCount = 0;
+
+            // iterate through the users you follow
+            for (String usernameYouFollow : followerFollowing) {
+                User userYouFollow = userDataAccessObject.getUser(usernameYouFollow);
+                List<String> userYouFollowFollowing = userYouFollow.getFollowing();
+
+                // iterate through the following of the user you follow
+                for  (String usernameYouFollowFollowing : userYouFollowFollowing) {
+                    if (usernameYouFollowFollowing.equals(relatedUser)) {
+                        mutualsCount ++;
+                    }
+                }
+
+            }
+
+            int i = 0;
+            while (i < 3) {
+                if (mutualsCounts[i] < mutualsCount) {
+                    mutualsCounts[i] = mutualsCount;
+                    mutuals[i] = relatedUser;
+                    Arrays.sort(mutualsCounts);
+                }
+                i ++;
+
+            }
 
         }
 
