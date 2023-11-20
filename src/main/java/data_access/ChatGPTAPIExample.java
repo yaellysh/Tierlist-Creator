@@ -11,8 +11,8 @@ public class ChatGPTAPIExample {
 
     public static String chatGPT(String prompt) throws IOException {
 
-// https://rollbar.com/blog/how-to-use-chatgpt-api-with-java/ this website was used to help integrate the ChatGPT
-// API with Java
+    // https://rollbar.com/blog/how-to-use-chatgpt-api-with-java/ this website was used to help integrate the ChatGPT
+    // API with Java
 
         String apiKey = System.getenv("OPENAI_API_KEY");
         String url = "https://api.openai.com/v1/chat/completions";
