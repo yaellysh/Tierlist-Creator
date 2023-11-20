@@ -1,4 +1,4 @@
 package use_case.selector;
 
-public class SelectorInteractor {
+public class SelectorInteractor implements SelectorInputBoundary {
 }
