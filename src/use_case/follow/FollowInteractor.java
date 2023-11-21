@@ -42,8 +42,7 @@ public class FollowInteractor implements FollowInputBoundary {
         List<String> userBeingFollowedRelatedUsers = new ArrayList<>(userBeingFollowedFollowing);
         Set<String> setRelatedUsers = new HashSet<>(userBeingFollowedRelatedUsers);
 
-        String[] mutuals = new String[3];
-        int[] mutualsCounts = new int[3];
+        TreeMap<String, Integer> mutualsMap = new TreeMap<>();
 
         // iterate through the users related to the user you just followed
         for (String relatedUser : setRelatedUsers) {
@@ -63,19 +62,26 @@ public class FollowInteractor implements FollowInputBoundary {
 
             }
 
-            int i = 0;
-            while (i < 3) {
-                if (mutualsCounts[i] < mutualsCount) {
-                    mutualsCounts[i] = mutualsCount;
-                    mutuals[i] = relatedUser;
-                    Arrays.sort(mutualsCounts);
-                }
-                i ++;
-
+            // at this point, we have determined the mutuals count of the current related user
+            // the following code uses the mutuals count to keep track of the users with the highest mutuals count
+            if (mutualsMap.size() < 3) {
+                mutualsMap.put(relatedUser, mutualsCount);
+                mutualsMap = new TreeMap<>(Comparator.comparingInt(mutualsMap::get));
             }
 
+            else {
+                for (Map.Entry<String, Integer> mutualUser : mutualsMap.entrySet()) {
+                    String mutualUsername = mutualUser.getKey();
+                    Integer mutualCount = mutualUser.getValue();
+                    if (mutualCount < mutualsCount) {
+                        mutualsMap.remove(mutualUsername);
+                        mutualsMap.put(relatedUser, mutualsCount);
+                    }
+                }
+            }
         }
-
-
+        List<String> relatedUsers = new ArrayList<>(mutualsMap.keySet());
+        FollowOutputData followOutputData = new FollowOutputData(relatedUsers);
+        followPresenter.prepareSuccessView(followOutputData);
     }
 }
