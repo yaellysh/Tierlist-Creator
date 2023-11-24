@@ -2,16 +2,17 @@ package use_case.follow;
 
 import entity.User;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class FollowOutputData {
-    private final List<String> relatedUsers;
+    private final HashMap<String, Integer> relatedUsers;
 
-    public FollowOutputData(List<String> relatedUsers) {
+    public FollowOutputData(HashMap<String, Integer> relatedUsers) {
         this.relatedUsers = relatedUsers;
     }
 
-    public List<String> getRelatedUsers() {
+    public HashMap<String, Integer> getRelatedUsers() {
         return relatedUsers;
     }
 }
