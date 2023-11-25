@@ -24,8 +24,8 @@ public class User {
         return username;
     }
 
-    public List<TierList> getTierLists() {
-        return new ArrayList<>(tierLists.values());
+    public List<String> getTierLists() {
+        return new ArrayList<>(tierLists.keySet());
     }
 
 //    public void addTierList(TierList list) {
