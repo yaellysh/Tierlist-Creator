@@ -1,7 +1,7 @@
 package data_access;
 
 import entity.Item;
-import interface_adapter.tierlist.TierListViewModel;
+import entity.TierList;
 import use_case.generate.random_tierlist.RandomTierListDataAccessInterface;
 
 import java.io.BufferedReader;
@@ -48,8 +48,6 @@ public class ChatGPTDataAccessObject implements RandomTierListDataAccessInterfac
             response.append(line);
         }
         br.close();
-        System.out.println(response.toString());
-        // calls the method to extract the message.
         return extractMessageFromJSONResponse(response.toString());
     }
 
@@ -69,7 +67,7 @@ public class ChatGPTDataAccessObject implements RandomTierListDataAccessInterfac
             String result = chatGPT(prompt);
             List<String> list = List.of(result.split("\n"));
 
-            if (list.size() != TierListViewModel.NUM_ITEMS) {
+            if (list.size() != TierList.LENGTH) {
                 return null;
             }
             return list.stream().map(Item::new).collect(Collectors.toList());
