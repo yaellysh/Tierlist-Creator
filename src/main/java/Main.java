@@ -1,8 +1,9 @@
 import data_access.FileUserDataAccessObject;
-import factory.TierListFactory;
+import factory.SelectorFactory;
 import interface_adapter.ViewManagerModel;
+import interface_adapter.selector.SelectorViewModel;
 import interface_adapter.tierlist.TierListViewModel;
-import view.TierListView;
+import view.SelectorView;
 import view.ViewManager;
 
 import javax.swing.*;
@@ -22,13 +23,21 @@ public class Main {
         new ViewManager(views, cardLayout, viewManagerModel);
 
         TierListViewModel tierListViewModel = new TierListViewModel("tier");
+        SelectorViewModel selectorViewModel = new SelectorViewModel("selector");
 
         FileUserDataAccessObject userDataAccessObject = new FileUserDataAccessObject("src/main/resources/users.json");
 
-        TierListView tierListView = TierListFactory.create(viewManagerModel, tierListViewModel, userDataAccessObject);
-        views.add(tierListView, tierListView.viewName);
-        viewManagerModel.setActiveView(tierListView.viewName);
+        SelectorView selectorView = SelectorFactory.create(viewManagerModel, selectorViewModel);
+
+        views.add(selectorView, selectorView.viewName);
+        viewManagerModel.setActiveView(selectorView.viewName);
         viewManagerModel.firePropertyChanged();
+
+//        TierListView tierListView = TierListFactory.create(viewManagerModel, tierListViewModel, userDataAccessObject);
+//
+//        views.add(tierListView, tierListView.viewName);
+//        viewManagerModel.setActiveView(tierListView.viewName);
+//        viewManagerModel.firePropertyChanged();
 
         application.setVisible(true);
     }
