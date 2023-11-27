@@ -35,7 +35,19 @@ public class SelectorView extends JPanel implements ActionListener {
         instructions1.setBorder(BorderFactory.createEmptyBorder(5, 20, 5, 20));
         this.add(instructions1);
 
-        this.add(new ButtonPanel(SelectorViewModel.BUTTONS.get(0), SelectorViewModel.COLORS.get(0)));
+        ButtonPanel viewButtonPanel = new ButtonPanel(SelectorViewModel.BUTTONS.get(0), SelectorViewModel.COLORS.get(0));
+        this.add(viewButtonPanel);
+        viewButtonPanel.getButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource().equals(viewButtonPanel.getButton())) {
+                    SelectorState state = selectorViewModel.getState();
+
+                    selectorController.execute(
+                            state.getUser());
+                }
+            }
+        });
 
         this.add(new JSeparator());
 
