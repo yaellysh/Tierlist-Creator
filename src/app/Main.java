@@ -1,6 +1,7 @@
 package app;
 
 import data_access.FileUserDataAccessObject;
+import entity.UserFactory;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.logged_in.LoggedInViewModel;
 import interface_adapter.login.LoginViewModel;
@@ -43,7 +44,7 @@ public class Main {
 
         FileUserDataAccessObject userDataAccessObject;
         try {
-            userDataAccessObject = new FileUserDataAccessObject("./users.csv", new CommonUserFactory());
+            userDataAccessObject = new FileUserDataAccessObject("./users.csv", new UserFactory());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
