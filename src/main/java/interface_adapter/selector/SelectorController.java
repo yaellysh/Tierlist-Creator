@@ -11,7 +11,7 @@ public class SelectorController {
         this.selectorInteractor = selectorInteractor;
     }
 
-    public void execute(User user) {
-        selectorInteractor.execute(new SelectorInputData(user));
+    public void execute(String label, User user) {
+        selectorInteractor.execute(new SelectorInputData(label, user));
     }
 }

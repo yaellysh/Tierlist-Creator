@@ -44,6 +44,7 @@ public class SelectorView extends JPanel implements ActionListener {
                     SelectorState state = selectorViewModel.getState();
 
                     selectorController.execute(
+                            viewButtonPanel.getButton().getText(),
                             state.getUser());
                 }
             }
@@ -69,6 +70,7 @@ public class SelectorView extends JPanel implements ActionListener {
                         SelectorState state = selectorViewModel.getState();
 
                         selectorController.execute(
+                                buttonPanel.getButton().getText(),
                                 state.getUser());
                     }
                 }
