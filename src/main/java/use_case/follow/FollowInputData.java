@@ -19,4 +19,7 @@ public class FollowInputData {
     public String getUserBeingFollowed() {
         return userBeingFollowedName;
     }
+    public boolean getFollow() {
+        return follow;
+    }
 }

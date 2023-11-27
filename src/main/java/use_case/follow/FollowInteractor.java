@@ -15,68 +15,76 @@ public class FollowInteractor implements FollowInputBoundary {
     }
 
     public void execute(FollowInputData followInputData) {
-        // get usernames from input data
+
+        // get information from input data
         String followerName = followInputData.getFollower();
         String userBeingFollowedName = followInputData.getUserBeingFollowed();
+        boolean follow = followInputData.getFollow();
 
         // get User objects using usernames
         User follower = userDataAccessObject.getUser(followerName);
         User userBeingFollowed = userDataAccessObject.getUser(userBeingFollowedName);
 
-        // update following and followers both in the entity objects and in the database
-        // ** follower.addFollowing(userBeingFollowedName);
-        // ** userBeingFollowed.addFollower(followerName);
-        // can put these inside data access object
-        userDataAccessObject.updateFollowing(follower, userBeingFollowedName);
-        userDataAccessObject.updateUserBeingFollowed(followerName, userBeingFollowed);
-        // want to find the users that most of my following also follow
-        // "for example, people you know also follow ..."
+        if (follow) {
+            // follow the user
 
-        // Create the list of people you know
-        List<String> followerFollowing = follower.getFollowing();
+            // get new follower count of the user being followed
+            int newFollowerCount = userBeingFollowed.getFollowers().size() + 1;
 
-        // Create the list of the users that people you know could know
-        List<String> userBeingFollowedFollowers = userBeingFollowed.getFollowers();
-        List<String> userBeingFollowedFollowing = userBeingFollowed.getFollowing();
-        userBeingFollowedFollowing.addAll(userBeingFollowedFollowers);
-        List<String> userBeingFollowedRelatedUsers = new ArrayList<>(userBeingFollowedFollowing);
-        Set<String> setRelatedUsers = new HashSet<>(userBeingFollowedRelatedUsers);
+            // update following and followers both in the entity objects and in the database
+            follower.addFollowing(userBeingFollowedName);
+            userBeingFollowed.addFollower(followerName);
+            // can put these inside data access object
+            userDataAccessObject.updateFollowing(follower, userBeingFollowedName);
+            userDataAccessObject.updateUserBeingFollowed(followerName, userBeingFollowed);
+            // want to find the users that most of my following also follow
+            // "for example, people you know also follow ..."
 
-        //list ppl they follow
-        //find ppl in that list that are also followed by your followers
-        //for ppl in that list
-        //get mutual count, store in a hashmap user: mutual count
-            //for ppl in my following, if person in ppls followers, mutaual += 1    
-        //sort hashmap by value, decreasing
-        //return top 3
+            // Create the list of people you know
+            List<String> followerFollowing = follower.getFollowing();
 
-        TreeMap<String, Integer> mutualsMap = new TreeMap<>();
+            // Create the list of the users that people you know could know
+            List<String> userBeingFollowedFollowers = userBeingFollowed.getFollowers();
+            List<String> userBeingFollowedFollowing = userBeingFollowed.getFollowing();
+            userBeingFollowedFollowing.addAll(userBeingFollowedFollowers);
+            List<String> userBeingFollowedRelatedUsers = new ArrayList<>(userBeingFollowedFollowing);
+            Set<String> setRelatedUsers = new HashSet<>(userBeingFollowedRelatedUsers);
 
-        HashMap<String, Integer> userMutualsCount = new HashMap<String, Integer>();
+            //list ppl they follow
+            //find ppl in that list that are also followed by your followers
+            //for ppl in that list
+            //get mutual count, store in a hashmap user: mutual count
+            //for ppl in my following, if person in ppls followers, mutaual += 1
+            //sort hashmap by value, decreasing
+            //return top 3
 
-        // iterate through the users related to the user you just followed
-        for (String relatedUser : setRelatedUsers) {
-            User relatedUserObject = userDataAccessObject.getUser(relatedUser);
-            if (relatedUserObject.getFollowers().contains(follower)){
-                continue;
-            }
-            int mutualsCount = 0;
+            TreeMap<String, Integer> mutualsMap = new TreeMap<>();
 
-            // iterate through the users you follow
-            for (String usernameYouFollow : followerFollowing) {
-                User userYouFollow = userDataAccessObject.getUser(usernameYouFollow);
-                List<String> userYouFollowFollowing = userYouFollow.getFollowing();
+            HashMap<String, Integer> userMutualsCount = new HashMap<String, Integer>();
 
-                // iterate through the following of the user you follow
-                for  (String usernameYouFollowFollowing : userYouFollowFollowing) {
-                    if (usernameYouFollowFollowing.equals(relatedUser)) {
-                        mutualsCount ++;
+            // iterate through the users related to the user you just followed
+            for (String relatedUser : setRelatedUsers) {
+                User relatedUserObject = userDataAccessObject.getUser(relatedUser);
+                if (relatedUserObject.getFollowers().contains(follower)){
+                    continue;
+                }
+                int mutualsCount = 0;
+
+                // iterate through the users you follow
+                for (String usernameYouFollow : followerFollowing) {
+                    User userYouFollow = userDataAccessObject.getUser(usernameYouFollow);
+                    List<String> userYouFollowFollowing = userYouFollow.getFollowing();
+
+                    // iterate through the following of the user you follow
+                    for  (String usernameYouFollowFollowing : userYouFollowFollowing) {
+                        if (usernameYouFollowFollowing.equals(relatedUser)) {
+                            mutualsCount ++;
+                        }
                     }
+
                 }
 
-            }
-
-            userMutualsCount.put(relatedUser, mutualsCount);
+                userMutualsCount.put(relatedUser, mutualsCount);
 
             /*
             // at this point, we have determined the mutuals count of the current related user
@@ -97,19 +105,29 @@ public class FollowInteractor implements FollowInputBoundary {
                 }
             }
             */
+            }
+            List<String> relatedUsers = new ArrayList<>();
+            userMutualsCount = sortByValue(userMutualsCount);
+            List<String> listy = new ArrayList<>(userMutualsCount.keySet());
+            HashMap<String, Integer> tempy = new HashMap<String, Integer>();
+            tempy.put(listy.get(0), userMutualsCount.get(0));
+            tempy.put(listy.get(1), userMutualsCount.get(1));
+            tempy.put(listy.get(2), userMutualsCount.get(2));
+            //add cases where there are less than 3 users in set related users that the user doesnt follow
+            //pass forward mutual count for the "followed by x others line."
+
+            FollowOutputData followOutputData = new FollowOutputData(tempy, newFollowerCount, follow);
+            followPresenter.prepareSuccessView(followOutputData);
         }
-        List<String> relatedUsers = new ArrayList<>();
-        userMutualsCount = sortByValue(userMutualsCount);
-        List<String> listy = new ArrayList<>(userMutualsCount.keySet());
-        HashMap<String, Integer> tempy = new HashMap<String, Integer>();
-        tempy.put(listy.get(0), userMutualsCount.get(0));
-        tempy.put(listy.get(1), userMutualsCount.get(1));
-        tempy.put(listy.get(2), userMutualsCount.get(2));
-        //add cases where there are less than 3 users in set related users that the user doesnt follow
-        //pass forward mutual count for the "followed by x others line."
-        
-        FollowOutputData followOutputData = new FollowOutputData(tempy);
-        followPresenter.prepareSuccessView(followOutputData);
+
+        else {
+            // unfollow the user
+            int newFollowerCount = userBeingFollowed.getFollowers().size() - 1;
+
+
+        }
+
+
     }
 
     private HashMap<String, Integer> sortByValue(HashMap<String, Integer> hm)
