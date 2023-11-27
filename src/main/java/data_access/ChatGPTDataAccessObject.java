@@ -1,13 +1,17 @@
 package data_access;
 
+import entity.Item;
+import use_case.generate.random_tierlist.RandomTierListDataAccessInterface;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Map;
 
-public class ChatGPTAPIExample {
+public class ChatGPTDataAccessObject implements RandomTierListDataAccessInterface {
 
     public static String chatGPT(String prompt) throws IOException {
 
@@ -48,7 +52,7 @@ public class ChatGPTAPIExample {
             return extractMessageFromJSONResponse(response.toString());
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException(e); // I DONT WANT THIS RN
         }
     }
 
@@ -62,5 +66,9 @@ public class ChatGPTAPIExample {
     }
 
 
+    @Override
+    public Map<String, Item> generateTierList(String prompt) {
+        return null;
+    }
 }
 

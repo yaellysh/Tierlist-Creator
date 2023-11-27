@@ -15,4 +15,8 @@ public class SelectorInputData {
     public User getUser() {
         return user;
     }
+
+    public String getLabel() {
+        return label;
+    }
 }
