@@ -1,4 +1,6 @@
 package use_case.generate.random_tierlist;
 
-public class RandomTierListInteractor {
+public class RandomTierListInteractor implements RandomTierListInputBoundary {
+    public RandomTierListInteractor(RandomTierListOutputBoundary randomTierListOutputBoundary) {
+    }
 }

@@ -3,6 +3,7 @@ package factory;
 import entity.User;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.selector.SelectorController;
+import interface_adapter.selector.SelectorPresenter;
 import interface_adapter.selector.SelectorState;
 import interface_adapter.selector.SelectorViewModel;
 import use_case.selector.SelectorInteractor;

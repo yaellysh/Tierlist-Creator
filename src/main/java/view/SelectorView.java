@@ -76,6 +76,7 @@ public class SelectorView extends JPanel implements ActionListener {
                 }
             });
         }
+        this.add(new JSeparator());
     }
 
     @Override
