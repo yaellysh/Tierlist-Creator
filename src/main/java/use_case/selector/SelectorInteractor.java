@@ -10,6 +10,6 @@ public class SelectorInteractor implements SelectorInputBoundary {
 
     @Override
     public void execute(SelectorInputData data) {
-        outputBoundary.prepareSuccessView(new SelectorOutputData(data.getUser()));
+        outputBoundary.prepareSuccessView(new SelectorOutputData(data.getLabel(), data.getUser()));
     }
 }

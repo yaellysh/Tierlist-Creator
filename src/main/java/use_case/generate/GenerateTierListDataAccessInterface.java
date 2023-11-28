@@ -1,9 +1,9 @@
-package use_case.generate.custom_tierlist;
+package use_case.generate;
 
 import entity.TierList;
 import entity.User;
 
-public interface CustomTierListDataAccessInterface {
+public interface GenerateTierListDataAccessInterface {
 
     void addTierList(User user, TierList tierList);
 

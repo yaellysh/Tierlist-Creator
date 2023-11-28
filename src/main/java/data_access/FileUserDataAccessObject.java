@@ -6,7 +6,7 @@ import com.google.gson.reflect.TypeToken;
 import entity.Tier;
 import entity.TierList;
 import entity.User;
-import use_case.generate.custom_tierlist.CustomTierListDataAccessInterface;
+import use_case.generate.GenerateTierListDataAccessInterface;
 import use_case.tierlist.TierListDataAccessInterface;
 
 import java.io.IOException;
@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class FileUserDataAccessObject implements TierListDataAccessInterface, CustomTierListDataAccessInterface {
+public class FileUserDataAccessObject implements TierListDataAccessInterface, GenerateTierListDataAccessInterface {
 
     private final Path path;
 
