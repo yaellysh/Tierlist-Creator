@@ -1,5 +1,7 @@
 package use_case.generate.random_tierlist;
 
+import data_access.ChatGPTDataAccessObject;
+import data_access.FileUserDataAccessObject;
 import entity.Item;
 import entity.TierList;
 import entity.User;
@@ -28,13 +30,33 @@ public class RandomTierListInteractor implements RandomTierListInputBoundary {
 
         if (items == null) {
             outputBoundary.prepareFailView();
+            System.out.println("fail");
             return;
         }
 
         TierList list = new TierList(prompt, items);
         generateTierListDataAccessInterface.addTierList(user, list);
         outputBoundary.prepareSuccessView(new RandomTierListOutputData(user, prompt));
-
-        // Pass it on.
+        System.out.println(list);
     }
+
+    // TODO: test this with yael's key
+    public static void main(String[] args) {
+        RandomTierListInteractor interactor = new RandomTierListInteractor(new ChatGPTDataAccessObject(),
+                new FileUserDataAccessObject("src/main/resources/users.json"),
+                new RandomTierListOutputBoundary() {
+                    @Override
+                    public void prepareSuccessView(RandomTierListOutputData data) {
+
+                    }
+
+                    @Override
+                    public void prepareFailView() {
+
+                    }
+                });
+        interactor.execute(new RandomTierListInputData("Generate a list of 9 popular movies",
+                new User("Yael")));
+    }
+
 }

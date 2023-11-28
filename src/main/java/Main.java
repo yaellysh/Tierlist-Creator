@@ -1,9 +1,7 @@
 import data_access.FileUserDataAccessObject;
-import factory.SelectorFactory;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.selector.SelectorViewModel;
 import interface_adapter.tierlist.TierListViewModel;
-import view.SelectorView;
 import view.ViewManager;
 
 import javax.swing.*;
@@ -27,11 +25,11 @@ public class Main {
 
         FileUserDataAccessObject userDataAccessObject = new FileUserDataAccessObject("src/main/resources/users.json");
 
-        SelectorView selectorView = SelectorFactory.create(viewManagerModel, selectorViewModel);
+//        SelectorView selectorView = SelectorFactory.create(viewManagerModel, selectorViewModel);
 
-        views.add(selectorView, selectorView.viewName);
-        viewManagerModel.setActiveView(selectorView.viewName);
-        viewManagerModel.firePropertyChanged();
+//        views.add(selectorView, selectorView.viewName);
+//        viewManagerModel.setActiveView(selectorView.viewName);
+//        viewManagerModel.firePropertyChanged();
 
 //        TierListView tierListView = TierListFactory.create(viewManagerModel, tierListViewModel, userDataAccessObject);
 //

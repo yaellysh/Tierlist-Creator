@@ -27,4 +27,10 @@ public class TierList {
     public String getName() {
         return this.name;
     }
+
+    @Override
+    public String toString() {
+        return String.join(",", this.items.keySet());
+    }
+
 }

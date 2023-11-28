@@ -64,8 +64,9 @@ public class ChatGPTDataAccessObject implements RandomTierListDataAccessInterfac
     @Override
     public List<Item> generateTierList(String prompt) {
         try {
-            String result = chatGPT(prompt);
+            String result = chatGPT(prompt); // i currently have no key :((
             List<String> list = List.of(result.split("\n"));
+            list.forEach(System.out::println);
 
             if (list.size() != TierList.LENGTH) {
                 return null;
