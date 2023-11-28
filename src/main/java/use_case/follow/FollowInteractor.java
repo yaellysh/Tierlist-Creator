@@ -32,12 +32,16 @@ public class FollowInteractor implements FollowInputBoundary {
             int newFollowerCount = userBeingFollowed.getFollowers().size() + 1;
 
             // update following and followers both in the entity objects and in the database
-            follower.addFollowing(userBeingFollowedName);
-            userBeingFollowed.addFollower(followerName);
+            // *** follower.addFollowing(userBeingFollowedName);
+            // *** userBeingFollowed.addFollowers(followerName);
             // can put these inside data access object
-            userDataAccessObject.updateFollowing(follower, userBeingFollowedName);
-            userDataAccessObject.updateUserBeingFollowed(followerName, userBeingFollowed);
-            // want to find the users that most of my following also follow
+
+            // update your following to add the new person
+            userDataAccessObject.updateFollowing(follower, userBeingFollowedName, follow);
+            // update the user being followed's followers to add you
+            userDataAccessObject.updateFollowers(userBeingFollowed, followerName, follow);
+
+            // now we want to find the users that most of my following also follow
             // "for example, people you know also follow ..."
 
             // Create the list of people you know
@@ -65,7 +69,7 @@ public class FollowInteractor implements FollowInputBoundary {
             // iterate through the users related to the user you just followed
             for (String relatedUser : setRelatedUsers) {
                 User relatedUserObject = userDataAccessObject.getUser(relatedUser);
-                if (relatedUserObject.getFollowers().contains(follower)){
+                if (relatedUserObject.getFollowers().contains(followerName)){
                     continue;
                 }
                 int mutualsCount = 0;
@@ -113,10 +117,13 @@ public class FollowInteractor implements FollowInputBoundary {
             tempy.put(listy.get(0), userMutualsCount.get(0));
             tempy.put(listy.get(1), userMutualsCount.get(1));
             tempy.put(listy.get(2), userMutualsCount.get(2));
-            //add cases where there are less than 3 users in set related users that the user doesnt follow
+            //add cases where there are less than 3 users in set related users that the user doesn't follow
             //pass forward mutual count for the "followed by x others line."
 
-            FollowOutputData followOutputData = new FollowOutputData(tempy, newFollowerCount, follow);
+            // end of finding related users
+
+            FollowOutputData followOutputData = new FollowOutputData.FollowOutputBuilder(newFollowerCount, follow)
+                    .buildRelatedUsers(tempy).build();
             followPresenter.prepareSuccessView(followOutputData);
         }
 
@@ -124,9 +131,19 @@ public class FollowInteractor implements FollowInputBoundary {
             // unfollow the user
             int newFollowerCount = userBeingFollowed.getFollowers().size() - 1;
 
+            // *** follower.removeFollowing(userBeingFollowedName);
+            // *** userBeingFollowed.removeFollowers(followerName);
+            // can add this to the data access object
 
+            // update your following to remove the person
+            userDataAccessObject.updateFollowing(follower, userBeingFollowedName, follow);
+            // update the user being followed's followers to remove you
+            userDataAccessObject.updateFollowers(userBeingFollowed, followerName, follow);
+
+            FollowOutputData followOutputData = new FollowOutputData.FollowOutputBuilder(newFollowerCount, follow)
+                    .build();
+            followPresenter.prepareSuccessView(followOutputData);
         }
-
 
     }
 

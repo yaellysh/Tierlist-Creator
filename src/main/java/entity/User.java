@@ -49,12 +49,21 @@ public class User {
         return new ArrayList<>(followers);
     }
 
-    public void addFollower(String user) {
+    public void addFollowers (String user) {
         followers.add(user);
     }
 
     public void addFollowing(String user) {
         following.add(user);
     }
+
+    public void removeFollowers (String user) {
+        followers.remove(user);
+    }
+
+    public void removeFollowing(String user) {
+        following.remove(user);
+    }
+
 }
 

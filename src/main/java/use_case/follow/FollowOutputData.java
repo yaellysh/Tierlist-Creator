@@ -4,28 +4,56 @@ import entity.User;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class FollowOutputData {
-    private final HashMap<String, Integer> relatedUsers;
-    private final int newFollowers;
 
+
+    // required variables
+    private final int newFollowers;
     private final boolean follow;
 
-    public FollowOutputData(HashMap<String, Integer> relatedUsers, int userFollowers, boolean follow) {
-        this.relatedUsers = relatedUsers;
-        this.newFollowers = userFollowers;
-        this.follow = follow;
+    //optional variables
+    private final Map<String, Integer> relatedUsers;
+
+    private FollowOutputData(FollowOutputBuilder builder) {
+        this.newFollowers = builder.newFollowers;
+        this.follow = builder.follow;
+        this.relatedUsers = builder.relatedUsers;
     }
 
-
-    public HashMap<String, Integer> getRelatedUsers() {
+    // public getters for variables
+    public Map<String, Integer> getRelatedUsers() {
         return relatedUsers;
     }
-
     public int getNewFollowers() {
         return newFollowers;
     }
     public boolean getFollow() {
         return follow;
+    }
+
+    public static class FollowOutputBuilder {
+        // required variables
+        private final int newFollowers;
+        private final boolean follow;
+
+        // optional variables
+        private Map<String, Integer> relatedUsers = new HashMap<>();
+
+        public FollowOutputBuilder(int newFollowers, boolean follow) {
+            this.newFollowers = newFollowers;
+            this.follow = follow;
+        }
+
+        public FollowOutputBuilder buildRelatedUsers(Map<String, Integer> relatedUsers) {
+            this.relatedUsers = relatedUsers;
+            return this;
+        }
+
+        public FollowOutputData build() {
+            return new FollowOutputData(this);
+        }
+
     }
 }
