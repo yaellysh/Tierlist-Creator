@@ -28,6 +28,23 @@ public class ButtonPanel extends JPanel {
         this.add(buttonPanel);
     }
 
+    ButtonPanel(String text) {
+
+        this.text = text;
+
+        JPanel buttonPanel = new JPanel();
+        this.button = new JButton(text);
+        buttonPanel.add(button);
+
+        button.setOpaque(true);
+        button.setFont(SelectorViewModel.BUTTON_FONT);
+        button.setPreferredSize(new Dimension(400, 50));
+        buttonPanel.setPreferredSize(new Dimension(400, 55));
+        button.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        this.add(buttonPanel);
+    }
+
     public JButton getButton() {
         return button;
     }
