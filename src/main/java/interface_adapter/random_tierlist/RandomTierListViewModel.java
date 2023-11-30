@@ -6,7 +6,9 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 public class RandomTierListViewModel extends ViewModel {
-    RandomTierListState state;
+    public static final String TITLE_LABEL = "Random Tier List";
+    public static final String INSTRUCTIONS = "Enter below the prompt you wish to use to generate a new tierlist. <br><br>  Examples of valid inputs are: <br> &nbsp &nbsp - ";
+    public RandomTierListState state;
 
     public RandomTierListViewModel(String name) {
         super(name);

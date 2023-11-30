@@ -1,9 +1,10 @@
 import data_access.FileUserDataAccessObject;
-import factory.SelectorFactory;
+import factory.RandomTierListFactory;
 import interface_adapter.ViewManagerModel;
+import interface_adapter.random_tierlist.RandomTierListViewModel;
 import interface_adapter.selector.SelectorViewModel;
 import interface_adapter.tierlist.TierListViewModel;
-import view.SelectorView;
+import view.RandomTierListView;
 import view.ViewManager;
 
 import javax.swing.*;
@@ -24,14 +25,21 @@ public class Main {
 
         TierListViewModel tierListViewModel = new TierListViewModel("tier");
         SelectorViewModel selectorViewModel = new SelectorViewModel("selector");
+        RandomTierListViewModel randomTierListViewModel = new RandomTierListViewModel("random");
 
         FileUserDataAccessObject userDataAccessObject = new FileUserDataAccessObject("src/main/resources/users.json");
 
-        SelectorView selectorView = SelectorFactory.create(viewManagerModel, selectorViewModel);
+        RandomTierListView randomTierListView = RandomTierListFactory.create(viewManagerModel, randomTierListViewModel);
 
-        views.add(selectorView, selectorView.viewName);
-        viewManagerModel.setActiveView(selectorView.viewName);
+        views.add(randomTierListView, randomTierListView.viewName);
+        viewManagerModel.setActiveView(randomTierListView.viewName);
         viewManagerModel.firePropertyChanged();
+
+//        SelectorView selectorView = SelectorFactory.create(viewManagerModel, selectorViewModel);
+//
+//        views.add(selectorView, selectorView.viewName);
+//        viewManagerModel.setActiveView(selectorView.viewName);
+//        viewManagerModel.firePropertyChanged();
 
 //        TierListView tierListView = TierListFactory.create(viewManagerModel, tierListViewModel, userDataAccessObject);
 //
