@@ -4,7 +4,7 @@ import entity.User;
 
 public class RandomTierListState {
     public User user;
-    public String title;
+    public String prompt;
 
     public User getUser() {
         return user;
@@ -14,16 +14,16 @@ public class RandomTierListState {
         this.user = user;
     }
 
-    public String getTitle() {
-        return title;
+    public String getPrompt() {
+        return prompt;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setPrompt(String prompt) {
+        this.prompt = prompt;
     }
 
-    public RandomTierListState(User user, String title){
+    public RandomTierListState(User user, String prompt){
         this.user = user;
-        this.title = title;
+        this.prompt = prompt;
     }
 }
