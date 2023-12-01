@@ -1,19 +1,22 @@
 package interface_adapter.follow;
 
+import java.util.HashMap;
 import java.util.List;
 
+import entity.User;
+
 public class FollowState {
-    private List<String> relatedUsers;
+    private HashMap<String, User> relatedUsers;
     private String follower;
     private String userBeingFollowed;
 
     public FollowState(FollowState copy) {
-        relatedUsers = copy.relatedUsers;
+        this.relatedUsers = copy.relatedUsers;
     }
 
     public FollowState() {}
 
-    public List<String> getRelatedUsers() {
+    public HashMap<String, User> getRelatedUsers() {
         return relatedUsers;
     }
 
@@ -25,7 +28,7 @@ public class FollowState {
         return this.userBeingFollowed;
     }
 
-    public void setRelatedUsers(List<String> relatedUsers) {
+    public void setRelatedUsers(HashMap<String, User> relatedUsers) {
         this.relatedUsers = relatedUsers;
     }
 }

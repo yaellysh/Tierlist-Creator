@@ -8,9 +8,7 @@ public class FollowInteractor implements FollowInputBoundary {
     final FollowUserDataAccessInterface userDataAccessObject;
     final FollowOutputBoundary followPresenter;
 
-    public FollowInteractor(FollowUserDataAccessInterface userDataAccessInterface,
-                            FollowOutputBoundary followOutputBoundary) {
-                            FollowOutputBoundary followOutputBoundary) {
+    public FollowInteractor(FollowUserDataAccessInterface userDataAccessInterface, FollowOutputBoundary followOutputBoundary) {
         userDataAccessObject = userDataAccessInterface;
         followPresenter = followOutputBoundary;
     }
