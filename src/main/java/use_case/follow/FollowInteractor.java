@@ -9,9 +9,9 @@ public class FollowInteractor implements FollowInputBoundary {
     final FollowOutputBoundary followPresenter;
 
     public FollowInteractor(FollowUserDataAccessInterface userDataAccessInterface,
-                            FollowOutputBoundary loginOutputBoundary) {
+                            FollowOutputBoundary followOutputBoundary) {
         userDataAccessObject = userDataAccessInterface;
-        followPresenter = loginOutputBoundary;
+        followPresenter = followOutputBoundary;
     }
 
     public void execute(FollowInputData followInputData) {
@@ -111,6 +111,7 @@ public class FollowInteractor implements FollowInputBoundary {
         
         FollowOutputData followOutputData = new FollowOutputData(relatedUsers);
         followPresenter.prepareSuccessView(followOutputData);
+        System.out.println("working");
     }
 
     private HashMap<String, Integer> sortByValue(HashMap<String, Integer> hm)

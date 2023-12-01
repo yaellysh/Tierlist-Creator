@@ -2,9 +2,11 @@ package view;
 
 import javax.swing.*;
 
-import interface_adapter.tierlist.TierListController;
-import interface_adapter.tierlist.TierListViewModel;
+import interface_adapter.follow.FollowController;
+import interface_adapter.follow.FollowState;
+import interface_adapter.follow.FollowViewModel;
 
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
@@ -12,9 +14,35 @@ import java.beans.PropertyChangeListener;
 
 public class FollowView extends JPanel implements ActionListener, PropertyChangeListener {
 
-    public FollowView(TierListController tierListController, TierListViewModel tierListViewModel) {
-        
-    }   
+    public final String viewName = "View User";
+    private final FollowViewModel followViewModel;
+
+
+    final JButton follow;
+
+    private final FollowController followController;
+
+    public FollowView(FollowController followController, FollowViewModel followViewModel) {
+        this.followController = followController;
+        this.followViewModel = followViewModel;
+        JLabel test = new JLabel("this");
+        this.add(test);
+
+        JPanel buttons = new JPanel();
+        follow = new JButton(followViewModel.FOLLOW_BUTTON_LABEL);
+        buttons.add(follow);
+
+        follow.addActionListener(                
+        new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                if (evt.getSource().equals(follow)) {
+                    FollowState currentState = followViewModel.getState();
+
+                    followController.execute(currentState.getFollower(), currentState.getUserBeingFollowed());
+                }
+            }
+        });
+    }
 
     @Override
     public void actionPerformed(ActionEvent evt) {
@@ -23,8 +51,7 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'propertyChange'");
+        FollowState state = (FollowState) evt.getNewValue();
     }
 
 }

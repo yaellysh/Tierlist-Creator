@@ -9,7 +9,6 @@ public class User {
 
     private final String username;
     private final Map<String, TierList> tierLists;
-    private List<TierList> liked;
     private List<String> following;
     private List<String> followers;
 
