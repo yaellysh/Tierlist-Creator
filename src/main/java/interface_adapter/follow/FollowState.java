@@ -6,7 +6,7 @@ import java.util.List;
 import entity.User;
 
 public class FollowState {
-    private HashMap<String, User> relatedUsers;
+    private HashMap<String, Integer> relatedUsers;
     private String follower;
     private String userBeingFollowed;
 
@@ -16,7 +16,7 @@ public class FollowState {
 
     public FollowState() {}
 
-    public HashMap<String, User> getRelatedUsers() {
+    public HashMap<String, Integer> getRelatedUsers() {
         return relatedUsers;
     }
 
@@ -28,7 +28,7 @@ public class FollowState {
         return this.userBeingFollowed;
     }
 
-    public void setRelatedUsers(HashMap<String, User> relatedUsers) {
+    public void setRelatedUsers(HashMap<String, Integer> relatedUsers) {
         this.relatedUsers = relatedUsers;
     }
 }

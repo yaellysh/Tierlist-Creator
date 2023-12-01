@@ -14,7 +14,7 @@ public class FollowOutputData {
     private final boolean follow;
 
     //optional variables
-    private final Map<String, Integer> relatedUsers;
+    private final HashMap<String, Integer> relatedUsers;
 
     private FollowOutputData(FollowOutputBuilder builder) {
         this.newFollowers = builder.newFollowers;
@@ -23,7 +23,7 @@ public class FollowOutputData {
     }
 
     // public getters for variables
-    public Map<String, Integer> getRelatedUsers() {
+    public HashMap<String, Integer> getRelatedUsers() {
         return relatedUsers;
     }
     public int getNewFollowers() {
