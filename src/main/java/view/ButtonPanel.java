@@ -37,7 +37,7 @@ public class ButtonPanel extends JPanel {
         buttonPanel.add(button);
 
         button.setOpaque(true);
-        button.setFont(SelectorViewModel.BUTTON_FONT);
+//        button.setFont(.getButtonFont());
         button.setPreferredSize(new Dimension(400, 50));
         buttonPanel.setPreferredSize(new Dimension(400, 55));
         button.setAlignmentX(Component.CENTER_ALIGNMENT);

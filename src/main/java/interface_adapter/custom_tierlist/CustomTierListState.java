@@ -23,6 +23,9 @@ public class CustomTierListState {
     public void setItems(ArrayList<String> items) {
         this.items = items;
     }
+    public void addItem(String item) {
+        this.items.add(item);
+    }
 
     public CustomTierListState(User user, ArrayList<String> items) {
         this.user = user;

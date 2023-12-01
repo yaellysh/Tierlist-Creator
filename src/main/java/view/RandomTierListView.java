@@ -56,7 +56,7 @@ public class RandomTierListView extends JPanel implements ActionListener {
         JButton submitButton = new JButton(RandomTierListViewModel.SUBMIT_BUTTON);
         buttonPanel.add(submitButton);
         submitButton.setOpaque(true);
-        submitButton.setFont(RandomTierListViewModel.BUTTON_FONT);
+//        submitButton.setFont(RandomTierListViewModel.BUTTON_FONT);
         submitButton.setPreferredSize(new Dimension(250, 50));
         submitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         buttonPanel.setBorder(new EmptyBorder(20, 20, 20, 20));

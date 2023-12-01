@@ -1,5 +1,6 @@
 package factory;
 
+import data_access.FileUserDataAccessObject;
 import entity.User;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.custom_tierlist.CustomTierListController;
@@ -22,7 +23,7 @@ public class CustomTierListFactory {
 
     private static CustomTierListController createCustomUseCase(ViewManagerModel viewManagerModel, CustomTierListViewModel customTierListViewModel){
         CustomTierListOutputBoundary customTierListOutputBoundary = new CustomTierListPresenter(viewManagerModel, customTierListViewModel);
-        CustomTierListInteractor customTierListInteractor = new CustomTierListInteractor(customTierListOutputBoundary);
+        CustomTierListInteractor customTierListInteractor = new CustomTierListInteractor(customTierListOutputBoundary, new FileUserDataAccessObject("src/main/resources/users.json"));
         return new CustomTierListController(customTierListInteractor);
     }
 }
