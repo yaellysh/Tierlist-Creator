@@ -23,8 +23,8 @@ public class User {
         return username;
     }
 
-    public List<TierList> getTierLists() {
-        return new ArrayList<>(tierLists.values());
+    public List<String> getTierLists() {
+        return new ArrayList<>(tierLists.keySet());
     }
 
 //    public void addTierList(TierList list) {
@@ -48,12 +48,21 @@ public class User {
         return new ArrayList<>(followers);
     }
 
-    public void addFollower(String user) {
+    public void addFollowers (String user) {
         followers.add(user);
     }
 
     public void addFollowing(String user) {
         following.add(user);
     }
+
+    public void removeFollowers (String user) {
+        followers.remove(user);
+    }
+
+    public void removeFollowing(String user) {
+        following.remove(user);
+    }
+
 }
 

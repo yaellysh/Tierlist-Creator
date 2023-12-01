@@ -11,8 +11,8 @@ public class FollowController {
         followUseCaseInteractor = followInputBoundary;
     }
 
-    public void execute(String follower, String userBeingFollowed) {
-        FollowInputData inputData = new FollowInputData(follower, userBeingFollowed);
+    public void execute(String follower, String userBeingFollowed, boolean follow) {
+        FollowInputData inputData = new FollowInputData(follower, userBeingFollowed, follow);
         followUseCaseInteractor.execute(inputData);
     }
 }
