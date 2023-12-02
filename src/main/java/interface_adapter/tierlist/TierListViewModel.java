@@ -1,6 +1,7 @@
 package interface_adapter.tierlist;
 
 import entity.TierAdapter;
+import entity.TierList;
 import interface_adapter.ViewModel;
 
 import java.awt.*;
@@ -15,7 +16,7 @@ public class TierListViewModel extends ViewModel {
     public static final Font TITLE_FONT = new Font("Arial Bold", Font.PLAIN, 25);
     public static final Font TEXT_FONT = new Font("Arial", Font.PLAIN, 15);
     public static final int NUM_TIERS = TierAdapter.TIERS.length;
-    public static final int NUM_ITEMS = 9;
+    public static final int NUM_ITEMS = TierList.LENGTH;
     public static final String HOME_BUTTON = "Home";
     private TierListState state;
 

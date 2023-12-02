@@ -2,10 +2,10 @@ package use_case.generate.random_tierlist;
 
 import entity.Item;
 
-import java.util.Map;
+import java.util.List;
 
 public interface RandomTierListDataAccessInterface {
 
-    Map<String, Item> generateTierList(String prompt);
+    List<Item> generateTierList(String prompt);
 
 }
