@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 
 public class TierList {
 
+    public static final int LENGTH = 9;
+
     private final String name;
     private final Map<String, Item> items;
 
@@ -25,4 +27,10 @@ public class TierList {
     public String getName() {
         return this.name;
     }
+
+    @Override
+    public String toString() {
+        return String.join(",", this.items.keySet());
+    }
+
 }
