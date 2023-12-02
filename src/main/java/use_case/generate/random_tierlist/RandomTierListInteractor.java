@@ -37,10 +37,8 @@ public class RandomTierListInteractor implements RandomTierListInputBoundary {
         TierList list = new TierList(prompt, items);
         generateTierListDataAccessInterface.addTierList(user, list);
         outputBoundary.prepareSuccessView(new RandomTierListOutputData(user, prompt));
-        System.out.println(list);
     }
 
-    // TODO: test this with yael's key
     public static void main(String[] args) {
         RandomTierListInteractor interactor = new RandomTierListInteractor(new ChatGPTDataAccessObject(),
                 new FileUserDataAccessObject("src/main/resources/users.json"),

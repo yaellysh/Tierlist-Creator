@@ -10,8 +10,10 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class ChatGPTDataAccessObject implements RandomTierListDataAccessInterface {
 
@@ -64,9 +66,11 @@ public class ChatGPTDataAccessObject implements RandomTierListDataAccessInterfac
     @Override
     public List<Item> generateTierList(String prompt) {
         try {
-            String result = chatGPT(prompt); // i currently have no key :((
-            List<String> list = List.of(result.split("\n"));
-            list.forEach(System.out::println);
+            String result = chatGPT(prompt);
+            System.out.println(result);
+            List<String> list = new ArrayList<>(Stream.of(result.split("[0-9].\\s"))
+                    .map(s -> s.replaceAll("\\\\n", "")).toList());
+            list.remove(0);
 
             if (list.size() != TierList.LENGTH) {
                 return null;
