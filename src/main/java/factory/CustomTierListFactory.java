@@ -11,13 +11,11 @@ import use_case.generate.custom_tierlist.CustomTierListInteractor;
 import use_case.generate.custom_tierlist.CustomTierListOutputBoundary;
 import view.CustomTierListView;
 
-import java.util.ArrayList;
-
 public class CustomTierListFactory {
     private CustomTierListFactory() {}
     public static CustomTierListView create(ViewManagerModel viewManagerModel, CustomTierListViewModel customTierListViewModel){
         CustomTierListController customTierListController = createCustomUseCase(viewManagerModel, customTierListViewModel);
-        customTierListViewModel.setState(new CustomTierListState(new User("Yael"), new ArrayList<>()));
+        customTierListViewModel.setState(new CustomTierListState(new User("Yael")));
         return new CustomTierListView(customTierListController, customTierListViewModel);
     }
 
