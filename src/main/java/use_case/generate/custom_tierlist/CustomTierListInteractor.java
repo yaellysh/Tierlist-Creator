@@ -34,7 +34,7 @@ public class CustomTierListInteractor implements CustomTierListInputBoundary {
         data.getUser().addTierList(list);
         dataAccessInterface.save();
         this.outputBoundary.prepareSuccessView(new CustomTierListOutputData(
-                data.getUser().getUsername(),
+                data.getUser(),
                 data.getListName()));
     }
 }

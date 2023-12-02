@@ -1,16 +1,18 @@
 package use_case.generate.custom_tierlist;
 
+import entity.User;
+
 public class CustomTierListOutputData {
 
-    private final String user;
+    private final User user;
     private final String tierList;
 
-    public CustomTierListOutputData(String user, String tierList) {
+    public CustomTierListOutputData(User user, String tierList) {
         this.user = user;
         this.tierList = tierList;
     }
 
-    public String getUser() {
+    public User getUser() {
         return user;
     }
 

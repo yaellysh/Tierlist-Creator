@@ -2,12 +2,13 @@ package interface_adapter.custom_tierlist;
 
 import entity.User;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CustomTierListState {
     public User user;
-    public ArrayList<String> items;
     public String title;
+    public Map<Integer, String> items;
 
     public User getUser() {
         return user;
@@ -21,18 +22,18 @@ public class CustomTierListState {
         this.user = user;
     }
 
-    public ArrayList<String> getItems() {
-        return items;
+    public String[] getItems() {
+        return items.values().toArray(new String[0]);
     }
 
-    public void addItem(String item) {
-        System.out.println("ahhh");
-        System.out.println(items);
-        this.items.add(item);
+    public void addItem(String item, Integer i) {
+        this.items.put(i, item);
+        System.out.println(this.items);
+
     }
 
     public CustomTierListState(User user) {
         this.user = user;
-        this.items = new ArrayList<>();
+        this.items = new HashMap<>();
     }
 }

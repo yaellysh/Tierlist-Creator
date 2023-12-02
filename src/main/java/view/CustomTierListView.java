@@ -43,10 +43,12 @@ public class CustomTierListView extends JPanel implements ActionListener {
         titleInput.getTextField().addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
-                CustomTierListState currentState = customTierListViewModel.getState();
-                String text = titleInput.getTextField().getText() + e.getKeyChar();
-                currentState.setTitle(text);
-                customTierListViewModel.setState(currentState);
+                if (e.getSource().equals(titleInput.getTextField())) {
+                    CustomTierListState currentState = customTierListViewModel.getState();
+                    String text = titleInput.getTextField().getText() + e.getKeyChar();
+                    currentState.setTitle(text);
+                    customTierListViewModel.setState(currentState);
+                }
             }
 
             @Override
@@ -72,6 +74,7 @@ public class CustomTierListView extends JPanel implements ActionListener {
         JPanel rightPanel = new JPanel();
 
         List<InputPanel> itemInputs = new ArrayList<>();
+
         for (int i = 0; i < 10; i++) {
             InputPanel itemInput = new InputPanel("Item " + (i + 1));
             itemInputs.add(itemInput);
@@ -80,15 +83,15 @@ public class CustomTierListView extends JPanel implements ActionListener {
             } else {
                 rightPanel.add(itemInput);
             }
-        }
-
-        for (InputPanel itemInput: itemInputs) {
-            itemInput.addKeyListener(new KeyListener() {
+            int finalI = i;
+            itemInput.getTextField().addKeyListener(new KeyListener() {
                 @Override
                 public void keyTyped(KeyEvent e) {
-                    CustomTierListState currentState = customTierListViewModel.getState();
-                    currentState.addItem(itemInput.getTextField().getText() + e.getKeyChar());
-                    customTierListViewModel.setState(currentState);
+                    if (e.getSource().equals(itemInput.getTextField())) {
+                        CustomTierListState currentState = customTierListViewModel.getState();
+                        currentState.addItem(itemInput.getTextField().getText() + e.getKeyChar(), finalI);
+                        customTierListViewModel.setState(currentState);
+                    }
                 }
 
                 @Override
@@ -102,26 +105,25 @@ public class CustomTierListView extends JPanel implements ActionListener {
                 }
             });
         }
+        ;
+
 
         this.add(largePanel);
         largePanel.add(leftPanel);
         largePanel.add(rightPanel);
         ButtonPanel submitButtonPanel = new ButtonPanel("Submit");
         this.add(submitButtonPanel);
-        submitButtonPanel.getButton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (e.getSource().equals(submitButtonPanel.getButton())) {
-                    CustomTierListState state  = customTierListViewModel.getState();
-                    customTierListController.execute(
-                            state.getItems().toArray(new String[0]),
-                            state.getUser()
 
-                    );
-                }
+        submitButtonPanel.getButton().addActionListener(e -> {
+            if (e.getSource().equals(submitButtonPanel.getButton())) {
+                CustomTierListState state = customTierListViewModel.getState();
+                customTierListController.execute(
+                        state.getItems(),
+                        state.getUser()
+
+                );
             }
         });
-
 
 
     }
