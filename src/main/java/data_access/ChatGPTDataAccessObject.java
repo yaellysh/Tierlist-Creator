@@ -12,7 +12,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class ChatGPTDataAccessObject implements RandomTierListDataAccessInterface {
@@ -67,14 +66,14 @@ public class ChatGPTDataAccessObject implements RandomTierListDataAccessInterfac
     public List<Item> generateTierList(String prompt) {
         try {
             String result = chatGPT(prompt);
-            List<String> list = new ArrayList<>(Stream.of(result.split("[0-9].\\s"))
+            List<String> list = new ArrayList<>(Stream.of(result.split("[0-9]+.\\s"))
                     .map(s -> s.replaceAll("\\\\n", "")).toList());
             list.remove(0);
 
             if (list.size() != TierList.LENGTH) {
                 return null;
             }
-            return list.stream().map(Item::new).collect(Collectors.toList());
+            return list.stream().map(Item::new).toList();
         }
         catch (IOException e) {
             return null;
