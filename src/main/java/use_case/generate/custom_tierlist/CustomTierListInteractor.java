@@ -2,9 +2,10 @@ package use_case.generate.custom_tierlist;
 
 import entity.Item;
 import entity.TierList;
+import entity.User;
 import use_case.generate.GenerateTierListDataAccessInterface;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class CustomTierListInteractor implements CustomTierListInputBoundary {
@@ -21,20 +22,28 @@ public class CustomTierListInteractor implements CustomTierListInputBoundary {
     @Override
     public void execute(CustomTierListInputData data) {
         String[] inputs = data.getInputs();
-        List<Item> items = new ArrayList<>();
+        String name = data.getListName();
+        User user = data.getUser();
 
-        // TODO: Fail them if they did not offer enough strings or if the list name already exists
-
-        for (String input : inputs) {
-            Item item = new Item(input);
-            items.add(item);
+        // Fail if the name already exists
+        if (user.getTierList(name) != null) {
+            this.outputBoundary.prepareFailView();
+            return;
         }
 
-        TierList list = new TierList(data.getListName(), items);
-        data.getUser().addTierList(list);
+        // Fail if they left one of the strings blank
+        for (String input : inputs) {
+            if (input.isEmpty()) {
+                this.outputBoundary.prepareFailView();
+                return;
+            }
+        }
+
+        List<Item> items = Arrays.stream(inputs).map(Item::new).toList();
+
+        TierList list = new TierList(name, items);
+        user.addTierList(list);
         dataAccessInterface.save();
-        this.outputBoundary.prepareSuccessView(new CustomTierListOutputData(
-                data.getUser(),
-                data.getListName()));
+        this.outputBoundary.prepareSuccessView(new CustomTierListOutputData(user, name));
     }
 }
