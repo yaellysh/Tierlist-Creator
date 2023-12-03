@@ -109,6 +109,8 @@ public class TierListView extends JPanel implements ActionListener, PropertyChan
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
+        this.removeAll();
+        this.repaint();
 
         TierListState state = (TierListState) evt.getNewValue();
         state.setUser(((TierListState) evt.getNewValue()).getUser());
@@ -145,7 +147,6 @@ public class TierListView extends JPanel implements ActionListener, PropertyChan
         // the <html> tags ensure the instructions wrap to the screen
         JLabel instructions = new JLabel();
         instructions.setFont(TierListViewModel.TEXT_FONT);
-//        instructions.setFont(new Font("Arial", Font.PLAIN, ));
         instructions.setText("<html>" + TierListViewModel.INSTRUCTIONS + "</html>");
 
         instructions.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -179,7 +180,7 @@ public class TierListView extends JPanel implements ActionListener, PropertyChan
         for (int i = 0; i < entries.size(); i++) {
             String entry = entries.get(i);
             LabelDropDownPanel item = new LabelDropDownPanel(new JLabel(entry));
-            item.getDropDown().setSelectedItem(tierList.getItem(entry).getTier());
+            item.getDropDown().setSelectedItem(tierList.getItem(entry).getTier().toString());
             item.setMaximumSize(new Dimension(400, 70));
             if (i < (TierListViewModel.NUM_ITEMS + 1) / 2) {
                 leftPanel.add(item);

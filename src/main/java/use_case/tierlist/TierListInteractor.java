@@ -23,12 +23,15 @@ public class TierListInteractor implements TierListInputBoundary {
         Tier tier = data.getTier();
         User user = dataAccessInterface.getUser(username);
 
-        System.out.println(user.getTierList(tierList));
         // Update item with new tier.
+        System.out.println("before: " + user.getTierList(tierList)
+                .getItem(item).getTier());
         user.getTierList(tierList)
                 .getItem(item)
                 .setTier(tier);
         dataAccessInterface.save();
+        System.out.println("after: " + user.getTierList(tierList)
+                .getItem(item).getTier());
         TierListOutputData outputData = new TierListOutputData(user, tierList);
         outputBoundary.prepareSuccessView(outputData);
     }

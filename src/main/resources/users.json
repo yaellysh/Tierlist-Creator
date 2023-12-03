@@ -42,6 +42,302 @@
             "tier": "S"
           }
         }
+      },
+      "list 8 popular movies": {
+        "name": "list 8 popular movies",
+        "items": {
+          "The Lion King": {
+            "name": "The Lion King",
+            "tier": "B"
+          },
+          "Jurassic Park": {
+            "name": "Jurassic Park",
+            "tier": "S"
+          },
+          "Avengers: Endgame": {
+            "name": "Avengers: Endgame",
+            "tier": "S"
+          },
+          "The Dark Knight": {
+            "name": "The Dark Knight",
+            "tier": "S"
+          },
+          "Harry Potter and the Deathly Hallows: Part 2": {
+            "name": "Harry Potter and the Deathly Hallows: Part 2",
+            "tier": "S"
+          },
+          "Titanic": {
+            "name": "Titanic",
+            "tier": "S"
+          },
+          "Avatar": {
+            "name": "Avatar",
+            "tier": "S"
+          },
+          "Finding Nemo": {
+            "name": "Finding Nemo",
+            "tier": "S"
+          }
+        }
+      },
+      "list 8 popular italian coastal towns": {
+        "name": "list 8 popular italian coastal towns",
+        "items": {
+          "Venice Beach": {
+            "name": "Venice Beach",
+            "tier": "S"
+          },
+          "Amalfi": {
+            "name": "Amalfi",
+            "tier": "S"
+          },
+          "Sorrento": {
+            "name": "Sorrento",
+            "tier": "S"
+          },
+          "Capri": {
+            "name": "Capri",
+            "tier": "S"
+          },
+          "Cinque Terre": {
+            "name": "Cinque Terre",
+            "tier": "S"
+          },
+          "Portofino": {
+            "name": "Portofino",
+            "tier": "S"
+          },
+          "Taormina": {
+            "name": "Taormina",
+            "tier": "S"
+          },
+          "Positano": {
+            "name": "Positano",
+            "tier": "S"
+          }
+        }
+      },
+      "list 8 popular mice": {
+        "name": "list 8 popular mice",
+        "items": {
+          "Razer DeathAdder": {
+            "name": "Razer DeathAdder",
+            "tier": "B"
+          },
+          "Microsoft Surface Precision Mouse": {
+            "name": "Microsoft Surface Precision Mouse",
+            "tier": "S"
+          },
+          "Zowie EC2-A": {
+            "name": "Zowie EC2-A",
+            "tier": "S"
+          },
+          "Logitech MX Master": {
+            "name": "Logitech MX Master",
+            "tier": "S"
+          },
+          "HyperX Pulsefire FPS Pro": {
+            "name": "HyperX Pulsefire FPS Pro",
+            "tier": "S"
+          },
+          "Corsair Harpoon RGB Wireless": {
+            "name": "Corsair Harpoon RGB Wireless",
+            "tier": "S"
+          },
+          "SteelSeries Rival 600": {
+            "name": "SteelSeries Rival 600",
+            "tier": "S"
+          },
+          "Apple Magic Mouse 2": {
+            "name": "Apple Magic Mouse 2",
+            "tier": "S"
+          }
+        }
+      },
+      "list 8 popular sweets": {
+        "name": "list 8 popular sweets",
+        "items": {
+          "Chocolate truffles": {
+            "name": "Chocolate truffles",
+            "tier": "B"
+          },
+          "Donuts": {
+            "name": "Donuts",
+            "tier": "S"
+          },
+          "Gummy bears": {
+            "name": "Gummy bears",
+            "tier": "S"
+          },
+          "Cupcakes": {
+            "name": "Cupcakes",
+            "tier": "S"
+          },
+          "Chocolate chip cookies": {
+            "name": "Chocolate chip cookies",
+            "tier": "S"
+          },
+          "Ice cream": {
+            "name": "Ice cream",
+            "tier": "S"
+          },
+          "Cotton candy": {
+            "name": "Cotton candy",
+            "tier": "S"
+          },
+          "Brownies": {
+            "name": "Brownies",
+            "tier": "S"
+          }
+        }
+      },
+      "list 8 popular colours": {
+        "name": "list 8 popular colours",
+        "items": {
+          "Red": {
+            "name": "Red",
+            "tier": "S"
+          },
+          "Pink": {
+            "name": "Pink",
+            "tier": "S"
+          },
+          "Blue": {
+            "name": "Blue",
+            "tier": "S"
+          },
+          "Yellow": {
+            "name": "Yellow",
+            "tier": "S"
+          },
+          "Purple": {
+            "name": "Purple",
+            "tier": "S"
+          },
+          "Black": {
+            "name": "Black",
+            "tier": "S"
+          },
+          "Orange": {
+            "name": "Orange",
+            "tier": "S"
+          },
+          "Green": {
+            "name": "Green",
+            "tier": "S"
+          }
+        }
+      },
+      "list 8 popular languages": {
+        "name": "list 8 popular languages",
+        "items": {
+          "English": {
+            "name": "English",
+            "tier": "C"
+          },
+          "Arabic": {
+            "name": "Arabic",
+            "tier": "S"
+          },
+          "French": {
+            "name": "French",
+            "tier": "S"
+          },
+          "Russian": {
+            "name": "Russian",
+            "tier": "S"
+          },
+          "Portuguese": {
+            "name": "Portuguese",
+            "tier": "S"
+          },
+          "Spanish": {
+            "name": "Spanish",
+            "tier": "S"
+          },
+          "Hindi": {
+            "name": "Hindi",
+            "tier": "S"
+          },
+          "Mandarin Chinese": {
+            "name": "Mandarin Chinese",
+            "tier": "S"
+          }
+        }
+      },
+      "list 8 popular towns": {
+        "name": "list 8 popular towns",
+        "items": {
+          "Rome, Italy": {
+            "name": "Rome, Italy",
+            "tier": "A"
+          },
+          "Sydney, Australia": {
+            "name": "Sydney, Australia",
+            "tier": "S"
+          },
+          "Tokyo, Japan": {
+            "name": "Tokyo, Japan",
+            "tier": "S"
+          },
+          "Paris, France": {
+            "name": "Paris, France",
+            "tier": "S"
+          },
+          "New York City, USA": {
+            "name": "New York City, USA",
+            "tier": "S"
+          },
+          "London, United Kingdom": {
+            "name": "London, United Kingdom",
+            "tier": "S"
+          },
+          "Rio de Janeiro, Brazil": {
+            "name": "Rio de Janeiro, Brazil",
+            "tier": "S"
+          },
+          "Barcelona, Spain": {
+            "name": "Barcelona, Spain",
+            "tier": "S"
+          }
+        }
+      },
+      "list 8 popular cities": {
+        "name": "list 8 popular cities",
+        "items": {
+          "London, United Kingdom ": {
+            "name": "London, United Kingdom ",
+            "tier": "D"
+          },
+          "Rome, Italy ": {
+            "name": "Rome, Italy ",
+            "tier": "S"
+          },
+          "Sydney, Australia ": {
+            "name": "Sydney, Australia ",
+            "tier": "S"
+          },
+          "Dubai, United Arab Emirates ": {
+            "name": "Dubai, United Arab Emirates ",
+            "tier": "S"
+          },
+          "Paris, France ": {
+            "name": "Paris, France ",
+            "tier": "S"
+          },
+          "New York City, USA ": {
+            "name": "New York City, USA ",
+            "tier": "S"
+          },
+          "Barcelona, Spain": {
+            "name": "Barcelona, Spain",
+            "tier": "S"
+          },
+          "Tokyo, Japan ": {
+            "name": "Tokyo, Japan ",
+            "tier": "S"
+          }
+        }
       }
     }
   }
