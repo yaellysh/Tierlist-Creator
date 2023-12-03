@@ -12,10 +12,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.*;
 import java.util.List;
 
-public class TierListView extends JPanel implements ActionListener {
+public class TierListView extends JPanel implements ActionListener, PropertyChangeListener {
 
     public final String viewName = "tier list";
     public final TierListController tierListController;
@@ -26,6 +28,8 @@ public class TierListView extends JPanel implements ActionListener {
 
         this.tierListViewModel = tierListViewModel;
         this.tierListController = tierListController;
+        tierListViewModel.addPropertyChangeListener(this);
+
 
         // setting up the box layout to help formatting
         BoxLayout boxLayout = new BoxLayout(this, BoxLayout.Y_AXIS);
@@ -49,6 +53,7 @@ public class TierListView extends JPanel implements ActionListener {
         // changing the colours of the grid boxes based on their tier
         // this will be changed later when input data is actually brought in
         // then the colour of the box will be dependent on if there is anything in it
+`
         loadGrid(tierGrid);
 
         // added instructions label
@@ -85,6 +90,7 @@ public class TierListView extends JPanel implements ActionListener {
                 .stream()
                 .sorted(Map.Entry.comparingByKey())
                 .toList();
+        System.out.println(currentState.getTierList());
 
         for (int i = 0; i < entries.size(); i++) {
             Map.Entry<String, Tier> entry = entries.get(i);
@@ -108,6 +114,7 @@ public class TierListView extends JPanel implements ActionListener {
                                     item.getName(),
                                     Objects.requireNonNull(item.getDropDown().getSelectedItem()).toString()
                             );
+                            tierListViewModel.setState(currentState1);
                             tierGrid.removeAll();
                             loadGrid(tierGrid);
                             tierGrid.revalidate();
@@ -197,4 +204,12 @@ public class TierListView extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
     }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        TierListState state = (TierListState) evt.getNewValue();
+        state.setUser(((TierListState) evt.getNewValue()).getUser());
+        state.setTierList(((TierListState) evt.getNewValue()).getTierList());
+    }
+
 }

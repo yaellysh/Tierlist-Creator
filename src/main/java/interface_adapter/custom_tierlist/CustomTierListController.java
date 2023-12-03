@@ -4,6 +4,8 @@ import entity.User;
 import use_case.generate.custom_tierlist.CustomTierListInputBoundary;
 import use_case.generate.custom_tierlist.CustomTierListInputData;
 
+import java.util.Arrays;
+
 public class CustomTierListController {
     final CustomTierListInputBoundary customInteractor;
 
@@ -11,7 +13,8 @@ public class CustomTierListController {
         this.customInteractor = customTierListInteractor;
     }
 
-    public void execute(String[] items, User user) {
-        customInteractor.execute(new CustomTierListInputData(user, "idk what to put here", items));
+    public void execute(String[] items, User user, String title) {
+        System.out.println(Arrays.stream(items).toList());
+        customInteractor.execute(new CustomTierListInputData(user, title, items));
     }
 }

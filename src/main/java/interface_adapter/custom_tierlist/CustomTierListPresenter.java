@@ -18,7 +18,15 @@ public class CustomTierListPresenter implements CustomTierListOutputBoundary {
     }
     @Override
     public void prepareSuccessView(CustomTierListOutputData data) {
-        TierListState tierListState = new TierListState(data.getUser(), data.getTierList());
+        TierListState tierListState = tierListViewModel.getState();
+        tierListState.setTierList(data.getTierList());
+        tierListState.setUser(data.getUser());
+        tierListViewModel.setState(tierListState);
+        tierListViewModel.firePropertyChanged();
+
+
+        viewManagerModel.setActiveView(tierListViewModel.getViewName());
+        viewManagerModel.firePropertyChanged();
     }
 
     @Override

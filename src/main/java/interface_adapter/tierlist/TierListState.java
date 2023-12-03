@@ -6,9 +6,7 @@ public class TierListState {
     private User user;
     private String tierList;
 
-    public TierListState(User user, String tierList) {
-        this.user = user;
-        this.tierList = tierList;
+    public TierListState() {
     }
 
     public User getUser() {

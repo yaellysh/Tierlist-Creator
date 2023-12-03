@@ -1,3 +1,4 @@
+import data_access.ChatGPTDataAccessObject;
 import data_access.FileUserDataAccessObject;
 import factory.CustomTierListFactory;
 import factory.RandomTierListFactory;
@@ -14,7 +15,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         JFrame application = new JFrame();
         application.setResizable(false);
@@ -27,18 +28,19 @@ public class Main {
         ViewManagerModel viewManagerModel = new ViewManagerModel();
         new ViewManager(views, cardLayout, viewManagerModel);
 
-        TierListViewModel tierListViewModel = new TierListViewModel("tier");
+        TierListViewModel tierListViewModel = new TierListViewModel("tier list");
         SelectorViewModel selectorViewModel = new SelectorViewModel("selector");
         RandomTierListViewModel randomTierListViewModel = new RandomTierListViewModel("random");
         CustomTierListViewModel customTierListViewModel = new CustomTierListViewModel("custom");
 
         FileUserDataAccessObject userDataAccessObject = new FileUserDataAccessObject("src/main/resources/users.json");
+        ChatGPTDataAccessObject chatGPTDataAccessObject  = new ChatGPTDataAccessObject();
 
-        CustomTierListView customTierListView = CustomTierListFactory.create(viewManagerModel, customTierListViewModel);
+        CustomTierListView customTierListView = CustomTierListFactory.create(viewManagerModel, customTierListViewModel, tierListViewModel);
 
         views.add(customTierListView, customTierListView.viewName);
 
-        RandomTierListView randomTierListView = RandomTierListFactory.create(viewManagerModel, randomTierListViewModel);
+        RandomTierListView randomTierListView = RandomTierListFactory.create(viewManagerModel, randomTierListViewModel, userDataAccessObject, chatGPTDataAccessObject);
 
         views.add(randomTierListView, randomTierListView.viewName);
 
@@ -54,6 +56,7 @@ public class Main {
 //        viewManagerModel.setActiveView(randomTierListView.viewName);
 //        viewManagerModel.setActiveView(selectorView.viewName);
         viewManagerModel.setActiveView(customTierListView.viewName);
+//        viewManagerModel.setActiveView(tierListView.viewName);
         viewManagerModel.firePropertyChanged();
 
         application.setVisible(true);

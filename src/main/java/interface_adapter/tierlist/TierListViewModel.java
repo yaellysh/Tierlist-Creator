@@ -18,7 +18,7 @@ public class TierListViewModel extends ViewModel {
     public static final int NUM_TIERS = TierAdapter.TIERS.length;
     public static final int NUM_ITEMS = TierList.LENGTH;
     public static final String HOME_BUTTON = "Home";
-    private TierListState state;
+    private TierListState state = new TierListState();
 
     public TierListViewModel(String name) {
         super(name);
@@ -33,6 +33,7 @@ public class TierListViewModel extends ViewModel {
     @Override
     public void firePropertyChanged() {
         support.firePropertyChange("state", null, this.state);
+
     }
 
     @Override

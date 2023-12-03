@@ -18,6 +18,10 @@ public class CustomTierListState {
         this.title = title;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
     public void setUser(User user) {
         this.user = user;
     }
@@ -28,7 +32,6 @@ public class CustomTierListState {
 
     public void addItem(String item, Integer i) {
         this.items.put(i, item);
-        System.out.println(this.items);
 
     }
 

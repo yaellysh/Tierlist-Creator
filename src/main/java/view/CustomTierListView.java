@@ -10,10 +10,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomTierListView extends JPanel implements ActionListener {
+public class CustomTierListView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewName = "custom tier list maker";
     public final CustomTierListController customTierListController;
     public final CustomTierListViewModel customTierListViewModel;
@@ -21,6 +23,7 @@ public class CustomTierListView extends JPanel implements ActionListener {
     public CustomTierListView(CustomTierListController customTierListController, CustomTierListViewModel customTierListViewModel) {
         this.customTierListController = customTierListController;
         this.customTierListViewModel = customTierListViewModel;
+        customTierListViewModel.addPropertyChangeListener(this);
 
         BoxLayout boxLayout = new BoxLayout(this, BoxLayout.PAGE_AXIS);
         this.setLayout(boxLayout);
@@ -119,7 +122,8 @@ public class CustomTierListView extends JPanel implements ActionListener {
                 CustomTierListState state = customTierListViewModel.getState();
                 customTierListController.execute(
                         state.getItems(),
-                        state.getUser()
+                        state.getUser(),
+                        state.getTitle()
 
                 );
             }
@@ -131,5 +135,10 @@ public class CustomTierListView extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        System.out.println("custom tier list property change???");
     }
 }
