@@ -8,9 +8,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
-public class SelectorView extends JPanel implements ActionListener {
-    public final String viewName = "tier list selector";
+public class SelectorView extends JPanel implements ActionListener, PropertyChangeListener {
+    public final String viewName = "selector";
     public final SelectorController selectorController;
     public final SelectorViewModel selectorViewModel;
 
@@ -59,7 +61,7 @@ public class SelectorView extends JPanel implements ActionListener {
         instructions2.setBorder(BorderFactory.createEmptyBorder(5, 20, 5, 20));
         this.add(instructions2);
 
-        for (int i = 1; i < 4; i++) {
+        for (int i = 1; i < 3; i++) {
 
             ButtonPanel buttonPanel = new ButtonPanel(SelectorViewModel.BUTTONS.get(i), SelectorViewModel.COLORS.get(i));
             this.add(buttonPanel);
@@ -81,5 +83,11 @@ public class SelectorView extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        SelectorState state = (SelectorState) evt.getNewValue();
+        state.setUser(((SelectorState) evt.getNewValue()).getUser());
     }
 }

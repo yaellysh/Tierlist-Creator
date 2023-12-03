@@ -14,7 +14,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class RandomTierListView extends JPanel implements ActionListener {
-    public final String viewName = "random tier list maker";
+    public final String viewName = "random";
     public RandomTierListController randomTierListController;
     public RandomTierListViewModel randomTierListViewModel;
 
@@ -57,44 +57,58 @@ public class RandomTierListView extends JPanel implements ActionListener {
         JButton submitButton = new JButton(RandomTierListViewModel.SUBMIT_BUTTON);
         buttonPanel.add(submitButton);
         submitButton.setOpaque(true);
-//        submitButton.setFont(RandomTierListViewModel.BUTTON_FONT);
         submitButton.setPreferredSize(new Dimension(250, 50));
         submitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+
+        JButton backButton = new JButton(RandomTierListViewModel.BACK_BUTTON);
+        buttonPanel.add(backButton);
+        backButton.setOpaque(true);
+        backButton.setPreferredSize(new Dimension(250, 50));
+        backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+
         buttonPanel.setBorder(new EmptyBorder(20, 20, 20, 20));
         inputWrapper.add(buttonPanel);
         inputWrapper.add(new JSeparator());
 
-        inputField.addKeyListener(
-                new KeyListener() {
-                    @Override
-                    public void keyTyped(KeyEvent e) {
-                        RandomTierListState currentState = randomTierListViewModel.getState();
-                        String text = inputField.getText() + e.getKeyChar();
-                        currentState.setPrompt(text);
-                        randomTierListViewModel.setState(currentState);
-                    }
+        inputField.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                RandomTierListState currentState = randomTierListViewModel.getState();
+                String text = inputField.getText() + e.getKeyChar();
+                currentState.setPrompt(text);
+                randomTierListViewModel.setState(currentState);
+            }
 
-                    @Override
-                    public void keyPressed(KeyEvent e) {
-                    }
+            @Override
+            public void keyPressed(KeyEvent e) {
+            }
 
-                    @Override
-                    public void keyReleased(KeyEvent e) {
-                    }
-                });
+            @Override
+            public void keyReleased(KeyEvent e) {
+            }
+        });
         submitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource().equals(submitButton)) {
                     RandomTierListState state = randomTierListViewModel.getState();
 
-                    randomTierListController.execute(
-                            "list the names of "+ TierList.LENGTH +" popular " + inputField.getText(),
-                            state.getUser());
+                    randomTierListController.execute("list " + TierList.LENGTH + " popular " + state.getPrompt(), state.getUser());
                 }
             }
-        }
-        );
+        });
+
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource().equals(backButton)) {
+                    RandomTierListState state = randomTierListViewModel.getState();
+                    randomTierListController.execute("back", state.getUser());
+
+                }
+            }
+        });
     }
 
     @Override

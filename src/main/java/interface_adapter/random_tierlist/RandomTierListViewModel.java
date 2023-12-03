@@ -17,6 +17,7 @@ public class RandomTierListViewModel extends ViewModel {
     public static final Font BUTTON_FONT = new Font("Arial", Font.ITALIC, 25);
     public static final Font TEXT_FONT_SMALL = new Font("Arial", Font.ITALIC, 13);
     public static final String SUBMIT_BUTTON = "Submit";
+    public static final String BACK_BUTTON = "Back";
 
     public RandomTierListState state;
 

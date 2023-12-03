@@ -1,6 +1,7 @@
 package interface_adapter.random_tierlist;
 
 import interface_adapter.ViewManagerModel;
+import interface_adapter.selector.SelectorViewModel;
 import interface_adapter.tierlist.TierListState;
 import interface_adapter.tierlist.TierListViewModel;
 import use_case.generate.random_tierlist.RandomTierListOutputBoundary;
@@ -10,10 +11,12 @@ public class RandomTierListPresenter implements RandomTierListOutputBoundary {
     private final ViewManagerModel viewManagerModel;
     private final RandomTierListViewModel randomTierListViewModel;
     private final TierListViewModel tierListViewModel;
-    public RandomTierListPresenter(ViewManagerModel viewManagerModel, RandomTierListViewModel randomTierListViewModel, TierListViewModel tierListViewModel) {
+    private final SelectorViewModel selectorViewModel;
+    public RandomTierListPresenter(ViewManagerModel viewManagerModel, RandomTierListViewModel randomTierListViewModel, TierListViewModel tierListViewModel, SelectorViewModel selectorViewModel) {
         this.viewManagerModel = viewManagerModel;
         this.randomTierListViewModel = randomTierListViewModel;
         this.tierListViewModel = tierListViewModel;
+        this.selectorViewModel = selectorViewModel;
     }
     @Override
     public void prepareSuccessView(RandomTierListOutputData data) {
@@ -30,5 +33,11 @@ public class RandomTierListPresenter implements RandomTierListOutputBoundary {
     @Override
     public void prepareFailView() {
 
+    }
+
+    @Override
+    public void prepareBackView() {
+        viewManagerModel.setActiveView(selectorViewModel.getViewName());
+        viewManagerModel.firePropertyChanged();
     }
 }

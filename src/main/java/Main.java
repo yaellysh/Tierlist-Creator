@@ -38,11 +38,11 @@ public class Main {
 
 
 
-        RandomTierListView randomTierListView = RandomTierListFactory.create(viewManagerModel, randomTierListViewModel, userDataAccessObject, chatGPTDataAccessObject, tierListViewModel);
+        RandomTierListView randomTierListView = RandomTierListFactory.create(viewManagerModel, randomTierListViewModel, userDataAccessObject, chatGPTDataAccessObject, tierListViewModel, selectorViewModel);
 
         views.add(randomTierListView, randomTierListView.viewName);
 
-        SelectorView selectorView = SelectorFactory.create(viewManagerModel, selectorViewModel);
+        SelectorView selectorView = SelectorFactory.create(viewManagerModel, selectorViewModel, randomTierListViewModel, customTierListViewModel);
 
         views.add(selectorView, selectorView.viewName);
 
@@ -54,8 +54,8 @@ public class Main {
         views.add(customTierListView, customTierListView.viewName);
 
 //        viewManagerModel.setActiveView(tierListView.viewName);
-        viewManagerModel.setActiveView(randomTierListView.viewName);
-//        viewManagerModel.setActiveView(selectorView.viewName);
+//        viewManagerModel.setActiveView(randomTierListView.viewName);
+        viewManagerModel.setActiveView(selectorView.viewName);
 //        viewManagerModel.setActiveView(customTierListView.viewName);
 //        viewManagerModel.setActiveView(tierListView.viewName);
         viewManagerModel.firePropertyChanged();

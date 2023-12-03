@@ -26,18 +26,23 @@ public class RandomTierListInteractor implements RandomTierListInputBoundary {
     public void execute(RandomTierListInputData data) {
         String prompt = data.getPrompt();
         User user = data.getUser();
-        List<Item> items = randomTierListDataAccessInterface.generateTierList(prompt);
+        if (prompt.equals("back")) {
+            outputBoundary.prepareBackView();
+        } else {
+            List<Item> items = randomTierListDataAccessInterface.generateTierList(prompt);
 
-        if (items == null) {
-            outputBoundary.prepareFailView();
-            System.out.println("fail");
-            return;
+            if (items == null) {
+                outputBoundary.prepareFailView();
+                System.out.println("fail");
+                return;
+            }
+
+            TierList list = new TierList(prompt, items);
+            user.addTierList(list);
+            generateTierListDataAccessInterface.save();
+            outputBoundary.prepareSuccessView(new RandomTierListOutputData(user, prompt));
         }
 
-        TierList list = new TierList(prompt, items);
-        user.addTierList(list);
-        generateTierListDataAccessInterface.save();
-        outputBoundary.prepareSuccessView(new RandomTierListOutputData(user, prompt));
     }
 
     public static void main(String[] args) {
@@ -51,6 +56,11 @@ public class RandomTierListInteractor implements RandomTierListInputBoundary {
 
                     @Override
                     public void prepareFailView() {
+
+                    }
+
+                    @Override
+                    public void prepareBackView() {
 
                     }
                 });
