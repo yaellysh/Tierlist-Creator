@@ -1,5 +1,6 @@
 package view;
 
+import entity.TierList;
 import interface_adapter.custom_tierlist.CustomTierListController;
 import interface_adapter.custom_tierlist.CustomTierListState;
 import interface_adapter.custom_tierlist.CustomTierListViewModel;
@@ -20,7 +21,7 @@ public class CustomTierListView extends JPanel implements ActionListener, Proper
     public final CustomTierListController customTierListController;
     public final CustomTierListViewModel customTierListViewModel;
 
-    public CustomTierListView(CustomTierListController customTierListController, CustomTierListViewModel customTierListViewModel) {
+    public CustomTierListView(CustomTierListController customTierListController, CustomTierListViewModel customTierListViewModel, TierListView tierListView) {
         this.customTierListController = customTierListController;
         this.customTierListViewModel = customTierListViewModel;
         customTierListViewModel.addPropertyChangeListener(this);
@@ -78,10 +79,10 @@ public class CustomTierListView extends JPanel implements ActionListener, Proper
 
         List<InputPanel> itemInputs = new ArrayList<>();
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < TierList.LENGTH; i++) {
             InputPanel itemInput = new InputPanel("Item " + (i + 1));
             itemInputs.add(itemInput);
-            if (i < 5) {
+            if (i < TierList.LENGTH/2) {
                 leftPanel.add(itemInput);
             } else {
                 rightPanel.add(itemInput);
@@ -117,18 +118,20 @@ public class CustomTierListView extends JPanel implements ActionListener, Proper
         ButtonPanel submitButtonPanel = new ButtonPanel("Submit");
         this.add(submitButtonPanel);
 
-        submitButtonPanel.getButton().addActionListener(e -> {
-            if (e.getSource().equals(submitButtonPanel.getButton())) {
-                CustomTierListState state = customTierListViewModel.getState();
-                customTierListController.execute(
-                        state.getItems(),
-                        state.getUser(),
-                        state.getTitle()
-
-                );
+        submitButtonPanel.getButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tierListView.actionPerformed(e);
+                if (e.getSource().equals(submitButtonPanel.getButton())) {
+                    CustomTierListState state = customTierListViewModel.getState();
+                    customTierListController.execute(
+                            state.getItems(),
+                            state.getUser(),
+                            state.getTitle()
+                    );
             }
-        });
-
+        }
+    });
 
     }
 

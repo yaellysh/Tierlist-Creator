@@ -11,13 +11,14 @@ import interface_adapter.tierlist.TierListViewModel;
 import use_case.generate.custom_tierlist.CustomTierListInteractor;
 import use_case.generate.custom_tierlist.CustomTierListOutputBoundary;
 import view.CustomTierListView;
+import view.TierListView;
 
 public class CustomTierListFactory {
     private CustomTierListFactory() {}
-    public static CustomTierListView create(ViewManagerModel viewManagerModel, CustomTierListViewModel customTierListViewModel, TierListViewModel tierListViewModel){
+    public static CustomTierListView create(ViewManagerModel viewManagerModel, CustomTierListViewModel customTierListViewModel, TierListViewModel tierListViewModel, TierListView tierListView){
         CustomTierListController customTierListController = createCustomUseCase(viewManagerModel, customTierListViewModel, tierListViewModel);
         customTierListViewModel.setState(new CustomTierListState(new User("Yael")));
-        return new CustomTierListView(customTierListController, customTierListViewModel);
+        return new CustomTierListView(customTierListController, customTierListViewModel, tierListView);
     }
 
     private static CustomTierListController createCustomUseCase(ViewManagerModel viewManagerModel, CustomTierListViewModel customTierListViewModel, TierListViewModel tierListViewModel){

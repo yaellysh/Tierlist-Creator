@@ -36,9 +36,7 @@ public class Main {
         FileUserDataAccessObject userDataAccessObject = new FileUserDataAccessObject("src/main/resources/users.json");
         ChatGPTDataAccessObject chatGPTDataAccessObject  = new ChatGPTDataAccessObject();
 
-        CustomTierListView customTierListView = CustomTierListFactory.create(viewManagerModel, customTierListViewModel, tierListViewModel);
 
-        views.add(customTierListView, customTierListView.viewName);
 
         RandomTierListView randomTierListView = RandomTierListFactory.create(viewManagerModel, randomTierListViewModel, userDataAccessObject, chatGPTDataAccessObject);
 
@@ -51,6 +49,9 @@ public class Main {
         TierListView tierListView = TierListFactory.create(viewManagerModel, tierListViewModel, userDataAccessObject);
 
         views.add(tierListView, tierListView.viewName);
+        CustomTierListView customTierListView = CustomTierListFactory.create(viewManagerModel, customTierListViewModel, tierListViewModel, tierListView);
+
+        views.add(customTierListView, customTierListView.viewName);
 
 //        viewManagerModel.setActiveView(tierListView.viewName);
 //        viewManagerModel.setActiveView(randomTierListView.viewName);
