@@ -65,6 +65,7 @@ public class SelectorView extends JPanel implements ActionListener, PropertyChan
 
             ButtonPanel buttonPanel = new ButtonPanel(SelectorViewModel.BUTTONS.get(i), SelectorViewModel.COLORS.get(i));
             this.add(buttonPanel);
+
             buttonPanel.getButton().addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
