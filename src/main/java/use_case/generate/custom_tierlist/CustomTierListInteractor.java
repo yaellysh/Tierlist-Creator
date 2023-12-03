@@ -3,7 +3,7 @@ package use_case.generate.custom_tierlist;
 import entity.Item;
 import entity.TierList;
 import entity.User;
-import use_case.generate.GenerateTierListDataAccessInterface;
+import use_case.tierlist.TierListDataAccessInterface;
 
 import java.util.Arrays;
 import java.util.List;
@@ -11,10 +11,10 @@ import java.util.List;
 public class CustomTierListInteractor implements CustomTierListInputBoundary {
 
     private final CustomTierListOutputBoundary outputBoundary;
-    private final GenerateTierListDataAccessInterface dataAccessInterface;
+    private final TierListDataAccessInterface dataAccessInterface;
 
     public CustomTierListInteractor(CustomTierListOutputBoundary outputBoundary,
-                                    GenerateTierListDataAccessInterface dataAccessInterface) {
+                                    TierListDataAccessInterface dataAccessInterface) {
         this.outputBoundary = outputBoundary;
         this.dataAccessInterface = dataAccessInterface;
     }

@@ -5,18 +5,18 @@ import data_access.FileUserDataAccessObject;
 import entity.Item;
 import entity.TierList;
 import entity.User;
-import use_case.generate.GenerateTierListDataAccessInterface;
+import use_case.tierlist.TierListDataAccessInterface;
 
 import java.util.List;
 
 public class RandomTierListInteractor implements RandomTierListInputBoundary {
 
     private final RandomTierListDataAccessInterface randomTierListDataAccessInterface;
-    private final GenerateTierListDataAccessInterface generateTierListDataAccessInterface;
+    private final TierListDataAccessInterface generateTierListDataAccessInterface;
     private final RandomTierListOutputBoundary outputBoundary;
 
     public RandomTierListInteractor(RandomTierListDataAccessInterface dataAccessInterface,
-                                    GenerateTierListDataAccessInterface dataAccessInterface1,
+                                    TierListDataAccessInterface dataAccessInterface1,
                                     RandomTierListOutputBoundary outputBoundary) {
         this.randomTierListDataAccessInterface = dataAccessInterface;
         this.generateTierListDataAccessInterface = dataAccessInterface1;
