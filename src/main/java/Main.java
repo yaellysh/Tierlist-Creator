@@ -18,8 +18,8 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
 
         JFrame application = new JFrame();
-//        application.setResizable(false);
-        application.setSize(700, 650);
+        application.setResizable(false);
+        application.setSize(800, 700);
         application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         CardLayout cardLayout = new CardLayout();

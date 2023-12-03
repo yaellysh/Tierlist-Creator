@@ -1,5 +1,6 @@
 package view;
 
+import entity.TierList;
 import interface_adapter.random_tierlist.RandomTierListController;
 import interface_adapter.random_tierlist.RandomTierListState;
 import interface_adapter.random_tierlist.RandomTierListViewModel;
@@ -88,7 +89,7 @@ public class RandomTierListView extends JPanel implements ActionListener {
                     RandomTierListState state = randomTierListViewModel.getState();
 
                     randomTierListController.execute(
-                            "list the names of 10 popular " + inputField.getText(),
+                            "list the names of "+ TierList.LENGTH +" popular " + inputField.getText(),
                             state.getUser());
                 }
             }

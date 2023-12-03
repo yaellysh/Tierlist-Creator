@@ -65,10 +65,28 @@ public class TierListView extends JPanel implements ActionListener, PropertyChan
 
                     JLabel label = new JLabel();
                     tier = new LabelPanel(label);
-                    tier.setPreferredSize(new Dimension(50, 50));
+                    tier.setPreferredSize(new Dimension(60, 60));
+                    tier.getLabel().setPreferredSize(new Dimension(60, 60));
+
                     tier.setBackground(currentTier.getColor());
                     tier.setBorder(BorderFactory.createLineBorder(Color.black));
-                    label.setText("<html>" + tierItemMap.get(currentTier.getTier()).get(j) + "</html>");
+
+                    System.out.println(label.getPreferredSize().width);
+                    System.out.println(label.getPreferredSize().height);
+                    label.setText("<html>"+tierItemMap.get((currentTier.getTier())).get(j)+"</html>");
+
+//                    String[] lines = label.getText().split("<br>");
+//                    int maxLength = 0;
+//                    for (String line: lines) {
+////                        System.out.println(line);
+//                        line=line.replace("<html>", "").replace("</html>","");
+//                        if (line.length() > maxLength) {
+//                            maxLength = line.length();
+//                        }
+//                    }
+//                    System.out.println(maxLength);
+//                    label.setFont(new Font("Arial", Font.PLAIN, 90/maxLength));
+                    label.setFont(new Font("Arial", Font.PLAIN, 10));
 
                     tierGrid.add(tier);
 
@@ -95,8 +113,39 @@ public class TierListView extends JPanel implements ActionListener, PropertyChan
 
     }
 
+    public String spaceRemover(String text) {
+        StringBuilder newString = new StringBuilder();
+        int spaceCount = 0;
+        int breakNum;
+        int numSpaces = text.length() - text.replace(" ", "").length();
+        if (numSpaces == 1) {
+            breakNum = 0;
+        } else {
+            breakNum = 1;
+        }
+        for (Character character : text.toCharArray()) {
+            if (character == ' ') {
+
+                if (spaceCount % 2 == breakNum) {
+                    newString.append("\n");
+                } else {
+                    newString.append(" ");
+                }
+                spaceCount += 1;
+            } else {
+                newString.append(character);
+            }
+        }
+        return String.valueOf(newString);
+    }
+
+    public int getFontSize(int length) {
+        return 0;
+    }
+
     @Override
-    public void actionPerformed(ActionEvent e) {}
+    public void actionPerformed(ActionEvent e) {
+    }
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
