@@ -46,10 +46,10 @@ public class Main {
 
         views.add(selectorView, selectorView.viewName);
 
-        TierListView tierListView = TierListFactory.create(viewManagerModel, tierListViewModel, userDataAccessObject);
+        TierListView tierListView = TierListFactory.create(viewManagerModel, tierListViewModel, userDataAccessObject, selectorViewModel);
 
         views.add(tierListView, tierListView.viewName);
-        CustomTierListView customTierListView = CustomTierListFactory.create(viewManagerModel, customTierListViewModel, tierListViewModel, tierListView);
+        CustomTierListView customTierListView = CustomTierListFactory.create(viewManagerModel, customTierListViewModel, tierListViewModel, tierListView, selectorViewModel);
 
         views.add(customTierListView, customTierListView.viewName);
 

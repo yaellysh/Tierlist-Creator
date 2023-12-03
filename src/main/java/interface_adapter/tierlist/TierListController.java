@@ -22,4 +22,8 @@ public class TierListController {
         );
         tierListInteractor.execute(tierListInputData);
     }
+    public void execute() {
+        tierListInteractor.execute();
+    }
+
 }

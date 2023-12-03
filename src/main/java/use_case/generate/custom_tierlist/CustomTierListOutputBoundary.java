@@ -6,4 +6,5 @@ public interface CustomTierListOutputBoundary {
 
     void prepareFailView();
 
+    void prepareBackView();
 }

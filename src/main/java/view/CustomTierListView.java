@@ -80,7 +80,7 @@ public class CustomTierListView extends JPanel implements ActionListener {
         for (int i = 0; i < TierList.LENGTH; i++) {
             InputPanel itemInput = new InputPanel("Item " + (i + 1));
             itemInputs.add(itemInput);
-            if (i < TierList.LENGTH/2) {
+            if (i < TierList.LENGTH / 2) {
                 leftPanel.add(itemInput);
             } else {
                 rightPanel.add(itemInput);
@@ -113,23 +113,47 @@ public class CustomTierListView extends JPanel implements ActionListener {
         this.add(largePanel);
         largePanel.add(leftPanel);
         largePanel.add(rightPanel);
-        ButtonPanel submitButtonPanel = new ButtonPanel("Submit");
-        this.add(submitButtonPanel);
 
-        submitButtonPanel.getButton().addActionListener(new ActionListener() {
+        JPanel buttonPanel = new JPanel();
+        this.add(buttonPanel);
+
+        JButton submitButton = new JButton("Submit");
+        buttonPanel.add(submitButton);
+        submitButton.setOpaque(true);
+        submitButton.setPreferredSize(new Dimension(250, 50));
+        submitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        JButton backButton = new JButton("Back");
+        buttonPanel.add(backButton);
+        backButton.setOpaque(true);
+        backButton.setPreferredSize(new Dimension(250, 50));
+        backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+
+        submitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 tierListView.actionPerformed(e);
-                if (e.getSource().equals(submitButtonPanel.getButton())) {
+                if (e.getSource().equals(submitButton)) {
                     CustomTierListState state = customTierListViewModel.getState();
                     customTierListController.execute(
                             state.getItems(),
                             state.getUser(),
                             state.getTitle()
                     );
+                }
             }
-        }
-    });
+        });
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tierListView.actionPerformed(e);
+                if (e.getSource().equals(backButton)) {
+                    customTierListController.execute();
+
+                }
+            }
+        });
 
     }
 
@@ -137,5 +161,6 @@ public class CustomTierListView extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
     }
+
 
 }

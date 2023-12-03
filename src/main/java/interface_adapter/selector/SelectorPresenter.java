@@ -22,7 +22,7 @@ public class SelectorPresenter implements SelectorOutputBoundary {
 
     @Override
     public void prepareSuccessView(SelectorOutputData data) {
-        if (data.getLabel().equals("RANDOM")) {
+        if (data.getLabel().equals("Random")) {
             RandomTierListState randomTierListState = randomTierListViewModel.getState();
             randomTierListState.setUser(data.getUser());
             randomTierListViewModel.setState(randomTierListState);
@@ -30,7 +30,7 @@ public class SelectorPresenter implements SelectorOutputBoundary {
 
             viewManagerModel.setActiveView(randomTierListViewModel.getViewName());
             viewManagerModel.firePropertyChanged();
-        } else if (data.getLabel().equals("CUSTOM")) {
+        } else if (data.getLabel().equals("Custom")) {
             CustomTierListState customTierListState = customTierListViewModel.getState();
             customTierListState.setUser(data.getUser());
             customTierListViewModel.setState(customTierListState);

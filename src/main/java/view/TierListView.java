@@ -65,6 +65,8 @@ public class TierListView extends JPanel implements ActionListener, PropertyChan
 
                     JLabel label = new JLabel();
                     tier = new LabelPanel(label);
+                    tierGrid.add(tier);
+                    System.out.println(tier.getLabel().getText());
                     tier.setPreferredSize(new Dimension(60, 60));
                     tier.getLabel().setPreferredSize(new Dimension(60, 60));
 
@@ -76,7 +78,7 @@ public class TierListView extends JPanel implements ActionListener, PropertyChan
                     label.setAlignmentY(0);
                     label.setFont(new Font("Arial", Font.PLAIN, 10));
 
-                    tierGrid.add(tier);
+
 
                 }
                 for (int j = lenTier; j < TierListViewModel.NUM_ITEMS; j++) {
@@ -212,13 +214,13 @@ public class TierListView extends JPanel implements ActionListener, PropertyChan
         JButton homeButton = new JButton(TierListViewModel.HOME_BUTTON);
         homeButton.setPreferredSize(new Dimension(100, 40));
         buttonPanel.add(homeButton);
+
         this.add(buttonPanel);
 
         homeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                // TODO: go back a screen
+                tierListController.execute();
 
             }
         });

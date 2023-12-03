@@ -82,6 +82,7 @@ public class RandomTierListView extends JPanel implements ActionListener {
 
             @Override
             public void keyPressed(KeyEvent e) {
+
             }
 
             @Override

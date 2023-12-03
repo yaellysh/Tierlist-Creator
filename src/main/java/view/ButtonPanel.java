@@ -1,7 +1,5 @@
 package view;
 
-import interface_adapter.selector.SelectorViewModel;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -19,8 +17,8 @@ public class ButtonPanel extends JPanel {
         buttonPanel.add(button);
 
         button.setOpaque(true);
-        button.setBackground(color);
-        button.setFont(SelectorViewModel.BUTTON_FONT);
+//        button.setBackground(color);
+//        button.setFont(SelectorViewModel.BUTTON_FONT);
         button.setPreferredSize(new Dimension(400, 50));
         buttonPanel.setPreferredSize(new Dimension(400, 55));
         button.setAlignmentX(Component.CENTER_ALIGNMENT);

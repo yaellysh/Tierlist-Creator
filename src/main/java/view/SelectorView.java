@@ -34,7 +34,7 @@ public class SelectorView extends JPanel implements ActionListener, PropertyChan
         instructions1.setText("<html>" + SelectorViewModel.INSTRUCTIONS1 + "</html>");
         instructions1.setFont(SelectorViewModel.TEXT_FONT);
         instructions1.setAlignmentX(Component.CENTER_ALIGNMENT);
-        instructions1.setBorder(BorderFactory.createEmptyBorder(5, 20, 5, 20));
+        instructions1.setBorder(BorderFactory.createEmptyBorder(5, 20, 0, 20));
         this.add(instructions1);
 
         ButtonPanel viewButtonPanel = new ButtonPanel(SelectorViewModel.BUTTONS.get(0), SelectorViewModel.COLORS.get(0));
@@ -58,7 +58,7 @@ public class SelectorView extends JPanel implements ActionListener, PropertyChan
         instructions2.setText("<html>" + SelectorViewModel.INSTRUCTIONS2 + "</html>");
         instructions2.setFont(SelectorViewModel.TEXT_FONT);
         instructions2.setAlignmentX(Component.CENTER_ALIGNMENT);
-        instructions2.setBorder(BorderFactory.createEmptyBorder(5, 20, 5, 20));
+        instructions2.setBorder(BorderFactory.createEmptyBorder(0, 20, 40, 20));
         this.add(instructions2);
 
         for (int i = 1; i < 3; i++) {

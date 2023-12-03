@@ -14,4 +14,8 @@ public class CustomTierListController {
     public void execute(String[] items, User user, String title) {
         customInteractor.execute(new CustomTierListInputData(user, title, items));
     }
+
+    public void execute() {
+        customInteractor.execute();
+    }
 }
