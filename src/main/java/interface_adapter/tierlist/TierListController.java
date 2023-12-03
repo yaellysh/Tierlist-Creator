@@ -13,6 +13,7 @@ public class TierListController {
     }
 
     public void execute(User user, String tierList, String item, String newTier) {
+
         TierListInputData tierListInputData = new TierListInputData(
                 user.getUsername(),
                 tierList,

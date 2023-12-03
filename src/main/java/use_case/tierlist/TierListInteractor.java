@@ -23,6 +23,7 @@ public class TierListInteractor implements TierListInputBoundary {
         Tier tier = data.getTier();
         User user = dataAccessInterface.getUser(username);
 
+        System.out.println(user.getTierList(tierList));
         // Update item with new tier.
         user.getTierList(tierList)
                 .getItem(item)

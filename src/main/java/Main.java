@@ -18,7 +18,7 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
 
         JFrame application = new JFrame();
-        application.setResizable(false);
+//        application.setResizable(false);
         application.setSize(700, 650);
         application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -38,7 +38,7 @@ public class Main {
 
 
 
-        RandomTierListView randomTierListView = RandomTierListFactory.create(viewManagerModel, randomTierListViewModel, userDataAccessObject, chatGPTDataAccessObject);
+        RandomTierListView randomTierListView = RandomTierListFactory.create(viewManagerModel, randomTierListViewModel, userDataAccessObject, chatGPTDataAccessObject, tierListViewModel);
 
         views.add(randomTierListView, randomTierListView.viewName);
 
@@ -54,9 +54,9 @@ public class Main {
         views.add(customTierListView, customTierListView.viewName);
 
 //        viewManagerModel.setActiveView(tierListView.viewName);
-//        viewManagerModel.setActiveView(randomTierListView.viewName);
+        viewManagerModel.setActiveView(randomTierListView.viewName);
 //        viewManagerModel.setActiveView(selectorView.viewName);
-        viewManagerModel.setActiveView(customTierListView.viewName);
+//        viewManagerModel.setActiveView(customTierListView.viewName);
 //        viewManagerModel.setActiveView(tierListView.viewName);
         viewManagerModel.firePropertyChanged();
 

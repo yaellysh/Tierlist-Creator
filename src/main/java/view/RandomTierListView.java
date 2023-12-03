@@ -81,15 +81,19 @@ public class RandomTierListView extends JPanel implements ActionListener {
                     public void keyReleased(KeyEvent e) {
                     }
                 });
-        submitButton.addActionListener(e -> {
-            if (e.getSource().equals(submitButton)) {
-                RandomTierListState state = randomTierListViewModel.getState();
+        submitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource().equals(submitButton)) {
+                    RandomTierListState state = randomTierListViewModel.getState();
 
-                randomTierListController.execute(
-                        "list the names of 10 popular " + inputField.getText(),
-                        state.getUser());
+                    randomTierListController.execute(
+                            "list the names of 10 popular " + inputField.getText(),
+                            state.getUser());
+                }
             }
-        });
+        }
+        );
     }
 
     @Override
