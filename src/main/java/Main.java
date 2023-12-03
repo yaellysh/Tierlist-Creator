@@ -40,7 +40,7 @@ public class Main {
 
         views.add(randomTierListView, randomTierListView.viewName);
 
-        SelectorView selectorView = SelectorFactory.create(viewManagerModel, selectorViewModel, randomTierListViewModel, customTierListViewModel);
+        SelectorView selectorView = SelectorFactory.create(viewManagerModel, selectorViewModel, randomTierListViewModel, customTierListViewModel, userDataAccessObject);
 
         views.add(selectorView, selectorView.viewName);
 
