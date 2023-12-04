@@ -63,7 +63,7 @@ public class ViewExistingView extends JPanel implements ActionListener, Property
 
         JPanel buttonPanel = new JPanel();
         JButton submitButton = new JButton(ViewExistingViewModel.SUBMIT_BUTTON);
-        buttonPanel.add(submitButton);
+
         submitButton.setOpaque(true);
         submitButton.setPreferredSize(new Dimension(250, 50));
         submitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -71,6 +71,7 @@ public class ViewExistingView extends JPanel implements ActionListener, Property
 
         JButton backButton = new JButton(ViewExistingViewModel.BACK_BUTTON);
         buttonPanel.add(backButton);
+        buttonPanel.add(submitButton);
         backButton.setOpaque(true);
         backButton.setPreferredSize(new Dimension(250, 50));
         backButton.setAlignmentX(Component.CENTER_ALIGNMENT);

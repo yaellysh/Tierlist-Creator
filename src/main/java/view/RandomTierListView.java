@@ -57,7 +57,7 @@ public class RandomTierListView extends JPanel implements ActionListener, Proper
 
         JPanel buttonPanel = new JPanel();
         JButton submitButton = new JButton(RandomTierListViewModel.SUBMIT_BUTTON);
-        buttonPanel.add(submitButton);
+
         submitButton.setOpaque(true);
         submitButton.setPreferredSize(new Dimension(250, 50));
         submitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -65,6 +65,7 @@ public class RandomTierListView extends JPanel implements ActionListener, Proper
 
         JButton backButton = new JButton(RandomTierListViewModel.BACK_BUTTON);
         buttonPanel.add(backButton);
+        buttonPanel.add(submitButton);
         backButton.setOpaque(true);
         backButton.setPreferredSize(new Dimension(250, 50));
         backButton.setAlignmentX(Component.CENTER_ALIGNMENT);

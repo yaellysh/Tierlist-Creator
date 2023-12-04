@@ -84,7 +84,6 @@ public class CustomTierListView extends JPanel implements ActionListener, Proper
         for (int i = 0; i < TierList.LENGTH; i++) {
             InputPanel itemInput = new InputPanel("Item " + (i + 1));
             inputs.add(itemInput.getTextField());
-//            itemInputs.add(itemInput);
             if (i < TierList.LENGTH / 2) {
                 leftPanel.add(itemInput);
             } else {
@@ -125,13 +124,14 @@ public class CustomTierListView extends JPanel implements ActionListener, Proper
         this.add(buttonPanel);
 
         JButton submitButton = new JButton(CustomTierListViewModel.SUBMIT_BUTTON);
-        buttonPanel.add(submitButton);
+
         submitButton.setOpaque(true);
         submitButton.setPreferredSize(new Dimension(250, 50));
         submitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JButton backButton = new JButton(CustomTierListViewModel.BACK_BUTTON);
         buttonPanel.add(backButton);
+        buttonPanel.add(submitButton);
         backButton.setOpaque(true);
         backButton.setPreferredSize(new Dimension(250, 50));
         backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
