@@ -14,7 +14,6 @@ public class RandomTierListViewModel extends ViewModel {
             " <br> &nbsp&nbsp&nbsp&nbsp&nbsp - Restaurant chains <br> &nbsp&nbsp&nbsp&nbsp&nbsp - Magicians";
     public static final Font TITLE_FONT = new Font("Arial Bold", Font.PLAIN, 30);
     public static final Font TEXT_FONT_LARGE = new Font("Arial", Font.PLAIN, 15);
-    public static final Font BUTTON_FONT = new Font("Arial", Font.ITALIC, 25);
     public static final Font TEXT_FONT_SMALL = new Font("Arial", Font.ITALIC, 13);
     public static final String SUBMIT_BUTTON = "Submit";
     public static final String BACK_BUTTON = "Back";

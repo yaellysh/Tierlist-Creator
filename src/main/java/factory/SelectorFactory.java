@@ -16,13 +16,13 @@ import view.SelectorView;
 public class SelectorFactory {
     private SelectorFactory() {}
     public static SelectorView create(ViewManagerModel viewManagerModel, SelectorViewModel selectorViewModel, RandomTierListViewModel randomTierListViewModel, CustomTierListViewModel customTierListViewModel, TierListDataAccessInterface dataAccessInterface, ViewExistingViewModel viewExistingViewModel) {
-        SelectorController selectorController = createSelectorUseCase(viewManagerModel, selectorViewModel, randomTierListViewModel, customTierListViewModel, viewExistingViewModel);
+        SelectorController selectorController = createSelectorUseCase(viewManagerModel, randomTierListViewModel, customTierListViewModel, viewExistingViewModel);
         selectorViewModel.setState(new SelectorState(dataAccessInterface.getUser("Yael"))); // TODO: currently hardcoded, will change when login is implemented
         return new SelectorView(selectorController, selectorViewModel);
     }
 
-    private static SelectorController createSelectorUseCase(ViewManagerModel viewManagerModel, SelectorViewModel selectorViewModel, RandomTierListViewModel randomTierListViewModel, CustomTierListViewModel customTierListViewModel, ViewExistingViewModel viewExistingViewModel) {
-        SelectorOutputBoundary selectorOutputBoundary = new SelectorPresenter(viewManagerModel, selectorViewModel, randomTierListViewModel, customTierListViewModel, viewExistingViewModel);
+    private static SelectorController createSelectorUseCase(ViewManagerModel viewManagerModel, RandomTierListViewModel randomTierListViewModel, CustomTierListViewModel customTierListViewModel, ViewExistingViewModel viewExistingViewModel) {
+        SelectorOutputBoundary selectorOutputBoundary = new SelectorPresenter(viewManagerModel, randomTierListViewModel, customTierListViewModel, viewExistingViewModel);
         SelectorInteractor selectorInteractor = new SelectorInteractor(selectorOutputBoundary);
         return new SelectorController(selectorInteractor);
     }
