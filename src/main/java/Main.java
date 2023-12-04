@@ -3,6 +3,7 @@ import factory.FollowFactory;
 import factory.TierListFactory;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.follow.FollowController;
+import interface_adapter.follow.FollowState;
 import interface_adapter.follow.FollowViewModel;
 import interface_adapter.tierlist.TierListViewModel;
 import use_case.follow.FollowInputBoundary;
@@ -15,6 +16,7 @@ import javax.swing.*;
 import data_access.FileUserDataAccessObject;
 
 import java.awt.*;
+import java.util.HashMap;
 
 public class Main {
     public static void main(String[] args) {
@@ -32,6 +34,10 @@ public class Main {
         new ViewManager(views, cardLayout, viewManagerModel);
 
         FollowViewModel followViewModel = new FollowViewModel();
+
+        HashMap<String, Integer> testmap = new HashMap<String, Integer>();
+        FollowState testing = new FollowState("terryfufu", "lt_rui", false);
+        followViewModel.setState(testing);
 
         FileUserDataAccessObject userDataAccessObject = new FileUserDataAccessObject();
 

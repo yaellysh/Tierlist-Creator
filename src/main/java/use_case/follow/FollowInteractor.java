@@ -19,6 +19,7 @@ public class FollowInteractor implements FollowInputBoundary {
         String followerName = followInputData.getFollower();
         String userBeingFollowedName = followInputData.getUserBeingFollowed();
         boolean follow = followInputData.getFollow();
+        //System.out.println(followerName);
 
         // get User objects using usernames
         User follower = userDataAccessObject.getUser(followerName);
@@ -67,6 +68,7 @@ public class FollowInteractor implements FollowInputBoundary {
 
             // iterate through the users related to the user you just followed
             for (String relatedUser : setRelatedUsers) {
+                System.out.println(relatedUser);
                 User relatedUserObject = userDataAccessObject.getUser(relatedUser);
                 if (relatedUserObject.getFollowers().contains(followerName)){
                     continue;
@@ -81,13 +83,15 @@ public class FollowInteractor implements FollowInputBoundary {
                     // iterate through the following of the user you follow
                     for  (String usernameYouFollowFollowing : userYouFollowFollowing) {
                         if (usernameYouFollowFollowing.equals(relatedUser)) {
-                            mutualsCount ++;
+                            //System.out.println("ok");
+                            mutualsCount++;
                         }
                     }
 
                 }
 
                 userMutualsCount.put(relatedUser, mutualsCount);
+                System.out.println(mutualsCount);
 
             /*
             // at this point, we have determined the mutuals count of the current related user
@@ -109,13 +113,13 @@ public class FollowInteractor implements FollowInputBoundary {
             }
             */
             }
-            List<String> relatedUsers = new ArrayList<>();
+
             userMutualsCount = sortByValue(userMutualsCount);
             List<String> listy = new ArrayList<>(userMutualsCount.keySet());
             HashMap<String, Integer> tempy = new HashMap<String, Integer>();
-            tempy.put(listy.get(0), userMutualsCount.get(0));
-            tempy.put(listy.get(1), userMutualsCount.get(1));
-            tempy.put(listy.get(2), userMutualsCount.get(2));
+            tempy.put(listy.get(0), userMutualsCount.get(listy.get(0)));
+            tempy.put(listy.get(1), userMutualsCount.get(listy.get(1)));
+            tempy.put(listy.get(2), userMutualsCount.get(listy.get(2)));
             //add cases where there are less than 3 users in set related users that the user doesn't follow
             //pass forward mutual count for the "followed by x others line."
 
@@ -123,6 +127,7 @@ public class FollowInteractor implements FollowInputBoundary {
 
             FollowOutputData followOutputData = new FollowOutputData.FollowOutputBuilder(newFollowerCount, follow)
                     .buildRelatedUsers(tempy).build();
+            System.out.println(tempy);
             followPresenter.prepareSuccessView(followOutputData);
         }
 

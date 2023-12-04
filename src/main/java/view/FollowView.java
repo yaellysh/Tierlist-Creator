@@ -25,19 +25,27 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
     public FollowView(FollowController followController, FollowViewModel followViewModel) {
         this.followController = followController;
         this.followViewModel = followViewModel;
-        JLabel test = new JLabel("ok");
+        JLabel test = new JLabel(followViewModel.getState().getUserBeingFollowed());
         this.add(test);
 
         JPanel buttons = new JPanel();
-        follow = new JButton(followViewModel.FOLLOW_BUTTON_LABEL);
+        if (followViewModel.getState().getIsFollowing()) {
+            System.out.println("nba");
+            follow = new JButton(followViewModel.FOLLOWING_BUTTON_LABEL);
+        }
+        else {
+            follow = new JButton(followViewModel.FOLLOW_BUTTON_LABEL);
+        }
+        
         buttons.add(follow);
+        this.add(buttons);
 
         follow.addActionListener(                
         new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 if (evt.getSource().equals(follow)) {
                     FollowState currentState = followViewModel.getState();
-
+                    System.out.println("working");
                     followController.execute(currentState.getFollower(), currentState.getUserBeingFollowed(), true);
                 }
             }
