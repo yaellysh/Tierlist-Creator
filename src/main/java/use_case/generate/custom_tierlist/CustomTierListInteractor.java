@@ -32,6 +32,9 @@ public class CustomTierListInteractor implements CustomTierListInputBoundary {
         } else if (inputs.length != TierList.LENGTH) {
             this.outputBoundary.prepareFailView("At least one of your inputs is empty. Please try again.");
             return;
+        } else if (name == null ) {
+            this.outputBoundary.prepareFailView("Your title is empty. Please try again.");
+            return;
         } else {
             List<Item> items = Arrays.stream(inputs).map(Item::new).toList();
 
@@ -44,7 +47,6 @@ public class CustomTierListInteractor implements CustomTierListInputBoundary {
 
     @Override
     public void execute() {
-
         outputBoundary.prepareBackView();
     }
 }

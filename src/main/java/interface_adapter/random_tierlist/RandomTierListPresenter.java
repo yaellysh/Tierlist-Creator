@@ -40,6 +40,11 @@ public class RandomTierListPresenter implements RandomTierListOutputBoundary {
 
     @Override
     public void prepareBackView() {
+        RandomTierListState state = randomTierListViewModel.getState();
+        state.setError(null);
+        state.setPrompt(null);
+        randomTierListViewModel.setState(state);
+
         viewManagerModel.setActiveView(selectorViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }

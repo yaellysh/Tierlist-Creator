@@ -11,28 +11,33 @@ public class CustomTierListState {
     public Map<Integer, String> items;
     public String error = null;
 
-    public void setError(String error) {
-        this.error = error;
+    public CustomTierListState(User user) {
+        this.user = user;
+        this.items = new HashMap<>();
     }
 
     public User getUser() {
         return user;
     }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public String getError() {
         return error;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setError(String error) {
+        this.error = error;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String[] getItems() {
@@ -41,11 +46,8 @@ public class CustomTierListState {
 
     public void addItem(String item, Integer i) {
         this.items.put(i, item);
-
     }
-
-    public CustomTierListState(User user) {
-        this.user = user;
-        this.items = new HashMap<>();
+    public void removeItem(Integer i) {
+        this.items.remove(i);
     }
 }

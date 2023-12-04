@@ -48,6 +48,11 @@ public class CustomTierListPresenter implements CustomTierListOutputBoundary {
 
     @Override
     public void prepareBackView() {
+        CustomTierListState state = customTierListViewModel.getState();
+        state.setError(null);
+        state.setTitle(null);
+        customTierListViewModel.setState(state);
+
         viewManagerModel.setActiveView(selectorViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }
