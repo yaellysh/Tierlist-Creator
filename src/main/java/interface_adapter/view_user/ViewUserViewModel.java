@@ -2,6 +2,9 @@ package interface_adapter.view_user;
 
 import interface_adapter.ViewModel;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+
 public class ViewUserViewModel extends ViewModel {
     public static final String FOLLOWING_LABEL = "Following";
     public static final String FOLLOWERS_LABEL = "Followers";
@@ -10,7 +13,22 @@ public class ViewUserViewModel extends ViewModel {
 
     private ViewUserState state = new ViewUserState();
 
-    public ViewUserViewModel() {
-        super("view user");
+    public ViewUserViewModel(String name) {
+        super(name);
     }
+
+    private final PropertyChangeSupport support = new PropertyChangeSupport(this);
+
+    public void firePropertyChanged() {
+        support.firePropertyChange("state", null, this.state);
+    }
+
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        support.addPropertyChangeListener(listener);
+    }
+
+    public ViewUserState getState() {
+        return state;
+    }
+
 }
