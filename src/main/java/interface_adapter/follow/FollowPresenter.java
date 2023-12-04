@@ -1,8 +1,11 @@
 package interface_adapter.follow;
 
+import data_access.FileUserDataAccessObject;
+import factory.FollowFactory;
 import interface_adapter.ViewManagerModel;
 import use_case.follow.FollowOutputBoundary;
 import use_case.follow.FollowOutputData;
+import view.FollowView;
 
 public class FollowPresenter implements FollowOutputBoundary {
 
@@ -21,5 +24,12 @@ public class FollowPresenter implements FollowOutputBoundary {
 
         FollowState followState = followViewModel.getState();
         followState.setRelatedUsers(data.getRelatedUsers());
+        followState.setIsFollowing(data.getFollow());
+        this.followViewModel.setState(followState);
+
+        System.out.println(followState.getFollower());
+
+        viewManagerModel.setActiveView(followViewModel.getViewName());
+        viewManagerModel.firePropertyChanged();
     }
 }
