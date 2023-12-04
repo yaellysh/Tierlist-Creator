@@ -17,7 +17,7 @@ public class ViewExistingFactory {
     }
 
     public static ViewExistingView create(ViewManagerModel viewManagerModel, ViewExistingViewModel viewExistingViewModel, TierListViewModel tierListViewModel, SelectorViewModel selectorViewModel, TierListDataAccessInterface dataAccessObject) {
-        ViewExistingController viewExistingController = createExistingUseCase(viewManagerModel, tierListViewModel,selectorViewModel);
+        ViewExistingController viewExistingController = createExistingUseCase(viewManagerModel, tierListViewModel, selectorViewModel);
         viewExistingViewModel.setState(new ViewExistingState(dataAccessObject.getUser("Yael"), null));
         return new ViewExistingView(viewExistingController, viewExistingViewModel);
     }

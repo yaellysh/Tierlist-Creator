@@ -2,70 +2,113 @@
   {
     "username": "Yael",
     "tierLists": {
-      "colours": {
-        "name": "colours",
+      "magicians": {
+        "name": "magicians",
         "items": {
-          "pink": {
-            "name": "pink",
+          "David Copperfield": {
+            "name": "David Copperfield",
+            "tier": "S"
+          },
+          "Lance Burton": {
+            "name": "Lance Burton",
             "tier": "B"
           },
-          "green": {
-            "name": "green",
+          "Penn and Teller": {
+            "name": "Penn and Teller",
+            "tier": "S"
+          },
+          "David Blaine": {
+            "name": "David Blaine",
             "tier": "A"
           },
-          "purple": {
-            "name": "purple",
+          "Dynamo": {
+            "name": "Dynamo",
+            "tier": "S"
+          },
+          "Criss Angel": {
+            "name": "Criss Angel",
+            "tier": "D"
+          },
+          "Shin Lim": {
+            "name": "Shin Lim",
+            "tier": "S"
+          },
+          "Derren Brown": {
+            "name": "Derren Brown",
             "tier": "C"
           }
         }
       },
-      "test": {
-        "name": "test",
+      "frendsi": {
+        "name": "frendsi",
         "items": {
-          "a": {
-            "name": "a",
+          "jillian": {
+            "name": "jillian",
             "tier": "S"
           },
-          "b": {
-            "name": "b",
+          "yael": {
+            "name": "yael",
             "tier": "S"
           },
-          "c": {
-            "name": "c",
-            "tier": "S"
-          }
-        }
-      },
-      "another test": {
-        "name": "another test",
-        "items": {
-          "a": {
-            "name": "a",
+          "ducky": {
+            "name": "ducky",
             "tier": "S"
           },
-          "b": {
-            "name": "b",
+          "derek": {
+            "name": "derek",
+            "tier": "B"
+          },
+          "dommy": {
+            "name": "dommy",
             "tier": "S"
           },
-          "c": {
-            "name": "c",
-            "tier": "S"
-          }
-        }
-      },
-      "humans": {
-        "name": "humans",
-        "items": {
-          "dommy mommy": {
-            "name": "dommy mommy",
-            "tier": "A"
-          },
-          "jillibean": {
-            "name": "jillibean",
+          "shreshth": {
+            "name": "shreshth",
             "tier": "D"
           },
-          "lizard": {
-            "name": "lizard",
+          "nava": {
+            "name": "nava",
+            "tier": "S"
+          },
+          "jack": {
+            "name": "jack",
+            "tier": "A"
+          }
+        }
+      },
+      "Test": {
+        "name": "Test",
+        "items": {
+          "a": {
+            "name": "a",
+            "tier": "S"
+          },
+          "b": {
+            "name": "b",
+            "tier": "S"
+          },
+          "c": {
+            "name": "c",
+            "tier": "S"
+          },
+          "d": {
+            "name": "d",
+            "tier": "S"
+          },
+          "e": {
+            "name": "e",
+            "tier": "S"
+          },
+          "f": {
+            "name": "f",
+            "tier": "S"
+          },
+          "g": {
+            "name": "g",
+            "tier": "S"
+          },
+          "h": {
+            "name": "h",
             "tier": "S"
           }
         }

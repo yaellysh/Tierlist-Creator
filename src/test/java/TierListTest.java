@@ -81,7 +81,7 @@ public class TierListTest {
         Main.main(null);
         Tier initialTier = getTierList();
         assert initialTier.equals(Tier.S);
-        JComboBox dropDown = getDropDown(); // TODO: This is broken Yael
+        JComboBox dropDown = getDropDown();
         Thread.sleep(100);
         dropDown.setSelectedItem("A");
         Thread.sleep(100);

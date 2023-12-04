@@ -43,7 +43,10 @@ public class CustomTierListView extends JPanel implements ActionListener, Proper
         instructions.setBorder(BorderFactory.createEmptyBorder(5, 20, 5, 20));
         this.add(instructions);
 
+        List<JTextField> inputs = new ArrayList<>();
+
         InputPanel titleInput = new InputPanel("Title: ");
+        inputs.add(titleInput.getTextField());
         titleInput.getTextField().addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
@@ -77,11 +80,12 @@ public class CustomTierListView extends JPanel implements ActionListener, Proper
         leftPanel.setMaximumSize(new Dimension(super.getWidth(), 200));
         JPanel rightPanel = new JPanel();
 
-        List<InputPanel> itemInputs = new ArrayList<>();
+//        List<InputPanel> itemInputs = new ArrayList<>();
 
         for (int i = 0; i < TierList.LENGTH; i++) {
             InputPanel itemInput = new InputPanel("Item " + (i + 1));
-            itemInputs.add(itemInput);
+            inputs.add(itemInput.getTextField());
+//            itemInputs.add(itemInput);
             if (i < TierList.LENGTH / 2) {
                 leftPanel.add(itemInput);
             } else {
@@ -94,7 +98,6 @@ public class CustomTierListView extends JPanel implements ActionListener, Proper
                     if (e.getSource().equals(itemInput.getTextField())) {
                         CustomTierListState currentState = customTierListViewModel.getState();
 //                        if (Objects.equals(itemInput.getTextField().getText(), "")) {
-//                            System.out.println("?");
 //                            currentState.removeItem(finalI);
 //
 //                        } else {
@@ -143,7 +146,9 @@ public class CustomTierListView extends JPanel implements ActionListener, Proper
         submitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                for (JTextField textField: inputs) {
+                    textField.setText("");
+                }
                 tierListView.actionPerformed(e);
                 if (e.getSource().equals(submitButton)) {
                     CustomTierListState state = customTierListViewModel.getState();
@@ -158,6 +163,9 @@ public class CustomTierListView extends JPanel implements ActionListener, Proper
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                for (JTextField textField: inputs) {
+                    textField.setText("");
+                }
                 tierListView.actionPerformed(e);
                 if (e.getSource().equals(backButton)) {
                     customTierListController.execute();

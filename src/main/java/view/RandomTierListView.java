@@ -94,6 +94,7 @@ public class RandomTierListView extends JPanel implements ActionListener, Proper
         submitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                inputField.setText("");
                 if (e.getSource().equals(submitButton)) {
                     RandomTierListState state = randomTierListViewModel.getState();
 
@@ -105,6 +106,7 @@ public class RandomTierListView extends JPanel implements ActionListener, Proper
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                inputField.setText("");
                 if (e.getSource().equals(backButton)) {
                     RandomTierListState state = randomTierListViewModel.getState();
                     state.setPrompt(null);

@@ -18,8 +18,6 @@ public class TierListFactory {
     public static TierListView create(ViewManagerModel viewManagerModel, TierListViewModel tierListViewModel, TierListDataAccessInterface userDataAccessObject, SelectorViewModel selectorViewModel) {
 
         TierListController tierListController = createTierListUseCase(viewManagerModel, tierListViewModel, userDataAccessObject, selectorViewModel);
-//        tierListViewModel.setState(new TierListState(userDataAccessObject
-//                .getUser("Yael"), "Test")); // TODO: currently hardcoded, will change when login is implemented
         return new TierListView(tierListController, tierListViewModel);
     }
     private static TierListController createTierListUseCase(ViewManagerModel viewManagerModel, TierListViewModel tierListViewModel, TierListDataAccessInterface userDataAccessObject, SelectorViewModel selectorViewModel) {

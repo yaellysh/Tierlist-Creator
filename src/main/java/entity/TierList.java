@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class TierList {
 
-    public static final int LENGTH = 3;
+    public static final int LENGTH = 4;
 
     private final String name;
     private final Map<String, Item> items;
