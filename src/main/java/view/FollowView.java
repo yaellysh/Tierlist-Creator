@@ -25,7 +25,7 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
     public FollowView(FollowController followController, FollowViewModel followViewModel) {
         this.followController = followController;
         this.followViewModel = followViewModel;
-        JLabel test = new JLabel("this");
+        JLabel test = new JLabel("ok");
         this.add(test);
 
         JPanel buttons = new JPanel();

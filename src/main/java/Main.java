@@ -26,6 +26,7 @@ public class Main {
 
         CardLayout cardLayout = new CardLayout();
         JPanel views = new JPanel(cardLayout);
+        application.add(views);
  
         ViewManagerModel viewManagerModel = new ViewManagerModel();
         new ViewManager(views, cardLayout, viewManagerModel);
