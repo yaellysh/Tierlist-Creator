@@ -23,6 +23,10 @@ public class CustomTierListPresenter implements CustomTierListOutputBoundary {
 
     @Override
     public void prepareSuccessView(CustomTierListOutputData data) {
+        CustomTierListState state = customTierListViewModel.getState();
+        state.setError(null);
+        customTierListViewModel.setState(state);
+
         TierListState tierListState = tierListViewModel.getState();
         tierListState.setTierList(data.getTierList());
         tierListState.setUser(data.getUser());
@@ -33,13 +37,13 @@ public class CustomTierListPresenter implements CustomTierListOutputBoundary {
         viewManagerModel.firePropertyChanged();
     }
 
-
     @Override
     public void prepareFailView(String error) {
         CustomTierListState customTierListState = customTierListViewModel.getState();
-        customTierListState.setEmptyError(error);
-        customTierListViewModel.setState(customTierListState);
+        customTierListState.setError(error);
+
         customTierListViewModel.firePropertyChanged();
+
     }
 
     @Override

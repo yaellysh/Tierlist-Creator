@@ -149,6 +149,87 @@
             "tier": "S"
           }
         }
+      },
+      "new tierlist": {
+        "name": "new tierlist",
+        "items": {
+          "a": {
+            "name": "a",
+            "tier": "S"
+          },
+          "b": {
+            "name": "b",
+            "tier": "S"
+          },
+          "c": {
+            "name": "c",
+            "tier": "S"
+          }
+        }
+      },
+      "movie\b": {
+        "name": "movie\b",
+        "items": {
+          "a": {
+            "name": "a",
+            "tier": "S"
+          },
+          "b": {
+            "name": "b",
+            "tier": "S"
+          },
+          "\b": {
+            "name": "\b",
+            "tier": "S"
+          }
+        }
+      },
+      "a": {
+        "name": "a",
+        "items": {
+          "a": {
+            "name": "a",
+            "tier": "S"
+          },
+          "b": {
+            "name": "b",
+            "tier": "S"
+          },
+          "c": {
+            "name": "c",
+            "tier": "S"
+          }
+        }
+      },
+      "b": {
+        "name": "b",
+        "items": {
+          "b": {
+            "name": "b",
+            "tier": "S"
+          },
+          "c": {
+            "name": "c",
+            "tier": "S"
+          },
+          "\b": {
+            "name": "\b",
+            "tier": "S"
+          }
+        }
+      },
+      "h": {
+        "name": "h",
+        "items": {
+          "a": {
+            "name": "a",
+            "tier": "S"
+          },
+          "b": {
+            "name": "b",
+            "tier": "S"
+          }
+        }
       }
     }
   }

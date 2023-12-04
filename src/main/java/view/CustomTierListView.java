@@ -24,7 +24,7 @@ public class CustomTierListView extends JPanel implements ActionListener, Proper
     public CustomTierListView(CustomTierListController customTierListController, CustomTierListViewModel customTierListViewModel, TierListView tierListView) {
         this.customTierListController = customTierListController;
         this.customTierListViewModel = customTierListViewModel;
-//        customTierListViewModel.addPropertyChangeListener(this);
+        customTierListViewModel.addPropertyChangeListener(this);
 
         BoxLayout boxLayout = new BoxLayout(this, BoxLayout.PAGE_AXIS);
         this.setLayout(boxLayout);
@@ -157,6 +157,8 @@ public class CustomTierListView extends JPanel implements ActionListener, Proper
             }
         });
 
+
+
     }
 
     @Override
@@ -166,9 +168,8 @@ public class CustomTierListView extends JPanel implements ActionListener, Proper
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         CustomTierListState state = (CustomTierListState) evt.getNewValue();
-        System.out.println("did this get triggered?");
-        if (state.getEmptyError() != null) {
-            JOptionPane.showMessageDialog(this, state.getEmptyError());
+        if (state.getError() != null) {
+            JOptionPane.showMessageDialog(this, state.getError());
         }
 
     }

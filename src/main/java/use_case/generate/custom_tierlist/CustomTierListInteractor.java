@@ -29,23 +29,19 @@ public class CustomTierListInteractor implements CustomTierListInputBoundary {
         if (user.getTierList(name) != null) {
             this.outputBoundary.prepareFailView("A tierlist already exists with that name. Please try again.");
             return;
+        } else if (inputs.length != TierList.LENGTH) {
+            this.outputBoundary.prepareFailView("At least one of your inputs is empty. Please try again.");
+            return;
+        } else {
+            List<Item> items = Arrays.stream(inputs).map(Item::new).toList();
+
+            TierList list = new TierList(name, items);
+            user.addTierList(list);
+            dataAccessInterface.save();
+            this.outputBoundary.prepareSuccessView(new CustomTierListOutputData(user, name));
         }
-
-        // Fail if they left one of the strings blank
-        for (String input : inputs) {
-            if (input.isEmpty()) {
-                this.outputBoundary.prepareFailView("At least one of your inputs is empty. Please try again.");
-                return;
-            }
-        }
-
-        List<Item> items = Arrays.stream(inputs).map(Item::new).toList();
-
-        TierList list = new TierList(name, items);
-        user.addTierList(list);
-        dataAccessInterface.save();
-        this.outputBoundary.prepareSuccessView(new CustomTierListOutputData(user, name));
     }
+
     @Override
     public void execute() {
 
