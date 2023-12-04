@@ -95,7 +95,7 @@ public class RandomTierListView extends JPanel implements ActionListener {
                 if (e.getSource().equals(submitButton)) {
                     RandomTierListState state = randomTierListViewModel.getState();
 
-                    randomTierListController.execute("list " + TierList.LENGTH + " popular " + state.getPrompt(), state.getUser());
+                    randomTierListController.execute(state.getPrompt(), state.getUser());
                 }
             }
         });

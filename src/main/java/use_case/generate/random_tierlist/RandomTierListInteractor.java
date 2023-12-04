@@ -29,7 +29,7 @@ public class RandomTierListInteractor implements RandomTierListInputBoundary {
         if (prompt.equals("back")) {
             outputBoundary.prepareBackView();
         } else {
-            List<Item> items = randomTierListDataAccessInterface.generateTierList(prompt);
+            List<Item> items = randomTierListDataAccessInterface.generateTierList("list " + TierList.LENGTH + " popular " + prompt);
 
             if (items == null) {
                 outputBoundary.prepareFailView();
