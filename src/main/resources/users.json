@@ -52,6 +52,23 @@
             "tier": "S"
           }
         }
+      },
+      "humans": {
+        "name": "humans",
+        "items": {
+          "dommy mommy": {
+            "name": "dommy mommy",
+            "tier": "A"
+          },
+          "jillibean": {
+            "name": "jillibean",
+            "tier": "D"
+          },
+          "lizard": {
+            "name": "lizard",
+            "tier": "S"
+          }
+        }
       }
     }
   }
