@@ -13,4 +13,8 @@ public class RandomTierListController {
     public void execute(String prompt, User user) {
         randomInteractor.execute(new RandomTierListInputData(prompt, user));
     }
+
+    public void execute() {
+        randomInteractor.execute();
+    }
 }

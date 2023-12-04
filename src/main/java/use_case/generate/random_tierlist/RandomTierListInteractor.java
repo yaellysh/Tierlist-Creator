@@ -22,28 +22,6 @@ public class RandomTierListInteractor implements RandomTierListInputBoundary {
         this.generateTierListDataAccessInterface = dataAccessInterface1;
         this.outputBoundary = outputBoundary;
     }
-    @Override
-    public void execute(RandomTierListInputData data) {
-        String prompt = data.getPrompt();
-        User user = data.getUser();
-        if (prompt.equals("back")) {
-            outputBoundary.prepareBackView();
-        } else {
-            List<Item> items = randomTierListDataAccessInterface.generateTierList("list " + TierList.LENGTH + " popular " + prompt);
-
-            if (items == null) {
-                outputBoundary.prepareFailView();
-                System.out.println("fail");
-                return;
-            }
-
-            TierList list = new TierList(prompt, items);
-            user.addTierList(list);
-            generateTierListDataAccessInterface.save();
-            outputBoundary.prepareSuccessView(new RandomTierListOutputData(user, prompt));
-        }
-
-    }
 
     public static void main(String[] args) {
         RandomTierListInteractor interactor = new RandomTierListInteractor(new ChatGPTDataAccessObject(),
@@ -55,7 +33,7 @@ public class RandomTierListInteractor implements RandomTierListInputBoundary {
                     }
 
                     @Override
-                    public void prepareFailView() {
+                    public void prepareFailView(String error) {
 
                     }
 
@@ -66,6 +44,30 @@ public class RandomTierListInteractor implements RandomTierListInputBoundary {
                 });
         interactor.execute(new RandomTierListInputData("Generate a list of 9 popular movies",
                 new User("Yael")));
+    }
+
+    @Override
+    public void execute(RandomTierListInputData data) {
+        String prompt = data.getPrompt();
+        User user = data.getUser();
+        if (data.getPrompt() == null) {
+            outputBoundary.prepareFailView("Please ensure your input is not empty.");
+            return;
+        }
+        List<Item> items = randomTierListDataAccessInterface.generateTierList("list " + TierList.LENGTH + " popular " + prompt);
+
+        if (items == null) {
+            outputBoundary.prepareFailView("Something went wrong, please try again.");
+            return;
+        }
+
+        TierList list = new TierList(prompt, items);
+        user.addTierList(list);
+        generateTierListDataAccessInterface.save();
+        outputBoundary.prepareSuccessView(new RandomTierListOutputData(user, prompt));
+    }
+    public void execute() {
+        outputBoundary.prepareBackView();
     }
 
 }

@@ -4,7 +4,7 @@ public interface RandomTierListOutputBoundary {
 
     void prepareSuccessView(RandomTierListOutputData data);
 
-    void prepareFailView();
+    void prepareFailView(String error);
     void prepareBackView();
 
 }

@@ -31,8 +31,11 @@ public class RandomTierListPresenter implements RandomTierListOutputBoundary {
     }
 
     @Override
-    public void prepareFailView() {
+    public void prepareFailView(String error) {
+        RandomTierListState randomTierListState = randomTierListViewModel.getState();
+        randomTierListState.setError(error);
 
+        randomTierListViewModel.firePropertyChanged();
     }
 
     @Override

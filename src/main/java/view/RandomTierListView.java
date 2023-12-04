@@ -1,6 +1,5 @@
 package view;
 
-import entity.TierList;
 import interface_adapter.random_tierlist.RandomTierListController;
 import interface_adapter.random_tierlist.RandomTierListState;
 import interface_adapter.random_tierlist.RandomTierListViewModel;
@@ -12,8 +11,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
-public class RandomTierListView extends JPanel implements ActionListener {
+public class RandomTierListView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewName = "random";
     public RandomTierListController randomTierListController;
     public RandomTierListViewModel randomTierListViewModel;
@@ -21,6 +22,7 @@ public class RandomTierListView extends JPanel implements ActionListener {
     public RandomTierListView(RandomTierListController randomTierListController, RandomTierListViewModel randomTierListViewModel) {
         this.randomTierListController = randomTierListController;
         this.randomTierListViewModel = randomTierListViewModel;
+        randomTierListViewModel.addPropertyChangeListener(this);
 
         BoxLayout boxLayout = new BoxLayout(this, BoxLayout.Y_AXIS);
         this.setLayout(boxLayout);
@@ -106,7 +108,7 @@ public class RandomTierListView extends JPanel implements ActionListener {
                 if (e.getSource().equals(backButton)) {
                     RandomTierListState state = randomTierListViewModel.getState();
                     state.setPrompt(null);
-                    randomTierListController.execute("back", state.getUser());
+                    randomTierListController.execute();
 
                 }
             }
@@ -116,5 +118,13 @@ public class RandomTierListView extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        RandomTierListState state = (RandomTierListState) evt.getNewValue();
+        if (state.getError() != null) {
+            JOptionPane.showMessageDialog(this, state.getError());
+        }
     }
 }
