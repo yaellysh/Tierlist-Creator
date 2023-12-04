@@ -10,6 +10,7 @@ public class ViewExistingInteractor implements ViewExistingInputBoundary {
 
     @Override
     public void execute(ViewExistingInputData data) {
+        System.out.println(data.getTierList());
         outputBoundary.prepareSuccessView(new ViewExistingOutputData(data.getUser(), data.getTierList()));
     }
     @Override

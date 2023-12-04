@@ -13,8 +13,10 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.prefs.PreferenceChangeEvent;
+import java.util.prefs.PreferenceChangeListener;
 
-public class ViewExistingView extends JPanel implements ActionListener {
+public class ViewExistingView extends JPanel implements ActionListener, PreferenceChangeListener {
     public final String viewName = "view existing";
     public ViewExistingController viewExistingController;
 
@@ -70,24 +72,18 @@ public class ViewExistingView extends JPanel implements ActionListener {
         this.add(buttonPanel);
         this.add(new JSeparator());
 
-        submitButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (e.getSource().equals(submitButton)) {
-                    ViewExistingState state = viewExistingViewModel.getState();
+        submitButton.addActionListener(e -> {
+            if (e.getSource().equals(submitButton)) {
+                ViewExistingState state = viewExistingViewModel.getState();
 
-                    viewExistingController.execute((String) tierlistDropDown.getDropDown().getSelectedItem(), state.getUser());
-                }
+                viewExistingController.execute((String) tierlistDropDown.getDropDown().getSelectedItem(), state.getUser());
             }
         });
 
-        backButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (e.getSource().equals(backButton)) {
-                    viewExistingController.execute();
+        backButton.addActionListener(e -> {
+            if (e.getSource().equals(backButton)) {
+                viewExistingController.execute();
 
-                }
             }
         });
 
@@ -97,6 +93,11 @@ public class ViewExistingView extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
+    }
+
+    @Override
+    public void preferenceChange(PreferenceChangeEvent evt) {
 
     }
 }
