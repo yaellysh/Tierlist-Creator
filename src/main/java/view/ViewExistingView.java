@@ -10,13 +10,15 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.prefs.PreferenceChangeEvent;
 import java.util.prefs.PreferenceChangeListener;
 
-public class ViewExistingView extends JPanel implements ActionListener, PreferenceChangeListener {
+public class ViewExistingView extends JPanel implements ActionListener, PreferenceChangeListener, PropertyChangeListener {
     public final String viewName = "view existing";
     public ViewExistingController viewExistingController;
 
@@ -24,6 +26,11 @@ public class ViewExistingView extends JPanel implements ActionListener, Preferen
         this.viewExistingController = viewExistingController;
         this.viewExistingViewModel = viewExistingViewModel;
 
+        this.updateScreen();
+
+    }
+
+    private void updateScreen() {
         BoxLayout boxLayout = new BoxLayout(this, BoxLayout.Y_AXIS);
         this.setLayout(boxLayout);
 
@@ -41,7 +48,7 @@ public class ViewExistingView extends JPanel implements ActionListener, Preferen
         this.add(instructions);
 
 
-        List<TierList> tierlistObjects = viewExistingViewModel.getState().getUser().getTierLists();
+        java.util.List<TierList> tierlistObjects = viewExistingViewModel.getState().getUser().getTierLists();
         List<String> items = new ArrayList<>();
         this.add(new JSeparator());
 
@@ -86,7 +93,6 @@ public class ViewExistingView extends JPanel implements ActionListener, Preferen
 
             }
         });
-
     }
 
     public ViewExistingViewModel viewExistingViewModel;
@@ -98,6 +104,12 @@ public class ViewExistingView extends JPanel implements ActionListener, Preferen
 
     @Override
     public void preferenceChange(PreferenceChangeEvent evt) {
+
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        this.updateScreen();
 
     }
 }

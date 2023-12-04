@@ -25,8 +25,7 @@ public class CustomTierListInteractor implements CustomTierListInputBoundary {
         String name = data.getListName();
         User user = data.getUser();
 
-        // Fail if the name already exists
-        if (name.isEmpty()) {
+        if (name == null) {
             this.outputBoundary.prepareFailView("Your tierlist needs a name. Please try again.");
         } else if (user.getTierList(name) != null) {
             this.outputBoundary.prepareFailView("A tierlist already exists with that name. Please try again.");
