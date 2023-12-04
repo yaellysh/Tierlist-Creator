@@ -11,9 +11,6 @@ public class FollowState {
     private String userBeingFollowed;
     private boolean isFollowing;
 
-    public FollowState(FollowState copy) {
-        this.relatedUsers = copy.relatedUsers;
-    }
 
     //maybe temp
     public FollowState(String follower, String userBeingFollowed, boolean isFollowing) {

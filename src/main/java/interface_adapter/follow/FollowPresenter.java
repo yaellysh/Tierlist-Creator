@@ -19,12 +19,13 @@ public class FollowPresenter implements FollowOutputBoundary {
 
 
     @Override
-    public void prepareSuccessView(FollowOutputData data) {
+    public void prepareSuccessView(FollowOutputData output) {
         // On success, pop up mutual users.
 
         FollowState followState = followViewModel.getState();
-        followState.setRelatedUsers(data.getRelatedUsers());
-        followState.setIsFollowing(data.getFollow());
+        followState.setRelatedUsers(output.getRelatedUsers());
+        followState.setIsFollowing(output.getFollow());
+
         this.followViewModel.setState(followState);
 
         System.out.println(followState.getFollower());
