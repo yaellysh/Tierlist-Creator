@@ -14,9 +14,7 @@ import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 public class CustomTierListView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewName = "custom";
@@ -95,12 +93,13 @@ public class CustomTierListView extends JPanel implements ActionListener, Proper
                 public void keyTyped(KeyEvent e) {
                     if (e.getSource().equals(itemInput.getTextField())) {
                         CustomTierListState currentState = customTierListViewModel.getState();
-                        if (Objects.equals(itemInput.getTextField().getText(), "")) {
-                            currentState.removeItem(finalI);
-
-                        } else {
+//                        if (Objects.equals(itemInput.getTextField().getText(), "")) {
+//                            System.out.println("?");
+//                            currentState.removeItem(finalI);
+//
+//                        } else {
                             currentState.addItem(itemInput.getTextField().getText() + e.getKeyChar(), finalI);
-                        }
+//                        }
 
 
                         customTierListViewModel.setState(currentState);
@@ -148,7 +147,6 @@ public class CustomTierListView extends JPanel implements ActionListener, Proper
                 tierListView.actionPerformed(e);
                 if (e.getSource().equals(submitButton)) {
                     CustomTierListState state = customTierListViewModel.getState();
-                    System.out.println(Arrays.toString(state.getItems()));
                     customTierListController.execute(
                             state.getItems(),
                             state.getUser(),
