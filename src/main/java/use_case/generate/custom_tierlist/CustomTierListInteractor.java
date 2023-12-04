@@ -27,14 +27,14 @@ public class CustomTierListInteractor implements CustomTierListInputBoundary {
 
         // Fail if the name already exists
         if (user.getTierList(name) != null) {
-            this.outputBoundary.prepareFailView();
+            this.outputBoundary.prepareFailView("A tierlist already exists with that name. Please try again.");
             return;
         }
 
         // Fail if they left one of the strings blank
         for (String input : inputs) {
             if (input.isEmpty()) {
-                this.outputBoundary.prepareFailView();
+                this.outputBoundary.prepareFailView("At least one of your inputs is empty. Please try again.");
                 return;
             }
         }

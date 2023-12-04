@@ -9,9 +9,18 @@ public class CustomTierListState {
     public User user;
     public String title;
     public Map<Integer, String> items;
+    public String emptyError = null;
+
+    public void setEmptyError(String emptyError) {
+        this.emptyError = emptyError;
+    }
 
     public User getUser() {
         return user;
+    }
+
+    public String getEmptyError() {
+        return emptyError;
     }
 
     public void setTitle(String title) {

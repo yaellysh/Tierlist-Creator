@@ -11,7 +11,7 @@
           },
           "Paris, France": {
             "name": "Paris, France",
-            "tier": "S"
+            "tier": "C"
           },
           "Berlin, Germany": {
             "name": "Berlin, Germany",
@@ -35,6 +35,117 @@
           },
           "Amsterdam, Netherlands": {
             "name": "Amsterdam, Netherlands",
+            "tier": "S"
+          }
+        }
+      },
+      "movies": {
+        "name": "movies",
+        "items": {
+          "Frozen II": {
+            "name": "Frozen II",
+            "tier": "S"
+          },
+          "Avengers: Endgame": {
+            "name": "Avengers: Endgame",
+            "tier": "S"
+          },
+          "Joker": {
+            "name": "Joker",
+            "tier": "S"
+          },
+          "Star Wars: The Rise of Skywalker": {
+            "name": "Star Wars: The Rise of Skywalker",
+            "tier": "B"
+          },
+          "Spider-Man: Far From Home": {
+            "name": "Spider-Man: Far From Home",
+            "tier": "S"
+          },
+          "The Lion King (2019)": {
+            "name": "The Lion King (2019)",
+            "tier": "S"
+          },
+          "Jumanji: The Next Level": {
+            "name": "Jumanji: The Next Level",
+            "tier": "C"
+          },
+          "Toy Story 4": {
+            "name": "Toy Story 4",
+            "tier": "S"
+          }
+        }
+      },
+      "animals": {
+        "name": "animals",
+        "items": {
+          "mouse": {
+            "name": "mouse",
+            "tier": "S"
+          },
+          "cat": {
+            "name": "cat",
+            "tier": "S"
+          },
+          "snake": {
+            "name": "snake",
+            "tier": "C"
+          },
+          "bear": {
+            "name": "bear",
+            "tier": "B"
+          },
+          "moose": {
+            "name": "moose",
+            "tier": "B"
+          },
+          "tiger": {
+            "name": "tiger",
+            "tier": "A"
+          },
+          "dog": {
+            "name": "dog",
+            "tier": "B"
+          },
+          "lion": {
+            "name": "lion",
+            "tier": "A"
+          }
+        }
+      },
+      "types of water": {
+        "name": "types of water",
+        "items": {
+          "Bottled water - Bottled water is packaged and sold in plastic or glass bottles, and is often filtered or purified.": {
+            "name": "Bottled water - Bottled water is packaged and sold in plastic or glass bottles, and is often filtered or purified.",
+            "tier": "S"
+          },
+          "Mineral water - This type of water comes from natural mineral springs and contains various minerals and trace elements.": {
+            "name": "Mineral water - This type of water comes from natural mineral springs and contains various minerals and trace elements.",
+            "tier": "S"
+          },
+          "Distilled water - Distilled water is produced by boiling and condensing water vapor, thereby removing impurities and minerals.": {
+            "name": "Distilled water - Distilled water is produced by boiling and condensing water vapor, thereby removing impurities and minerals.",
+            "tier": "S"
+          },
+          "Spring water - Spring water is sourced from underground springs and is known for its purity and crisp taste.": {
+            "name": "Spring water - Spring water is sourced from underground springs and is known for its purity and crisp taste.",
+            "tier": "S"
+          },
+          "Tap water - This is the most commonly consumed type of water, usually supplied by local municipal water systems.": {
+            "name": "Tap water - This is the most commonly consumed type of water, usually supplied by local municipal water systems.",
+            "tier": "S"
+          },
+          "Alkaline water - Alkaline water has a higher pH level, often achieved by adding minerals like calcium, magnesium, and potassium, which proponents believe offers health benefits.": {
+            "name": "Alkaline water - Alkaline water has a higher pH level, often achieved by adding minerals like calcium, magnesium, and potassium, which proponents believe offers health benefits.",
+            "tier": "S"
+          },
+          "Sparkling water - Also known as carbonated water, sparkling water contains carbon dioxide gas, giving it a fizzy texture and taste.": {
+            "name": "Sparkling water - Also known as carbonated water, sparkling water contains carbon dioxide gas, giving it a fizzy texture and taste.",
+            "tier": "S"
+          },
+          "Purified water - Purified water typically undergoes additional filtration processes to remove impurities, chemicals, and pathogens.": {
+            "name": "Purified water - Purified water typically undergoes additional filtration processes to remove impurities, chemicals, and pathogens.",
             "tier": "S"
           }
         }

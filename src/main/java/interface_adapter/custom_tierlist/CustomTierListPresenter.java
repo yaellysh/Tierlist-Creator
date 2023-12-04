@@ -12,6 +12,7 @@ public class CustomTierListPresenter implements CustomTierListOutputBoundary {
     private final CustomTierListViewModel customTierListViewModel;
     private final TierListViewModel tierListViewModel;
     private final SelectorViewModel selectorViewModel;
+
     public CustomTierListPresenter(ViewManagerModel viewManagerModel, CustomTierListViewModel customTierListViewModel, TierListViewModel tierListViewModel, SelectorViewModel selectorViewModel) {
         this.viewManagerModel = viewManagerModel;
         this.customTierListViewModel = customTierListViewModel;
@@ -19,6 +20,7 @@ public class CustomTierListPresenter implements CustomTierListOutputBoundary {
         this.selectorViewModel = selectorViewModel;
 
     }
+
     @Override
     public void prepareSuccessView(CustomTierListOutputData data) {
         TierListState tierListState = tierListViewModel.getState();
@@ -27,15 +29,19 @@ public class CustomTierListPresenter implements CustomTierListOutputBoundary {
         tierListViewModel.setState(tierListState);
         tierListViewModel.firePropertyChanged();
 
-
         viewManagerModel.setActiveView(tierListViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }
 
-    @Override
-    public void prepareFailView() {
 
+    @Override
+    public void prepareFailView(String error) {
+        CustomTierListState customTierListState = customTierListViewModel.getState();
+        customTierListState.setEmptyError(error);
+        customTierListViewModel.setState(customTierListState);
+        customTierListViewModel.firePropertyChanged();
     }
+
     @Override
     public void prepareBackView() {
         viewManagerModel.setActiveView(selectorViewModel.getViewName());

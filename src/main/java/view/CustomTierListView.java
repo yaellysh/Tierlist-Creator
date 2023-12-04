@@ -11,10 +11,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomTierListView extends JPanel implements ActionListener {
+public class CustomTierListView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewName = "custom";
     public final CustomTierListController customTierListController;
     public final CustomTierListViewModel customTierListViewModel;
@@ -159,8 +161,15 @@ public class CustomTierListView extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
     }
 
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        CustomTierListState state = (CustomTierListState) evt.getNewValue();
+        System.out.println("did this get triggered?");
+        if (state.getEmptyError() != null) {
+            JOptionPane.showMessageDialog(this, state.getEmptyError());
+        }
 
+    }
 }
