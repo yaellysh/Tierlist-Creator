@@ -59,6 +59,8 @@ public class RandomTierListInteractor implements RandomTierListInputBoundary {
         if (items == null) {
             outputBoundary.prepareFailView("Something went wrong, please try again.");
             return;
+        } else if (user.getTierList(prompt) != null) {
+            this.outputBoundary.prepareFailView("A tierlist already exists with that name. Please try again.");
         }
 
         TierList list = new TierList(prompt, items);
