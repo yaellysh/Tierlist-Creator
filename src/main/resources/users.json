@@ -2,6 +2,117 @@
   {
     "username": "Yael",
     "tierLists": {
+      "actresses": {
+        "name": "actresses",
+        "items": {
+          "Angelina Jolie": {
+            "name": "Angelina Jolie",
+            "tier": "B"
+          },
+          "Meryl Streep": {
+            "name": "Meryl Streep",
+            "tier": "S"
+          },
+          "Emma Watson": {
+            "name": "Emma Watson",
+            "tier": "C"
+          },
+          "Nicole Kidman": {
+            "name": "Nicole Kidman",
+            "tier": "D"
+          },
+          "Julia Roberts": {
+            "name": "Julia Roberts",
+            "tier": "S"
+          },
+          "Scarlett Johansson": {
+            "name": "Scarlett Johansson",
+            "tier": "S"
+          },
+          "Jennifer Lawrence": {
+            "name": "Jennifer Lawrence",
+            "tier": "S"
+          },
+          "Charlize Theron": {
+            "name": "Charlize Theron",
+            "tier": "B"
+          }
+        }
+      },
+      "actresses2": {
+        "name": "actresses2",
+        "items": {
+          "yael5": {
+            "name": "yael5",
+            "tier": "C"
+          },
+          "yael3": {
+            "name": "yael3",
+            "tier": "S"
+          },
+          "yael4": {
+            "name": "yael4",
+            "tier": "S"
+          },
+          "yael2": {
+            "name": "yael2",
+            "tier": "D"
+          },
+          "yael": {
+            "name": "yael",
+            "tier": "S"
+          },
+          "yeal6": {
+            "name": "yeal6",
+            "tier": "S"
+          },
+          "yeal7": {
+            "name": "yeal7",
+            "tier": "S"
+          },
+          "yael8": {
+            "name": "yael8",
+            "tier": "B"
+          }
+        }
+      },
+      "lesbians": {
+        "name": "lesbians",
+        "items": {
+          "Ellen DeGeneres - Comedian and television host.": {
+            "name": "Ellen DeGeneres - Comedian and television host.",
+            "tier": "S"
+          },
+          "Billie Jean King - Former professional tennis player and LGBT advocate.": {
+            "name": "Billie Jean King - Former professional tennis player and LGBT advocate.",
+            "tier": "S"
+          },
+          "Martina Navratilova - Former professional tennis player and LGBT rights activist.": {
+            "name": "Martina Navratilova - Former professional tennis player and LGBT rights activist.",
+            "tier": "S"
+          },
+          "Rachel Maddow - Television host and political commentator.": {
+            "name": "Rachel Maddow - Television host and political commentator.",
+            "tier": "S"
+          },
+          "Sara Gilbert - Actress and television personality.": {
+            "name": "Sara Gilbert - Actress and television personality.",
+            "tier": "S"
+          },
+          "Jodie Foster - Academy Award-winning actress and filmmaker.": {
+            "name": "Jodie Foster - Academy Award-winning actress and filmmaker.",
+            "tier": "S"
+          },
+          "Portia de Rossi - Actress and philanthropist.Please note that this list is not exhaustive, and there are many other influential and popular lesbians who have contributed to various fields.": {
+            "name": "Portia de Rossi - Actress and philanthropist.Please note that this list is not exhaustive, and there are many other influential and popular lesbians who have contributed to various fields.",
+            "tier": "S"
+          },
+          "Wanda Sykes - Comedian and actress.": {
+            "name": "Wanda Sykes - Comedian and actress.",
+            "tier": "S"
+          }
+        }
+      }
     }
   }
 ]
