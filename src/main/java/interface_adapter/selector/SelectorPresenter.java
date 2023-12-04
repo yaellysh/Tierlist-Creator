@@ -12,13 +12,11 @@ import use_case.selector.SelectorOutputData;
 
 public class SelectorPresenter implements SelectorOutputBoundary {
     private final ViewManagerModel viewManagerModel;
-    private final SelectorViewModel selectorViewModel;
     private final RandomTierListViewModel randomTierListViewModel;
     private final CustomTierListViewModel customTierListViewModel;
     private final ViewExistingViewModel viewExistingViewModel;
-    public SelectorPresenter(ViewManagerModel viewManagerModel, SelectorViewModel selectorViewModel, RandomTierListViewModel randomTierListViewModel, CustomTierListViewModel customTierListViewModel, ViewExistingViewModel viewExistingViewModel) {
+    public SelectorPresenter(ViewManagerModel viewManagerModel, RandomTierListViewModel randomTierListViewModel, CustomTierListViewModel customTierListViewModel, ViewExistingViewModel viewExistingViewModel) {
         this.viewManagerModel = viewManagerModel;
-        this.selectorViewModel = selectorViewModel;
         this.randomTierListViewModel = randomTierListViewModel;
         this.customTierListViewModel = customTierListViewModel;
         this.viewExistingViewModel = viewExistingViewModel;

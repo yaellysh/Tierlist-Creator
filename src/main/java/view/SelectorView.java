@@ -39,16 +39,13 @@ public class SelectorView extends JPanel implements ActionListener, PropertyChan
 
         ButtonPanel viewButtonPanel = new ButtonPanel(SelectorViewModel.BUTTONS.get(0), SelectorViewModel.COLORS.get(0));
         this.add(viewButtonPanel);
-        viewButtonPanel.getButton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (e.getSource().equals(viewButtonPanel.getButton())) {
-                    SelectorState state = selectorViewModel.getState();
+        viewButtonPanel.getButton().addActionListener(e -> {
+            if (e.getSource().equals(viewButtonPanel.getButton())) {
+                SelectorState state = selectorViewModel.getState();
 
-                    selectorController.execute(
-                            viewButtonPanel.getButton().getText(),
-                            state.getUser());
-                }
+                selectorController.execute(
+                        viewButtonPanel.getButton().getText(),
+                        state.getUser());
             }
         });
 
@@ -66,16 +63,13 @@ public class SelectorView extends JPanel implements ActionListener, PropertyChan
             ButtonPanel buttonPanel = new ButtonPanel(SelectorViewModel.BUTTONS.get(i), SelectorViewModel.COLORS.get(i));
             this.add(buttonPanel);
 
-            buttonPanel.getButton().addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    if (e.getSource().equals(buttonPanel.getButton())) {
-                        SelectorState state = selectorViewModel.getState();
+            buttonPanel.getButton().addActionListener(e -> {
+                if (e.getSource().equals(buttonPanel.getButton())) {
+                    SelectorState state = selectorViewModel.getState();
 
-                        selectorController.execute(
-                                buttonPanel.getButton().getText(),
-                                state.getUser());
-                    }
+                    selectorController.execute(
+                            buttonPanel.getButton().getText(),
+                            state.getUser());
                 }
             });
         }

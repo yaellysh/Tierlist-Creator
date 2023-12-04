@@ -80,7 +80,6 @@ public class CustomTierListView extends JPanel implements ActionListener, Proper
         leftPanel.setMaximumSize(new Dimension(super.getWidth(), 200));
         JPanel rightPanel = new JPanel();
 
-//        List<InputPanel> itemInputs = new ArrayList<>();
 
         for (int i = 0; i < TierList.LENGTH; i++) {
             InputPanel itemInput = new InputPanel("Item " + (i + 1));
@@ -97,12 +96,7 @@ public class CustomTierListView extends JPanel implements ActionListener, Proper
                 public void keyTyped(KeyEvent e) {
                     if (e.getSource().equals(itemInput.getTextField())) {
                         CustomTierListState currentState = customTierListViewModel.getState();
-//                        if (Objects.equals(itemInput.getTextField().getText(), "")) {
-//                            currentState.removeItem(finalI);
-//
-//                        } else {
                             currentState.addItem(itemInput.getTextField().getText() + e.getKeyChar(), finalI);
-//                        }
 
 
                         customTierListViewModel.setState(currentState);
@@ -120,7 +114,7 @@ public class CustomTierListView extends JPanel implements ActionListener, Proper
                 }
             });
         }
-        ;
+
 
 
         this.add(largePanel);
@@ -130,47 +124,41 @@ public class CustomTierListView extends JPanel implements ActionListener, Proper
         JPanel buttonPanel = new JPanel();
         this.add(buttonPanel);
 
-        JButton submitButton = new JButton("Submit");
+        JButton submitButton = new JButton(CustomTierListViewModel.SUBMIT_BUTTON);
         buttonPanel.add(submitButton);
         submitButton.setOpaque(true);
         submitButton.setPreferredSize(new Dimension(250, 50));
         submitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        JButton backButton = new JButton("Back");
+        JButton backButton = new JButton(CustomTierListViewModel.BACK_BUTTON);
         buttonPanel.add(backButton);
         backButton.setOpaque(true);
         backButton.setPreferredSize(new Dimension(250, 50));
         backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
 
-        submitButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                for (JTextField textField: inputs) {
-                    textField.setText("");
-                }
-                tierListView.actionPerformed(e);
-                if (e.getSource().equals(submitButton)) {
-                    CustomTierListState state = customTierListViewModel.getState();
-                    customTierListController.execute(
-                            state.getItems(),
-                            state.getUser(),
-                            state.getTitle()
-                    );
-                }
+        submitButton.addActionListener(e -> {
+            for (JTextField textField: inputs) {
+                textField.setText("");
+            }
+            tierListView.actionPerformed(e);
+            if (e.getSource().equals(submitButton)) {
+                CustomTierListState state = customTierListViewModel.getState();
+                customTierListController.execute(
+                        state.getItems(),
+                        state.getUser(),
+                        state.getTitle()
+                );
             }
         });
-        backButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                for (JTextField textField: inputs) {
-                    textField.setText("");
-                }
-                tierListView.actionPerformed(e);
-                if (e.getSource().equals(backButton)) {
-                    customTierListController.execute();
+        backButton.addActionListener(e -> {
+            for (JTextField textField: inputs) {
+                textField.setText("");
+            }
+            tierListView.actionPerformed(e);
+            if (e.getSource().equals(backButton)) {
+                customTierListController.execute();
 
-                }
             }
         });
 

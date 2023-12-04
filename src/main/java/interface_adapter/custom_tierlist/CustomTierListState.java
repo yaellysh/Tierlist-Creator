@@ -47,7 +47,4 @@ public class CustomTierListState {
     public void addItem(String item, Integer i) {
         this.items.put(i, item);
     }
-    public void removeItem(Integer i) {
-        this.items.remove(i);
-    }
 }
