@@ -1,6 +1,58 @@
 [
   {
     "username": "Yael",
-    "tierLists": {}
+    "tierLists": {
+      "colours": {
+        "name": "colours",
+        "items": {
+          "pink": {
+            "name": "pink",
+            "tier": "S"
+          },
+          "green": {
+            "name": "green",
+            "tier": "A"
+          },
+          "purple": {
+            "name": "purple",
+            "tier": "C"
+          }
+        }
+      },
+      "test": {
+        "name": "test",
+        "items": {
+          "a": {
+            "name": "a",
+            "tier": "S"
+          },
+          "b": {
+            "name": "b",
+            "tier": "S"
+          },
+          "c": {
+            "name": "c",
+            "tier": "S"
+          }
+        }
+      },
+      "another test": {
+        "name": "another test",
+        "items": {
+          "a": {
+            "name": "a",
+            "tier": "S"
+          },
+          "b": {
+            "name": "b",
+            "tier": "S"
+          },
+          "c": {
+            "name": "c",
+            "tier": "S"
+          }
+        }
+      }
+    }
   }
 ]

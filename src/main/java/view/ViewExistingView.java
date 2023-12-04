@@ -15,22 +15,22 @@ import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.prefs.PreferenceChangeEvent;
-import java.util.prefs.PreferenceChangeListener;
 
-public class ViewExistingView extends JPanel implements ActionListener, PreferenceChangeListener, PropertyChangeListener {
+public class ViewExistingView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewName = "view existing";
     public ViewExistingController viewExistingController;
 
     public ViewExistingView(ViewExistingController viewExistingController, ViewExistingViewModel viewExistingViewModel) {
         this.viewExistingController = viewExistingController;
         this.viewExistingViewModel = viewExistingViewModel;
+        viewExistingViewModel.addPropertyChangeListener(this);
 
         this.updateScreen();
 
     }
 
     private void updateScreen() {
+        removeAll();
         BoxLayout boxLayout = new BoxLayout(this, BoxLayout.Y_AXIS);
         this.setLayout(boxLayout);
 
@@ -99,11 +99,6 @@ public class ViewExistingView extends JPanel implements ActionListener, Preferen
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
-    }
-
-    @Override
-    public void preferenceChange(PreferenceChangeEvent evt) {
 
     }
 
