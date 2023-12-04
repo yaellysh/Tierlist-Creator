@@ -338,6 +338,43 @@
             "tier": "S"
           }
         }
+      },
+      "list 8 popular english towns": {
+        "name": "list 8 popular english towns",
+        "items": {
+          "Liverpool": {
+            "name": "Liverpool",
+            "tier": "A"
+          },
+          "Bristol": {
+            "name": "Bristol",
+            "tier": "A"
+          },
+          "London": {
+            "name": "London",
+            "tier": "A"
+          },
+          "Manchester": {
+            "name": "Manchester",
+            "tier": "A"
+          },
+          "Cambridge": {
+            "name": "Cambridge",
+            "tier": "A"
+          },
+          "Bath": {
+            "name": "Bath",
+            "tier": "S"
+          },
+          "Birmingham": {
+            "name": "Birmingham",
+            "tier": "A"
+          },
+          "Oxford": {
+            "name": "Oxford",
+            "tier": "A"
+          }
+        }
       }
     }
   }

@@ -1,14 +1,12 @@
 import data_access.ChatGPTDataAccessObject;
 import data_access.FileUserDataAccessObject;
-import factory.CustomTierListFactory;
-import factory.RandomTierListFactory;
-import factory.SelectorFactory;
-import factory.TierListFactory;
+import factory.*;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.custom_tierlist.CustomTierListViewModel;
 import interface_adapter.random_tierlist.RandomTierListViewModel;
 import interface_adapter.selector.SelectorViewModel;
 import interface_adapter.tierlist.TierListViewModel;
+import interface_adapter.view_existing.ViewExistingViewModel;
 import view.*;
 
 import javax.swing.*;
@@ -32,6 +30,7 @@ public class Main {
         SelectorViewModel selectorViewModel = new SelectorViewModel("selector");
         RandomTierListViewModel randomTierListViewModel = new RandomTierListViewModel("random");
         CustomTierListViewModel customTierListViewModel = new CustomTierListViewModel("custom");
+        ViewExistingViewModel viewExistingViewModel = new ViewExistingViewModel("view existing");
 
         FileUserDataAccessObject userDataAccessObject = new FileUserDataAccessObject("src/main/resources/users.json");
         ChatGPTDataAccessObject chatGPTDataAccessObject  = new ChatGPTDataAccessObject();
@@ -40,13 +39,16 @@ public class Main {
 
         views.add(randomTierListView, randomTierListView.viewName);
 
-        SelectorView selectorView = SelectorFactory.create(viewManagerModel, selectorViewModel, randomTierListViewModel, customTierListViewModel, userDataAccessObject);
+        SelectorView selectorView = SelectorFactory.create(viewManagerModel, selectorViewModel, randomTierListViewModel, customTierListViewModel, userDataAccessObject, viewExistingViewModel);
 
         views.add(selectorView, selectorView.viewName);
 
         TierListView tierListView = TierListFactory.create(viewManagerModel, tierListViewModel, userDataAccessObject, selectorViewModel);
 
         views.add(tierListView, tierListView.viewName);
+        ViewExistingView viewExistingView = ViewExistingFactory.create(viewManagerModel, viewExistingViewModel, tierListViewModel, tierListView, selectorViewModel, userDataAccessObject);
+        views.add(viewExistingView, viewExistingView.viewName);
+
         CustomTierListView customTierListView = CustomTierListFactory.create(viewManagerModel, customTierListViewModel, tierListViewModel, tierListView, selectorViewModel, userDataAccessObject);
 
         views.add(customTierListView, customTierListView.viewName);

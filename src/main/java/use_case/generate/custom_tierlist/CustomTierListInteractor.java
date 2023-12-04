@@ -46,7 +46,9 @@ public class CustomTierListInteractor implements CustomTierListInputBoundary {
         dataAccessInterface.save();
         this.outputBoundary.prepareSuccessView(new CustomTierListOutputData(user, name));
     }
+    @Override
     public void execute() {
+
         outputBoundary.prepareBackView();
     }
 }

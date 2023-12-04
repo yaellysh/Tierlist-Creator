@@ -17,7 +17,7 @@ public class RandomTierListFactory {
     private RandomTierListFactory() {}
     public static RandomTierListView create(ViewManagerModel viewManagerModel, RandomTierListViewModel randomTierListViewModel, TierListDataAccessInterface fileUserDataAccessObject, RandomTierListDataAccessInterface chatGPTDataAccessObject, TierListViewModel tierListViewModel, SelectorViewModel selectorViewModel) {
         RandomTierListController randomTierListController = createRandomUseCase(viewManagerModel, randomTierListViewModel, fileUserDataAccessObject, chatGPTDataAccessObject, tierListViewModel, selectorViewModel);
-        randomTierListViewModel.setState(new RandomTierListState(fileUserDataAccessObject.getUser("Yael"), "Random")); // TODO: unhardcode this
+        randomTierListViewModel.setState(new RandomTierListState(fileUserDataAccessObject.getUser("Yael"), null)); // TODO: unhardcode this
         return new RandomTierListView(randomTierListController, randomTierListViewModel);
     }
     private static RandomTierListController createRandomUseCase(ViewManagerModel viewManagerModel, RandomTierListViewModel randomTierListViewModel, TierListDataAccessInterface dataAccessObject, RandomTierListDataAccessInterface chatGPTDataAccessObject, TierListViewModel tierListViewModel, SelectorViewModel selectorViewModel) {

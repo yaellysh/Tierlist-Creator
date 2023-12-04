@@ -179,7 +179,7 @@ public class TierListView extends JPanel implements ActionListener, PropertyChan
         java.util.List<String> entries = new ArrayList<>(tierList.getTierList().keySet());
         for (int i = 0; i < entries.size(); i++) {
             String entry = entries.get(i);
-            LabelDropDownPanel item = new LabelDropDownPanel(new JLabel(entry));
+            LabelDropDownPanel item = new LabelDropDownPanel(new JLabel(entry), Arrays.stream(TierAdapter.TIERS).map(TierAdapter::getName).toArray(String[]::new));
             item.getDropDown().setSelectedItem(tierList.getItem(entry).getTier().toString());
             item.setMaximumSize(new Dimension(400, 70));
             if (i < (TierListViewModel.NUM_ITEMS + 1) / 2) {

@@ -105,6 +105,7 @@ public class RandomTierListView extends JPanel implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource().equals(backButton)) {
                     RandomTierListState state = randomTierListViewModel.getState();
+                    state.setPrompt(null);
                     randomTierListController.execute("back", state.getUser());
 
                 }
