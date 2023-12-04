@@ -1,8 +1,8 @@
 package interface_adapter.random_tierlist;
 
 import entity.User;
-import use_case.generate.random_tierlist.RandomTierListInputBoundary;
-import use_case.generate.random_tierlist.RandomTierListInputData;
+import use_case.random_tierlist.RandomTierListInputBoundary;
+import use_case.random_tierlist.RandomTierListInputData;
 
 public class RandomTierListController {
     final RandomTierListInputBoundary randomInteractor;

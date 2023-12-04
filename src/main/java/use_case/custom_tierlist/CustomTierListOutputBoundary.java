@@ -1,4 +1,4 @@
-package use_case.generate.custom_tierlist;
+package use_case.custom_tierlist;
 
 public interface CustomTierListOutputBoundary {
 

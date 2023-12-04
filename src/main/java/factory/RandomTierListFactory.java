@@ -7,9 +7,9 @@ import interface_adapter.random_tierlist.RandomTierListState;
 import interface_adapter.random_tierlist.RandomTierListViewModel;
 import interface_adapter.selector.SelectorViewModel;
 import interface_adapter.tierlist.TierListViewModel;
-import use_case.generate.random_tierlist.RandomTierListDataAccessInterface;
-import use_case.generate.random_tierlist.RandomTierListInteractor;
-import use_case.generate.random_tierlist.RandomTierListOutputBoundary;
+import use_case.random_tierlist.RandomTierListDataAccessInterface;
+import use_case.random_tierlist.RandomTierListInteractor;
+import use_case.random_tierlist.RandomTierListOutputBoundary;
 import use_case.tierlist.TierListDataAccessInterface;
 import view.RandomTierListView;
 

@@ -1,13 +1,13 @@
-package use_case.generate.custom_tierlist;
+package use_case.random_tierlist;
 
 import entity.User;
 
-public class CustomTierListOutputData {
+public class RandomTierListOutputData {
 
     private final User user;
     private final String tierList;
 
-    public CustomTierListOutputData(User user, String tierList) {
+    public RandomTierListOutputData(User user, String tierList) {
         this.user = user;
         this.tierList = tierList;
     }
