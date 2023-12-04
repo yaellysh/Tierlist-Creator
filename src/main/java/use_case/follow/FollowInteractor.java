@@ -19,15 +19,16 @@ public class FollowInteractor implements FollowInputBoundary {
         String followerName = followInputData.getFollower();
         String userBeingFollowedName = followInputData.getUserBeingFollowed();
         boolean follow = followInputData.getFollow();
+        System.out.println(follow + " this one");
         //System.out.println(followerName);
 
         // get User objects using usernames
         User follower = userDataAccessObject.getUser(followerName);
         User userBeingFollowed = userDataAccessObject.getUser(userBeingFollowedName);
 
-        if (follow) {
+        if (!follow) {
             // follow the user
-
+            
             // get new follower count of the user being followed
             int newFollowerCount = userBeingFollowed.getFollowers().size() + 1;
 
@@ -125,7 +126,7 @@ public class FollowInteractor implements FollowInputBoundary {
 
             // end of finding related users
 
-            FollowOutputData followOutputData = new FollowOutputData.FollowOutputBuilder(newFollowerCount, follow)
+            FollowOutputData followOutputData = new FollowOutputData.FollowOutputBuilder(newFollowerCount, true)
                     .buildRelatedUsers(tempy).build();
             System.out.println(tempy);
             followPresenter.prepareSuccessView(followOutputData);
@@ -144,7 +145,7 @@ public class FollowInteractor implements FollowInputBoundary {
             // update the user being followed's followers to remove you
             userDataAccessObject.updateFollowers(userBeingFollowed, followerName, follow);
 
-            FollowOutputData followOutputData = new FollowOutputData.FollowOutputBuilder(newFollowerCount, follow)
+            FollowOutputData followOutputData = new FollowOutputData.FollowOutputBuilder(newFollowerCount, false)
                     .build();
             followPresenter.prepareSuccessView(followOutputData);
         }

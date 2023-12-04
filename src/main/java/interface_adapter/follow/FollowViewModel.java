@@ -12,12 +12,12 @@ public class FollowViewModel extends ViewModel {
     public final String FOLLOW_BUTTON_LABEL = "Follow";
     public final String FOLLOWING_BUTTON_LABEL = "Following";
 
-    public final String TITLE_LABEL = "User View";
+    public final String TITLE_LABEL = "View User";
 
     private FollowState state = new FollowState();
 
-    public FollowViewModel() {
-        super("view user");
+    public FollowViewModel(String name) {
+        super(name);
     }
 
     public void setState(FollowState state) {

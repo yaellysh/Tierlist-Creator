@@ -20,7 +20,6 @@ import interface_adapter.search_user.SearchState;
 import interface_adapter.search_user.SearchViewModel;
 
 public class SearchView extends JPanel implements ActionListener, PropertyChangeListener {
-
     public final String viewName = "Search User";
     private final SearchViewModel searchViewModel;
 
@@ -39,7 +38,7 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
         buttons.add(search);
         this.add(buttons);
 
-        LabelTextPanel usernameInfo = new LabelTextPanel(new JLabel(searchViewModel.SEARCH_BOX_LABEL), usernameInputField);
+        //LabelTextPanel usernameInfo = new LabelTextPanel(new JLabel(searchViewModel.SEARCH_BOX_LABEL), usernameInputField);
 
         search.addActionListener(                
         new ActionListener() {
@@ -59,7 +58,7 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        SearchState state = (SearchState) evt.getNewValue();
+        SearchState state = (SearchState)evt.getNewValue();
     }
 
     usernameInputField.addKeyListener(

@@ -17,7 +17,6 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
     public final String viewName = "View User";
     private final FollowViewModel followViewModel;
 
-
     final JButton follow;
 
     private final FollowController followController;
@@ -25,12 +24,13 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
     public FollowView(FollowController followController, FollowViewModel followViewModel) {
         this.followController = followController;
         this.followViewModel = followViewModel;
+        followViewModel.addPropertyChangeListener(this);
         JLabel test = new JLabel(followViewModel.getState().getUserBeingFollowed());
         this.add(test);
 
         JPanel buttons = new JPanel();
         if (followViewModel.getState().getIsFollowing()) {
-            System.out.println("nba");
+            System.out.println("workoisjsjdao");
             follow = new JButton(followViewModel.FOLLOWING_BUTTON_LABEL);
         }
         else {
@@ -46,7 +46,13 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
                 if (evt.getSource().equals(follow)) {
                     FollowState currentState = followViewModel.getState();
                     System.out.println("working");
-                    followController.execute(currentState.getFollower(), currentState.getUserBeingFollowed(), true);
+                    if (!currentState.getIsFollowing()) {
+                        followController.execute(currentState.getFollower(), currentState.getUserBeingFollowed(), false);
+                    }
+                    else {
+                        followController.execute(currentState.getFollower(), currentState.getUserBeingFollowed(), true);
+                    }
+                    
                 }
             }
         });
@@ -60,6 +66,17 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         FollowState state = (FollowState) evt.getNewValue();
+        if (state.getIsFollowing() == true){
+            follow.setText(followViewModel.FOLLOWING_BUTTON_LABEL);
+            JFrame application = new JFrame();
+            application.setSize(700, 650);
+            application.setVisible(true);
+        }
+        else {
+            System.out.println("fhfj");
+            follow.setText(followViewModel.FOLLOW_BUTTON_LABEL);
+        }
+        
     }
 
 }

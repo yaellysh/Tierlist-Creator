@@ -33,7 +33,7 @@ public class Main {
         ViewManagerModel viewManagerModel = new ViewManagerModel();
         new ViewManager(views, cardLayout, viewManagerModel);
 
-        FollowViewModel followViewModel = new FollowViewModel();
+        FollowViewModel followViewModel = new FollowViewModel("View User");
 
         HashMap<String, Integer> testmap = new HashMap<String, Integer>();
         FollowState testing = new FollowState("terryfufu", "lt_rui", false);
