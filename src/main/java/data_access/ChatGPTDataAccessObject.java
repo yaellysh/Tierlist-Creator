@@ -2,7 +2,7 @@ package data_access;
 
 import entity.Item;
 import entity.TierList;
-import use_case.generate.random_tierlist.RandomTierListDataAccessInterface;
+import use_case.random_tierlist.RandomTierListDataAccessInterface;
 
 import java.io.BufferedReader;
 import java.io.IOException;

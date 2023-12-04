@@ -4,8 +4,8 @@ import interface_adapter.ViewManagerModel;
 import interface_adapter.selector.SelectorViewModel;
 import interface_adapter.tierlist.TierListState;
 import interface_adapter.tierlist.TierListViewModel;
-import use_case.generate.random_tierlist.RandomTierListOutputBoundary;
-import use_case.generate.random_tierlist.RandomTierListOutputData;
+import use_case.random_tierlist.RandomTierListOutputBoundary;
+import use_case.random_tierlist.RandomTierListOutputData;
 
 public class RandomTierListPresenter implements RandomTierListOutputBoundary {
     private final ViewManagerModel viewManagerModel;

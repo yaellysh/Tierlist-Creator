@@ -4,8 +4,8 @@ import interface_adapter.ViewManagerModel;
 import interface_adapter.selector.SelectorViewModel;
 import interface_adapter.tierlist.TierListState;
 import interface_adapter.tierlist.TierListViewModel;
-import use_case.generate.custom_tierlist.CustomTierListOutputBoundary;
-import use_case.generate.custom_tierlist.CustomTierListOutputData;
+import use_case.custom_tierlist.CustomTierListOutputBoundary;
+import use_case.custom_tierlist.CustomTierListOutputData;
 
 public class CustomTierListPresenter implements CustomTierListOutputBoundary {
     private final ViewManagerModel viewManagerModel;

@@ -1,4 +1,4 @@
-package use_case.generate.custom_tierlist;
+package use_case.custom_tierlist;
 
 import entity.Item;
 import entity.TierList;
@@ -25,7 +25,6 @@ public class CustomTierListInteractor implements CustomTierListInputBoundary {
         String[] inputs = data.getInputs();
         String name = data.getListName();
         User user = data.getUser();
-//        Arrays.stream(inputs).forEach(System.out::println);
 
         if (name == null) {
             this.outputBoundary.prepareFailView("Your tierlist needs a name. Please try again.");

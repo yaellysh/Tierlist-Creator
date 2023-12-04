@@ -1,4 +1,4 @@
-package use_case.generate.random_tierlist;
+package use_case.random_tierlist;
 
 import entity.Item;
 
