@@ -73,7 +73,12 @@ public class ChatGPTDataAccessObject implements RandomTierListDataAccessInterfac
             if (list.size() != TierList.LENGTH) {
                 return null;
             }
-            return list.stream().map(Item::new).toList();
+            return list.stream().map(s -> {
+                if (s.length() >= 32) {
+                    return s.substring(0, 32) + "...";
+                }
+                return s;
+            }).map(Item::new).toList();
         }
         catch (IOException e) {
             return null;
