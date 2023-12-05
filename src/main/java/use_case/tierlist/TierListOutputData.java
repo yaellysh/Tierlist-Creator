@@ -20,5 +20,4 @@ public class TierListOutputData {
     public String getTierList() {
         return tierList;
     }
-
 }

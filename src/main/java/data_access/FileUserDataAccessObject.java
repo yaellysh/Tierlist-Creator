@@ -14,16 +14,21 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import entity.Tier;
+import entity.TierList;
 import entity.User;
+import use_case.follow.FollowUserDataAccessInterface;
 import use_case.tierlist.TierListDataAccessInterface;
+import use_case.view_user.ViewUserDataAccessInterface;
 
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
+import java.util.HashMap;
 import java.util.List;
 
-public class FileUserDataAccessObject implements SignupUserDataAccessInterface, LoginUserDataAccessInterface, TierListDataAccessInterface {
+public class FileUserDataAccessObject implements SignupUserDataAccessInterface, LoginUserDataAccessInterface, TierListDataAccessInterface, FollowUserDataAccessInterface, ViewUserDataAccessInterface, {
 
     private File csvFile;
 
@@ -126,15 +131,6 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
         return accounts.containsKey(identifier);
   
     @Override
-    public void saveTier(String user, String tierList, String item, Tier tier) {
-        this.users.get(user)
-                .getTierList(tierList)
-                .getItem(item)
-                .setTier(tier);
-        this.save();
-    }
-
-    @Override
     public User getUser(String username) {
         return this.users.get(username);
     }
@@ -142,6 +138,21 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
     // This will be overridden as a part of the signup DAI
     public void addUser(User user) {
         this.users.put(user.getUsername(), user);
+    }
+    
+    @Override
+    public void updateFollowing(User user, String username, boolean follow) {
+        if (!follow) {
+            user.addFollowing(username);
+        }
+        else {
+            user.removeFollowing(username);
+        }
+    }
+
+    @Override
+    public void updateFollowers(User follower, String username, boolean follow) {
+        
     }
 
 }
