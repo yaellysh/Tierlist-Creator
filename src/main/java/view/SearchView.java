@@ -49,6 +49,25 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
                 }
             }
         });
+
+        usernameInputField.addKeyListener(
+                new KeyListener() {
+                    @Override
+                    public void keyTyped(KeyEvent e) {
+                        SearchState currentState = searchViewModel.getState();
+                        String text = usernameInputField.getText() + e.getKeyChar();
+                        currentState.setSearch(text);
+                        searchViewModel.setState(currentState);
+                    }
+
+                    @Override
+                    public void keyPressed(KeyEvent e) {
+                    }
+
+                    @Override
+                    public void keyReleased(KeyEvent e) {
+                    }
+                });
     }
 
     @Override
@@ -61,22 +80,5 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
         SearchState state = (SearchState)evt.getNewValue();
     }
 
-    usernameInputField.addKeyListener(
-        new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-                SearchState currentState = searchViewModel.getState();
-                String text = usernameInputField.getText() + e.getKeyChar();
-                currentState.setSearch(text);
-                searchViewModel.setState(currentState);
-            }
 
-            @Override
-            public void keyPressed(KeyEvent e) {
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-            }
-        });
 }
