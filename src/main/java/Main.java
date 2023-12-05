@@ -11,18 +11,23 @@ import interface_adapter.selector.SelectorViewModel;
 import interface_adapter.view_user.ViewUserViewModel;
 import interface_adapter.tierlist.TierListViewModel;
 import interface_adapter.view_existing.ViewExistingViewModel;
+import interface_adapter.logged_in.LoggedInViewModel;
+import interface_adapter.login.LoginViewModel;
+import interface_adapter.menu.MenuViewModel;
+import interface_adapter.signup.SignupViewModel;
 import use_case.follow.FollowInputBoundary;
 import view.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
       
 import java.util.HashMap;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
 
-        JFrame application = new JFrame();
+        JFrame application = new JFrame("Tierlist Maker");
         application.setResizable(false);
         application.setSize(800, 700);
         application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -41,6 +46,10 @@ public class Main {
         ViewExistingViewModel viewExistingViewModel = new ViewExistingViewModel("view existing");
         FollowViewModel followViewModel = new FollowViewModel("View User");
         ViewUserViewModel viewUserViewModel = new ViewUserViewModel("View User");
+        MenuViewModel menuViewModel = new MenuViewModel("menu");
+        LoginViewModel loginViewModel = new LoginViewModel("login");
+        LoggedInViewModel loggedInViewModel = new LoggedInViewModel("logged in");
+        SignupViewModel signupViewModel = new SignupViewModel("signup");
 
         FileUserDataAccessObject userDataAccessObject = new FileUserDataAccessObject("src/main/resources/users.json");
         ChatGPTDataAccessObject chatGPTDataAccessObject  = new ChatGPTDataAccessObject();
@@ -54,8 +63,19 @@ public class Main {
         views.add(selectorView, selectorView.viewName);
 
         TierListView tierListView = TierListFactory.create(viewManagerModel, tierListViewModel, userDataAccessObject, selectorViewModel);
+      
+        MenuView menuView = MenuFactory.create(viewManagerModel, menuViewModel, loginViewModel, signupViewModel);
+        views.add(menuView, menuView.viewName);
 
-        views.add(tierListView, tierListView.viewName);
+        SignupView signupView = SignupFactory.create(viewManagerModel, loginViewModel, signupViewModel, userDataAccessObject);
+        views.add(signupView, signupView.viewName);
+
+        LoginView loginView = LoginFactory.create(viewManagerModel, loginViewModel, loggedInViewModel, userDataAccessObject);
+        views.add(loginView, loginView.viewName);
+
+        LoggedInView loggedInView = LoggedInFactory.create(viewManagerModel, loggedInViewModel);
+        views.add(loggedInView, loggedInView.viewName);
+      
         ViewExistingView viewExistingView = ViewExistingFactory.create(viewManagerModel, viewExistingViewModel, tierListViewModel, selectorViewModel, userDataAccessObject);
         views.add(viewExistingView, viewExistingView.viewName);
 
@@ -65,7 +85,7 @@ public class Main {
 
 //        viewManagerModel.setActiveView(tierListView.viewName);
 //        viewManagerModel.setActiveView(randomTierListView.viewName);
-        viewManagerModel.setActiveView(selectorView.viewName);
+        viewManagerModel.setActiveView(menuView.viewName);
 //        viewManagerModel.setActiveView(customTierListView.viewName);
 //        viewManagerModel.setActiveView(tierListView.viewName);
         viewManagerModel.firePropertyChanged();
@@ -115,7 +135,7 @@ public class Main {
         window.setLocationRelativeTo(null);
 
         window.setVisible(true);
-
+        */
         application.setVisible(true);
     }
 }

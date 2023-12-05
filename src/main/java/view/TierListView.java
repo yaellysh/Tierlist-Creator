@@ -220,5 +220,4 @@ public class TierListView extends JPanel implements ActionListener, PropertyChan
 
         homeButton.addActionListener(e -> tierListController.execute());
     }
-
 }

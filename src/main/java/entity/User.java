@@ -8,12 +8,14 @@ import java.util.Map;
 public class User {
 
     private final String username;
+    private final String password;
     private final Map<String, TierList> tierLists;
-    private List<String> following;
-    private List<String> followers;
+    private final List<String> following;
+    private final List<String> followers;
 
-    public User(String username) {
+    public User(String username, String password) {
         this.username = username;
+        this.password = password;
         this.tierLists = new HashMap<>();
         this.following = new ArrayList<>();
         this.followers = new ArrayList<>();
@@ -21,6 +23,10 @@ public class User {
 
     public String getUsername() {
         return username;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public List<TierList> getTierLists() {
