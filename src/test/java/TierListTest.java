@@ -19,17 +19,17 @@ public class TierListTest {
     @Test
     public void testWriteToFile() {
         // TODO: in the future, this will done via SignupFactory and CreationFactory
-        FileUserDataAccessObject object = new FileUserDataAccessObject("src/main/resources/users.json");
+        FileUserDataAccessObject object = new FileUserDataAccessObject("src/test/resources/users.json");
         User user = new User("Yael");
         ArrayList<Item> items = new ArrayList<>();
-        for (int i = 1; i < 10; i++) {
+        for (int i = 0; i < TierList.LENGTH; i++) {
             Item item = new Item("Item " + i);
             item.setTier(Tier.S);
             items.add(item);
         }
         TierList tierList = new TierList("Test", items);
         user.addTierList(tierList);
-//        object.addUser(user);
+        object.addUser(user);
         object.save();
 
         // TODO: will assert in the future that the reading works once others are implemented
@@ -38,7 +38,7 @@ public class TierListTest {
     @Test
     public void testReadFromFile() {
         testWriteToFile();
-        FileUserDataAccessObject object = new FileUserDataAccessObject("src/main/resources/users.json");
+        FileUserDataAccessObject object = new FileUserDataAccessObject("src/test/resources/users.json");
         assert object
                 .getUser("Yael")
                 .getTierList("Test")
@@ -49,7 +49,7 @@ public class TierListTest {
 
     // TODO add test case for home button once implemented
     private static Tier getTierList() throws IOException {
-        TierListDataAccessInterface object = new FileUserDataAccessObject("src/main/resources/users.json");
+        TierListDataAccessInterface object = new FileUserDataAccessObject("src/test/resources/users.json");
         return object.getUser("Yael").getTierList("Test").getItem("Item 1").getTier();
     }
 
