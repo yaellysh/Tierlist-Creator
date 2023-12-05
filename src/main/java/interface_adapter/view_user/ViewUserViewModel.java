@@ -17,6 +17,10 @@ public class ViewUserViewModel extends ViewModel {
         super(name);
     }
 
+    public void setState(ViewUserState state) {
+        this.state = state;
+    }
+
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
     public void firePropertyChanged() {
