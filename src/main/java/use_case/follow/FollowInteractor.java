@@ -135,9 +135,9 @@ public class FollowInteractor implements FollowInputBoundary {
             // unfollow the user
             int newFollowerCount = userBeingFollowed.getFollowers().size() - 1;
 
-            // *** follower.removeFollowing(userBeingFollowedName);
-            // *** userBeingFollowed.removeFollowers(followerName);
-            // can add this to the data access object
+            follower.removeFollowing(userBeingFollowedName);
+            userBeingFollowed.removeFollowers(followerName);
+            // change the entities
 
             // update your following to remove the person
             userDataAccessObject.updateFollowing(follower, userBeingFollowedName, follow);
