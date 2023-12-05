@@ -3,6 +3,7 @@ package interface_adapter.signup;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.login.LoginState;
 import interface_adapter.login.LoginViewModel;
+import interface_adapter.menu.MenuViewModel;
 import use_case.signup.SignupOutputBoundary;
 import use_case.signup.SignupOutputData;
 
@@ -37,5 +38,11 @@ public class SignupPresenter implements SignupOutputBoundary {
         SignupState signupState = signupViewModel.getState();
         signupState.setUsernameError(error);
         signupViewModel.firePropertyChanged();
+    }
+
+    @Override
+    public void returnToMenu(MenuViewModel menuViewModel) {
+        this.viewManagerModel.setActiveView(menuViewModel.getViewName());
+        this.viewManagerModel.firePropertyChanged();
     }
 }

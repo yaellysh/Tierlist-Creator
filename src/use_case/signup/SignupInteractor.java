@@ -1,6 +1,7 @@
 package use_case.signup;
 
 import entity.User;
+import interface_adapter.menu.MenuViewModel;
 
 public class SignupInteractor implements SignupInputBoundary {
     final SignupUserDataAccessInterface userDataAccessObject;
@@ -26,5 +27,10 @@ public class SignupInteractor implements SignupInputBoundary {
             SignupOutputData signupOutputData = new SignupOutputData(user.getUsername(), false);
             userPresenter.prepareSuccessView(signupOutputData);
         }
+    }
+
+    @Override
+    public void returnToMenu(MenuViewModel menuViewModel) {
+            userPresenter.returnToMenu(menuViewModel);
     }
 }

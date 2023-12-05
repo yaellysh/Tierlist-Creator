@@ -1,5 +1,6 @@
 package interface_adapter.signup;
 
+import interface_adapter.menu.MenuViewModel;
 import use_case.signup.SignupInputBoundary;
 import use_case.signup.SignupInputData;
 
@@ -15,5 +16,9 @@ public class SignupController {
                 username, password1, password2);
 
         userSignupUseCaseInteractor.execute(signupInputData);
+    }
+
+    public void returnToMenu(MenuViewModel menuViewModel) {
+        userSignupUseCaseInteractor.returnToMenu(menuViewModel);
     }
 }
