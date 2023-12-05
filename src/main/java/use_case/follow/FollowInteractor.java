@@ -32,9 +32,9 @@ public class FollowInteractor implements FollowInputBoundary {
             int newFollowerCount = userBeingFollowed.getFollowers().size() + 1;
 
             // update following and followers both in the entity objects and in the database
-            // *** follower.addFollowing(userBeingFollowedName);
-            // *** userBeingFollowed.addFollowers(followerName);
-            // can put these inside data access object
+            follower.addFollowing(userBeingFollowedName);
+            userBeingFollowed.addFollowers(followerName);
+            // change the entities
 
             // update your following to add the new person
             userDataAccessObject.updateFollowing(follower, userBeingFollowedName, follow);
@@ -135,10 +135,13 @@ public class FollowInteractor implements FollowInputBoundary {
             // unfollow the user
             int newFollowerCount = userBeingFollowed.getFollowers().size() - 1;
 
+
             follower.removeFollowing(userBeingFollowedName);
             userBeingFollowed.removeFollowers(followerName);
             // change the entities
 
+
+            // update the DAO
             // update your following to remove the person
             userDataAccessObject.updateFollowing(follower, userBeingFollowedName, follow);
             // update the user being followed's followers to remove you

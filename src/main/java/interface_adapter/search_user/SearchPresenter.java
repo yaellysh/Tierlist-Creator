@@ -16,15 +16,23 @@ public class SearchPresenter implements SearchOutputBoundary {
 
 
     @Override
-    public void prepareSuccessView(SearchOutputData searchOutputData) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'prepareSuccessView'");
+    public void prepareSuccessView(SearchOutputData output) {
+        SearchState searchState = searchViewModel.getState();
+        searchState.setSearch(output.getUserFound());
+
+        this.searchViewModel.setState(searchState);
+        searchViewModel.firePropertyChanged();
+
+        viewManagerModel.setActiveView(searchViewModel.getViewName());
+        viewManagerModel.firePropertyChanged();
     }
 
 
     @Override
     public void prepareFailView(String error) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'prepareFailView'");
+        SearchState searchState = searchViewModel.getState();
+        searchState.setSearchError(error);
+        searchViewModel.firePropertyChanged();
+
     }
 }
