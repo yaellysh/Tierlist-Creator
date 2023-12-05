@@ -2,6 +2,9 @@ package view;
 
 import interface_adapter.logged_in.LoggedInState;
 import interface_adapter.logged_in.LoggedInViewModel;
+import interface_adapter.login.LoginState;
+import interface_adapter.logged_in.LoggedInController;
+import interface_adapter.menu.MenuViewModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,6 +17,8 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
 
     public final String viewName = "logged in";
     private final LoggedInViewModel loggedInViewModel;
+    private final LoggedInController loggedInController;
+    private final MenuViewModel menuViewModel;
 
     JLabel username;
 
@@ -22,9 +27,11 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
     /**
      * A window with a title and a JButton.
      */
-    public LoggedInView(LoggedInViewModel loggedInViewModel) {
+    public LoggedInView(LoggedInViewModel loggedInViewModel, LoggedInController loggedInController) {
         this.loggedInViewModel = loggedInViewModel;
         this.loggedInViewModel.addPropertyChangeListener(this);
+        this.loggedInController = loggedInController;
+        this.menuViewModel = new MenuViewModel();
 
         JLabel title = new JLabel("Logged In Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -50,7 +57,11 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
      * React to a button click that results in evt.
      */
     public void actionPerformed(ActionEvent evt) {
-        System.out.println("Click " + evt.getActionCommand());
+        if (evt.getSource().equals(logOut)) {
+            LoggedInState currentState = loggedInViewModel.getState();
+
+            loggedInController.returnToMenu(menuViewModel);
+        }
     }
 
     @Override
