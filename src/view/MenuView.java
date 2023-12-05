@@ -50,6 +50,21 @@ public class MenuView extends JPanel implements ActionListener, PropertyChangeLi
                 }
         );
 
+        logIn.addActionListener(
+                // This creates an anonymous subclass of ActionListener and instantiates it.
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        if (evt.getSource().equals(logIn)) {
+                            MenuState currentState = menuViewModel.getState();
+                            currentState.setSelected("login");
+                            menuViewModel.setState(currentState);
+
+                            menuController.execute(currentState.getSelected());
+                        }
+                    }
+                }
+        );
+
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         this.add(title);
