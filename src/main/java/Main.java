@@ -65,7 +65,7 @@ public class Main {
         SignupView signupView = SignupFactory.create(viewManagerModel, loginViewModel, signupViewModel, userDataAccessObject);
         views.add(signupView, signupView.viewName);
 
-        LoginView loginView = LoginFactory.create(viewManagerModel, loginViewModel, loggedInViewModel, userDataAccessObject);
+        LoginView loginView = LoginFactory.create(viewManagerModel, loginViewModel, loggedInViewModel, userDataAccessObject, selectorViewModel);
         views.add(loginView, loginView.viewName);
 
         LoggedInView loggedInView = LoggedInFactory.create(viewManagerModel, loggedInViewModel);
