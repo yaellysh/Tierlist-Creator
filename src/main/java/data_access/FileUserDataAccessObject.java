@@ -3,7 +3,6 @@ package data_access;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import entity.Tier;
 import entity.User;
 import use_case.tierlist.TierListDataAccessInterface;
 
@@ -37,6 +36,7 @@ public class FileUserDataAccessObject implements TierListDataAccessInterface {
         }
     }
 
+    @Override
     public void save() {
         try {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -50,15 +50,6 @@ public class FileUserDataAccessObject implements TierListDataAccessInterface {
     }
 
     @Override
-    public void saveTier(String user, String tierList, String item, Tier tier) {
-        this.users.get(user)
-                .getTierList(tierList)
-                .getItem(item)
-                .setTier(tier);
-        this.save();
-    }
-
-    @Override
     public User getUser(String username) {
         return this.users.get(username);
     }
@@ -67,5 +58,4 @@ public class FileUserDataAccessObject implements TierListDataAccessInterface {
     public void addUser(User user) {
         this.users.put(user.getUsername(), user);
     }
-
 }
