@@ -1,9 +1,9 @@
 package entity;
 
-        import java.util.ArrayList;
-        import java.util.HashMap;
-        import java.util.List;
-        import java.util.Map;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class User {
 
@@ -23,13 +23,13 @@ public class User {
         return username;
     }
 
-    public List<String> getTierLists() {
-        return new ArrayList<>(tierLists.keySet());
+    public List<TierList> getTierLists() {
+        return new ArrayList<>(tierLists.values());
     }
 
-//    public void addTierList(TierList list) {
-//        this.tierLists.put(list.getName(), list);
-//    }
+    public void addTierList(TierList list) {
+        this.tierLists.put(list.getName(), list);
+    }
 
     public TierList getTierList(String name) {
         return this.tierLists.get(name);

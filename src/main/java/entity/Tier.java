@@ -1,5 +1,5 @@
 package entity;
 
 public enum Tier {
-    S, A, B, C, D
+    S, A, B, C, D;
 }
