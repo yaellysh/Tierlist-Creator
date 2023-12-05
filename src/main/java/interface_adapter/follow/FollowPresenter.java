@@ -5,9 +5,11 @@ import factory.FollowFactory;
 import interface_adapter.ViewManagerModel;
 import use_case.follow.FollowOutputBoundary;
 import use_case.follow.FollowOutputData;
+import use_case.view_user.ViewUserOutputBoundary;
+import use_case.view_user.ViewUserOutputData;
 import view.FollowView;
 
-public class FollowPresenter implements FollowOutputBoundary {
+public class FollowPresenter implements FollowOutputBoundary{
 
     private final FollowViewModel followViewModel;
     private final ViewManagerModel viewManagerModel;
@@ -32,7 +34,6 @@ public class FollowPresenter implements FollowOutputBoundary {
         followViewModel.firePropertyChanged();
         viewManagerModel.setActiveView(followViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
-
-
     }
+
 }

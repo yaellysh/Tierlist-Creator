@@ -6,6 +6,7 @@ import interface_adapter.follow.FollowController;
 import interface_adapter.follow.FollowState;
 import interface_adapter.follow.FollowViewModel;
 import interface_adapter.tierlist.TierListViewModel;
+import interface_adapter.view_user.ViewUserViewModel;
 import use_case.follow.FollowInputBoundary;
 import view.FollowView;
 import view.TierListView;
@@ -34,14 +35,14 @@ public class Main {
         new ViewManager(views, cardLayout, viewManagerModel);
 
         FollowViewModel followViewModel = new FollowViewModel("View User");
+        ViewUserViewModel viewUserViewModel = new ViewUserViewModel("View User");
 
-        HashMap<String, Integer> testmap = new HashMap<String, Integer>();
         FollowState testing = new FollowState("terryfufu", "lt_rui", false);
         followViewModel.setState(testing);
 
         FileUserDataAccessObject userDataAccessObject = new FileUserDataAccessObject();
 
-        FollowView followView = FollowFactory.create(viewManagerModel, followViewModel, userDataAccessObject);
+        FollowView followView = FollowFactory.create(viewManagerModel, followViewModel, viewUserViewModel, userDataAccessObject, userDataAccessObject);
         views.add(followView, followView.viewName);
 
         //application.add(followView);

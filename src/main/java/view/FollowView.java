@@ -5,12 +5,17 @@ import javax.swing.*;
 import interface_adapter.follow.FollowController;
 import interface_adapter.follow.FollowState;
 import interface_adapter.follow.FollowViewModel;
+import interface_adapter.view_user.ViewUserController;
+import interface_adapter.view_user.ViewUserViewModel;
 
 import java.awt.Component;
+import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.Map;
+import java.util.jar.JarEntry;
 
 public class FollowView extends JPanel implements ActionListener, PropertyChangeListener {
 
@@ -18,27 +23,45 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
     private final FollowViewModel followViewModel;
 
     final JButton follow;
+    JPanel mutuals = new JPanel();
+    BoxLayout boxLayoutM;
 
     private final FollowController followController;
 
-    public FollowView(FollowController followController, FollowViewModel followViewModel) {
+    public FollowView(FollowController followController, FollowViewModel followViewModel, ViewUserController viewUserController, ViewUserViewModel viewUserViewModel) {
         this.followController = followController;
         this.followViewModel = followViewModel;
         followViewModel.addPropertyChangeListener(this);
-        JLabel test = new JLabel(followViewModel.getState().getUserBeingFollowed());
-        this.add(test);
+        BoxLayout boxLayout = new BoxLayout(this, BoxLayout.Y_AXIS);
+        boxLayoutM = new BoxLayout(mutuals, BoxLayout.Y_AXIS);
+        this.setLayout(boxLayout);
+        JPanel panely = new JPanel();
+        this.add(panely);
+        
+        
 
-        JPanel buttons = new JPanel();
+        JLabel username = new JLabel(followViewModel.getState().getUserBeingFollowed()); //this should be gotten from viewUserViewModel
+        panely.add(username);
+        JLabel followerCount = new JLabel(Integer.toString(viewUserViewModel.getState().getNumFollowing()));
+        panely.add(followerCount);
+        JLabel followingCount = new JLabel(Integer.toString(viewUserViewModel.getState().getNumFollowers()));
+        panely.add(followingCount);
+
+        /*
+        for (String tl : viewUserViewModel.getState().getTierLists()) {
+            JLabel temp = new JLabel(tl);
+            this.add(temp);
+        }
+        */
+
         if (followViewModel.getState().getIsFollowing()) {
-            System.out.println("workoisjsjdao");
             follow = new JButton(followViewModel.FOLLOWING_BUTTON_LABEL);
         }
         else {
             follow = new JButton(followViewModel.FOLLOW_BUTTON_LABEL);
         }
         
-        buttons.add(follow);
-        this.add(buttons);
+        panely.add(follow);
 
         follow.addActionListener(                
         new ActionListener() {
@@ -68,13 +91,21 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
         FollowState state = (FollowState) evt.getNewValue();
         if (state.getIsFollowing() == true){
             follow.setText(followViewModel.FOLLOWING_BUTTON_LABEL);
-            JFrame application = new JFrame();
-            application.setSize(700, 650);
-            application.setVisible(true);
+            mutuals = new JPanel();
+            this.add(mutuals);
+            for (Map.Entry<String, Integer> entry : state.getRelatedUsers().entrySet()) {
+                
+                JPanel tempy = new JPanel();
+                mutuals.add(tempy);
+                JButton username = new JButton(entry.getKey());
+                tempy.add(username);
+                JLabel count = new JLabel("You have " + Integer.toString(entry.getValue()) + " mutuals with this user.");
+                tempy.add(count);
+            }
         }
         else {
-            System.out.println("fhfj");
             follow.setText(followViewModel.FOLLOW_BUTTON_LABEL);
+            this.remove(mutuals);
         }
         
     }

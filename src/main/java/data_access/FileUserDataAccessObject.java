@@ -8,6 +8,7 @@ import entity.TierList;
 import entity.User;
 import use_case.follow.FollowUserDataAccessInterface;
 import use_case.tierlist.TierListDataAccessInterface;
+import use_case.view_user.ViewUserDataAccessInterface;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -21,7 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class FileUserDataAccessObject implements FollowUserDataAccessInterface{
+public class FileUserDataAccessObject implements FollowUserDataAccessInterface, ViewUserDataAccessInterface{
 
     //private final Path path;
 
@@ -71,6 +72,8 @@ public class FileUserDataAccessObject implements FollowUserDataAccessInterface{
         users.put("User D", userD);
         users.put("User E", userE);
         users.put("User F", userF);
+
+        
 
         /*
         this.path = Paths.get(path);
