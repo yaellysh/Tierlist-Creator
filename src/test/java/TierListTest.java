@@ -20,7 +20,7 @@ public class TierListTest {
     public void testWriteToFile() {
         // TODO: in the future, this will done via SignupFactory and CreationFactory
         FileUserDataAccessObject object = new FileUserDataAccessObject("src/main/resources/users.json");
-        User user = new User("Yael");
+        User user = new User("Yael", "potatoes");
         ArrayList<Item> items = new ArrayList<>();
         for (int i = 1; i < 10; i++) {
             Item item = new Item("Item " + i);

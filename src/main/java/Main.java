@@ -2,27 +2,22 @@ import data_access.ChatGPTDataAccessObject;
 import data_access.FileUserDataAccessObject;
 import factory.*;
 import interface_adapter.ViewManagerModel;
-import interface_adapter.follow.FollowController;
+import interface_adapter.custom_tierlist.CustomTierListViewModel;
 import interface_adapter.follow.FollowState;
 import interface_adapter.follow.FollowViewModel;
-import interface_adapter.custom_tierlist.CustomTierListViewModel;
-import interface_adapter.random_tierlist.RandomTierListViewModel;
-import interface_adapter.selector.SelectorViewModel;
-import interface_adapter.view_user.ViewUserViewModel;
-import interface_adapter.tierlist.TierListViewModel;
-import interface_adapter.view_existing.ViewExistingViewModel;
 import interface_adapter.logged_in.LoggedInViewModel;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.menu.MenuViewModel;
+import interface_adapter.random_tierlist.RandomTierListViewModel;
+import interface_adapter.selector.SelectorViewModel;
 import interface_adapter.signup.SignupViewModel;
-import use_case.follow.FollowInputBoundary;
+import interface_adapter.tierlist.TierListViewModel;
+import interface_adapter.view_existing.ViewExistingViewModel;
+import interface_adapter.view_user.ViewUserViewModel;
 import view.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
-      
-import java.util.HashMap;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
@@ -46,10 +41,10 @@ public class Main {
         ViewExistingViewModel viewExistingViewModel = new ViewExistingViewModel("view existing");
         FollowViewModel followViewModel = new FollowViewModel("View User");
         ViewUserViewModel viewUserViewModel = new ViewUserViewModel("View User");
-        MenuViewModel menuViewModel = new MenuViewModel("menu");
-        LoginViewModel loginViewModel = new LoginViewModel("login");
-        LoggedInViewModel loggedInViewModel = new LoggedInViewModel("logged in");
-        SignupViewModel signupViewModel = new SignupViewModel("signup");
+        MenuViewModel menuViewModel = new MenuViewModel();
+        LoginViewModel loginViewModel = new LoginViewModel();
+        LoggedInViewModel loggedInViewModel = new LoggedInViewModel();
+        SignupViewModel signupViewModel = new SignupViewModel();
 
         FileUserDataAccessObject userDataAccessObject = new FileUserDataAccessObject("src/main/resources/users.json");
         ChatGPTDataAccessObject chatGPTDataAccessObject  = new ChatGPTDataAccessObject();
@@ -83,18 +78,18 @@ public class Main {
 
         views.add(customTierListView, customTierListView.viewName);
 
+        FollowState testing = new FollowState("terryfufu", "lt_rui", false);
+        followViewModel.setState(testing);
+
+        FollowView followView = FollowFactory.create(viewManagerModel, followViewModel, viewUserViewModel, userDataAccessObject, userDataAccessObject);
+        views.add(followView, followView.viewName);
+
 //        viewManagerModel.setActiveView(tierListView.viewName);
 //        viewManagerModel.setActiveView(randomTierListView.viewName);
         viewManagerModel.setActiveView(menuView.viewName);
 //        viewManagerModel.setActiveView(customTierListView.viewName);
 //        viewManagerModel.setActiveView(tierListView.viewName);
         viewManagerModel.firePropertyChanged();
-      
-        FollowState testing = new FollowState("terryfufu", "lt_rui", false);
-        followViewModel.setState(testing);
-
-        FollowView followView = FollowFactory.create(viewManagerModel, followViewModel, viewUserViewModel, userDataAccessObject, userDataAccessObject);
-        views.add(followView, followView.viewName);
 
         //application.add(followView);
         //System.out.println(followView.viewName);

@@ -29,8 +29,12 @@ public class User {
         return password;
     }
 
+    public List<String> getTierListsAsStrings() {
+        return tierLists.values().stream().map(TierList::getName).toList();
+    }
+
     public List<TierList> getTierLists() {
-        return new ArrayList<>(tierLists.values());
+        return tierLists.values().stream().toList();
     }
 
     public void addTierList(TierList list) {
