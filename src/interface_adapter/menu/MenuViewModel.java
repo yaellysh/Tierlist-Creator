@@ -7,7 +7,7 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 public class MenuViewModel extends ViewModel {
-    public final String TITLE_LABEL = "Menu View";
+    public static final String TITLE_LABEL = "Tierlist Maker";
 
     public static final String LOGIN_BUTTON_LABEL = "Log in";
     public static final String SIGNUP_BUTTON_LABEL = "Sign up";
