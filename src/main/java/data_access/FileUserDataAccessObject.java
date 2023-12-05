@@ -3,8 +3,12 @@ package data_access;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import entity.Tier;
+import entity.TierList;
 import entity.User;
+import use_case.follow.FollowUserDataAccessInterface;
 import use_case.tierlist.TierListDataAccessInterface;
+import use_case.view_user.ViewUserDataAccessInterface;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -13,11 +17,12 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class FileUserDataAccessObject implements TierListDataAccessInterface {
+public class FileUserDataAccessObject implements TierListDataAccessInterface, FollowUserDataAccessInterface, ViewUserDataAccessInterface {
 
     private final Path path;
 
@@ -58,4 +63,20 @@ public class FileUserDataAccessObject implements TierListDataAccessInterface {
     public void addUser(User user) {
         this.users.put(user.getUsername(), user);
     }
+    
+    @Override
+    public void updateFollowing(User user, String username, boolean follow) {
+        if (!follow) {
+            user.addFollowing(username);
+        }
+        else {
+            user.removeFollowing(username);
+        }
+    }
+
+    @Override
+    public void updateFollowers(User follower, String username, boolean follow) {
+        
+    }
+
 }
