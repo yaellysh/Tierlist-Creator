@@ -4,6 +4,8 @@ import entity.User;
 
 import java.util.*;
 
+import javax.sound.midi.Soundbank;
+
 public class FollowInteractor implements FollowInputBoundary {
     final FollowUserDataAccessInterface userDataAccessObject;
     final FollowOutputBoundary followPresenter;
@@ -19,7 +21,7 @@ public class FollowInteractor implements FollowInputBoundary {
         String followerName = followInputData.getFollower();
         String userBeingFollowedName = followInputData.getUserBeingFollowed();
         boolean follow = followInputData.getFollow();
-        System.out.println(follow + " this one");
+        //System.out.println(follow + " this one");
         //System.out.println(followerName);
 
         // get User objects using usernames
@@ -33,20 +35,16 @@ public class FollowInteractor implements FollowInputBoundary {
             int newFollowerCount = userBeingFollowed.getFollowers().size() + 1;
 
             // update following and followers both in the entity objects and in the database
-            follower.addFollowing(userBeingFollowedName);
-            userBeingFollowed.addFollowers(followerName);
             // change the entities
 
-            // update your following to add the new person
-            userDataAccessObject.updateFollowing(follower, userBeingFollowedName, follow);
-            // update the user being followed's followers to add you
-            userDataAccessObject.updateFollowers(userBeingFollowed, followerName, follow);
+
 
             // now we want to find the users that most of my following also follow
             // "for example, people you know also follow ..."
 
             // Create the list of people you know
             List<String> followerFollowing = follower.getFollowing();
+            System.out.println(followerFollowing);
 
             // Create the list of the users that people you know could know
             List<String> userBeingFollowedFollowers = userBeingFollowed.getFollowers();
@@ -69,7 +67,7 @@ public class FollowInteractor implements FollowInputBoundary {
 
             // iterate through the users related to the user you just followed
             for (String relatedUser : setRelatedUsers) {
-                System.out.println(relatedUser);
+                //System.out.println(relatedUser);
                 User relatedUserObject = userDataAccessObject.getUser(relatedUser);
                 if (relatedUserObject.getFollowers().contains(followerName)){
                     continue;
@@ -80,11 +78,13 @@ public class FollowInteractor implements FollowInputBoundary {
                 for (String usernameYouFollow : followerFollowing) {
                     User userYouFollow = userDataAccessObject.getUser(usernameYouFollow);
                     List<String> userYouFollowFollowing = userYouFollow.getFollowing();
+                    System.out.println(usernameYouFollow);
 
                     // iterate through the following of the user you follow
                     for  (String usernameYouFollowFollowing : userYouFollowFollowing) {
                         if (usernameYouFollowFollowing.equals(relatedUser)) {
                             //System.out.println("ok");
+                            
                             mutualsCount++;
                         }
                     }
@@ -92,7 +92,7 @@ public class FollowInteractor implements FollowInputBoundary {
                 }
 
                 userMutualsCount.put(relatedUser, mutualsCount);
-                System.out.println(mutualsCount);
+                //System.out.println(mutualsCount);
 
             /*
             // at this point, we have determined the mutuals count of the current related user
@@ -128,11 +128,16 @@ public class FollowInteractor implements FollowInputBoundary {
 
             FollowOutputData followOutputData = new FollowOutputData.FollowOutputBuilder(newFollowerCount, true)
                     .buildRelatedUsers(tempy).build();
-            System.out.println(tempy);
+            //System.out.println(tempy);
+            follower.addFollowing(userBeingFollowedName);
+            userBeingFollowed.addFollowers(followerName);
+            //userDataAccessObject.updateFollowing(follower, userBeingFollowedName, follow);
+            //userDataAccessObject.updateFollowers(userBeingFollowed, followerName, follow);
             followPresenter.prepareSuccessView(followOutputData);
         }
 
         else {
+            System.out.println("abkdahskhdkahkjdsh");
             // unfollow the user
             int newFollowerCount = userBeingFollowed.getFollowers().size() - 1;
 
@@ -144,9 +149,9 @@ public class FollowInteractor implements FollowInputBoundary {
 
             // update the DAO
             // update your following to remove the person
-            userDataAccessObject.updateFollowing(follower, userBeingFollowedName, follow);
+            //userDataAccessObject.updateFollowing(follower, userBeingFollowedName, follow);
             // update the user being followed's followers to remove you
-            userDataAccessObject.updateFollowers(userBeingFollowed, followerName, follow);
+            //userDataAccessObject.updateFollowers(userBeingFollowed, followerName, follow);
 
             FollowOutputData followOutputData = new FollowOutputData.FollowOutputBuilder(newFollowerCount, false)
                     .build();

@@ -100,13 +100,20 @@ public class FileUserDataAccessObject implements FollowUserDataAccessInterface, 
         this.users.put(user.getUsername(), user);
     }
 
+    
     @Override
     public void updateFollowing(User user, String username, boolean follow) {
-        user.addFollowing(username);
+        if (!follow) {
+            user.addFollowing(username);
+        }
+        else {
+            user.removeFollowing(username);
+        }
     }
 
     @Override
     public void updateFollowers(User follower, String username, boolean follow) {
-        getUser(username).addFollowers(follower.getUsername());
+        
     }
+
 }
