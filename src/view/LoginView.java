@@ -3,6 +3,7 @@ package view;
 import interface_adapter.login.LoginController;
 import interface_adapter.login.LoginState;
 import interface_adapter.login.LoginViewModel;
+import interface_adapter.menu.MenuViewModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,6 +19,8 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
     public final String viewName = "log in";
     private final LoginViewModel loginViewModel;
 
+    private final MenuViewModel menuViewModel;
+
     final JTextField usernameInputField = new JTextField(15);
     private final JLabel usernameErrorField = new JLabel();
 
@@ -28,11 +31,12 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
     final JButton cancel;
     private final LoginController loginController;
 
-    public LoginView(LoginViewModel loginViewModel, LoginController controller) {
+    public LoginView(LoginViewModel loginViewModel, LoginController controller, MenuViewModel menuViewModel) {
 
         this.loginController = controller;
         this.loginViewModel = loginViewModel;
         this.loginViewModel.addPropertyChangeListener(this);
+        this.menuViewModel = menuViewModel;
 
         JLabel title = new JLabel("Login Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -63,7 +67,18 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
                 }
         );
 
-        cancel.addActionListener(this);
+        cancel.addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if (e.getSource().equals(cancel)) {
+                            LoginState currentState = loginViewModel.getState();
+
+                            loginController.returnToMenu(menuViewModel);
+                        }
+                    }
+                }
+        );
 
         usernameInputField.addKeyListener(new KeyListener() {
             @Override

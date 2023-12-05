@@ -5,6 +5,7 @@ import interface_adapter.logged_in.LoggedInViewModel;
 import interface_adapter.login.LoginController;
 import interface_adapter.login.LoginPresenter;
 import interface_adapter.login.LoginViewModel;
+import interface_adapter.menu.MenuViewModel;
 import use_case.login.LoginInputBoundary;
 import use_case.login.LoginInteractor;
 import use_case.login.LoginOutputBoundary;
@@ -27,7 +28,7 @@ public class LoginUseCaseFactory {
 
         try {
             LoginController loginController = createLoginUseCase(viewManagerModel, loginViewModel, loggedInViewModel, userDataAccessObject);
-            return new LoginView(loginViewModel, loginController);
+            return new LoginView(loginViewModel, loginController, new MenuViewModel());
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Could not open user data file.");
         }

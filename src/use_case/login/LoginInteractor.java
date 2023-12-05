@@ -1,6 +1,7 @@
 package use_case.login;
 
 import entity.User;
+import interface_adapter.menu.MenuViewModel;
 
 public class LoginInteractor implements LoginInputBoundary {
     final LoginUserDataAccessInterface userDataAccessObject;
@@ -30,5 +31,10 @@ public class LoginInteractor implements LoginInputBoundary {
                 loginPresenter.prepareSuccessView(loginOutputData);
             }
         }
+    }
+
+    @Override
+    public void returnToMenu(MenuViewModel menuViewModel) {
+        loginPresenter.returnToMenu(menuViewModel);
     }
 }

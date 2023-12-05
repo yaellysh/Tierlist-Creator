@@ -1,5 +1,6 @@
 package interface_adapter.login;
 
+import interface_adapter.menu.MenuViewModel;
 import use_case.login.LoginInputBoundary;
 import use_case.login.LoginInputData;
 
@@ -16,5 +17,9 @@ public class LoginController {
                 username, password);
 
         loginUseCaseInteractor.execute(loginInputData);
+    }
+
+    public void returnToMenu(MenuViewModel menuViewModel) {
+        loginUseCaseInteractor.returnToMenu(menuViewModel);
     }
 }
