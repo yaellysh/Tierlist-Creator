@@ -1,4 +1,4 @@
-package app;
+package factory;
 
 import interface_adapter.ViewManagerModel;
 import interface_adapter.login.LoginViewModel;
@@ -14,10 +14,10 @@ import view.SignupView;
 import javax.swing.*;
 import java.io.IOException;
 
-public class SignupUseCaseFactory {
+public class SignupFactory {
 
     /** Prevent instantiation. */
-    private SignupUseCaseFactory() {}
+    private SignupFactory() {}
 
     public static SignupView create(
             ViewManagerModel viewManagerModel, LoginViewModel loginViewModel, SignupViewModel signupViewModel, SignupUserDataAccessInterface userDataAccessObject) {

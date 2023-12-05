@@ -1,15 +1,14 @@
-package app;
-
+import factory.LoggedInFactory;
+import factory.LoginFactory;
+import factory.MenuFactory;
+import factory.SignupFactory;
 import data_access.FileUserDataAccessObject;
-import entity.UserFactory;
+import factory.UserFactory;
 import interface_adapter.ViewManagerModel;
-import interface_adapter.logged_in.LoggedInController;
 import interface_adapter.logged_in.LoggedInViewModel;
 import interface_adapter.login.LoginViewModel;
-import interface_adapter.menu.MenuController;
 import interface_adapter.menu.MenuViewModel;
 import interface_adapter.signup.SignupViewModel;
-import use_case.menu.MenuInteractor;
 import view.*;
 
 import javax.swing.*;
@@ -51,16 +50,16 @@ public class Main {
             throw new RuntimeException(e);
         }
 
-        MenuView menuView = MenuUseCaseFactory.create(viewManagerModel, menuViewModel, loginViewModel, signupViewModel);
+        MenuView menuView = MenuFactory.create(viewManagerModel, menuViewModel, loginViewModel, signupViewModel);
         views.add(menuView, menuView.viewName);
 
-        SignupView signupView = SignupUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel, userDataAccessObject);
+        SignupView signupView = SignupFactory.create(viewManagerModel, loginViewModel, signupViewModel, userDataAccessObject);
         views.add(signupView, signupView.viewName);
 
-        LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, loggedInViewModel, userDataAccessObject);
+        LoginView loginView = LoginFactory.create(viewManagerModel, loginViewModel, loggedInViewModel, userDataAccessObject);
         views.add(loginView, loginView.viewName);
 
-        LoggedInView loggedInView = LoggedInUseCaseFactory.create(viewManagerModel, loggedInViewModel);
+        LoggedInView loggedInView = LoggedInFactory.create(viewManagerModel, loggedInViewModel);
         views.add(loggedInView, loggedInView.viewName);
 
         viewManagerModel.setActiveView(menuView.viewName);

@@ -1,6 +1,6 @@
-package entity;
+package factory;
 
-import java.time.LocalDateTime;
+import entity.User;
 
 public class UserFactory {
     /**

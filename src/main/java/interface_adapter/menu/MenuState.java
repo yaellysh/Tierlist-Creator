@@ -1,7 +1,5 @@
 package interface_adapter.menu;
 
-import interface_adapter.login.LoginState;
-
 public class MenuState {
     private String selected = "";
 

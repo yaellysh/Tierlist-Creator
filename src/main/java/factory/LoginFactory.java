@@ -1,4 +1,4 @@
-package app;
+package factory;
 
 import interface_adapter.ViewManagerModel;
 import interface_adapter.logged_in.LoggedInViewModel;
@@ -15,10 +15,10 @@ import view.LoginView;
 import javax.swing.*;
 import java.io.IOException;
 
-public class LoginUseCaseFactory {
+public class LoginFactory {
 
     /** Prevent instantiation. */
-    private LoginUseCaseFactory() {}
+    private LoginFactory() {}
 
     public static LoginView create(
             ViewManagerModel viewManagerModel,

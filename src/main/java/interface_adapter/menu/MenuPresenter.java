@@ -1,12 +1,9 @@
 package interface_adapter.menu;
 
 import interface_adapter.ViewManagerModel;
-import interface_adapter.login.LoginState;
 import interface_adapter.login.LoginViewModel;
-import interface_adapter.signup.SignupState;
 import interface_adapter.signup.SignupViewModel;
 import use_case.menu.MenuOutputBoundary;
-import use_case.menu.MenuOutputData;
 
 public class MenuPresenter implements MenuOutputBoundary {
     private final SignupViewModel signupViewModel;

@@ -1,4 +1,4 @@
-package app;
+package factory;
 
 import interface_adapter.ViewManagerModel;
 import interface_adapter.login.LoginViewModel;
@@ -11,8 +11,8 @@ import use_case.menu.MenuInteractor;
 import use_case.menu.MenuOutputBoundary;
 import view.MenuView;
 
-public class MenuUseCaseFactory {
-    private MenuUseCaseFactory() {}
+public class MenuFactory {
+    private MenuFactory() {}
 
     public static MenuView create(
             ViewManagerModel viewManagerModel, MenuViewModel menuViewModel, LoginViewModel loginViewModel,

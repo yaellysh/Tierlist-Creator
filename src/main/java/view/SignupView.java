@@ -1,6 +1,5 @@
 package view;
 
-import interface_adapter.login.LoginState;
 import interface_adapter.menu.MenuViewModel;
 import interface_adapter.signup.SignupController;
 import interface_adapter.signup.SignupState;
