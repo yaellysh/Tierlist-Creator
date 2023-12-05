@@ -7,7 +7,7 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 public class MenuViewModel extends ViewModel {
-    public static final String TITLE_LABEL = "Tierlist Maker";
+    public static final String TITLE_LABEL = "Sign Up and Log In";
     public static final Font TITLE_FONT = new Font("Arial Bold", Font.PLAIN, 30);
     public static final String SIGNUP_INSTRUCTIONS = "If you don't have an existing account, please select the 'Sign Up'" +
             " button and create a username and password.";
