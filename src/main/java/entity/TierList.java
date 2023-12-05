@@ -22,7 +22,7 @@ public class TierList {
     }
   
     public List<Item> getItems() {
-        return items.getValues().toList();
+        return items.values().stream().toList();
     }
 
     public Map<String, Tier> getTierList() {
