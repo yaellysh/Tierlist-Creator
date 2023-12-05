@@ -1,6 +1,8 @@
 package view;
 
+import interface_adapter.login.LoginViewModel;
 import interface_adapter.menu.MenuViewModel;
+import interface_adapter.selector.SelectorViewModel;
 import interface_adapter.signup.SignupController;
 import interface_adapter.signup.SignupState;
 import interface_adapter.signup.SignupViewModel;
@@ -34,8 +36,11 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         signupViewModel.addPropertyChangeListener(this);
         this.menuViewModel = new MenuViewModel();
 
-        JLabel title = new JLabel(SignupViewModel.TITLE_LABEL);
-        title.setAlignmentX(Component.CENTER_ALIGNMENT);
+        JLabel signUpTitleLabel = new JLabel(SignupViewModel.TITLE_LABEL);
+        signUpTitleLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 10));
+        signUpTitleLabel.setFont(SignupViewModel.TITLE_FONT);
+        this.add(signUpTitleLabel);
+        signUpTitleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         LabelTextPanel usernameInfo = new LabelTextPanel(
                 new JLabel(SignupViewModel.USERNAME_LABEL), usernameInputField);
@@ -147,7 +152,6 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-        this.add(title);
         this.add(usernameInfo);
         this.add(passwordInfo);
         this.add(repeatPasswordInfo);

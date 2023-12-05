@@ -2,6 +2,7 @@ package interface_adapter.signup;
 
 import interface_adapter.ViewModel;
 
+import java.awt.*;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
@@ -10,6 +11,7 @@ public class SignupViewModel extends ViewModel {
     public static final String CLEAR_BUTTON_LABEL = "Clear";
     public static final String TITLE_LABEL = "Sign Up View";
     public static final String USERNAME_LABEL = "Choose username";
+    public static final Font TITLE_FONT = new Font("Arial Bold", Font.PLAIN, 30);
     public static final String PASSWORD_LABEL = "Choose password";
     public static final String REPEAT_PASSWORD_LABEL = "Enter password again";
 
