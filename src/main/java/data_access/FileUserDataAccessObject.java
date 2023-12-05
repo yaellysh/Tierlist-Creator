@@ -10,15 +10,32 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class FileUserDataAccessObject implements SignupUserDataAccessInterface, LoginUserDataAccessInterface {
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+import entity.Tier;
+import entity.User;
+import use_case.tierlist.TierListDataAccessInterface;
 
-    private final File csvFile;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
 
-    private final Map<String, Integer> headers = new LinkedHashMap<>();
+public class FileUserDataAccessObject implements SignupUserDataAccessInterface, LoginUserDataAccessInterface, TierListDataAccessInterface {
 
-    private final Map<String, User> accounts = new HashMap<>();
+    private File csvFile;
+
+    private Map<String, Integer> headers = new LinkedHashMap<>();
+
+    private Map<String, User> accounts = new HashMap<>();
 
     private UserFactory userFactory;
+  
+    private Path path;
+
+    private Map<String, User> users;
 
     public FileUserDataAccessObject(String csvPath, UserFactory userFactory) throws IOException {
         this.userFactory = userFactory;
@@ -49,6 +66,19 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
         }
     }
 
+    public FileUserDataAccessObject(String path) {
+        this.path = Paths.get(path);
+        this.users = new HashMap<>();
+
+        try {
+            Reader reader = Files.newBufferedReader(this.path, StandardCharsets.UTF_8);
+            List<User> users = new Gson().fromJson(reader, new TypeToken<List<User>>() {}.getType());
+            users.forEach(s -> this.users.put(s.getUsername(), s));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     @Override
     public void save(User user) {
         accounts.put(user.getUsername(), user);
@@ -72,6 +102,11 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
                         user.getUsername(), user.getPassword());
                 writer.write(line);
                 writer.newLine();
+             
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            Writer writer = Files.newBufferedWriter(this.path, StandardCharsets.UTF_8);
+            gson.toJson(this.users.values(), writer);
+            writer.close();
             }
 
             writer.close();
@@ -81,7 +116,6 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
         }
     }
 
-
     /**
      * Return whether a user exists with username identifier.
      * @param identifier the username to check.
@@ -90,6 +124,24 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
     @Override
     public boolean existsByName(String identifier) {
         return accounts.containsKey(identifier);
+  
+    @Override
+    public void saveTier(String user, String tierList, String item, Tier tier) {
+        this.users.get(user)
+                .getTierList(tierList)
+                .getItem(item)
+                .setTier(tier);
+        this.save();
+    }
+
+    @Override
+    public User getUser(String username) {
+        return this.users.get(username);
+    }
+
+    // This will be overridden as a part of the signup DAI
+    public void addUser(User user) {
+        this.users.put(user.getUsername(), user);
     }
 
 }

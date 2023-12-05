@@ -7,6 +7,7 @@ public class Item {
 
     public Item(String name) {
         this.name = name;
+        this.tier = Tier.S;
     }
 
     public String getName() {

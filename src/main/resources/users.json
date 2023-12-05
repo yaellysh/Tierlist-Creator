@@ -1,0 +1,48 @@
+[
+  {
+    "username": "Yael",
+    "tierLists": {
+      "Test": {
+        "name": "Test",
+        "items": {
+          "Item 4": {
+            "name": "Item 4",
+            "tier": "S"
+          },
+          "Item 3": {
+            "name": "Item 3",
+            "tier": "S"
+          },
+          "Item 2": {
+            "name": "Item 2",
+            "tier": "S"
+          },
+          "Item 1": {
+            "name": "Item 1",
+            "tier": "S"
+          },
+          "Item 8": {
+            "name": "Item 8",
+            "tier": "S"
+          },
+          "Item 7": {
+            "name": "Item 7",
+            "tier": "S"
+          },
+          "Item 6": {
+            "name": "Item 6",
+            "tier": "S"
+          },
+          "Item 5": {
+            "name": "Item 5",
+            "tier": "S"
+          },
+          "Item 9": {
+            "name": "Item 9",
+            "tier": "S"
+          }
+        }
+      }
+    }
+  }
+]
