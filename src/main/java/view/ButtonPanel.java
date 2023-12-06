@@ -14,8 +14,7 @@ public class ButtonPanel extends JPanel {
         buttonPanel.add(button);
 
         button.setOpaque(true);
-        button.setPreferredSize(new Dimension(400, 50));
-        buttonPanel.setPreferredSize(new Dimension(400, 55));
+        button.setPreferredSize(new Dimension(250, 50));
         button.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         this.add(buttonPanel);

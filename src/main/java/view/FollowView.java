@@ -19,7 +19,7 @@ import java.util.jar.JarEntry;
 
 public class FollowView extends JPanel implements ActionListener, PropertyChangeListener {
 
-    public final String viewName = "View User";
+    public final String viewName = "follow User";
     private final FollowViewModel followViewModel;
 
     final JButton follow;
@@ -68,7 +68,6 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
             public void actionPerformed(ActionEvent evt) {
                 if (evt.getSource().equals(follow)) {
                     FollowState currentState = followViewModel.getState();
-                    System.out.println("working");
                     if (!currentState.getIsFollowing()) {
                         followController.execute(currentState.getFollower(), currentState.getUserBeingFollowed(), false);
                     }

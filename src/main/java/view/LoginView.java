@@ -6,6 +6,7 @@ import interface_adapter.login.LoginViewModel;
 import interface_adapter.menu.MenuViewModel;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,14 +18,13 @@ import java.beans.PropertyChangeListener;
 public class LoginView extends JPanel implements ActionListener, PropertyChangeListener {
 
     public final String viewName = "log in";
-    private final LoginViewModel loginViewModel;
 
     private final MenuViewModel menuViewModel;
 
-    final JTextField usernameInputField = new JTextField(15);
+    private JTextField usernameInputField = new JTextField(15);
     private final JLabel usernameErrorField = new JLabel();
 
-    final JPasswordField passwordInputField = new JPasswordField(15);
+    private JPasswordField passwordInputField = new JPasswordField(15);
     private final JLabel passwordErrorField = new JLabel();
 
     final JButton logIn;
@@ -34,35 +34,43 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
     public LoginView(LoginViewModel loginViewModel, LoginController controller, MenuViewModel menuViewModel) {
 
         this.loginController = controller;
-        this.loginViewModel = loginViewModel;
-        this.loginViewModel.addPropertyChangeListener(this);
+        loginViewModel.addPropertyChangeListener(this);
         this.menuViewModel = menuViewModel;
 
-        JLabel title = new JLabel("Login Screen");
-        title.setAlignmentX(Component.CENTER_ALIGNMENT);
+        JLabel loginTitleLabel = new JLabel(LoginViewModel.TITLE_LABEL);
+        loginTitleLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 30, 10));
+        loginTitleLabel.setFont(LoginViewModel.TITLE_FONT);
+        this.add(loginTitleLabel);
+        loginTitleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        LabelTextPanel usernameInfo = new LabelTextPanel(
-                new JLabel("Username"), usernameInputField);
-        LabelTextPanel passwordInfo = new LabelTextPanel(
-                new JLabel("Password"), passwordInputField);
+        InputPanel usernameInfo = new InputPanel(LoginViewModel.USERNAME_LABEL);
+        usernameInputField = usernameInfo.getTextField();
+
+        PasswordInputPanel passwordInfo = new PasswordInputPanel(LoginViewModel.PASSWORD_LABEL);
+        passwordInputField = passwordInfo.getTextField();
 
         JPanel buttons = new JPanel();
-        logIn = new JButton(loginViewModel.LOGIN_BUTTON_LABEL);
-        buttons.add(logIn);
-        cancel = new JButton(loginViewModel.CANCEL_BUTTON_LABEL);
-        buttons.add(cancel);
+        buttons.setBorder(new EmptyBorder(30, 0, 0,0));
 
-        logIn.addActionListener(                // This creates an anonymous subclass of ActionListener and instantiates it.
-                new ActionListener() {
-                    public void actionPerformed(ActionEvent evt) {
-                        if (evt.getSource().equals(logIn)) {
-                            LoginState currentState = loginViewModel.getState();
+        ButtonPanel loginButtonPanel = new ButtonPanel(LoginViewModel.LOGIN_BUTTON_LABEL);
+        ButtonPanel cancelButtonPanel = new ButtonPanel(LoginViewModel.CANCEL_BUTTON_LABEL);
 
-                            loginController.execute(
-                                    currentState.getUsername(),
-                                    currentState.getPassword()
-                            );
-                        }
+        buttons.add(cancelButtonPanel);
+        buttons.add(loginButtonPanel);
+
+        this.logIn = loginButtonPanel.getButton();
+        this.cancel = cancelButtonPanel.getButton();
+
+
+        logIn.addActionListener(
+                evt -> {
+                    if (evt.getSource().equals(logIn)) {
+                        LoginState currentState = loginViewModel.getState();
+
+                        loginController.execute(
+                                currentState.getUsername(),
+                                currentState.getPassword()
+                        );
                     }
                 }
         );
@@ -116,12 +124,13 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
                     }
                 });
 
-        this.add(title);
+        this.add(loginTitleLabel);
         this.add(usernameInfo);
         this.add(usernameErrorField);
         this.add(passwordInfo);
         this.add(passwordErrorField);
         this.add(buttons);
+        this.add(new JSeparator());
     }
 
     /**

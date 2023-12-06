@@ -137,7 +137,6 @@ public class FollowInteractor implements FollowInputBoundary {
         }
 
         else {
-            System.out.println("abkdahskhdkahkjdsh");
             // unfollow the user
             int newFollowerCount = userBeingFollowed.getFollowers().size() - 1;
 

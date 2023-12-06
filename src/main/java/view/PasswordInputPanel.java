@@ -5,10 +5,10 @@ import interface_adapter.selector.SelectorViewModel;
 import javax.swing.*;
 import java.awt.*;
 
-public class InputPanel extends JPanel {
-    private final JTextField textField;
-    InputPanel(String itemName) {
-        this.textField = new JTextField();
+public class PasswordInputPanel extends JPanel {
+    private final JPasswordField textField;
+    PasswordInputPanel(String itemName) {
+        this.textField = new JPasswordField();
         this.add(new JLabel(itemName));
 
         textField.setFont(SelectorViewModel.BUTTON_FONT);
@@ -17,7 +17,7 @@ public class InputPanel extends JPanel {
         this.add(textField);
     }
 
-    public JTextField getTextField() {
+    public JPasswordField getTextField() {
         return textField;
     }
 }

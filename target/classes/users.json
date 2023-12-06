@@ -1,0 +1,44 @@
+[
+  {
+    "username": "Yael",
+    "tierLists": {
+      "actresses": {
+        "name": "actresses",
+        "items": {
+          "Angelina Jolie": {
+            "name": "Angelina Jolie",
+            "tier": "B"
+          },
+          "Meryl Streep": {
+            "name": "Meryl Streep",
+            "tier": "S"
+          },
+          "Emma Watson": {
+            "name": "Emma Watson",
+            "tier": "C"
+          },
+          "Nicole Kidman": {
+            "name": "Nicole Kidman",
+            "tier": "D"
+          },
+          "Julia Roberts": {
+            "name": "Julia Roberts",
+            "tier": "S"
+          },
+          "Scarlett Johansson": {
+            "name": "Scarlett Johansson",
+            "tier": "S"
+          },
+          "Jennifer Lawrence": {
+            "name": "Jennifer Lawrence",
+            "tier": "S"
+          },
+          "Charlize Theron": {
+            "name": "Charlize Theron",
+            "tier": "B"
+          }
+        }
+      }
+    }
+  }
+]
