@@ -17,11 +17,11 @@ public class ViewExistingFactory {
     }
 
     public static ViewExistingView create(ViewManagerModel viewManagerModel, ViewExistingViewModel viewExistingViewModel, TierListViewModel tierListViewModel, SelectorViewModel selectorViewModel, TierListDataAccessInterface dataAccessObject) {
-        ViewExistingController viewExistingController = createExistingUseCase(viewManagerModel, tierListViewModel, selectorViewModel);
+        ViewExistingController viewExistingController = createExistingUseCase(viewManagerModel, tierListViewModel, selectorViewModel, viewExistingViewModel);
         return new ViewExistingView(viewExistingController, viewExistingViewModel);
     }
-    private static ViewExistingController createExistingUseCase(ViewManagerModel viewManagerModel , TierListViewModel tierListViewModel, SelectorViewModel selectorViewModel ) {
-        ViewExistingOutputBoundary viewExistingOutputBoundary = new ViewExistingPresenter(viewManagerModel, tierListViewModel, selectorViewModel);
+    private static ViewExistingController createExistingUseCase(ViewManagerModel viewManagerModel , TierListViewModel tierListViewModel, SelectorViewModel selectorViewModel, ViewExistingViewModel viewExistingViewModel) {
+        ViewExistingOutputBoundary viewExistingOutputBoundary = new ViewExistingPresenter(viewManagerModel, tierListViewModel, selectorViewModel, viewExistingViewModel);
         ViewExistingInteractor viewExistingInteractor = new ViewExistingInteractor(viewExistingOutputBoundary);
         return new ViewExistingController(viewExistingInteractor);
 
