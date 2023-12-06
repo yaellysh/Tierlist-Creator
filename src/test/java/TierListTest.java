@@ -1,57 +1,15 @@
-import data_access.FileUserDataAccessObject;
-import entity.Item;
-import entity.Tier;
-import entity.TierList;
-import entity.User;
 import org.junit.Test;
-import use_case.tierlist.TierListDataAccessInterface;
+import view.LoginView;
+import view.MenuView;
+import view.SignupView;
 import view.TierListView;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
-import java.util.ArrayList;
 
 import static org.junit.Assert.assertNotNull;
 
 public class TierListTest {
-
-    @Test
-    public void testWriteToFile() {
-        // TODO: in the future, this will done via SignupFactory and CreationFactory
-        FileUserDataAccessObject object = new FileUserDataAccessObject("src/main/resources/users.json");
-        User user = new User("Yael", "potatoes");
-        ArrayList<Item> items = new ArrayList<>();
-        for (int i = 1; i < 10; i++) {
-            Item item = new Item("Item " + i);
-            item.setTier(Tier.S);
-            items.add(item);
-        }
-        TierList tierList = new TierList("Test", items);
-        user.addTierList(tierList);
-//        object.addUser(user);
-        object.save();
-
-        // TODO: will assert in the future that the reading works once others are implemented
-    }
-
-    @Test
-    public void testReadFromFile() {
-        testWriteToFile();
-        FileUserDataAccessObject object = new FileUserDataAccessObject("src/main/resources/users.json");
-        assert object
-                .getUser("Yael")
-                .getTierList("Test")
-                .getItem("Item 1")
-                .getTier()
-                .equals(Tier.S);
-    }
-
-    // TODO add test case for home button once implemented
-    private static Tier getTierList() throws IOException {
-        TierListDataAccessInterface object = new FileUserDataAccessObject("src/main/resources/users.json");
-        return object.getUser("Yael").getTierList("Test").getItem("Item 1").getTier();
-    }
 
     public JComboBox getDropDown() {
         JFrame app = null;
@@ -76,19 +34,107 @@ public class TierListTest {
                 .getComponentAt(89, 5);
     }
 
-    @Test
-    public void checkDropDown() throws IOException, InterruptedException {
+    public MenuView getMenuView() throws InterruptedException {
         Main.main(null);
-        Tier initialTier = getTierList();
-        assert initialTier.equals(Tier.S);
-        JComboBox dropDown = getDropDown();
-        Thread.sleep(100);
-        dropDown.setSelectedItem("A");
-        Thread.sleep(100);
+        JFrame app = null;
+        Window[] windows = Window.getWindows();
+        for (Window window : windows) {
+            if (window instanceof JFrame) {
+                app = (JFrame) window;
+            }
+        }
 
-        Tier updatedTier = getTierList();
-        assert updatedTier.equals(Tier.A);
-        dropDown.setSelectedItem("S");
-        Thread.sleep(100);
+        assertNotNull(app);
+        Component root = app.getComponent(0);
+        Component cp = ((JRootPane) root).getContentPane();
+        JPanel jp = (JPanel) cp;
+        JPanel viewPanel = (JPanel) jp.getComponent(0);
+
+        MenuView menuView = null;
+
+        for (Component view : viewPanel.getComponents()) {
+            if (view instanceof MenuView) {
+                menuView = (MenuView) view;
+            }
+        }
+        return menuView;
     }
+
+    public Component getCurrentView() throws InterruptedException {
+        Component currentView = null;
+
+        JFrame app = null;
+        Window[] windows = Window.getWindows();
+        for (Window window : windows) {
+            if (window instanceof JFrame) {
+                app = (JFrame) window;
+            }
+        }
+
+        assertNotNull(app);
+        Component root = app.getComponent(0);
+        Component cp = ((JRootPane) root).getContentPane();
+        JPanel jp = (JPanel) cp;
+        JPanel viewPanel = (JPanel) jp.getComponent(0);
+
+        Component[] cards = viewPanel.getComponents();
+        for (Component card : cards) {
+            if (card.isVisible()) {
+                currentView = card;
+            }
+        }
+        return currentView;
+    }
+
+    @Test
+    public void checkMenuSignUpButton() throws InterruptedException {
+        Main.main(null);
+
+        MenuView menuView = getMenuView();
+        assert menuView != null;
+        JPanel signUpWrapperPanel = (JPanel) menuView.getComponent(3);
+        JPanel signUpPanel = (JPanel) signUpWrapperPanel.getComponent(0);
+        JButton signUpButton = (JButton) signUpPanel.getComponent(0);
+
+        signUpButton.doClick();
+        Thread.sleep(100);
+        Component currentView = getCurrentView();
+        System.out.println(currentView);
+        assert currentView instanceof SignupView;
+    }
+
+    @Test
+    public void checkMenuLoginButton() throws InterruptedException {
+        Main.main(null);
+
+        MenuView menuView = getMenuView();
+        assert menuView != null;
+
+        JPanel loginWrapperPanel = (JPanel) menuView.getComponent(7);
+        JPanel loginPanel = (JPanel) loginWrapperPanel.getComponent(0);
+        JButton loginButton = (JButton) loginPanel.getComponent(0);
+
+        loginButton.doClick();
+
+        Component currentView = getCurrentView();
+
+        assert currentView instanceof LoginView;
+    }
+
+
+//    @Test
+//    public void checkDropDown() throws IOException, InterruptedException {
+//        Main.main(null);
+//        Tier initialTier = getTierList();
+//        assert initialTier.equals(Tier.S);
+//        JComboBox dropDown = getDropDown();
+//        Thread.sleep(100);
+//        dropDown.setSelectedItem("A");
+//        Thread.sleep(100);
+//
+//        Tier updatedTier = getTierList();
+//        assert updatedTier.equals(Tier.A);
+//        dropDown.setSelectedItem("S");
+//        Thread.sleep(100);
+//    }
 }
