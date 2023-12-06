@@ -4,12 +4,14 @@ import def.DefaultCustomTierListOutputBoundary;
 import def.DefaultRandomTierListOutputBoundary;
 import def.DefaultSignupOutputBoundary;
 import def.DefaultTierListOutputBoundary;
+import entity.Item;
 import entity.Tier;
 import entity.TierList;
 import entity.User;
 import org.junit.Test;
 import use_case.custom_tierlist.CustomTierListInputData;
 import use_case.custom_tierlist.CustomTierListInteractor;
+import use_case.random_tierlist.RandomTierListInputData;
 import use_case.random_tierlist.RandomTierListInteractor;
 import use_case.signup.SignupInputData;
 import use_case.signup.SignupInteractor;
@@ -62,7 +64,13 @@ public class TierListTest {
         FileUserDataAccessObject object = instantiate();
         ChatGPTDataAccessObject gptObject = new ChatGPTDataAccessObject();
         RandomTierListInteractor randomTierListInteractor = new RandomTierListInteractor(gptObject, object, new DefaultRandomTierListOutputBoundary());
-        
+        randomTierListInteractor.execute(new RandomTierListInputData("Conan Gray songs", object.getUser("Yael")));
+        TierList tierList = object.getUser("Yael").getTierList("Conan Gray songs");
+        assert tierList != null;
+        assert tierList.getItems().size() == TierList.LENGTH;
+        assert tierList.getItems().stream().map(Item::getName).anyMatch(s -> s.equals("Heather"));
+        tierList.getItems().stream().map(Item::getTier).forEach(s -> {assert s == Tier.S;});
+        object.removeUser("Yael");
     }
 
     // TODO add test case for home button once implemented
