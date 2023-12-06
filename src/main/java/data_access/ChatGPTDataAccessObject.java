@@ -54,6 +54,7 @@ public class ChatGPTDataAccessObject implements RandomTierListDataAccessInterfac
 
     public static String extractMessageFromJSONResponse(String response) {
         int start = response.indexOf("content") + 11;
+        System.out.println(response);
 
         int end = response.indexOf("\"", start);
 
@@ -66,6 +67,7 @@ public class ChatGPTDataAccessObject implements RandomTierListDataAccessInterfac
     public List<Item> generateTierList(String prompt) {
         try {
             String result = chatGPT(prompt);
+//            System.out.println(result);
             List<String> list = new ArrayList<>(Stream.of(result.split("[0-9]+.\\s"))
                     .map(s -> s.replaceAll("\\\\n", "")).toList());
             list.remove(0);
