@@ -1,6 +1,7 @@
 [
   {
     "username": "Yael",
+    "password": "potatoes",
     "tierLists": {
       "Test": {
         "name": "Test",
@@ -39,6 +40,8 @@
           }
         }
       }
-    }
+    },
+    "following": [],
+    "followers": []
   }
 ]

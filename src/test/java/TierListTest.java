@@ -1,16 +1,23 @@
 import data_access.FileUserDataAccessObject;
-import entity.Item;
 import entity.Tier;
 import entity.TierList;
 import entity.User;
+import interface_adapter.menu.MenuViewModel;
 import org.junit.Test;
+import use_case.custom_tierlist.CustomTierListInputData;
+import use_case.custom_tierlist.CustomTierListInteractor;
+import use_case.custom_tierlist.CustomTierListOutputBoundary;
+import use_case.custom_tierlist.CustomTierListOutputData;
+import use_case.signup.SignupInputData;
+import use_case.signup.SignupInteractor;
+import use_case.signup.SignupOutputBoundary;
+import use_case.signup.SignupOutputData;
 import use_case.tierlist.TierListDataAccessInterface;
 import view.TierListView;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
-import java.util.ArrayList;
 
 import static org.junit.Assert.assertNotNull;
 
@@ -18,21 +25,44 @@ public class TierListTest {
 
     @Test
     public void testWriteToFile() {
-        // TODO: in the future, this will done via SignupFactory and CreationFactory
         FileUserDataAccessObject object = new FileUserDataAccessObject("src/test/resources/users.json");
-        User user = new User("Yael", "potatoes");
-        ArrayList<Item> items = new ArrayList<>();
-        for (int i = 0; i < TierList.LENGTH; i++) {
-            Item item = new Item("Item " + i);
-            item.setTier(Tier.S);
-            items.add(item);
-        }
-        TierList tierList = new TierList("Test", items);
-        user.addTierList(tierList);
-        object.addUser(user);
-        object.save();
+        SignupInteractor interactor = new SignupInteractor(object, new SignupOutputBoundary() {
+            @Override
+            public void prepareSuccessView(SignupOutputData user) {}
 
-        // TODO: will assert in the future that the reading works once others are implemented
+            @Override
+            public void prepareFailView(String error) {}
+
+            @Override
+            public void returnToMenu(MenuViewModel menuViewModel) {}
+        });
+        interactor.execute(new SignupInputData("Yael", "potatoes", "potatoes"));
+
+        CustomTierListInteractor customTierListInteractor = new CustomTierListInteractor(new CustomTierListOutputBoundary() {
+            @Override
+            public void prepareSuccessView(CustomTierListOutputData data) {
+
+            }
+
+            @Override
+            public void prepareFailView(String error) {
+
+            }
+
+            @Override
+            public void prepareBackView() {
+
+            }
+        }, object);
+        User user = object.getUser("Yael");
+        String[] items = new String[TierList.LENGTH];
+        for (int i = 0; i < TierList.LENGTH; i++) {
+            items[i] = ("Item " + i);
+        }
+
+        customTierListInteractor.execute(new CustomTierListInputData(user, "Test", items));
+
+        // TODO: Change tier
     }
 
     @Test
@@ -45,6 +75,7 @@ public class TierListTest {
                 .getItem("Item 1")
                 .getTier()
                 .equals(Tier.S);
+        object.removeUser("Yael");
     }
 
     // TODO add test case for home button once implemented
