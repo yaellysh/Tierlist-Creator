@@ -1,18 +1,18 @@
 import data_access.FileUserDataAccessObject;
+import def.DefaultCustomTierListOutputBoundary;
+import def.DefaultSignupOutputBoundary;
+import def.DefaultTierListOutputBoundary;
 import entity.Tier;
 import entity.TierList;
 import entity.User;
-import interface_adapter.menu.MenuViewModel;
 import org.junit.Test;
 import use_case.custom_tierlist.CustomTierListInputData;
 import use_case.custom_tierlist.CustomTierListInteractor;
-import use_case.custom_tierlist.CustomTierListOutputBoundary;
-import use_case.custom_tierlist.CustomTierListOutputData;
 import use_case.signup.SignupInputData;
 import use_case.signup.SignupInteractor;
-import use_case.signup.SignupOutputBoundary;
-import use_case.signup.SignupOutputData;
 import use_case.tierlist.TierListDataAccessInterface;
+import use_case.tierlist.TierListInputData;
+import use_case.tierlist.TierListInteractor;
 import view.TierListView;
 
 import javax.swing.*;
@@ -23,37 +23,17 @@ import static org.junit.Assert.assertNotNull;
 
 public class TierListTest {
 
-    @Test
-    public void testWriteToFile() {
+    public FileUserDataAccessObject instantiate() {
         FileUserDataAccessObject object = new FileUserDataAccessObject("src/test/resources/users.json");
-        SignupInteractor interactor = new SignupInteractor(object, new SignupOutputBoundary() {
-            @Override
-            public void prepareSuccessView(SignupOutputData user) {}
+        SignupInteractor signupInteractor = new SignupInteractor(object, new DefaultSignupOutputBoundary());
+        signupInteractor.execute(new SignupInputData("Yael", "potatoes", "potatoes"));
+        return object;
+    }
 
-            @Override
-            public void prepareFailView(String error) {}
-
-            @Override
-            public void returnToMenu(MenuViewModel menuViewModel) {}
-        });
-        interactor.execute(new SignupInputData("Yael", "potatoes", "potatoes"));
-
-        CustomTierListInteractor customTierListInteractor = new CustomTierListInteractor(new CustomTierListOutputBoundary() {
-            @Override
-            public void prepareSuccessView(CustomTierListOutputData data) {
-
-            }
-
-            @Override
-            public void prepareFailView(String error) {
-
-            }
-
-            @Override
-            public void prepareBackView() {
-
-            }
-        }, object);
+    @Test
+    public void testCustomTierList() {
+        FileUserDataAccessObject object = instantiate();
+        CustomTierListInteractor customTierListInteractor = new CustomTierListInteractor(new DefaultCustomTierListOutputBoundary(), object);
         User user = object.getUser("Yael");
         String[] items = new String[TierList.LENGTH];
         for (int i = 0; i < TierList.LENGTH; i++) {
@@ -62,13 +42,9 @@ public class TierListTest {
 
         customTierListInteractor.execute(new CustomTierListInputData(user, "Test", items));
 
-        // TODO: Change tier
-    }
-
-    @Test
-    public void testReadFromFile() {
-        testWriteToFile();
-        FileUserDataAccessObject object = new FileUserDataAccessObject("src/test/resources/users.json");
+        TierListInteractor tierListInteractor = new TierListInteractor(object, new DefaultTierListOutputBoundary());
+        tierListInteractor.execute(new TierListInputData("Yael", "Test", "Item 3", Tier.B));
+        assert user.getTierList("Test").getItem("Item 3").getTier().equals(Tier.B);
         assert object
                 .getUser("Yael")
                 .getTierList("Test")
@@ -76,6 +52,11 @@ public class TierListTest {
                 .getTier()
                 .equals(Tier.S);
         object.removeUser("Yael");
+    }
+
+    @Test
+    public void testRandomTierList() {
+
     }
 
     // TODO add test case for home button once implemented
