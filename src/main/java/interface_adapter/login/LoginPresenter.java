@@ -12,7 +12,7 @@ public class LoginPresenter implements LoginOutputBoundary {
 
     private final LoginViewModel loginViewModel;
     private final SelectorViewModel selectorViewModel;
-    private ViewManagerModel viewManagerModel;
+    private final ViewManagerModel viewManagerModel;
 
     public LoginPresenter(ViewManagerModel viewManagerModel,
                           LoginViewModel loginViewModel, SelectorViewModel selectorViewModel) {
@@ -26,7 +26,8 @@ public class LoginPresenter implements LoginOutputBoundary {
         // On success, switch to the logged in view.
 
         SelectorState state = selectorViewModel.getState();
-        state.setUser(new User(response.getUsername(), loginViewModel.getState().getPassword()));
+
+
         this.selectorViewModel.setState(state);
         this.selectorViewModel.firePropertyChanged();
 
