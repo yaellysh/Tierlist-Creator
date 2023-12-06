@@ -1,11 +1,10 @@
+import factory.SignupFactory;
 import org.junit.Test;
-import view.LoginView;
-import view.MenuView;
-import view.SignupView;
-import view.TierListView;
+import view.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Arrays;
 
 import static org.junit.Assert.assertNotNull;
 
@@ -36,6 +35,7 @@ public class TierListTest {
 
     public MenuView getMenuView() throws InterruptedException {
         Main.main(null);
+
         JFrame app = null;
         Window[] windows = Window.getWindows();
         for (Window window : windows) {
@@ -99,8 +99,34 @@ public class TierListTest {
         signUpButton.doClick();
         Thread.sleep(100);
         Component currentView = getCurrentView();
-        System.out.println(currentView);
         assert currentView instanceof SignupView;
+    }
+
+    public SignupView getSignupView() throws InterruptedException {
+        Main.main(null);
+
+        JFrame app = null;
+        Window[] windows = Window.getWindows();
+        for (Window window : windows) {
+            if (window instanceof JFrame) {
+                app = (JFrame) window;
+            }
+        }
+
+        assertNotNull(app);
+        Component root = app.getComponent(0);
+        Component cp = ((JRootPane) root).getContentPane();
+        JPanel jp = (JPanel) cp;
+        JPanel viewPanel = (JPanel) jp.getComponent(0);
+
+        SignupView signupView = null;
+
+        for (Component view : viewPanel.getComponents()) {
+            if (view instanceof SignupView) {
+                signupView = (SignupView) view;
+            }
+        }
+        return signupView;
     }
 
     @Test
@@ -121,6 +147,35 @@ public class TierListTest {
         assert currentView instanceof LoginView;
     }
 
+    @Test
+    public void checkSignUp() throws InterruptedException {
+        SignupView signupView = getSignupView();
+
+        InputPanel usernameInputPanel = (InputPanel) signupView.getComponent(1);
+        JTextField usernameInput = usernameInputPanel.getTextField();
+
+        PasswordInputPanel passwordInputPanel = (PasswordInputPanel) signupView.getComponent(2);
+        JTextField passwordInput = passwordInputPanel.getTextField();
+
+        PasswordInputPanel repeatPasswordInputPanel = (PasswordInputPanel) signupView.getComponent(3);
+        JTextField repeatPasswordInput = repeatPasswordInputPanel.getTextField();
+
+        usernameInput.setText("Test");
+        passwordInput.setText("Test");
+        repeatPasswordInput.setText("Test");
+
+        JPanel buttonPanelWrapper = (JPanel) signupView.getComponent(4);
+        ButtonPanel buttonPanel = (ButtonPanel) buttonPanelWrapper.getComponent(1);
+        JButton signUpButton = buttonPanel.getButton();
+
+        signUpButton.doClick();
+
+    }
+
+    @Test
+    public void checkViewExistingTierlists() {
+
+    }
 
 //    @Test
 //    public void checkDropDown() throws IOException, InterruptedException {
