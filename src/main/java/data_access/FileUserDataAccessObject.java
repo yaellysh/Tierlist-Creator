@@ -4,7 +4,11 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import entity.User;
+import use_case.follow.FollowUserDataAccessInterface;
+import use_case.login.LoginDataAccessInterface;
+import use_case.signup.SignupDataAccessInterface;
 import use_case.tierlist.TierListDataAccessInterface;
+import use_case.view_user.ViewUserDataAccessInterface;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -17,8 +21,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class FileUserDataAccessObject implements TierListDataAccessInterface {
-
+public class FileUserDataAccessObject implements SignupDataAccessInterface, LoginDataAccessInterface, TierListDataAccessInterface, FollowUserDataAccessInterface, ViewUserDataAccessInterface {
+  
     private final Path path;
 
     private final Map<String, User> users;
@@ -36,26 +40,52 @@ public class FileUserDataAccessObject implements TierListDataAccessInterface {
         }
     }
 
-    @Override
     public void save() {
         try {
+             
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             Writer writer = Files.newBufferedWriter(this.path, StandardCharsets.UTF_8);
             gson.toJson(this.users.values(), writer);
             writer.close();
-        }
-        catch (Exception e) {
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
     @Override
+    public boolean existsByName(String identifier) {
+        return users.containsKey(identifier);
+    }
+  
+    @Override
     public User getUser(String username) {
         return this.users.get(username);
     }
 
-    // This will be overridden as a part of the signup DAI
+    @Override
     public void addUser(User user) {
         this.users.put(user.getUsername(), user);
+        save();
     }
+    
+    @Override
+    public void updateFollowing(User user, String username, boolean follow) {
+        if (!follow) {
+            user.addFollowing(username);
+        }
+        else {
+            user.removeFollowing(username);
+        }
+    }
+
+    @Override
+    public void updateFollowers(User follower, String username, boolean follow) {
+        
+    }
+
+    public void removeUser(String username) {
+        this.users.remove(username);
+        this.save();
+    }
+
 }

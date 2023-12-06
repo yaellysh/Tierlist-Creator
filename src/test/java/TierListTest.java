@@ -1,10 +1,22 @@
 import data_access.FileUserDataAccessObject;
+import def.DefaultCustomTierListOutputBoundary;
+import def.DefaultRandomTierListOutputBoundary;
+import def.DefaultSignupOutputBoundary;
+import def.DefaultTierListOutputBoundary;
 import entity.Item;
 import entity.Tier;
 import entity.TierList;
 import entity.User;
 import org.junit.Test;
+import use_case.custom_tierlist.CustomTierListInputData;
+import use_case.custom_tierlist.CustomTierListInteractor;
+import use_case.random_tierlist.RandomTierListInputData;
+import use_case.random_tierlist.RandomTierListInteractor;
+import use_case.signup.SignupInputData;
+import use_case.signup.SignupInteractor;
 import use_case.tierlist.TierListDataAccessInterface;
+import use_case.tierlist.TierListInputData;
+import use_case.tierlist.TierListInteractor;
 import view.TierListView;
 
 import javax.swing.*;
@@ -17,35 +29,53 @@ import static org.junit.Assert.assertNotNull;
 
 public class TierListTest {
 
-    @Test
-    public void testWriteToFile() {
-        // TODO: in the future, this will done via SignupFactory and CreationFactory
+    public static FileUserDataAccessObject instantiate() {
         FileUserDataAccessObject object = new FileUserDataAccessObject("src/test/resources/users.json");
-        User user = new User("Yael");
-        ArrayList<Item> items = new ArrayList<>();
+        SignupInteractor signupInteractor = new SignupInteractor(object, new DefaultSignupOutputBoundary());
+        signupInteractor.execute(new SignupInputData("Yael", "potatoes", "potatoes"));
+        return object;
+    }
+
+    @Test
+    public void testCustomTierList() {
+        FileUserDataAccessObject object = instantiate();
+        CustomTierListInteractor customTierListInteractor = new CustomTierListInteractor(new DefaultCustomTierListOutputBoundary(), object);
+        User user = object.getUser("Yael");
+        String[] items = new String[TierList.LENGTH];
         for (int i = 0; i < TierList.LENGTH; i++) {
-            Item item = new Item("Item " + i);
-            item.setTier(Tier.S);
-            items.add(item);
+            items[i] = ("Item " + i);
         }
         TierList tierList = new TierList("Test", items);
         user.addTierList(tierList);
         object.addUser(user);
         object.save();
 
-        // TODO: will assert in the future that the reading works once others are implemented
-    }
+        customTierListInteractor.execute(new CustomTierListInputData(user, "Test", items));
 
-    @Test
-    public void testReadFromFile() {
-        testWriteToFile();
-        FileUserDataAccessObject object = new FileUserDataAccessObject("src/test/resources/users.json");
+        TierListInteractor tierListInteractor = new TierListInteractor(object, new DefaultTierListOutputBoundary());
+        tierListInteractor.execute(new TierListInputData("Yael", "Test", "Item 3", Tier.B));
+        assert user.getTierList("Test").getItem("Item 3").getTier().equals(Tier.B);
         assert object
                 .getUser("Yael")
                 .getTierList("Test")
                 .getItem("Item 1")
                 .getTier()
                 .equals(Tier.S);
+        object.removeUser("Yael");
+    }
+
+    @Test
+    public void testRandomTierList() {
+        FileUserDataAccessObject object = instantiate();
+        ChatGPTDataAccessObject gptObject = new ChatGPTDataAccessObject();
+        RandomTierListInteractor randomTierListInteractor = new RandomTierListInteractor(gptObject, object, new DefaultRandomTierListOutputBoundary());
+        randomTierListInteractor.execute(new RandomTierListInputData("Conan Gray songs", object.getUser("Yael")));
+        TierList tierList = object.getUser("Yael").getTierList("Conan Gray songs");
+        assert tierList != null;
+        assert tierList.getItems().size() == TierList.LENGTH;
+        assert tierList.getItems().stream().map(Item::getName).anyMatch(s -> s.equals("Heather"));
+        tierList.getItems().stream().map(Item::getTier).forEach(s -> {assert s == Tier.S;});
+        object.removeUser("Yael");
     }
 
     // TODO add test case for home button once implemented

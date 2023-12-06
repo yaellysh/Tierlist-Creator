@@ -8,19 +8,33 @@ import java.util.Map;
 public class User {
 
     private final String username;
+    private final String password;
     private final Map<String, TierList> tierLists;
+    private final List<String> following;
+    private final List<String> followers;
 
-    public User(String username) {
+    public User(String username, String password) {
         this.username = username;
+        this.password = password;
         this.tierLists = new HashMap<>();
+        this.following = new ArrayList<>();
+        this.followers = new ArrayList<>();
     }
 
     public String getUsername() {
         return username;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public List<String> getTierListsAsStrings() {
+        return tierLists.values().stream().map(TierList::getName).toList();
+    }
+
     public List<TierList> getTierLists() {
-        return new ArrayList<>(tierLists.values());
+        return tierLists.values().stream().toList();
     }
 
     public void addTierList(TierList list) {
@@ -36,4 +50,29 @@ public class User {
         return this.username;
     }
 
+    public List<String> getFollowing() {
+        return new ArrayList<>(following);
+    }
+
+    public List<String> getFollowers() {
+        return new ArrayList<>(followers);
+    }
+
+    public void addFollowers (String user) {
+        followers.add(user);
+    }
+
+    public void addFollowing(String user) {
+        following.add(user);
+    }
+
+    public void removeFollowers (String user) {
+        followers.remove(user);
+    }
+
+    public void removeFollowing(String user) {
+        following.remove(user);
+    }
+
 }
+
