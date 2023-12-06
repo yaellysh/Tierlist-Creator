@@ -15,10 +15,9 @@ public class ViewUserInteractor implements ViewUserInputBoundary {
     }
 
     public void execute(ViewUserInputData viewUserInputData) {
+        System.out.println("akjhdkashhkashdk");
         // get the selected user from input data
         String selectedUsername = viewUserInputData.getSelectedUser();
-        System.out.println(selectedUsername);
-        System.out.println(userDataAccessObject.getUser(selectedUsername));
         User selectedUser = userDataAccessObject.getUser(selectedUsername);
 
         int followerCount = selectedUser.getFollowers().size();

@@ -26,10 +26,19 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
     private final FollowViewModel followViewModel;
     private final ViewUserViewModel viewUserViewModel;
 
-    final JButton follow;
-    final JButton mutual1;
-    final JButton mutual2;
-    final JButton mutual3;
+    private JButton follow;
+    private JButton mutual1;
+    private JButton mutual2;
+    private JButton mutual3;
+
+    private JLabel username = new JLabel("");
+
+    private JLabel followerCount  = new JLabel();
+    private JLabel followingCount= new JLabel();
+
+
+
+    final
     ArrayList<JButton> mutualButtonList = new ArrayList<JButton>();
     JPanel panely = new JPanel();
     
@@ -44,6 +53,9 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
         this.followViewModel = followViewModel;
         this.viewUserViewModel = viewUserViewModel;
         this.viewUserController = viewUserController;
+        this.add(username);
+        this.add(followingCount);
+        this.add(followerCount);
         followViewModel.addPropertyChangeListener(this);
         BoxLayout boxLayout = new BoxLayout(this, BoxLayout.Y_AXIS);
         boxLayoutM = new BoxLayout(mutuals, BoxLayout.Y_AXIS);
@@ -55,10 +67,10 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
         System.out.println(viewUserViewModel.getState().getUsername());
 
 
-        JLabel followerCount = new JLabel(Integer.toString(viewUserViewModel.getState().getNumFollowing()));
-        panely.add(followerCount);
-        JLabel followingCount = new JLabel(Integer.toString(viewUserViewModel.getState().getNumFollowers()));
-        panely.add(followingCount);
+//        JLabel followerCount = new JLabel(Integer.toString(viewUserViewModel.getState().getNumFollowing()));
+//        panely.add(followerCount);
+//        JLabel followingCount = new JLabel(Integer.toString(viewUserViewModel.getState().getNumFollowers()));
+//        panely.add(followingCount);
 
         /*
         for (String tl : viewUserViewModel.getState().getTierLists()) {
@@ -142,28 +154,32 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        ViewUserState statey = viewUserViewModel.getState();
-        System.out.println(statey.getUsername() +"lasjdas");
-        if (statey.getUsername() != "") {
-            JLabel username = new JLabel(viewUserViewModel.getState().getUsername()); //this should be gotten from viewUserViewModel
+        ViewUserState viewUserState = viewUserViewModel.getState();
+        System.out.println(viewUserState.getUsername() +"lasjdas");
+        if (viewUserState.getUsername() != "" && username.getText().length()==0) {
+            username.setText(viewUserViewModel.getState().getUsername());
             panely.add(username);
-            // make the view display following and followers
+            followingCount.setText(Integer.toString(viewUserViewModel.getState().getNumFollowing()));
+            followerCount.setText(Integer.toString(viewUserViewModel.getState().getNumFollowers()));
+            panely.add(followingCount);
+            panely.add(followingCount);
+
         }
 
-        if (!statey.getTierLists().isEmpty()) {
-            for (String tl: statey.getTierLists()) {
+        if (!viewUserState.getTierLists().isEmpty()) {
+            for (String tl: viewUserState.getTierLists()) {
                 //make a button that has text as name of tierlist, and add an actionlister for every button
                 //such that when the button is clicked, it goes to view the tl.
             }
         }
 
-        FollowState state = (FollowState) evt.getNewValue();
-        if (state.getIsFollowing() == true){
+        FollowState followState = (FollowState) evt.getNewValue();
+        if (followState.getIsFollowing()){
             follow.setText(followViewModel.FOLLOWING_BUTTON_LABEL);
             mutuals = new JPanel();
             this.add(mutuals);
-            List<Integer> counts = new ArrayList<Integer>(state.getRelatedUsers().values());
-            List<String> usernames = new ArrayList<String>(state.getRelatedUsers().keySet());
+            List<Integer> counts = new ArrayList<Integer>(followState.getRelatedUsers().values());
+            List<String> usernames = new ArrayList<String>(followState.getRelatedUsers().keySet());
             for (int i = 0; i < 3; i++) {
                 
                 JPanel tempy = new JPanel();

@@ -21,6 +21,7 @@ public class ViewUserPresenter implements ViewUserOutputBoundary {
 
     @Override
     public void prepareSuccessView(ViewUserOutputData output) {
+        System.out.println("asdhgjashg");
         // on success, switch to the follow view
         ViewUserState viewUserState = viewUserViewModel.getState();
         viewUserState.setNumFollowers(output.getNumFollowers());
@@ -35,6 +36,7 @@ public class ViewUserPresenter implements ViewUserOutputBoundary {
 
         viewManagerModel.setActiveView(viewUserViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
+
 
     }
 
