@@ -1,6 +1,5 @@
 package interface_adapter.login;
 
-import entity.User;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.menu.MenuViewModel;
 import interface_adapter.selector.SelectorState;
@@ -12,7 +11,7 @@ public class LoginPresenter implements LoginOutputBoundary {
 
     private final LoginViewModel loginViewModel;
     private final SelectorViewModel selectorViewModel;
-    private final ViewManagerModel viewManagerModel;
+    private ViewManagerModel viewManagerModel;
 
     public LoginPresenter(ViewManagerModel viewManagerModel,
                           LoginViewModel loginViewModel, SelectorViewModel selectorViewModel) {
@@ -26,8 +25,7 @@ public class LoginPresenter implements LoginOutputBoundary {
         // On success, switch to the logged in view.
 
         SelectorState state = selectorViewModel.getState();
-
-
+        state.setUser(response.getUser());
         this.selectorViewModel.setState(state);
         this.selectorViewModel.firePropertyChanged();
 
