@@ -25,7 +25,7 @@ public class ViewUserInteractor implements ViewUserInputBoundary {
         int followingCount = selectedUser.getFollowing().size();
         List<String> tierLists = selectedUser.getTierListsAsStrings();
 
-        ViewUserOutputData viewUserOutputData = new ViewUserOutputData(tierLists, followerCount, followingCount);
+        ViewUserOutputData viewUserOutputData = new ViewUserOutputData(selectedUsername, tierLists, followerCount, followingCount);
         viewUserPresenter.prepareSuccessView(viewUserOutputData);
     }
 }

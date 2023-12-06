@@ -26,12 +26,13 @@ public class ViewUserPresenter implements ViewUserOutputBoundary {
         viewUserState.setNumFollowers(output.getNumFollowers());
         viewUserState.setNumFollowing(output.getNumFollowing());
         viewUserState.setTierLists(output.getTierLists());
+        viewUserState.setUsername(output.getUsername());
 
         this.viewUserViewModel.setState(viewUserState);
         viewUserViewModel.firePropertyChanged();
-        followViewModel.firePropertyChanged();
+        // followViewModel.firePropertyChanged();
 
-        viewManagerModel.setActiveView(followViewModel.getViewName());
+        viewManagerModel.setActiveView(viewUserViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
 
     }

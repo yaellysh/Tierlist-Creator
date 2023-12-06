@@ -58,6 +58,11 @@ public class Main {
         viewManagerModel.setActiveView(searchView.viewName);
         viewManagerModel.firePropertyChanged();
 
+        System.out.println(followViewModel.getViewName());
+        System.out.println(searchViewModel.getViewName());
+
+        cardLayout.show(views, "Search User");
+
         application.setVisible(true);
         /* 
         JFrame window = new JFrame();

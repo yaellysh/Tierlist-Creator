@@ -166,7 +166,7 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
     public boolean existsByName(String identifier) {
         return accounts.containsKey(identifier);
     }
-  
+
     @Override
     public User getUser(String username) {
         return this.accounts.get(username);
