@@ -3,6 +3,8 @@ package interface_adapter.selector;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.custom_tierlist.CustomTierListState;
 import interface_adapter.custom_tierlist.CustomTierListViewModel;
+import interface_adapter.menu.MenuState;
+import interface_adapter.menu.MenuViewModel;
 import interface_adapter.random_tierlist.RandomTierListState;
 import interface_adapter.random_tierlist.RandomTierListViewModel;
 import interface_adapter.search_user.SearchState;
@@ -17,17 +19,23 @@ public class SelectorPresenter implements SelectorOutputBoundary {
     private final RandomTierListViewModel randomTierListViewModel;
     private final CustomTierListViewModel customTierListViewModel;
     private final ViewExistingViewModel viewExistingViewModel;
+    private final MenuViewModel menuViewModel;
 //    private final SearchViewModel searchViewModel;
-    public SelectorPresenter(ViewManagerModel viewManagerModel, RandomTierListViewModel randomTierListViewModel, CustomTierListViewModel customTierListViewModel, ViewExistingViewModel viewExistingViewModel) {
+    public SelectorPresenter(ViewManagerModel viewManagerModel, RandomTierListViewModel randomTierListViewModel, CustomTierListViewModel customTierListViewModel, ViewExistingViewModel viewExistingViewModel, MenuViewModel menuViewModel) {
         this.viewManagerModel = viewManagerModel;
         this.randomTierListViewModel = randomTierListViewModel;
         this.customTierListViewModel = customTierListViewModel;
         this.viewExistingViewModel = viewExistingViewModel;
+        this.menuViewModel = menuViewModel;
     }
 
     @Override
     public void prepareSuccessView(SelectorOutputData data) {
         switch (data.getLabel()) {
+            case "Log Out" -> {
+                viewManagerModel.setActiveView(menuViewModel.getViewName());
+                viewManagerModel.firePropertyChanged();
+            }
 //            case "Search Users" -> {
 //                SearchState searchState =
 //            }

@@ -65,6 +65,9 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
         logIn.addActionListener(
                 evt -> {
                     if (evt.getSource().equals(logIn)) {
+                        usernameInputField.setText("");
+                        passwordInputField.setText("");
+
                         LoginState currentState = loginViewModel.getState();
 
                         loginController.execute(
@@ -80,6 +83,8 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         if (e.getSource().equals(cancel)) {
+                            usernameInputField.setText("");
+                            passwordInputField.setText("");
                             LoginState currentState = loginViewModel.getState();
 
                             loginController.returnToMenu(menuViewModel);
@@ -144,6 +149,9 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
     public void propertyChange(PropertyChangeEvent evt) {
         LoginState state = (LoginState) evt.getNewValue();
         setFields(state);
+        if (state.getUsernameError() != null) {
+            JOptionPane.showMessageDialog(this, state.getUsernameError());
+        }
     }
 
     private void setFields(LoginState state) {
