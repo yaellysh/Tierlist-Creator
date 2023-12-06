@@ -42,6 +42,13 @@
     }
   },
   {
+    "username": "yael",
+    "password": "password",
+    "tierLists": {},
+    "following": [],
+    "followers": []
+  },
+  {
     "username": "jillibean",
     "password": "potato",
     "tierLists": {},
