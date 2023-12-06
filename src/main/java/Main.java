@@ -1,13 +1,16 @@
 import factory.FollowFactory;
+import factory.SearchFactory;
 import factory.TierListFactory;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.follow.FollowController;
 import interface_adapter.follow.FollowState;
 import interface_adapter.follow.FollowViewModel;
+import interface_adapter.search_user.SearchViewModel;
 import interface_adapter.tierlist.TierListViewModel;
 import interface_adapter.view_user.ViewUserViewModel;
 import use_case.follow.FollowInputBoundary;
 import view.FollowView;
+import view.SearchView;
 import view.TierListView;
 import view.ViewManager;
 
@@ -35,19 +38,24 @@ public class Main {
 
         FollowViewModel followViewModel = new FollowViewModel("View User");
         ViewUserViewModel viewUserViewModel = new ViewUserViewModel("View User");
+        SearchViewModel searchViewModel = new SearchViewModel("Search User");
 
         FollowState testing = new FollowState("terryfufu", "lt_rui", false);
         followViewModel.setState(testing);
 
         FileUserDataAccessObject userDataAccessObject = new FileUserDataAccessObject();
 
-        FollowView followView = FollowFactory.create(viewManagerModel, followViewModel, viewUserViewModel, userDataAccessObject, userDataAccessObject);
-        views.add(followView, followView.viewName);
+        //FollowView followView = FollowFactory.create(viewManagerModel, followViewModel, viewUserViewModel, userDataAccessObject, userDataAccessObject);
+        //views.add(followView, followView.viewName);
+
+        SearchView searchView = SearchFactory.create(viewManagerModel, searchViewModel, viewUserViewModel, followViewModel, userDataAccessObject, userDataAccessObject);
+        views.add(searchView);
 
         //application.add(followView);
         //System.out.println(followView.viewName);
 
-        viewManagerModel.setActiveView(followView.viewName);
+        //viewManagerModel.setActiveView(followView.viewName);
+        viewManagerModel.setActiveView(searchView.viewName);
         viewManagerModel.firePropertyChanged();
 
         application.setVisible(true);

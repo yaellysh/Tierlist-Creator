@@ -6,6 +6,7 @@ import interface_adapter.follow.FollowController;
 import interface_adapter.follow.FollowState;
 import interface_adapter.follow.FollowViewModel;
 import interface_adapter.view_user.ViewUserController;
+import interface_adapter.view_user.ViewUserState;
 import interface_adapter.view_user.ViewUserViewModel;
 
 import java.awt.Component;
@@ -14,6 +15,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.jar.JarEntry;
 
@@ -21,16 +24,25 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
 
     public final String viewName = "View User";
     private final FollowViewModel followViewModel;
+    private final ViewUserViewModel viewUserViewModel;
 
     final JButton follow;
+    final JButton mutual1;
+    final JButton mutual2;
+    final JButton mutual3;
+    ArrayList<JButton> mutualButtonList = new ArrayList<JButton>();
+    
     JPanel mutuals = new JPanel();
     BoxLayout boxLayoutM;
 
     private final FollowController followController;
+    private final ViewUserController viewUserController;
 
     public FollowView(FollowController followController, FollowViewModel followViewModel, ViewUserController viewUserController, ViewUserViewModel viewUserViewModel) {
         this.followController = followController;
         this.followViewModel = followViewModel;
+        this.viewUserViewModel = viewUserViewModel;
+        this.viewUserController = viewUserController;
         followViewModel.addPropertyChangeListener(this);
         BoxLayout boxLayout = new BoxLayout(this, BoxLayout.Y_AXIS);
         boxLayoutM = new BoxLayout(mutuals, BoxLayout.Y_AXIS);
@@ -42,6 +54,9 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
 
         JLabel username = new JLabel(followViewModel.getState().getUserBeingFollowed()); //this should be gotten from viewUserViewModel
         panely.add(username);
+        System.out.println(viewUserViewModel.getState().getUsername());
+
+
         JLabel followerCount = new JLabel(Integer.toString(viewUserViewModel.getState().getNumFollowing()));
         panely.add(followerCount);
         JLabel followingCount = new JLabel(Integer.toString(viewUserViewModel.getState().getNumFollowers()));
@@ -60,6 +75,13 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
         else {
             follow = new JButton(followViewModel.FOLLOW_BUTTON_LABEL);
         }
+
+        mutual1 = new JButton();
+        mutual2 = new JButton();
+        mutual3 = new JButton();
+        mutualButtonList.add(mutual1);
+        mutualButtonList.add(mutual2);
+        mutualButtonList.add(mutual3);     
         
         panely.add(follow);
 
@@ -79,6 +101,38 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
                 }
             }
         });
+
+        mutual1.addActionListener(                
+        new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                if (evt.getSource().equals(mutual1)) {
+                    System.out.println("User A");
+                    ViewUserState currentState = viewUserViewModel.getState();
+                    viewUserController.execute(mutual1.getText());
+                    System.out.println(viewUserViewModel.getState().getUsername());
+                    JLabel newy = new JLabel(viewUserViewModel.getState().getUsername());
+                    
+                }
+            }
+        });
+
+        mutual2.addActionListener(                
+        new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                if (evt.getSource().equals(mutual2)) {
+                    System.out.println("User B");
+                }
+            }
+        });
+
+        mutual3.addActionListener(                
+        new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                if (evt.getSource().equals(mutual3)) {
+                    System.out.println("User C");
+                }
+            }
+        });
     }
 
     @Override
@@ -93,13 +147,15 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
             follow.setText(followViewModel.FOLLOWING_BUTTON_LABEL);
             mutuals = new JPanel();
             this.add(mutuals);
-            for (Map.Entry<String, Integer> entry : state.getRelatedUsers().entrySet()) {
+            List<Integer> counts = new ArrayList<Integer>(state.getRelatedUsers().values());
+            List<String> usernames = new ArrayList<String>(state.getRelatedUsers().keySet());
+            for (int i = 0; i < 3; i++) {
                 
                 JPanel tempy = new JPanel();
                 mutuals.add(tempy);
-                JButton username = new JButton(entry.getKey());
-                tempy.add(username);
-                JLabel count = new JLabel("You have " + Integer.toString(entry.getValue()) + " mutuals with this user.");
+                mutualButtonList.get(i).setText(usernames.get(i));
+                tempy.add(mutualButtonList.get(i));
+                JLabel count = new JLabel("You have " + Integer.toString(counts.get(i)) + " mutuals with this user.");
                 tempy.add(count);
             }
         }

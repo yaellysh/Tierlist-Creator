@@ -7,6 +7,7 @@ import entity.User;
 import factory.UserFactory;
 import use_case.follow.FollowUserDataAccessInterface;
 import use_case.login.LoginUserDataAccessInterface;
+import use_case.search_user.SearchUserDataAccessInterface;
 import use_case.signup.SignupUserDataAccessInterface;
 import use_case.tierlist.TierListDataAccessInterface;
 import use_case.view_user.ViewUserDataAccessInterface;
@@ -21,7 +22,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-public class FileUserDataAccessObject implements SignupUserDataAccessInterface, LoginUserDataAccessInterface, TierListDataAccessInterface, FollowUserDataAccessInterface, ViewUserDataAccessInterface {
+public class FileUserDataAccessObject implements SignupUserDataAccessInterface, LoginUserDataAccessInterface, TierListDataAccessInterface, FollowUserDataAccessInterface, ViewUserDataAccessInterface, SearchUserDataAccessInterface {
 
     private File csvFile;
 

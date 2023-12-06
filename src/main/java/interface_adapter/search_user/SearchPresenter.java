@@ -19,7 +19,8 @@ public class SearchPresenter implements SearchOutputBoundary {
     public void prepareSuccessView(SearchOutputData output) {
         SearchState searchState = searchViewModel.getState();
         searchState.setSearch(output.getUserFound());
-
+        searchState.setSearchError(null);
+        searchState.setSuccess(true);
         this.searchViewModel.setState(searchState);
         searchViewModel.firePropertyChanged();
 
@@ -32,6 +33,7 @@ public class SearchPresenter implements SearchOutputBoundary {
     public void prepareFailView(String error) {
         SearchState searchState = searchViewModel.getState();
         searchState.setSearchError(error);
+        searchState.setSuccess(false);
         searchViewModel.firePropertyChanged();
 
     }
