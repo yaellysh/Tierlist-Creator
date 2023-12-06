@@ -21,6 +21,15 @@ public class User {
         this.followers = new ArrayList<>();
     }
 
+    //temp
+    public User(String username) {
+        this.password = "passw";
+        this.username = username;
+        this.tierLists = new HashMap<>();
+        this.following = new ArrayList<>();
+        this.followers = new ArrayList<>();
+    }
+
     public String getUsername() {
         return username;
     }

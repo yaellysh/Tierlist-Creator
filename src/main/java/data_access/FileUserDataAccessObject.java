@@ -12,6 +12,7 @@ import use_case.tierlist.TierListDataAccessInterface;
 import use_case.view_user.ViewUserDataAccessInterface;
 
 import java.io.*;
+import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -25,6 +26,9 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
 
     private File csvFile;
 
+    private static final Type USER_MAP_TYPE = new TypeToken<Map<String, User>>() {}.getType();
+    private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
     private Map<String, Integer> headers = new LinkedHashMap<>();
 
     private Map<String, User> accounts = new HashMap<>();
@@ -33,7 +37,59 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
   
     private Path path;
 
-    private Map<String, User> users;
+    //temp
+    private Map<String, User> users = new HashMap<String, User>();
+
+    //temp
+    public FileUserDataAccessObject() {
+        // D, E, F => A, E, F => B, F => C.
+        User userA = new User("User A");
+        User userB = new User("User B");
+        User userC = new User("User C");
+        User userD = new User("User D");
+        User userE = new User("User E");
+        User userF = new User("User F");
+        userA.addFollowing("lt_rui");
+        userB.addFollowing("lt_rui");
+        userC.addFollowing("lt_rui");
+
+        userD.addFollowing("User A");
+        userE.addFollowing("User A");
+        userF.addFollowing("User A");
+
+        userE.addFollowing("User B");
+        userF.addFollowing("User B");
+
+        userF.addFollowing("User C");
+
+        User tim = new User("lt_rui");
+        User terry = new User("terryfufu");
+
+        tim.addFollowing("User A");
+        tim.addFollowing("User B");
+        tim.addFollowing("User C");
+
+        tim.addFollowers("User A");
+        tim.addFollowers("User B");
+        tim.addFollowers("User C");
+
+        terry.addFollowing("User D");
+        terry.addFollowing("User E");
+        terry.addFollowing("User F");
+
+        users.put("lt_rui", tim);
+        users.put("terryfufu", terry);
+        users.put("User A", userA);
+        users.put("User B", userB);
+        users.put("User C", userC);
+        users.put("User D", userD);
+        users.put("User E", userE);
+        users.put("User F", userF);
+
+        
+
+
+    }
 
     public FileUserDataAccessObject(String csvPath, UserFactory userFactory) throws IOException {
         this.userFactory = userFactory;
@@ -41,6 +97,8 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
         csvFile = new File(csvPath);
         headers.put("username", 0);
         headers.put("password", 1);
+
+        
 
         if (csvFile.length() == 0) {
             save();
@@ -90,7 +148,7 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
 
     public void save() {
         try {
-             
+
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             Writer writer = Files.newBufferedWriter(this.path, StandardCharsets.UTF_8);
             gson.toJson(this.users.values(), writer);
@@ -119,20 +177,12 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
     public void addUser(User user) {
         this.users.put(user.getUsername(), user);
     }
-    
-    @Override
-    public void updateFollowing(User user, String username, boolean follow) {
-        if (!follow) {
-            user.addFollowing(username);
-        }
-        else {
-            user.removeFollowing(username);
+
+    public void updateUsers() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/resources.json", StandardCharsets.UTF_8))) {
+            gson.toJson(accounts, USER_MAP_TYPE, writer);
+        } catch (IOException e) {
+            throw new RuntimeException("Error writing JSON file", e);
         }
     }
-
-    @Override
-    public void updateFollowers(User follower, String username, boolean follow) {
-        
-    }
-
 }
