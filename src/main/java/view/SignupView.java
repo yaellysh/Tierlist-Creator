@@ -1,8 +1,6 @@
 package view;
 
-import interface_adapter.login.LoginViewModel;
 import interface_adapter.menu.MenuViewModel;
-import interface_adapter.selector.SelectorViewModel;
 import interface_adapter.signup.SignupController;
 import interface_adapter.signup.SignupState;
 import interface_adapter.signup.SignupViewModel;
@@ -20,11 +18,10 @@ import java.beans.PropertyChangeListener;
 public class SignupView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewName = "sign up";
 
-    private final SignupViewModel signupViewModel;
     private final MenuViewModel menuViewModel;
     private JTextField usernameInputField = new JTextField(15);
-    private JTextField passwordInputField = new JTextField(15);
-    private JTextField repeatPasswordInputField = new JTextField(15);
+    private JPasswordField passwordInputField = new JPasswordField(15);
+    private JPasswordField repeatPasswordInputField = new JPasswordField(15);
     private final SignupController signupController;
 
     private final JButton signUp;
@@ -33,7 +30,6 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
     public SignupView(SignupController controller, SignupViewModel signupViewModel) {
 
         this.signupController = controller;
-        this.signupViewModel = signupViewModel;
         signupViewModel.addPropertyChangeListener(this);
         this.menuViewModel = new MenuViewModel();
 
@@ -47,10 +43,10 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         InputPanel usernameInfo = new InputPanel(SignupViewModel.USERNAME_LABEL);
         usernameInputField = usernameInfo.getTextField();
 
-        InputPanel passwordInfo = new InputPanel(SignupViewModel.PASSWORD_LABEL);
+        PasswordInputPanel passwordInfo = new PasswordInputPanel(SignupViewModel.PASSWORD_LABEL);
         passwordInputField = passwordInfo.getTextField();
 
-        InputPanel repeatPasswordInfo = new InputPanel(SignupViewModel.REPEAT_PASSWORD_LABEL);
+        PasswordInputPanel repeatPasswordInfo = new PasswordInputPanel(SignupViewModel.REPEAT_PASSWORD_LABEL);
         repeatPasswordInputField = repeatPasswordInfo.getTextField();
 
         JPanel buttons = new JPanel();
@@ -81,14 +77,9 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         );
 
         cancel.addActionListener(
-                new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        if (e.getSource().equals(cancel)) {
-                            SignupState currentState = signupViewModel.getState();
-
-                            signupController.returnToMenu(menuViewModel);
-                        }
+                e -> {
+                    if (e.getSource().equals(cancel)) {
+                        signupController.returnToMenu(menuViewModel);
                     }
                 }
         );

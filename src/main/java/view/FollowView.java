@@ -19,7 +19,7 @@ import java.util.jar.JarEntry;
 
 public class FollowView extends JPanel implements ActionListener, PropertyChangeListener {
 
-    public final String viewName = "View User";
+    public final String viewName = "follow User";
     private final FollowViewModel followViewModel;
 
     final JButton follow;
