@@ -31,8 +31,6 @@ public class RandomTierListState {
         this.prompt = prompt;
     }
 
-    public RandomTierListState(User user, String prompt){
-        this.user = user;
-        this.prompt = prompt;
+    public RandomTierListState(){
     }
 }

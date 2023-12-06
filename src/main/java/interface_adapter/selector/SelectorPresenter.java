@@ -50,6 +50,7 @@ public class SelectorPresenter implements SelectorOutputBoundary {
             case "View Existing" -> {
                 ViewExistingState viewExistingState = viewExistingViewModel.getState();
                 viewExistingState.setUser(data.getUser());
+                viewExistingState.setTitle(data.getLabel());
                 viewExistingViewModel.setState(viewExistingState);
                 viewExistingViewModel.firePropertyChanged();
                 viewManagerModel.setActiveView(viewExistingViewModel.getViewName());

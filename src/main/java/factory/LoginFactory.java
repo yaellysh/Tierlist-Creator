@@ -9,7 +9,7 @@ import interface_adapter.selector.SelectorViewModel;
 import use_case.login.LoginInputBoundary;
 import use_case.login.LoginInteractor;
 import use_case.login.LoginOutputBoundary;
-import use_case.login.LoginUserDataAccessInterface;
+import use_case.login.LoginDataAccessInterface;
 import view.LoginView;
 
 import javax.swing.*;
@@ -23,7 +23,7 @@ public class LoginFactory {
     public static LoginView create(
             ViewManagerModel viewManagerModel,
             LoginViewModel loginViewModel,
-            LoginUserDataAccessInterface userDataAccessObject,
+            LoginDataAccessInterface userDataAccessObject,
             SelectorViewModel selectorViewModel) {
 
         try {
@@ -39,7 +39,7 @@ public class LoginFactory {
     private static LoginController createLoginUseCase(
             ViewManagerModel viewManagerModel,
             LoginViewModel loginViewModel,
-            LoginUserDataAccessInterface userDataAccessObject, SelectorViewModel selectorViewModel) throws IOException {
+            LoginDataAccessInterface userDataAccessObject, SelectorViewModel selectorViewModel) throws IOException {
 
         // Notice how we pass this method's parameters to the Presenter.
         LoginOutputBoundary loginOutputBoundary = new LoginPresenter(viewManagerModel, loginViewModel, selectorViewModel);

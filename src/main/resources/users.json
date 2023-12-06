@@ -40,5 +40,57 @@
         }
       }
     }
+  },
+  {
+    "username": "yael",
+    "password": "password",
+    "tierLists": {},
+    "following": [],
+    "followers": []
+  },
+  {
+    "username": "jillibean",
+    "password": "potato",
+    "tierLists": {
+      "ah": {
+        "name": "ah",
+        "items": {
+          "ahh": {
+            "name": "ahh",
+            "tier": "A"
+          },
+          "ahhhhhhhhh": {
+            "name": "ahhhhhhhhh",
+            "tier": "C"
+          },
+          "ahhhhhhhh": {
+            "name": "ahhhhhhhh",
+            "tier": "S"
+          },
+          "ahhhh": {
+            "name": "ahhhh",
+            "tier": "S"
+          },
+          "ahhhhh": {
+            "name": "ahhhhh",
+            "tier": "S"
+          },
+          "ahhh": {
+            "name": "ahhh",
+            "tier": "S"
+          },
+          "ahhhhhhh": {
+            "name": "ahhhhhhh",
+            "tier": "B"
+          },
+          "ahhhhhh": {
+            "name": "ahhhhhh",
+            "tier": "S"
+          }
+        }
+      }
+    },
+    "following": [],
+    "followers": []
   }
 ]
