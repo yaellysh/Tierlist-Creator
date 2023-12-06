@@ -65,6 +65,10 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                 // This creates an anonymous subclass of ActionListener and instantiates it.
                 evt -> {
                     if (evt.getSource().equals(signUp)) {
+                        usernameInputField.setText("");
+                        passwordInputField.setText("");
+                        repeatPasswordInputField.setText("");
+
                         SignupState currentState = signupViewModel.getState();
 
                         signupController.execute(
@@ -79,6 +83,10 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         cancel.addActionListener(
                 e -> {
                     if (e.getSource().equals(cancel)) {
+                        usernameInputField.setText("");
+                        passwordInputField.setText("");
+                        repeatPasswordInputField.setText("");
+
                         signupController.returnToMenu(menuViewModel);
                     }
                 }
@@ -158,18 +166,16 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         this.add(new JSeparator());
     }
 
-    /**
-     * React to a button click that results in evt.
-     */
-    public void actionPerformed(ActionEvent evt) {
-        JOptionPane.showConfirmDialog(this, "Cancel not implemented yet.");
-    }
-
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         SignupState state = (SignupState) evt.getNewValue();
-        if (state.getUsernameError() != null) {
-            JOptionPane.showMessageDialog(this, state.getUsernameError());
+        if (state.getError() != null) {
+            JOptionPane.showMessageDialog(this, state.getError());
         }
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
     }
 }
