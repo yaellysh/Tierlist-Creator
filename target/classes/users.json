@@ -1,6 +1,7 @@
 [
   {
-    "username": "Yael",
+    "username": "yael",
+    "password": "password",
     "tierLists": {
       "actresses": {
         "name": "actresses",
@@ -39,19 +40,52 @@
           }
         }
       }
-    }
-  },
-  {
-    "username": "yael",
-    "password": "password",
-    "tierLists": {},
+    },
     "following": [],
     "followers": []
   },
   {
     "username": "jillibean",
     "password": "potato",
-    "tierLists": {},
+    "tierLists": {
+      "Conan Gray songs": {
+        "name": "Conan Gray songs",
+        "items": {
+          "Wish You Were Sober": {
+            "name": "Wish You Were Sober",
+            "tier": "A"
+          },
+          "The Story": {
+            "name": "The Story",
+            "tier": "C"
+          },
+          "Heather": {
+            "name": "Heather",
+            "tier": "S"
+          },
+          "Checkmate": {
+            "name": "Checkmate",
+            "tier": "A"
+          },
+          "Comfort Crowd": {
+            "name": "Comfort Crowd",
+            "tier": "S"
+          },
+          "Crush Culture": {
+            "name": "Crush Culture",
+            "tier": "B"
+          },
+          "Generation Why     ": {
+            "name": "Generation Why     ",
+            "tier": "B"
+          },
+          "Maniac": {
+            "name": "Maniac",
+            "tier": "S"
+          }
+        }
+      }
+    },
     "following": [],
     "followers": []
   }
