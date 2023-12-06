@@ -25,4 +25,5 @@ public class TierListFactory {
         TierListInteractor tierInteractor = new TierListInteractor(userDataAccessObject, tierListOutputBoundary);
         return new TierListController(tierInteractor);
     }
+
 }
