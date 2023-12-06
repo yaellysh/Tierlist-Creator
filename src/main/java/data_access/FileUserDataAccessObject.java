@@ -12,6 +12,7 @@ import use_case.tierlist.TierListDataAccessInterface;
 import use_case.view_user.ViewUserDataAccessInterface;
 
 import java.io.*;
+import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -24,6 +25,9 @@ import java.util.Map;
 public class FileUserDataAccessObject implements SignupUserDataAccessInterface, LoginUserDataAccessInterface, TierListDataAccessInterface, FollowUserDataAccessInterface, ViewUserDataAccessInterface {
 
     private File csvFile;
+
+    private static final Type USER_MAP_TYPE = new TypeToken<Map<String, User>>() {}.getType();
+    private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     private Map<String, Integer> headers = new LinkedHashMap<>();
 
@@ -144,7 +148,7 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
 
     public void save() {
         try {
-             
+
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             Writer writer = Files.newBufferedWriter(this.path, StandardCharsets.UTF_8);
             gson.toJson(this.users.values(), writer);
@@ -173,20 +177,13 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
     public void addUser(User user) {
         this.users.put(user.getUsername(), user);
     }
-    
-    @Override
-    public void updateFollowing(User user, String username, boolean follow) {
-        if (!follow) {
-            user.addFollowing(username);
-        }
-        else {
-            user.removeFollowing(username);
-        }
-    }
 
-    @Override
-    public void updateFollowers(User follower, String username, boolean follow) {
-        
+    public void updateUsers() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/resources.json", StandardCharsets.UTF_8))) {
+            gson.toJson(accounts, USER_MAP_TYPE, writer);
+        } catch (IOException e) {
+            throw new RuntimeException("Error writing JSON file", e);
+        }
     }
 
 }
