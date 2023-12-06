@@ -29,7 +29,7 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
 
     private final JTextField usernameInputField = new JTextField(15);
     final JButton search;
-    private JButton userfound;
+    private JButton userfound = new JButton();
     private JLabel userNotFoundText = new JLabel();
 
 

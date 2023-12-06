@@ -38,8 +38,6 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
   
     private Path path;
 
-    //temp
-    private Map<String, User> users = new HashMap<String, User>();
 
     //temp
     public FileUserDataAccessObject() {
@@ -78,14 +76,14 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
         terry.addFollowing("User E");
         terry.addFollowing("User F");
 
-        users.put("lt_rui", tim);
-        users.put("terryfufu", terry);
-        users.put("User A", userA);
-        users.put("User B", userB);
-        users.put("User C", userC);
-        users.put("User D", userD);
-        users.put("User E", userE);
-        users.put("User F", userF);
+        accounts.put("lt_rui", tim);
+        accounts.put("terryfufu", terry);
+        accounts.put("User A", userA);
+        accounts.put("User B", userB);
+        accounts.put("User C", userC);
+        accounts.put("User D", userD);
+        accounts.put("User E", userE);
+        accounts.put("User F", userF);
 
         
 
@@ -125,12 +123,12 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
 
     public FileUserDataAccessObject(String path) {
         this.path = Paths.get(path);
-        this.users = new HashMap<>();
+        this.accounts = new HashMap<>();
 
         try {
             Reader reader = Files.newBufferedReader(this.path, StandardCharsets.UTF_8);
-            List<User> users = new Gson().fromJson(reader, new TypeToken<List<User>>() {}.getType());
-            users.forEach(s -> this.users.put(s.getUsername(), s));
+            List<User> accounts = new Gson().fromJson(reader, new TypeToken<List<User>>() {}.getType());
+            accounts.forEach(s -> this.accounts.put(s.getUsername(), s));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -152,7 +150,7 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
 
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             Writer writer = Files.newBufferedWriter(this.path, StandardCharsets.UTF_8);
-            gson.toJson(this.users.values(), writer);
+            gson.toJson(this.accounts.values(), writer);
             writer.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -171,15 +169,15 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
   
     @Override
     public User getUser(String username) {
-        return this.users.get(username);
+        return this.accounts.get(username);
     }
 
     // This will be overridden as a part of the signup DAI
     public void addUser(User user) {
-        this.users.put(user.getUsername(), user);
+        this.accounts.put(user.getUsername(), user);
     }
 
-    public void updateUsers() {
+    public void updateaccounts() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/resources.json", StandardCharsets.UTF_8))) {
             gson.toJson(accounts, USER_MAP_TYPE, writer);
         } catch (IOException e) {
