@@ -177,11 +177,13 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
         this.accounts.put(user.getUsername(), user);
     }
 
-    public void updateaccounts() {
+    public void updateUsers() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/resources.json", StandardCharsets.UTF_8))) {
             gson.toJson(accounts, USER_MAP_TYPE, writer);
         } catch (IOException e) {
             throw new RuntimeException("Error writing JSON file", e);
         }
     }
+
+
 }

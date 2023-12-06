@@ -52,7 +52,7 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
         
         
 
-        JLabel username = new JLabel(followViewModel.getState().getUserBeingFollowed()); //this should be gotten from viewUserViewModel
+        JLabel username = new JLabel(viewUserViewModel.getState().getUsername()); //this should be gotten from viewUserViewModel
         panely.add(username);
         System.out.println(viewUserViewModel.getState().getUsername());
 

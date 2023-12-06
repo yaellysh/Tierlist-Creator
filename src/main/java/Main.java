@@ -45,11 +45,11 @@ public class Main {
 
         FileUserDataAccessObject userDataAccessObject = new FileUserDataAccessObject();
 
-        //FollowView followView = FollowFactory.create(viewManagerModel, followViewModel, viewUserViewModel, userDataAccessObject, userDataAccessObject);
-        //views.add(followView, followView.viewName);
+        FollowView followView = FollowFactory.create(viewManagerModel, followViewModel, viewUserViewModel, userDataAccessObject, userDataAccessObject);
+        views.add(followView, followView.viewName);
 
         SearchView searchView = SearchFactory.create(viewManagerModel, searchViewModel, viewUserViewModel, followViewModel, userDataAccessObject, userDataAccessObject);
-        views.add(searchView);
+        views.add(searchView, searchView.viewName);
 
         //application.add(followView);
         //System.out.println(followView.viewName);
