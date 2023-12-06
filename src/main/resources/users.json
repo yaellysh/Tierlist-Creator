@@ -40,5 +40,12 @@
         }
       }
     }
+  },
+  {
+    "username": "jillibean",
+    "password": "potato",
+    "tierLists": {},
+    "following": [],
+    "followers": []
   }
 ]

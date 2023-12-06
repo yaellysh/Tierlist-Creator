@@ -4,10 +4,10 @@ import entity.User;
 import interface_adapter.menu.MenuViewModel;
 
 public class SignupInteractor implements SignupInputBoundary {
-    final SignupUserDataAccessInterface userDataAccessObject;
+    final SignupDataAccessInterface userDataAccessObject;
     final SignupOutputBoundary userPresenter;
 
-    public SignupInteractor(SignupUserDataAccessInterface signupDataAccessInterface,
+    public SignupInteractor(SignupDataAccessInterface signupDataAccessInterface,
                             SignupOutputBoundary signupOutputBoundary) {
         this.userDataAccessObject = signupDataAccessInterface;
         this.userPresenter = signupOutputBoundary;
@@ -22,7 +22,7 @@ public class SignupInteractor implements SignupInputBoundary {
         } else {
 
             User user = new User(signupInputData.getUsername(), signupInputData.getPassword());
-            userDataAccessObject.save(user);
+            userDataAccessObject.addUser(user);
 
             SignupOutputData signupOutputData = new SignupOutputData(user.getUsername(), false);
             userPresenter.prepareSuccessView(signupOutputData);
