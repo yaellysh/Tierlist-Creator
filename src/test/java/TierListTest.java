@@ -1,5 +1,7 @@
+import data_access.ChatGPTDataAccessObject;
 import data_access.FileUserDataAccessObject;
 import def.DefaultCustomTierListOutputBoundary;
+import def.DefaultRandomTierListOutputBoundary;
 import def.DefaultSignupOutputBoundary;
 import def.DefaultTierListOutputBoundary;
 import entity.Tier;
@@ -8,6 +10,7 @@ import entity.User;
 import org.junit.Test;
 import use_case.custom_tierlist.CustomTierListInputData;
 import use_case.custom_tierlist.CustomTierListInteractor;
+import use_case.random_tierlist.RandomTierListInteractor;
 import use_case.signup.SignupInputData;
 import use_case.signup.SignupInteractor;
 import use_case.tierlist.TierListDataAccessInterface;
@@ -56,7 +59,10 @@ public class TierListTest {
 
     @Test
     public void testRandomTierList() {
-
+        FileUserDataAccessObject object = instantiate();
+        ChatGPTDataAccessObject gptObject = new ChatGPTDataAccessObject();
+        RandomTierListInteractor randomTierListInteractor = new RandomTierListInteractor(gptObject, object, new DefaultRandomTierListOutputBoundary());
+        
     }
 
     // TODO add test case for home button once implemented
