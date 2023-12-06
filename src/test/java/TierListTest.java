@@ -28,7 +28,7 @@ import static org.junit.Assert.assertNotNull;
 
 public class TierListTest {
 
-    public FileUserDataAccessObject instantiate() {
+    public static FileUserDataAccessObject instantiate() {
         FileUserDataAccessObject object = new FileUserDataAccessObject("src/test/resources/users.json");
         SignupInteractor signupInteractor = new SignupInteractor(object, new DefaultSignupOutputBoundary());
         signupInteractor.execute(new SignupInputData("Yael", "potatoes", "potatoes"));
