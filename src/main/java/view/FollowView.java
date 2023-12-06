@@ -79,7 +79,9 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
         mutual3 = new JButton();
         mutualButtonList.add(mutual1);
         mutualButtonList.add(mutual2);
-        mutualButtonList.add(mutual3);     
+        mutualButtonList.add(mutual3);
+        
+    
         
         panely.add(follow);
 
@@ -145,6 +147,14 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
         if (statey.getUsername() != "") {
             JLabel username = new JLabel(viewUserViewModel.getState().getUsername()); //this should be gotten from viewUserViewModel
             panely.add(username);
+            // make the view display following and followers
+        }
+
+        if (!statey.getTierLists().isEmpty()) {
+            for (String tl: statey.getTierLists()) {
+                //make a button that has text as name of tierlist, and add an actionlister for every button
+                //such that when the button is clicked, it goes to view the tl.
+            }
         }
 
         FollowState state = (FollowState) evt.getNewValue();
