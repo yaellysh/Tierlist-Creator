@@ -10,7 +10,6 @@ public class TierList {
 
     private final String name;
     private final Map<String, Item> items;
-    private List<User> likes;
 
     public TierList(String name, List<Item> items) {
         this.name = name;
@@ -20,10 +19,6 @@ public class TierList {
     public Item getItem(String name) {
         return this.items.get(name);
     }
-  
-    public List<Item> getItems() {
-        return items.values().stream().toList();
-    }
 
     public Map<String, Tier> getTierList() {
         return this.items.values().stream().collect(Collectors.toMap(Item::getName, Item::getTier));
@@ -32,13 +27,10 @@ public class TierList {
     public String getName() {
         return this.name;
     }
-  
-    public List<User> getLikes(){
-        return this.likes;
-    }
 
     @Override
     public String toString() {
         return String.join(",", this.items.keySet());
     }
+
 }

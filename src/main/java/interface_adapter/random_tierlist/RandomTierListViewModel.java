@@ -18,7 +18,7 @@ public class RandomTierListViewModel extends ViewModel {
     public static final String SUBMIT_BUTTON = "Submit";
     public static final String BACK_BUTTON = "Back";
 
-    public RandomTierListState state = new RandomTierListState();
+    public RandomTierListState state;
 
     public RandomTierListViewModel(String name) {
         super(name);

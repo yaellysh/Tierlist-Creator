@@ -17,6 +17,7 @@ public class CustomTierListFactory {
     private CustomTierListFactory() {}
     public static CustomTierListView create(ViewManagerModel viewManagerModel, CustomTierListViewModel customTierListViewModel, TierListViewModel tierListViewModel, TierListView tierListView, SelectorViewModel selectorViewModel, TierListDataAccessInterface dataAccessObject){
         CustomTierListController customTierListController = createCustomUseCase(viewManagerModel, customTierListViewModel, tierListViewModel, selectorViewModel, dataAccessObject);
+        customTierListViewModel.setState(new CustomTierListState(dataAccessObject.getUser("Yael"))); // TODO: unhardcode this
         return new CustomTierListView(customTierListController, customTierListViewModel, tierListView);
     }
 

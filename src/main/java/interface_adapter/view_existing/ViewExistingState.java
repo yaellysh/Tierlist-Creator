@@ -6,15 +6,10 @@ public class ViewExistingState {
     public User user;
     public String title;
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
+    public ViewExistingState(User user, String title) {
+        this.user = user;
         this.title = title;
     }
-
-    public ViewExistingState() {}
 
     public User getUser() {
         return user;

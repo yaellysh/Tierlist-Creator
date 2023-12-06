@@ -11,7 +11,8 @@ public class CustomTierListState {
     public Map<Integer, String> items;
     public String error = null;
 
-    public CustomTierListState() {
+    public CustomTierListState(User user) {
+        this.user = user;
         this.items = new HashMap<>();
     }
 

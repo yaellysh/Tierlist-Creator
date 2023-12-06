@@ -14,7 +14,7 @@ public class CustomTierListViewModel extends ViewModel {
     public static final Font TEXT_FONT = new Font("Arial", Font.PLAIN, 15);
     public static final String SUBMIT_BUTTON = "Submit";
     public static final String BACK_BUTTON = "Back";
-    public CustomTierListState state = new CustomTierListState();
+    public CustomTierListState state;
 
     public CustomTierListState getState() {
         return state;

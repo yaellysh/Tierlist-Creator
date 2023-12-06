@@ -13,7 +13,7 @@ public class InputPanel extends JPanel {
 
         textField.setFont(SelectorViewModel.BUTTON_FONT);
         textField.setPreferredSize(new Dimension(200, 25));
-        this.setMaximumSize(new Dimension(600, 25));
+        this.setMaximumSize(new Dimension(300, 25));
         this.add(textField);
     }
 

@@ -5,7 +5,9 @@ import entity.User;
 public class SelectorState {
     private User user;
 
-    public SelectorState() {}
+    public SelectorState(User user) {
+        this.user = user;
+    }
     
     public User getUser() {
         return user;

@@ -1,5 +1,7 @@
 package use_case.random_tierlist;
 
+import data_access.ChatGPTDataAccessObject;
+import data_access.FileUserDataAccessObject;
 import entity.Item;
 import entity.TierList;
 import entity.User;
@@ -19,6 +21,29 @@ public class RandomTierListInteractor implements RandomTierListInputBoundary {
         this.randomTierListDataAccessInterface = dataAccessInterface;
         this.generateTierListDataAccessInterface = dataAccessInterface1;
         this.outputBoundary = outputBoundary;
+    }
+
+    public static void main(String[] args) {
+        RandomTierListInteractor interactor = new RandomTierListInteractor(new ChatGPTDataAccessObject(),
+                new FileUserDataAccessObject("src/main/resources/users.json"),
+                new RandomTierListOutputBoundary() {
+                    @Override
+                    public void prepareSuccessView(RandomTierListOutputData data) {
+
+                    }
+
+                    @Override
+                    public void prepareFailView(String error) {
+
+                    }
+
+                    @Override
+                    public void prepareBackView() {
+
+                    }
+                });
+        interactor.execute(new RandomTierListInputData("Generate a list of 9 popular movies",
+                new User("Yael")));
     }
 
     @Override

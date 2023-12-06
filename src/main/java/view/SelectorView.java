@@ -30,26 +30,6 @@ public class SelectorView extends JPanel implements ActionListener, PropertyChan
         this.add(selectorTitleLabel);
         selectorTitleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        JLabel searchInstructions = new JLabel();
-        searchInstructions.setText("<html>" + SelectorViewModel.SEARCH_INSTRUCTIONS + "</html>");
-        searchInstructions.setFont(SelectorViewModel.TEXT_FONT);
-        searchInstructions.setAlignmentX(Component.CENTER_ALIGNMENT);
-        searchInstructions.setBorder(BorderFactory.createEmptyBorder(5, 20, 0, 20));
-        this.add(searchInstructions);
-
-        ButtonPanel searchButtonPanel = new ButtonPanel(SelectorViewModel.SEARCH_BUTTON);
-        this.add(searchButtonPanel);
-        searchButtonPanel.getButton().addActionListener(e -> {
-            if (e.getSource().equals(searchButtonPanel.getButton())) {
-                SelectorState state = selectorViewModel.getState();
-
-                selectorController.execute(
-                        searchButtonPanel.getButton().getText(),
-                        state.getUser());
-            }
-        });
-        this.add(new JSeparator());
-
         JLabel instructions1 = new JLabel();
         instructions1.setText("<html>" + SelectorViewModel.INSTRUCTIONS1 + "</html>");
         instructions1.setFont(SelectorViewModel.TEXT_FONT);
@@ -57,7 +37,7 @@ public class SelectorView extends JPanel implements ActionListener, PropertyChan
         instructions1.setBorder(BorderFactory.createEmptyBorder(5, 20, 0, 20));
         this.add(instructions1);
 
-        ButtonPanel viewButtonPanel = new ButtonPanel(SelectorViewModel.BUTTONS.get(0));
+        ButtonPanel viewButtonPanel = new ButtonPanel(SelectorViewModel.BUTTONS.get(0), SelectorViewModel.COLORS.get(0));
         this.add(viewButtonPanel);
         viewButtonPanel.getButton().addActionListener(e -> {
             if (e.getSource().equals(viewButtonPanel.getButton())) {
@@ -75,12 +55,12 @@ public class SelectorView extends JPanel implements ActionListener, PropertyChan
         instructions2.setText("<html>" + SelectorViewModel.INSTRUCTIONS2 + "</html>");
         instructions2.setFont(SelectorViewModel.TEXT_FONT);
         instructions2.setAlignmentX(Component.CENTER_ALIGNMENT);
-        instructions2.setBorder(BorderFactory.createEmptyBorder(0, 20, 20, 20));
+        instructions2.setBorder(BorderFactory.createEmptyBorder(0, 20, 40, 20));
         this.add(instructions2);
 
         for (int i = 1; i < 3; i++) {
 
-            ButtonPanel buttonPanel = new ButtonPanel(SelectorViewModel.BUTTONS.get(i));
+            ButtonPanel buttonPanel = new ButtonPanel(SelectorViewModel.BUTTONS.get(i), SelectorViewModel.COLORS.get(i));
             this.add(buttonPanel);
 
             buttonPanel.getButton().addActionListener(e -> {
