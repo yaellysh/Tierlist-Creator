@@ -33,14 +33,14 @@ public class SearchFactory {
 
     public static SearchView create(ViewManagerModel viewManagerModel, SearchViewModel searchViewModel, ViewUserViewModel viewUserViewModel, FollowViewModel followViewModel, SearchUserDataAccessInterface userDataAccessObject, ViewUserDataAccessInterface viewUserDAO) {
 
-        SearchController SearchController = createSearchUseCase(viewManagerModel, searchViewModel, userDataAccessObject);
+        SearchController SearchController = createSearchUseCase(viewManagerModel, searchViewModel, viewUserViewModel, userDataAccessObject);
         ViewUserController viewUserController = createViewUserUseCase(viewManagerModel, viewUserViewModel, followViewModel, viewUserDAO);
         //SearchViewModel.setState(new SearchState());
         return new SearchView(SearchController, searchViewModel, viewUserController, viewUserViewModel);
     }
     
-    private static SearchController createSearchUseCase(ViewManagerModel viewManagerModel, SearchViewModel searchViewModel, SearchUserDataAccessInterface userDataAccessObject) {
-        SearchOutputBoundary SearchOutputBoundary = new SearchPresenter(viewManagerModel, searchViewModel);
+    private static SearchController createSearchUseCase(ViewManagerModel viewManagerModel, SearchViewModel searchViewModel, ViewUserViewModel viewUserViewModel, SearchUserDataAccessInterface userDataAccessObject) {
+        SearchOutputBoundary SearchOutputBoundary = new SearchPresenter(viewManagerModel, searchViewModel, viewUserViewModel);
         SearchInteractor SearchInteractor = new SearchInteractor(userDataAccessObject, SearchOutputBoundary);
         return new SearchController(SearchInteractor);
     }

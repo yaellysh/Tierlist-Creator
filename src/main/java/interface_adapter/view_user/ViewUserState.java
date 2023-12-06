@@ -6,7 +6,7 @@ public class ViewUserState {
     private List<String> tierLists;
     private int numFollowing;
     private int numFollowers;
-    private String username;
+    private String username = "";
 
     public ViewUserState(List<String> tierLists, int numFollowing, int numFollowers, String username) {
         this.tierLists = tierLists;

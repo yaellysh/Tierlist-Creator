@@ -31,6 +31,7 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
     final JButton mutual2;
     final JButton mutual3;
     ArrayList<JButton> mutualButtonList = new ArrayList<JButton>();
+    JPanel panely = new JPanel();
     
     JPanel mutuals = new JPanel();
     BoxLayout boxLayoutM;
@@ -47,13 +48,10 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
         BoxLayout boxLayout = new BoxLayout(this, BoxLayout.Y_AXIS);
         boxLayoutM = new BoxLayout(mutuals, BoxLayout.Y_AXIS);
         this.setLayout(boxLayout);
-        JPanel panely = new JPanel();
+
         this.add(panely);
         
         
-
-        JLabel username = new JLabel(viewUserViewModel.getState().getUsername()); //this should be gotten from viewUserViewModel
-        panely.add(username);
         System.out.println(viewUserViewModel.getState().getUsername());
 
 
@@ -142,6 +140,13 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
+        ViewUserState statey = viewUserViewModel.getState();
+        System.out.println(statey.getUsername() +"lasjdas");
+        if (statey.getUsername() != "") {
+            JLabel username = new JLabel(viewUserViewModel.getState().getUsername()); //this should be gotten from viewUserViewModel
+            panely.add(username);
+        }
+
         FollowState state = (FollowState) evt.getNewValue();
         if (state.getIsFollowing() == true){
             follow.setText(followViewModel.FOLLOWING_BUTTON_LABEL);
@@ -157,6 +162,16 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
                 tempy.add(mutualButtonList.get(i));
                 JLabel count = new JLabel("You have " + Integer.toString(counts.get(i)) + " mutuals with this user.");
                 tempy.add(count);
+                int placeholder = i;
+                mutualButtonList.get(i).addActionListener(                
+                    new ActionListener() {
+                        public void actionPerformed(ActionEvent evt) {
+                            if (evt.getSource().equals(mutualButtonList.get(placeholder))) {
+                            System.out.println("clicked");
+                        
+                        }
+                    }
+                });
             }
         }
         else {

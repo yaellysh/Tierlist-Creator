@@ -29,7 +29,8 @@ public class ViewUserPresenter implements ViewUserOutputBoundary {
         viewUserState.setUsername(output.getUsername());
 
         this.viewUserViewModel.setState(viewUserState);
-        viewUserViewModel.firePropertyChanged();
+        //viewUserViewModel.firePropertyChanged();
+        followViewModel.firePropertyChanged();
         // followViewModel.firePropertyChanged();
 
         viewManagerModel.setActiveView(viewUserViewModel.getViewName());
