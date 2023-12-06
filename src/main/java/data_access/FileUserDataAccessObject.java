@@ -185,5 +185,4 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
             throw new RuntimeException("Error writing JSON file", e);
         }
     }
-
 }
