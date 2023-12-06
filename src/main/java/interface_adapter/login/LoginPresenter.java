@@ -2,7 +2,6 @@ package interface_adapter.login;
 
 import entity.User;
 import interface_adapter.ViewManagerModel;
-import interface_adapter.logged_in.LoggedInViewModel;
 import interface_adapter.menu.MenuViewModel;
 import interface_adapter.selector.SelectorState;
 import interface_adapter.selector.SelectorViewModel;
@@ -12,15 +11,12 @@ import use_case.login.LoginOutputData;
 public class LoginPresenter implements LoginOutputBoundary {
 
     private final LoginViewModel loginViewModel;
-    private final LoggedInViewModel loggedInViewModel;
     private final SelectorViewModel selectorViewModel;
     private ViewManagerModel viewManagerModel;
 
     public LoginPresenter(ViewManagerModel viewManagerModel,
-                          LoggedInViewModel loggedInViewModel,
                           LoginViewModel loginViewModel, SelectorViewModel selectorViewModel) {
         this.viewManagerModel = viewManagerModel;
-        this.loggedInViewModel = loggedInViewModel;
         this.loginViewModel = loginViewModel;
         this.selectorViewModel = selectorViewModel;
     }

@@ -68,7 +68,6 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
             public void actionPerformed(ActionEvent evt) {
                 if (evt.getSource().equals(follow)) {
                     FollowState currentState = followViewModel.getState();
-                    System.out.println("working");
                     if (!currentState.getIsFollowing()) {
                         followController.execute(currentState.getFollower(), currentState.getUserBeingFollowed(), false);
                     }

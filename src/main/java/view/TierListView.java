@@ -106,7 +106,6 @@ public class TierListView extends JPanel implements ActionListener, PropertyChan
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        System.out.println("running?");
         this.removeAll();
         this.repaint();
 
