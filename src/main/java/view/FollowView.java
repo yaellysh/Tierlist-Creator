@@ -38,10 +38,11 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
 
     private JLabel followerCount  = new JLabel();
     private JLabel followingCount= new JLabel();
+    private boolean tierlistsDisplayed = false;
+    private boolean usernameDisplayed = false;
 
 
-
-    final
+    private boolean mutualsDisplayed = false;
     ArrayList<JButton> mutualButtonList = new ArrayList<JButton>();
     JPanel panely = new JPanel();
     
@@ -120,6 +121,7 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
             public void actionPerformed(ActionEvent evt) {
                 if (evt.getSource().equals(follow)) {
                     FollowState currentState = followViewModel.getState();
+                    System.out.println(viewUserViewModel.getState().getNumFollowers() + "before execute call");
                     System.out.println("working");
                     if (!currentState.getIsFollowing()) {
                         followController.execute(currentState.getFollower(), currentState.getUserBeingFollowed(), false);
@@ -127,42 +129,12 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
                     else {
                         followController.execute(currentState.getFollower(), currentState.getUserBeingFollowed(), true);
                     }
+
                     
                 }
             }
         });
 
-        mutual1.addActionListener(                
-        new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                if (evt.getSource().equals(mutual1)) {
-                    System.out.println("User A");
-                    ViewUserState currentState = viewUserViewModel.getState();
-                    viewUserController.execute(mutual1.getText());
-                    System.out.println(viewUserViewModel.getState().getUsername());
-                    JLabel newy = new JLabel(viewUserViewModel.getState().getUsername());
-                    
-                }
-            }
-        });
-
-        mutual2.addActionListener(                
-        new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                if (evt.getSource().equals(mutual2)) {
-                    System.out.println("User B");
-                }
-            }
-        });
-
-        mutual3.addActionListener(                
-        new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                if (evt.getSource().equals(mutual3)) {
-                    System.out.println("User C");
-                }
-            }
-        });
     }
 
     @Override
@@ -172,9 +144,13 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
+        System.out.println(evt.getSource());
+
+        System.out.println("propertychanged");
         ViewUserState viewUserState = viewUserViewModel.getState();
-        System.out.println(viewUserState.getUsername() +"lasjdas");
-        if (viewUserState.getUsername() != "" && username.getText().length()==0) {
+        System.out.println(viewUserState.getUsername());
+        if (viewUserState.getUsername() != "" || (evt.getSource().equals(mutual1) || evt.getSource().equals(mutual2) || evt.getSource().equals(mutual3))) {
+            usernameDisplayed = true;
             username.setText(viewUserViewModel.getState().getUsername());
             panely.add(username);
             followingCount.setText(Integer.toString(viewUserViewModel.getState().getNumFollowing()));
@@ -182,17 +158,37 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
 
         }
 
-        if (!viewUserState.getTierLists().isEmpty()) {
+        System.out.println(viewUserState.getTierLists());
+
+        if (!viewUserState.getTierLists().isEmpty()&&!tierlistsDisplayed) {
+            JLabel tlTitle = new JLabel(viewUserViewModel.TIERLIST_LABEL);
+            this.add(tlTitle);
+            tierlistsDisplayed = true;
             for (String tl: viewUserState.getTierLists()) {
+                System.out.println(tl);
                 //make a button that has text as name of tierlist, and add an actionlister for every button
                 JButton tierListButton = new JButton();
                 tierListButton.setText(tl);
                 //such that when the button is clicked, it goes to view the tl.
+                tierListButton.addActionListener(                
+                    new ActionListener() {
+                        public void actionPerformed(ActionEvent evt) {
+                            if (evt.getSource().equals(tierListButton)) {
+                            //Change to tierlist view
+                        
+                        }
+                    }
+                });
+                this.add(tierListButton);
             }
         }
 
+
         FollowState followState = (FollowState) evt.getNewValue();
-        if (followState.getIsFollowing()){
+        if (followState.getIsFollowing() && !mutualsDisplayed){
+            mutualsDisplayed = true;
+            followerCount.setText(Integer.toString(viewUserViewModel.getState().getNumFollowers()));
+            System.out.println(Integer.toString(viewUserViewModel.getState().getNumFollowers()));
             follow.setText(followViewModel.FOLLOWING_BUTTON_LABEL);
             mutuals = new JPanel();
             this.add(mutuals);
@@ -206,22 +202,51 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
                 tempy.add(mutualButtonList.get(i));
                 JLabel count = new JLabel("You have " + Integer.toString(counts.get(i)) + " mutuals with this user.");
                 tempy.add(count);
-                int placeholder = i;
-                mutualButtonList.get(i).addActionListener(                
+                if (i == 0) {
+                    mutual1.addActionListener(                
                     new ActionListener() {
                         public void actionPerformed(ActionEvent evt) {
-                            if (evt.getSource().equals(mutualButtonList.get(placeholder))) {
-                            System.out.println("clicked");
-                        
+                            if (evt.getSource().equals(mutual1)) {
+                                usernameDisplayed = false;
+                                viewUserController.execute(mutual1.getText());
+                            }
                         }
-                    }
-                });
+                    });
+                }
+                if (i == 1) {
+                    mutual2.addActionListener(                
+                    new ActionListener() {
+                        public void actionPerformed(ActionEvent evt) {
+                            if (evt.getSource().equals(mutual2)) {
+                                usernameDisplayed = false;
+                                viewUserController.execute(mutual1.getText());
+                            }
+                        }
+                    });
+                }
+                if (i == 2) {
+                    mutual3.addActionListener(                
+                    new ActionListener() {
+                        public void actionPerformed(ActionEvent evt) {
+                            if (evt.getSource().equals(mutual3)) {
+                                usernameDisplayed = false;
+                                viewUserController.execute(mutual1.getText());
+                            }
+                        }
+                    });
+                }
             }
         }
-        else {
+        else if (mutualsDisplayed ) {
             follow.setText(followViewModel.FOLLOW_BUTTON_LABEL);
+            followerCount.setText(Integer.toString(viewUserViewModel.getState().getNumFollowers()));
+            mutualsDisplayed = false;
+        
             this.remove(mutuals);
         }
+
+        
+
         
     }
 
