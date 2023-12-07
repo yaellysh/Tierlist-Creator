@@ -3,7 +3,6 @@ package factory;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.custom_tierlist.CustomTierListController;
 import interface_adapter.custom_tierlist.CustomTierListPresenter;
-import interface_adapter.custom_tierlist.CustomTierListState;
 import interface_adapter.custom_tierlist.CustomTierListViewModel;
 import interface_adapter.selector.SelectorViewModel;
 import interface_adapter.tierlist.TierListViewModel;

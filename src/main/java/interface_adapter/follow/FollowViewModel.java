@@ -5,8 +5,6 @@ import interface_adapter.ViewModel;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-import javax.swing.Icon;
-
 public class FollowViewModel extends ViewModel {
 
     public final String FOLLOW_BUTTON_LABEL = "Follow";

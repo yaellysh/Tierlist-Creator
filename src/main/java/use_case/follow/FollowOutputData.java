@@ -1,10 +1,6 @@
 package use_case.follow;
 
-import entity.User;
-
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class FollowOutputData {
 

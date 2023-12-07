@@ -1,5 +1,4 @@
 package use_case.follow;
-import entity.User;
 
 public class FollowInputData {
     final private boolean follow;

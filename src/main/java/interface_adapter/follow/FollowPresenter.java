@@ -1,14 +1,9 @@
 package interface_adapter.follow;
 
-import data_access.FileUserDataAccessObject;
-import factory.FollowFactory;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.view_user.ViewUserViewModel;
 import use_case.follow.FollowOutputBoundary;
 import use_case.follow.FollowOutputData;
-import use_case.view_user.ViewUserOutputBoundary;
-import use_case.view_user.ViewUserOutputData;
-import view.FollowView;
 
 public class FollowPresenter implements FollowOutputBoundary{
 

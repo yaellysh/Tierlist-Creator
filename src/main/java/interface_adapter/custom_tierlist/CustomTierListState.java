@@ -43,7 +43,7 @@ public class CustomTierListState {
         return items.values().toArray(new String[0]);
     }
 
-    public void addItem(String item, Integer i) {
+    public void addItem(String item, int i) {
         this.items.put(i, item);
     }
 

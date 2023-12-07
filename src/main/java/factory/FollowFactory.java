@@ -2,27 +2,18 @@ package factory;
 
 import interface_adapter.ViewManagerModel;
 import interface_adapter.follow.FollowController;
-import interface_adapter.follow.FollowState;
-import interface_adapter.follow.FollowViewModel;
 import interface_adapter.follow.FollowPresenter;
-import interface_adapter.tierlist.TierListController;
-import interface_adapter.tierlist.TierListPresenter;
-import interface_adapter.tierlist.TierListState;
-import interface_adapter.tierlist.TierListViewModel;
+import interface_adapter.follow.FollowViewModel;
 import interface_adapter.view_user.ViewUserController;
 import interface_adapter.view_user.ViewUserPresenter;
 import interface_adapter.view_user.ViewUserViewModel;
 import use_case.follow.FollowInteractor;
 import use_case.follow.FollowOutputBoundary;
 import use_case.follow.FollowUserDataAccessInterface;
-import use_case.tierlist.TierListDataAccessInterface;
-import use_case.tierlist.TierListInteractor;
-import use_case.tierlist.TierListOutputBoundary;
 import use_case.view_user.ViewUserDataAccessInterface;
 import use_case.view_user.ViewUserInteractor;
 import use_case.view_user.ViewUserOutputBoundary;
 import view.FollowView;
-import view.TierListView;
 
 public class FollowFactory {
 

@@ -3,7 +3,6 @@ package factory;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.random_tierlist.RandomTierListController;
 import interface_adapter.random_tierlist.RandomTierListPresenter;
-import interface_adapter.random_tierlist.RandomTierListState;
 import interface_adapter.random_tierlist.RandomTierListViewModel;
 import interface_adapter.selector.SelectorViewModel;
 import interface_adapter.tierlist.TierListViewModel;

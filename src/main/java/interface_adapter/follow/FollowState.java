@@ -1,9 +1,10 @@
 package interface_adapter.follow;
 
+import entity.User;
+
 import java.util.HashMap;
 import java.util.List;
 
-import entity.User;
 
 public class FollowState {
     private HashMap<String, Integer> relatedUsers;
@@ -11,7 +12,6 @@ public class FollowState {
     private User userBeingFollowed;
     private boolean isFollowing;
     private List<String> tierLists;
-
 
     //maybe temp
     public FollowState(String follower, User userBeingFollowed, boolean isFollowing, List<String> tierLists) {
