@@ -3,7 +3,7 @@ package interface_adapter.view_user;
 import java.util.List;
 
 public class ViewUserState {
-    private List<String> tierLists;
+    private List<String> tierLists = null;
     private int numFollowing = 0;
     private int numFollowers = 0;
     private String username = "";
