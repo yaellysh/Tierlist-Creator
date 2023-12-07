@@ -126,7 +126,7 @@ public class FollowInteractor implements FollowInputBoundary {
             // end of finding related users
             System.out.println(newFollowerCount + "before builder call");
             FollowOutputData followOutputData = new FollowOutputData.FollowOutputBuilder(newFollowerCount, true)
-                    .buildRelatedUsers(tempy).build();
+                    .build();
             //System.out.println(tempy);
             follower.addFollowing(userBeingFollowedName);
             userBeingFollowed.addFollowers(followerName);
