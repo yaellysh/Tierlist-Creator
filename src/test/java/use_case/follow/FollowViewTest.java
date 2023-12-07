@@ -9,6 +9,7 @@ import interface_adapter.ViewManagerModel;
 import interface_adapter.follow.FollowState;
 import interface_adapter.follow.FollowViewModel;
 import interface_adapter.search_user.SearchViewModel;
+import interface_adapter.tierlist.TierListViewModel;
 import interface_adapter.view_user.ViewUserViewModel;
 import org.junit.Before;
 import org.junit.Test;
@@ -103,13 +104,14 @@ public class FollowViewTest {
         FollowViewModel followViewModel = new FollowViewModel("View User");
         ViewUserViewModel viewUserViewModel = new ViewUserViewModel("View User");
         SearchViewModel searchViewModel = new SearchViewModel("Search User");
+        TierListViewModel tierListViewModel = new TierListViewModel("Tier List");
 
 //        FollowState testing = new FollowState("terryfufu", "lt_rui", false);
 //        followViewModel.setState(testing);
 
         FileUserDataAccessObject userDataAccessObject = new FileUserDataAccessObject("src/test/resources/users.json");
 
-        FollowView followView = FollowFactory.create(viewManagerModel, followViewModel, viewUserViewModel, userDataAccessObject, userDataAccessObject);
+        FollowView followView = FollowFactory.create(viewManagerModel, followViewModel, viewUserViewModel, userDataAccessObject, userDataAccessObject, tierListViewModel);
         views.add(followView, followView.viewName);
 
         SearchView searchView = SearchFactory.create(viewManagerModel, searchViewModel, viewUserViewModel, followViewModel, userDataAccessObject, userDataAccessObject);

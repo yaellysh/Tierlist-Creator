@@ -10,6 +10,7 @@ public class FollowState {
     private HashMap<String, Integer> relatedUsers;
     private User follower;
     private User userBeingFollowed;
+
     private boolean isFollowing;
     private List<String> tierLists;
 
