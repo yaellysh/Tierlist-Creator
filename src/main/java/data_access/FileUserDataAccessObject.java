@@ -9,7 +9,6 @@ import use_case.login.LoginDataAccessInterface;
 import use_case.search_user.SearchUserDataAccessInterface;
 import use_case.signup.SignupDataAccessInterface;
 import use_case.tierlist.TierListDataAccessInterface;
-import use_case.view_user.ViewUserDataAccessInterface;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -22,7 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class FileUserDataAccessObject implements SignupDataAccessInterface, LoginDataAccessInterface, TierListDataAccessInterface, ViewUserDataAccessInterface, SearchUserDataAccessInterface, FollowDataAccessInterface {
+public class FileUserDataAccessObject implements SignupDataAccessInterface, LoginDataAccessInterface, TierListDataAccessInterface, SearchUserDataAccessInterface, FollowDataAccessInterface {
     private final Path path;
     private final Map<String, User> users;
 
