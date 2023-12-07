@@ -1,5 +1,50 @@
 [
   {
+    "username": "Test",
+    "password": "Password",
+    "tierLists": {
+      "actresses": {
+        "name": "Test",
+        "items": {
+          "Item 1": {
+            "name": "Item 1",
+            "tier": "S"
+          },
+          "Item 2": {
+            "name": "Item 2",
+            "tier": "S"
+          },
+          "Item 3": {
+            "name": "Item 2",
+            "tier": "S"
+          },
+          "Item 4": {
+            "name": "Item 2",
+            "tier": "S"
+          },
+          "Item 5": {
+            "name": "Item 2",
+            "tier": "S"
+          },
+          "Item 6": {
+            "name": "Item 2",
+            "tier": "S"
+          },
+          "Item 7": {
+            "name": "Item 2",
+            "tier": "S"
+          },
+          "Item 8": {
+            "name": "Item 2",
+            "tier": "S"
+          }
+        }
+      }
+    },
+    "following": [],
+    "followers": []
+  },
+  {
     "username": "yael",
     "password": "password",
     "tierLists": {
@@ -44,51 +89,6 @@
     "following": [],
     "followers": []
   },
-  {
-  "username": "Test",
-  "password": "Password",
-  "tierLists": {
-    "actresses": {
-      "name": "Test",
-      "items": {
-        "Item 1": {
-          "name": "Item 1",
-          "tier": "S"
-        },
-        "Item 2": {
-          "name": "Item 2",
-          "tier": "S"
-        },
-        "Item 3": {
-          "name": "Item 2",
-          "tier": "S"
-        },
-        "Item 4": {
-          "name": "Item 2",
-          "tier": "S"
-        },
-        "Item 5": {
-          "name": "Item 2",
-          "tier": "S"
-        },
-        "Item 6": {
-          "name": "Item 2",
-          "tier": "S"
-        },
-        "Item 7": {
-          "name": "Item 2",
-          "tier": "S"
-        },
-        "Item 8": {
-          "name": "Item 2",
-          "tier": "S"
-        }
-      }
-    }
-  },
-  "following": [],
-  "followers": []
-},
   {
     "username": "a\b",
     "password": "a",

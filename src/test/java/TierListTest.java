@@ -189,6 +189,10 @@ public class TierListTest {
                 if (component instanceof ViewExistingView) {
                     return component;
                 }
+            } else if (Objects.equals(viewName, "random")) {
+                if (component instanceof RandomTierListView) {
+                    return component;
+                }
             }
         }
         return null;
@@ -280,7 +284,7 @@ public class TierListTest {
     }
 
     @Test
-    public void checkViewExistingTierlists() throws InterruptedException {
+    public void checkViewExistingTierList() throws InterruptedException {
         ViewExistingView viewExistingView = (ViewExistingView) getView("view existing");
         viewExistingView.updateScreen();
 
@@ -294,8 +298,34 @@ public class TierListTest {
         submitButton.doClick();
 
         Component currentView = getCurrentView();
+
         assert currentView instanceof TierListView;
     }
+
+    @Test
+    public void checkRandomTierList() throws InterruptedException {
+        RandomTierListView randomTierListView = (RandomTierListView) getView("random");
+
+        JPanel inputPanel = (JPanel) randomTierListView.getComponent(3);
+        JTextField input = (JTextField) inputPanel.getComponent(0);
+
+        JPanel submitButtonPanel = (JPanel) inputPanel.getComponent(1);
+
+        JButton submitButton = (JButton) submitButtonPanel.getComponent(1);
+
+        input.setText("subjects in school");
+
+        RandomTierListState randomTierListState = randomTierListView.randomTierListViewModel.getState();
+        randomTierListState.setPrompt("subjects in school");
+        randomTierListView.randomTierListViewModel.setState(randomTierListState);
+
+        submitButton.doClick();
+
+        Component currentView = getCurrentView();
+
+        assert currentView instanceof TierListView;
+
+     }
 
 //    @Test
 //    public void checkDropDown() throws IOException, InterruptedException {
