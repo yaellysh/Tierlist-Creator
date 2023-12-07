@@ -41,7 +41,11 @@
         }
       }
     },
-    "following": [],
+    "following": [
+      "yael",
+      "yael",
+      "yael"
+    ],
     "followers": []
   },
   {
@@ -162,6 +166,12 @@
     },
     "following": [],
     "followers": [
+      "a",
+      "a",
+      "a",
+      "jillibean",
+      "jillibean",
+      "jillibean",
       "jillibean"
     ]
   },
@@ -289,6 +299,9 @@
       }
     },
     "following": [
+      "yael",
+      "yael",
+      "yael",
       "yael"
     ],
     "followers": []

@@ -166,10 +166,12 @@
     },
     "following": [],
     "followers": [
+      "a",
+      "a",
+      "a",
       "jillibean",
-      "a",
-      "a",
-      "a"
+      "jillibean",
+      "jillibean"
     ]
   },
   {
@@ -296,6 +298,8 @@
       }
     },
     "following": [
+      "yael",
+      "yael",
       "yael"
     ],
     "followers": []

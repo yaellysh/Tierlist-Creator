@@ -25,26 +25,28 @@ public class FollowPresenter implements FollowOutputBoundary{
     @Override
     public void prepareSuccessView(FollowOutputData output) {
 
-        TierListState tierListState = tierListViewModel.getState();
+        if (output.getTierListName() != null) {
+            TierListState tierListState = tierListViewModel.getState();
 //        tierListState.setTierList(output.);
-        tierListState.setUser(followViewModel.getState().getFollower());
-        tierListViewModel.setState(tierListState);
-        tierListViewModel.firePropertyChanged();
+            tierListState.setUser(followViewModel.getState().getFollower());
+            tierListViewModel.setState(tierListState);
+            tierListViewModel.firePropertyChanged();
 
-        viewManagerModel.setActiveView(tierListViewModel.getViewName());
-        viewManagerModel.firePropertyChanged();
+            viewManagerModel.setActiveView(tierListViewModel.getViewName());
+            viewManagerModel.firePropertyChanged();
+        } else {
+            FollowState followState = followViewModel.getState();
+//       followState.setRelatedUsers(output.getRelatedUsers());
+            followState.setIsFollowing(output.getFollow());
+            viewUserViewModel.getState().setNumFollowers(output.getNewFollowers());
 
-        // On success, pop up mutual users.
-//        FollowState followState = followViewModel.getState();
-////        followState.setRelatedUsers(output.getRelatedUsers());
-//        followState.setIsFollowing(output.getFollow());
-//        viewUserViewModel.getState().setNumFollowers(output.getNewFollowers());
-//
-//        this.followViewModel.setState(followState);
-//
-//        followViewModel.firePropertyChanged();
-//        viewManagerModel.setActiveView(followViewModel.getViewName());
-//        viewManagerModel.firePropertyChanged();
+            this.followViewModel.setState(followState);
+
+            followViewModel.firePropertyChanged();
+            viewManagerModel.setActiveView(followViewModel.getViewName());
+            viewManagerModel.firePropertyChanged();
+        }
+
     }
 
 }
