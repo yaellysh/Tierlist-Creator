@@ -26,6 +26,9 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
     private final FollowViewModel followViewModel;
     private final ViewUserViewModel viewUserViewModel;
 
+    private final JLabel followingLabel;
+    private final JLabel followersLabel;
+
     private JButton follow;
     private JButton mutual1;
     private JButton mutual2;
@@ -56,6 +59,21 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
         this.add(username);
         this.add(followingCount);
         this.add(followerCount);
+
+        JPanel followerPanel = new JPanel();
+        followersLabel =  new JLabel(viewUserViewModel.FOLLOWERS_LABEL);
+        followerPanel.add(followersLabel);
+        followerPanel.add(followerCount);
+
+
+        JPanel followingPanel = new JPanel();
+        followingLabel = new JLabel(viewUserViewModel.FOLLOWING_LABEL);
+        followingPanel.add(followingLabel);
+        followingPanel.add(followingCount);
+
+        this.add(followingPanel);
+        this.add(followerPanel);
+
         followViewModel.addPropertyChangeListener(this);
         BoxLayout boxLayout = new BoxLayout(this, BoxLayout.Y_AXIS);
         boxLayoutM = new BoxLayout(mutuals, BoxLayout.Y_AXIS);
@@ -161,14 +179,14 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
             panely.add(username);
             followingCount.setText(Integer.toString(viewUserViewModel.getState().getNumFollowing()));
             followerCount.setText(Integer.toString(viewUserViewModel.getState().getNumFollowers()));
-            panely.add(followingCount);
-            panely.add(followingCount);
 
         }
 
         if (!viewUserState.getTierLists().isEmpty()) {
             for (String tl: viewUserState.getTierLists()) {
                 //make a button that has text as name of tierlist, and add an actionlister for every button
+                JButton tierListButton = new JButton();
+                tierListButton.setText(tl);
                 //such that when the button is clicked, it goes to view the tl.
             }
         }
