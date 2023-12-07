@@ -124,6 +124,7 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
                 public void actionPerformed(ActionEvent evt) {
                     if (evt.getSource().equals(userfound)) {
                        viewUserController.execute(userfound.getText());
+
                     }
                 }
             });

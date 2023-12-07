@@ -4,8 +4,8 @@ import java.util.List;
 
 public class ViewUserState {
     private List<String> tierLists;
-    private int numFollowing;
-    private int numFollowers;
+    private int numFollowing = 0;
+    private int numFollowers = 0;
     private String username = "";
 
     public ViewUserState(List<String> tierLists, int numFollowing, int numFollowers, String username) {
