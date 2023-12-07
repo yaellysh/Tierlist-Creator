@@ -104,8 +104,8 @@ public class FollowViewTest {
         ViewUserViewModel viewUserViewModel = new ViewUserViewModel("View User");
         SearchViewModel searchViewModel = new SearchViewModel("Search User");
 
-        FollowState testing = new FollowState("terryfufu", "lt_rui", false);
-        followViewModel.setState(testing);
+//        FollowState testing = new FollowState("terryfufu", "lt_rui", false);
+//        followViewModel.setState(testing);
 
         FileUserDataAccessObject userDataAccessObject = new FileUserDataAccessObject("src/test/resources/users.json");
 

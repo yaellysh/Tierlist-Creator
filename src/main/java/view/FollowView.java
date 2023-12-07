@@ -22,7 +22,7 @@ import java.util.jar.JarEntry;
 
 public class FollowView extends JPanel implements ActionListener, PropertyChangeListener {
 
-    public final String viewName = "follow User";
+    public final String viewName = "follow user";
     private final FollowViewModel followViewModel;
     private final ViewUserViewModel viewUserViewModel;
 
@@ -122,10 +122,10 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
                 if (evt.getSource().equals(follow)) {
                     FollowState currentState = followViewModel.getState();
                     if (!currentState.getIsFollowing()) {
-                        followController.execute(currentState.getFollower(), currentState.getUserBeingFollowed(), false);
+                        followController.execute(currentState.getFollower(), currentState.getUserBeingFollowed().getUsername(), false);
                     }
                     else {
-                        followController.execute(currentState.getFollower(), currentState.getUserBeingFollowed(), true);
+                        followController.execute(currentState.getFollower(), currentState.getUserBeingFollowed().getUsername(), true);
                     }
 
                     
@@ -190,16 +190,16 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
             follow.setText(followViewModel.FOLLOWING_BUTTON_LABEL);
             mutuals = new JPanel();
             this.add(mutuals);
-            List<Integer> counts = new ArrayList<Integer>(followState.getRelatedUsers().values());
-            List<String> usernames = new ArrayList<String>(followState.getRelatedUsers().keySet());
+//            List<Integer> counts = new ArrayList<Integer>(followState.getRelatedUsers().values());
+//            List<String> usernames = new ArrayList<String>(followState.getRelatedUsers().keySet());
             for (int i = 0; i < 3; i++) {
                 
                 JPanel tempy = new JPanel();
                 mutuals.add(tempy);
-                mutualButtonList.get(i).setText(usernames.get(i));
+//                mutualButtonList.get(i).setText(usernames.get(i));
                 tempy.add(mutualButtonList.get(i));
-                JLabel count = new JLabel("You have " + Integer.toString(counts.get(i)) + " mutuals with this user.");
-                tempy.add(count);
+//                JLabel count = new JLabel("You have " + Integer.toString(counts.get(i)) + " mutuals with this user.");
+//                tempy.add(count);
                 if (i == 0) {
                     mutual1.addActionListener(                
                     new ActionListener() {

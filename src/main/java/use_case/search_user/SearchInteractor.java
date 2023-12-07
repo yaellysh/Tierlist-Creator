@@ -25,15 +25,16 @@ public class SearchInteractor implements SearchInputBoundary {
         }
 
         else {
-            System.out.println("user found");
-            SearchOutputData searchOutputData = new SearchOutputData(false, search);
+
 
             String selectedUsername = searchInputData.getSearch();
             User selectedUser = this.userDataAccessObject.getUser(searchInputData.getSearch());;
-            int followerCount = selectedUser.getFollowers().size();
-            int followingCount = selectedUser.getFollowing().size();
+//            int followerCount = selectedUser.getFollowers().size();
+//            int followingCount = selectedUser.getFollowing().size();
             List<String> tierLists = selectedUser.getTierListsAsStrings();
+            System.out.println("tierlists" + tierLists);
 
+            SearchOutputData searchOutputData = new SearchOutputData(false, selectedUser, tierLists);
             searchPresenter.prepareSuccessView(searchOutputData);
 
 //            ViewUserOutputData viewUserOutputData = new ViewUserOutputData(selectedUsername, tierLists, followerCount, followingCount);

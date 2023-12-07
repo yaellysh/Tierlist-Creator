@@ -1,9 +1,21 @@
 package interface_adapter.search_user;
 
+import entity.User;
+
 public class SearchState {
     private String search = "";
     private String searchError = null;
     private boolean success = false;
+
+    public User getCurrentUser() {
+        return currentUser;
+    }
+
+    public void setCurrentUser(User currentUser) {
+        this.currentUser = currentUser;
+    }
+
+    private User currentUser;
 
     public String getSearch() {
         return search;
