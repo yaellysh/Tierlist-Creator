@@ -92,19 +92,18 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
         infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.PAGE_AXIS));
         JLabel userInfo = new JLabel("Username: " + followViewModel.getState().getUserBeingFollowed().getUsername());
 
-        userInfo.setAlignmentX(BoxLayout.PAGE_AXIS);
+//        userInfo.setAlignmentX(BoxLayout.PAGE_AXIS);
         userInfo.setFont(FollowViewModel.USER_INFO_FONT);
-        userInfo.setAlignmentX(BoxLayout.PAGE_AXIS);
 
         JLabel followerInfo = new JLabel("Followers: " + followerCount.getText());
 
-        followerInfo.setAlignmentX(BoxLayout.PAGE_AXIS);
+//        followerInfo.setAlignmentX(BoxLayout.PAGE_AXIS);
         followerInfo.setFont(FollowViewModel.USER_INFO_FONT);
         followerInfo.setAlignmentX(BoxLayout.PAGE_AXIS);
 
         JLabel followingInfo = new JLabel("Following: " + followingCount.getText());
 
-        followingInfo.setAlignmentX(BoxLayout.PAGE_AXIS);
+//        followingInfo.setAlignmentX(BoxLayout.PAGE_AXIS);
         followingInfo.setFont(FollowViewModel.USER_INFO_FONT);
         followingInfo.setAlignmentX(BoxLayout.PAGE_AXIS);
 
