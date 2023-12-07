@@ -22,7 +22,7 @@ import interface_adapter.view_user.ViewUserController;
 import interface_adapter.view_user.ViewUserViewModel;
 
 public class SearchView extends JPanel implements ActionListener, PropertyChangeListener {
-    public final String viewName = "search";
+    public final String viewName = "Search User";
     private final SearchViewModel searchViewModel;
 
     private JTextField usernameInputField = new JTextField(15);

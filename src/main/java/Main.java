@@ -72,7 +72,7 @@ public class Main {
 
         views.add(randomTierListView, randomTierListView.viewName);
 
-        SearchView searchView = SearchFactory.create(viewManagerModel, searchViewModel, viewUserViewModel, followViewModel, null, suserDataAccessObject);
+        SearchView searchView = SearchFactory.create(viewManagerModel, searchViewModel, viewUserViewModel, followViewModel, userDataAccessObject, userDataAccessObject);
         views.add(searchView, searchView.viewName);
 
 
