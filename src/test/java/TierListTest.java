@@ -409,13 +409,80 @@ public class TierListTest {
     }
 
     @Test
-    public void testBackView() throws IOException, InterruptedException {
-        List<Component> views = new ArrayList<>();
-        views.add((CustomTierListView) getView("custom"));
-        views.add((RandomTierListView) getView("random"));
-        views.add((TierListView) getView("tierlist"));
-        views.add((ViewExistingView) getView("view existing"));
+    public void checkCustomBackView() throws IOException, InterruptedException {
+        CustomTierListView customTierListView = (CustomTierListView) getView("custom");
 
+        JPanel backButtonPanel = (JPanel) customTierListView.getComponent(6);
+        JButton backButton = (JButton) backButtonPanel.getComponent(0);
+
+        backButton.doClick();
+
+        Component currentView = getCurrentView();
+        assert currentView instanceof SelectorView;
+    }
+
+    @Test
+    public void checkRandomBackView() throws IOException, InterruptedException {
+        RandomTierListView randomTierListView = (RandomTierListView) getView("random");
+
+        JPanel inputPanel = (JPanel) randomTierListView.getComponent(3);
+        JPanel backButtonPanel = (JPanel) inputPanel.getComponent(1);
+        JButton backButton = (JButton) backButtonPanel.getComponent(0);
+
+        backButton.doClick();
+
+        Component currentView = getCurrentView();
+        assert currentView instanceof SelectorView;
+    }
+    @Test
+    public void checkExistingBackView() throws IOException, InterruptedException {
+        ViewExistingView viewExistingView = (ViewExistingView) getView("view existing");
+        viewExistingView.updateScreen();
+
+        JPanel backButtonPanel = (JPanel) viewExistingView.getComponent(5);
+        JButton backButton = (JButton) backButtonPanel.getComponent(0);
+
+        backButton.doClick();
+
+        Component currentView = getCurrentView();
+
+        assert currentView instanceof SelectorView;
+    }
+//    @Test
+//    public void checkTierListBackView() throws IOException, InterruptedException {
+//        TierListView tierListView = (TierListView) getView("tierlist");
+//        tierListView.tierListViewModel.firePropertyChanged();
+//
+//
+//    }
+    @Test
+    public void checkCancelButtonLogin() throws IOException, InterruptedException {
+        LoginView loginView = (LoginView) getView("login");
+
+        JPanel buttonPanelWrapper = (JPanel) loginView.getComponent(5);
+        ButtonPanel buttonPanel = (ButtonPanel) buttonPanelWrapper.getComponent(0);
+        JButton cancelButton = buttonPanel.getButton();
+
+        cancelButton.doClick();
+
+        Component currentView = getCurrentView();
+
+        assert currentView instanceof MenuView;
+    }
+
+    @Test
+    public void checkCancelButtonSignUp() throws IOException, InterruptedException {
+        SignupView signupView = (SignupView) getView("signup");
+
+        JPanel buttonPanelWrapper = (JPanel) signupView.getComponent(4);
+        ButtonPanel buttonPanel = (ButtonPanel) buttonPanelWrapper.getComponent(0);
+        JButton cancelButton = buttonPanel.getButton();
+
+        cancelButton.doClick();
+
+        Component currentView = getCurrentView();
+
+        assert currentView instanceof MenuView;
     }
 
     @Test
