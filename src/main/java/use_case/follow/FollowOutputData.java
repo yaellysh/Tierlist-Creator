@@ -42,6 +42,7 @@ public class FollowOutputData {
         private HashMap<String, Integer> relatedUsers = new HashMap<>();
 
         public FollowOutputBuilder(int newFollowers, boolean follow) {
+            System.out.println(newFollowers + "once in builder");
             this.newFollowers = newFollowers;
             this.follow = follow;
         }

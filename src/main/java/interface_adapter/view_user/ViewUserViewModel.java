@@ -6,8 +6,8 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 public class ViewUserViewModel extends ViewModel {
-    public static final String FOLLOWING_LABEL = "Following";
-    public static final String FOLLOWERS_LABEL = "Followers";
+    public final String FOLLOWING_LABEL = "Following";
+    public final String FOLLOWERS_LABEL = "Followers";
 
     public static final String TIERLIST_LABEL = "Tier Lists";
 

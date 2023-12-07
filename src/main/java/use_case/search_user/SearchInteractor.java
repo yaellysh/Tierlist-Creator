@@ -16,7 +16,7 @@ public class SearchInteractor implements SearchInputBoundary {
         String search = searchInputData.getSearch();
 
         if (!userDataAccessObject.existsByName(search)) {
-            searchPresenter.prepareFailView("No accounts exist by the username" + search);
+            searchPresenter.prepareFailView("No accounts exist by the username " + search);
         }
 
         else {

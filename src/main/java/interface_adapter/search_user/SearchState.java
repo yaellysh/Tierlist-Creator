@@ -3,9 +3,14 @@ package interface_adapter.search_user;
 public class SearchState {
     private String search = "";
     private String searchError = null;
+    private boolean success = false;
 
     public String getSearch() {
         return search;
+    }
+
+    public boolean getSuccess() {
+        return success;
     }
 
     public String getSearchError() {
@@ -18,6 +23,10 @@ public class SearchState {
 
     public void setSearchError(String searchError) {
         this.searchError = searchError;
+    }
+
+    public void setSuccess(boolean success) {
+        this.success = success;
     }
 
 

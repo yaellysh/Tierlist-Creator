@@ -31,20 +31,20 @@ public class FollowFactory {
 
     public static FollowView create(ViewManagerModel viewManagerModel, FollowViewModel followViewModel, ViewUserViewModel viewUserViewModel, FollowUserDataAccessInterface userDataAccessObject, ViewUserDataAccessInterface viewUserDAO) {
 
-        FollowController followController = createFollowUseCase(viewManagerModel, followViewModel, userDataAccessObject);
-        ViewUserController viewUserController = createViewUserUseCase(viewManagerModel, viewUserViewModel, viewUserDAO);
+        FollowController followController = createFollowUseCase(viewManagerModel, followViewModel, viewUserViewModel, userDataAccessObject);
+        ViewUserController viewUserController = createViewUserUseCase(viewManagerModel, viewUserViewModel, followViewModel, viewUserDAO);
         //followViewModel.setState(new FollowState()); // TODO: currently hardcoded, will change when login is implemented
         return new FollowView(followController, followViewModel, viewUserController, viewUserViewModel);
     }
     
-    private static FollowController createFollowUseCase(ViewManagerModel viewManagerModel, FollowViewModel followViewModel, FollowUserDataAccessInterface userDataAccessObject) {
-        FollowOutputBoundary followOutputBoundary = new FollowPresenter(viewManagerModel, followViewModel);
+    private static FollowController createFollowUseCase(ViewManagerModel viewManagerModel, FollowViewModel followViewModel, ViewUserViewModel viewUserViewModel, FollowUserDataAccessInterface userDataAccessObject) {
+        FollowOutputBoundary followOutputBoundary = new FollowPresenter(viewManagerModel, followViewModel, viewUserViewModel);
         FollowInteractor followInteractor = new FollowInteractor(userDataAccessObject, followOutputBoundary);
         return new FollowController(followInteractor);
     }
 
-    private static ViewUserController createViewUserUseCase(ViewManagerModel viewManagerModel, ViewUserViewModel viewUserViewModel, ViewUserDataAccessInterface userDataAccessObject) {
-        ViewUserOutputBoundary viewUserOutputBoundary = new ViewUserPresenter(viewManagerModel, viewUserViewModel);
+    private static ViewUserController createViewUserUseCase(ViewManagerModel viewManagerModel, ViewUserViewModel viewUserViewModel, FollowViewModel followViewModel, ViewUserDataAccessInterface userDataAccessObject) {
+        ViewUserOutputBoundary viewUserOutputBoundary = new ViewUserPresenter(viewManagerModel, viewUserViewModel, followViewModel);
         ViewUserInteractor viewUserInteractor = new ViewUserInteractor(userDataAccessObject, viewUserOutputBoundary);
         return new ViewUserController(viewUserInteractor);
     }

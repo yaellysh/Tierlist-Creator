@@ -1,35 +1,63 @@
-import data_access.ChatGPTDataAccessObject;
-import data_access.FileUserDataAccessObject;
-import factory.*;
+import factory.CustomTierListFactory;
+import factory.FollowFactory;
+import factory.LoginFactory;
+import factory.MenuFactory;
+import factory.RandomTierListFactory;
+import factory.SearchFactory;
+import factory.SelectorFactory;
+import factory.SignupFactory;
+import factory.TierListFactory;
+import factory.ViewExistingFactory;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.custom_tierlist.CustomTierListViewModel;
+import interface_adapter.follow.FollowController;
 import interface_adapter.follow.FollowState;
 import interface_adapter.follow.FollowViewModel;
+<<<<<<< HEAD
+import interface_adapter.search_user.SearchViewModel;
+=======
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.menu.MenuViewModel;
 import interface_adapter.random_tierlist.RandomTierListViewModel;
 import interface_adapter.selector.SelectorViewModel;
 import interface_adapter.signup.SignupViewModel;
+>>>>>>> 039b7d6bc381297089f4e8d9e38f12016f21c55b
 import interface_adapter.tierlist.TierListViewModel;
 import interface_adapter.view_existing.ViewExistingViewModel;
 import interface_adapter.view_user.ViewUserViewModel;
-import view.*;
+import use_case.follow.FollowInputBoundary;
+import view.CustomTierListView;
+import view.FollowView;
+import view.LoginView;
+import view.MenuView;
+import view.RandomTierListView;
+import view.SearchView;
+import view.SelectorView;
+import view.SignupView;
+import view.TierListView;
+import view.ViewExistingView;
+import view.ViewManager;
 
 import javax.swing.*;
+
+import data_access.ChatGPTDataAccessObject;
+import data_access.FileUserDataAccessObject;
+
 import java.awt.*;
+import java.util.HashMap;
 
 public class Main {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
 
-        JFrame application = new JFrame("Tierlist Maker");
-        application.setResizable(false);
-        application.setSize(800, 700);
+        JFrame application = new JFrame();
+
+        application.setSize(700, 650);
         application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         CardLayout cardLayout = new CardLayout();
         JPanel views = new JPanel(cardLayout);
         application.add(views);
-      
+ 
         ViewManagerModel viewManagerModel = new ViewManagerModel();
         new ViewManager(views, cardLayout, viewManagerModel);
 
@@ -80,6 +108,8 @@ public class Main {
 
 //        FollowState testing = new FollowState("terryfufu", "lt_rui", false);
 //        followViewModel.setState(testing);
+
+        //FileUserDataAccessObject userDataAccessObject = new FileUserDataAccessObject();
 
         FollowView followView = FollowFactory.create(viewManagerModel, followViewModel, viewUserViewModel, userDataAccessObject, userDataAccessObject);
         views.add(followView, followView.viewName);
