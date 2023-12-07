@@ -11,11 +11,26 @@ public class FollowOutputData {
 
     //optional variables
     private final HashMap<String, Integer> relatedUsers;
+    private final String tierListName;
+    private final String currentUser;
+    private final String viewUser;
 
     private FollowOutputData(FollowOutputBuilder builder) {
         this.newFollowers = builder.newFollowers;
         this.follow = builder.follow;
         this.relatedUsers = builder.relatedUsers;
+        this.currentUser = null;
+        this.tierListName = null;
+        this.viewUser = null;
+    }
+
+    public FollowOutputData(String currentUser, String viewUser, String tierListName) {
+        this.currentUser = currentUser;
+        this.viewUser = viewUser;
+        this.tierListName = tierListName;
+        this.newFollowers = 0;
+        this.follow = false;
+        this.relatedUsers = new HashMap<>();
     }
 
     // public getters for variables
@@ -27,6 +42,18 @@ public class FollowOutputData {
     }
     public boolean getFollow() {
         return follow;
+    }
+
+    public String getTierListName() {
+        return tierListName;
+    }
+
+    public String getCurrentUser() {
+        return currentUser;
+    }
+
+    public String getViewUser() {
+        return viewUser;
     }
 
     public static class FollowOutputBuilder {
