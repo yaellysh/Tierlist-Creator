@@ -28,6 +28,13 @@ public class TierListPresenter implements TierListOutputBoundary {
     }
 
     @Override
+    public void prepareFailView(String error) {
+        TierListState tierListState = tierListViewModel.getState();
+        tierListState.setError(error);
+        this.tierListViewModel.firePropertyChanged();
+    }
+
+    @Override
     public void prepareBackView(){
         viewManagerModel.setActiveView(selectorViewModel.getViewName());
         viewManagerModel.firePropertyChanged();

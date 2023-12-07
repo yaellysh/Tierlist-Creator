@@ -1,5 +1,7 @@
 package use_case.follow;
 
+import entity.User;
+
 import java.util.HashMap;
 
 public class FollowOutputData {
@@ -12,8 +14,8 @@ public class FollowOutputData {
     //optional variables
     private final HashMap<String, Integer> relatedUsers;
     private final String tierListName;
-    private final String currentUser;
-    private final String viewUser;
+    private final User currentUser;
+    private final User viewUser;
 
     private FollowOutputData(FollowOutputBuilder builder) {
         this.newFollowers = builder.newFollowers;
@@ -24,7 +26,7 @@ public class FollowOutputData {
         this.viewUser = null;
     }
 
-    public FollowOutputData(String currentUser, String viewUser, String tierListName) {
+    public FollowOutputData(User currentUser, User viewUser, String tierListName) {
         this.currentUser = currentUser;
         this.viewUser = viewUser;
         this.tierListName = tierListName;
@@ -48,11 +50,11 @@ public class FollowOutputData {
         return tierListName;
     }
 
-    public String getCurrentUser() {
+    public User getCurrentUser() {
         return currentUser;
     }
 
-    public String getViewUser() {
+    public User getViewUser() {
         return viewUser;
     }
 

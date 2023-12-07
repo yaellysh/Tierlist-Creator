@@ -107,13 +107,17 @@ public class TierListView extends JPanel implements ActionListener, PropertyChan
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
+        TierListState state = (TierListState) evt.getNewValue();
+        if (state.getError() != null) {
+            JOptionPane.showMessageDialog(this, state.getError());
+            return;
+        }
+
         this.removeAll();
         this.repaint();
 
-        TierListState state = (TierListState) evt.getNewValue();
         state.setUser(((TierListState) evt.getNewValue()).getUser());
         state.setTierList(((TierListState) evt.getNewValue()).getTierList());
-
 
         // setting up the box layout to help formatting
         BoxLayout boxLayout = new BoxLayout(this, BoxLayout.Y_AXIS);

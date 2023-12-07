@@ -27,8 +27,9 @@ public class FollowPresenter implements FollowOutputBoundary{
 
         if (output.getTierListName() != null) {
             TierListState tierListState = tierListViewModel.getState();
-//        tierListState.setTierList(output.);
-            tierListState.setUser(followViewModel.getState().getFollower());
+            tierListState.setTierList(output.getTierListName());
+            tierListState.setUser(output.getCurrentUser());
+            tierListState.setViewUser(output.getViewUser());
             tierListViewModel.setState(tierListState);
             tierListViewModel.firePropertyChanged();
 
@@ -36,7 +37,6 @@ public class FollowPresenter implements FollowOutputBoundary{
             viewManagerModel.firePropertyChanged();
         } else {
             FollowState followState = followViewModel.getState();
-//       followState.setRelatedUsers(output.getRelatedUsers());
             followState.setIsFollowing(output.getFollow());
             viewUserViewModel.getState().setNumFollowers(output.getNewFollowers());
 
