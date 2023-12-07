@@ -86,7 +86,7 @@ public class Main {
 
         views.add(randomTierListView, randomTierListView.viewName);
 
-        SearchView searchView = SearchFactory.create(viewManagerModel, searchViewModel, viewUserViewModel, selectorViewModel, userDataAccessObject);
+        SearchView searchView = SearchFactory.create(viewManagerModel, searchViewModel, viewUserViewModel, followViewModel, userDataAccessObject, userDataAccessObject);
 
         views.add(searchView, searchView.viewName);
 
@@ -100,11 +100,11 @@ public class Main {
         views.add(selectorView, selectorView.viewName);
 
         SignupView signupView = SignupFactory.create(viewManagerModel, loginViewModel, signupViewModel, userDataAccessObject);
-        assert signupView != null;
+
         views.add(signupView, signupView.viewName);
 
         LoginView loginView = LoginFactory.create(viewManagerModel, loginViewModel, userDataAccessObject, selectorViewModel);
-        assert loginView != null;
+
         views.add(loginView, loginView.viewName);
 
         ViewExistingView viewExistingView = ViewExistingFactory.create(viewManagerModel, viewExistingViewModel, tierListViewModel, selectorViewModel, userDataAccessObject);
