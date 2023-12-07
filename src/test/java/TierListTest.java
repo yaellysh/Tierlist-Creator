@@ -134,7 +134,7 @@ public class TierListTest {
         views.add(customTierListView, customTierListView.viewName);
         views.add(tierListView, tierListView.viewName);
 
-        FollowView followView = FollowFactory.create(viewManagerModel, followViewModel, viewUserViewModel, userDataAccessObject, userDataAccessObject);
+        FollowView followView = FollowFactory.create(viewManagerModel, followViewModel, viewUserViewModel, userDataAccessObject, userDataAccessObject, tierListViewModel);
         views.add(followView, followView.viewName);
 
         viewManagerModel.setActiveView(menuView.viewName);
