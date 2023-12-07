@@ -3,7 +3,6 @@ package interface_adapter.follow;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.tierlist.TierListState;
 import interface_adapter.tierlist.TierListViewModel;
-import interface_adapter.view_user.ViewUserViewModel;
 import use_case.follow.FollowOutputBoundary;
 import use_case.follow.FollowOutputData;
 
@@ -11,12 +10,10 @@ public class FollowPresenter implements FollowOutputBoundary{
 
     private final FollowViewModel followViewModel;
     private final ViewManagerModel viewManagerModel;
-    private final ViewUserViewModel viewUserViewModel;
     private final TierListViewModel tierListViewModel;
 
-    public FollowPresenter(ViewManagerModel viewManagerModel, FollowViewModel followViewModel, ViewUserViewModel viewUserModel, TierListViewModel tierListViewModel) {
+    public FollowPresenter(ViewManagerModel viewManagerModel, FollowViewModel followViewModel, TierListViewModel tierListViewModel) {
         this.followViewModel = followViewModel;
-        this.viewUserViewModel = viewUserModel;
         this.viewManagerModel = viewManagerModel;
         this.tierListViewModel = tierListViewModel;
     }
@@ -38,7 +35,6 @@ public class FollowPresenter implements FollowOutputBoundary{
         } else {
             FollowState followState = followViewModel.getState();
             followState.setIsFollowing(output.getFollow());
-            viewUserViewModel.getState().setNumFollowers(output.getNewFollowers());
 
             this.followViewModel.setState(followState);
 

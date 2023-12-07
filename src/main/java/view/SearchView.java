@@ -1,29 +1,20 @@
 package view;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.util.Objects;
-
-import javax.swing.BoxLayout;
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-
 import interface_adapter.custom_tierlist.CustomTierListViewModel;
-import interface_adapter.follow.FollowController;
-import interface_adapter.follow.FollowState;
-import interface_adapter.follow.FollowViewModel;
 import interface_adapter.search_user.SearchController;
 import interface_adapter.search_user.SearchState;
 import interface_adapter.search_user.SearchViewModel;
-import interface_adapter.signup.SignupViewModel;
-import interface_adapter.tierlist.TierListViewModel;
-import interface_adapter.view_user.ViewUserController;
-import interface_adapter.view_user.ViewUserViewModel;
+
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.Objects;
 
 public class SearchView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewName = "search";
@@ -35,13 +26,11 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
     private JLabel userNotFoundText = new JLabel();
 
     private final SearchController searchController;
-    private ViewUserController viewUserController;
 
 
-    public SearchView(SearchController searchController, SearchViewModel searchViewModel, ViewUserController viewUserController, ViewUserViewModel viewUserViewModel) {
+    public SearchView(SearchController searchController, SearchViewModel searchViewModel) {
         this.searchController = searchController;
         this.searchViewModel = searchViewModel;
-        this.viewUserController = viewUserController;
         searchViewModel.addPropertyChangeListener(this);
 
         searchViewModel.addPropertyChangeListener(this);

@@ -25,7 +25,6 @@ import interface_adapter.tierlist.TierListState;
 import interface_adapter.tierlist.TierListViewModel;
 import interface_adapter.view_existing.ViewExistingState;
 import interface_adapter.view_existing.ViewExistingViewModel;
-import interface_adapter.view_user.ViewUserViewModel;
 import org.junit.Test;
 import use_case.custom_tierlist.CustomTierListInputData;
 import use_case.custom_tierlist.CustomTierListInteractor;
@@ -69,7 +68,6 @@ public class TierListTest {
         CustomTierListViewModel customTierListViewModel = new CustomTierListViewModel("custom");
         ViewExistingViewModel viewExistingViewModel = new ViewExistingViewModel("view existing");
         FollowViewModel followViewModel = new FollowViewModel("follow User");
-        ViewUserViewModel viewUserViewModel = new ViewUserViewModel("view User");
         MenuViewModel menuViewModel = new MenuViewModel();
         LoginViewModel loginViewModel = new LoginViewModel();
         SignupViewModel signupViewModel = new SignupViewModel();
@@ -134,7 +132,7 @@ public class TierListTest {
         views.add(customTierListView, customTierListView.viewName);
         views.add(tierListView, tierListView.viewName);
 
-        FollowView followView = FollowFactory.create(viewManagerModel, followViewModel, viewUserViewModel, userDataAccessObject, userDataAccessObject);
+        FollowView followView = FollowFactory.create(viewManagerModel, followViewModel, userDataAccessObject, tierListViewModel);
         views.add(followView, followView.viewName);
 
         viewManagerModel.setActiveView(menuView.viewName);

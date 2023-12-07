@@ -12,7 +12,6 @@ import interface_adapter.selector.SelectorViewModel;
 import interface_adapter.signup.SignupViewModel;
 import interface_adapter.tierlist.TierListViewModel;
 import interface_adapter.view_existing.ViewExistingViewModel;
-import interface_adapter.view_user.ViewUserViewModel;
 import view.*;
 
 import javax.swing.*;
@@ -33,8 +32,6 @@ public class Main {
  
         ViewManagerModel viewManagerModel = new ViewManagerModel();
         new ViewManager(views, cardLayout, viewManagerModel);
-
-        ViewUserViewModel viewUserViewModel = new ViewUserViewModel("view user");
 
         TierListViewModel tierListViewModel = new TierListViewModel("tier list");
         SelectorViewModel selectorViewModel = new SelectorViewModel("selector");
@@ -57,7 +54,7 @@ public class Main {
 
         views.add(randomTierListView, randomTierListView.viewName);
 
-        SearchView searchView = SearchFactory.create(viewManagerModel, searchViewModel, viewUserViewModel, followViewModel, userDataAccessObject, userDataAccessObject);
+        SearchView searchView = SearchFactory.create(viewManagerModel, searchViewModel, followViewModel, userDataAccessObject);
 
         views.add(searchView, searchView.viewName);
 
@@ -86,7 +83,7 @@ public class Main {
         views.add(customTierListView, customTierListView.viewName);
         views.add(tierListView, tierListView.viewName);
 
-        FollowView followView = FollowFactory.create(viewManagerModel, followViewModel, viewUserViewModel, userDataAccessObject, userDataAccessObject, tierListViewModel);
+        FollowView followView = FollowFactory.create(viewManagerModel, followViewModel, userDataAccessObject, tierListViewModel);
         views.add(followView, followView.viewName);
 
         viewManagerModel.setActiveView(menuView.viewName);

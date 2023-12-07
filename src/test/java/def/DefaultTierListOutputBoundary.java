@@ -10,6 +10,11 @@ public class DefaultTierListOutputBoundary implements TierListOutputBoundary {
     }
 
     @Override
+    public void prepareFailView(String error) {
+
+    }
+
+    @Override
     public void prepareBackView() {
 
     }
