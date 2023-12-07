@@ -114,12 +114,12 @@ public class FollowInteractor implements FollowInputBoundary {
             */
             }
 
-            userMutualsCount = sortByValue(userMutualsCount);
-            List<String> listy = new ArrayList<>(userMutualsCount.keySet());
-            HashMap<String, Integer> tempy = new HashMap<String, Integer>();
-            tempy.put(listy.get(0), userMutualsCount.get(listy.get(0)));
-            tempy.put(listy.get(1), userMutualsCount.get(listy.get(1)));
-            tempy.put(listy.get(2), userMutualsCount.get(listy.get(2)));
+//            userMutualsCount = sortByValue(userMutualsCount);
+//            List<String> listy = new ArrayList<>(userMutualsCount.keySet());
+//            HashMap<String, Integer> tempy = new HashMap<String, Integer>();
+//            tempy.put(listy.get(0), userMutualsCount.get(listy.get(0)));
+//            tempy.put(listy.get(1), userMutualsCount.get(listy.get(1)));
+//            tempy.put(listy.get(2), userMutualsCount.get(listy.get(2)));
             //add cases where there are less than 3 users in set related users that the user doesn't follow
             //pass forward mutual count for the "followed by x others line."
 
@@ -158,25 +158,25 @@ public class FollowInteractor implements FollowInputBoundary {
 
     }
 
-    private HashMap<String, Integer> sortByValue(HashMap<String, Integer> hm)
-    {
-        // Create a list from elements of HashMap
-        List<Map.Entry<String, Integer> > list
-            = new LinkedList<Map.Entry<String, Integer> >(
-                hm.entrySet());
- 
-        // Sort the list using lambda expression
-        Collections.sort(
-            list,
-            (i1,
-             i2) -> i2.getValue().compareTo(i1.getValue()));
- 
-        // put data from sorted list to hashmap
-        HashMap<String, Integer> temp
-            = new LinkedHashMap<String, Integer>();
-        for (Map.Entry<String, Integer> aa : list) {
-            temp.put(aa.getKey(), aa.getValue());
-        }
-        return temp;
-    }
+//    private HashMap<String, Integer> sortByValue(HashMap<String, Integer> hm)
+//    {
+//        // Create a list from elements of HashMap
+//        List<Map.Entry<String, Integer> > list
+//            = new LinkedList<Map.Entry<String, Integer> >(
+//                hm.entrySet());
+//
+//        // Sort the list using lambda expression
+//        Collections.sort(
+//            list,
+//            (i1,
+//             i2) -> i2.getValue().compareTo(i1.getValue()));
+//
+//        // put data from sorted list to hashmap
+//        HashMap<String, Integer> temp
+//            = new LinkedHashMap<String, Integer>();
+//        for (Map.Entry<String, Integer> aa : list) {
+//            temp.put(aa.getKey(), aa.getValue());
+//        }
+//        return temp;
+//    }
 }
