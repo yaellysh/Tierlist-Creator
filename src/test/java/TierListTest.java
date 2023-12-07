@@ -409,6 +409,16 @@ public class TierListTest {
     }
 
     @Test
+    public void testBackView() throws IOException, InterruptedException {
+        List<Component> views = new ArrayList<>();
+        views.add((CustomTierListView) getView("custom"));
+        views.add((RandomTierListView) getView("random"));
+        views.add((TierListView) getView("tierlist"));
+        views.add((ViewExistingView) getView("view existing"));
+
+    }
+
+    @Test
     public void checkSelectorButtons() throws InterruptedException, IOException {
         SelectorView selectorView = (SelectorView) getView("selector");
         assert selectorView != null;
