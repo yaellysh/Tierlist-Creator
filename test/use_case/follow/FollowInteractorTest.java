@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import static org.junit.Assert.*;
 
@@ -102,11 +103,15 @@ public class FollowInteractorTest {
                 // make sure user A is following user B
 
                 ArrayList<String> expectedFollowing = new ArrayList<>();
+                HashMap<String, Integer> users = output.getRelatedUsers();
                 expectedFollowing.add("User D");
                 expectedFollowing.add("User E");
                 expectedFollowing.add("User F");
                 expectedFollowing.add(tim.getUsername());
                 assertEquals(expectedFollowing, terry.getFollowing());
+
+                assertTrue(output.getFollow());
+
             }
         };
 
