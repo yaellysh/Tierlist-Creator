@@ -83,4 +83,9 @@ public class FileUserDataAccessObject implements SignupDataAccessInterface, Logi
         
     }
 
+    public void removeUser(String username) {
+        this.users.remove(username);
+        this.save();
+    }
+
 }
