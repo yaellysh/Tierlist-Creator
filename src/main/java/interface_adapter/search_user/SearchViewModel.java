@@ -15,6 +15,7 @@ public class SearchViewModel extends ViewModel {
     public static final Font TEXT_FONT = new Font("Arial", Font.PLAIN, 15);
     public static final String INSTRUCTIONS = "Enter below the name of an existing user to view their tierlist and follow them.";
 
+
     private SearchState state = new SearchState();
 
     public SearchViewModel(String name) {

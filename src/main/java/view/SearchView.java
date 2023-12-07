@@ -59,7 +59,6 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
 
         JLabel instructions = new JLabel();
         instructions.setText("<html>" + SearchViewModel.INSTRUCTIONS + "</html>");
-        instructions.setFont(SearchViewModel.TEXT_FONT);
         instructions.setAlignmentX(Component.CENTER_ALIGNMENT);
         instructions.setBorder(BorderFactory.createEmptyBorder(5, 20, 5, 20));
         this.add(instructions);

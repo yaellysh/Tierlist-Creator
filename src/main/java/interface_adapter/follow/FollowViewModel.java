@@ -2,17 +2,22 @@ package interface_adapter.follow;
 
 import interface_adapter.ViewModel;
 
+import java.awt.*;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 public class FollowViewModel extends ViewModel {
 
     public final String FOLLOW_BUTTON_LABEL = "Follow";
+    public static final String TITLE_LABEL = "User Profile";
+    public static final Font TITLE_FONT = new Font("Arial Bold", Font.PLAIN, 25);
+    public static final Font TEXT_FONT = new Font("Arial", Font.PLAIN, 15);
+    public static final Font USER_INFO_FONT = new Font("Arial", Font.PLAIN, 20);
+    public static final String INSTRUCTIONS = "Enter below the name of an existing user to view their tierlist and follow them.";
     public final String FOLLOWING_LABEL = "Following";
     public final String FOLLOWERS_LABEL = "Followers";
     public final String FOLLOWING_BUTTON_LABEL = "Following";
 
-    public final String TITLE_LABEL = "View User";
 
     private FollowState state = new FollowState();
 
