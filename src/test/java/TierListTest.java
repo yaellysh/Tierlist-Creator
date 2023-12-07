@@ -144,13 +144,14 @@ public class TierListTest {
     }
     public static void miniMain() throws InterruptedException, IOException {
         miniMain("src/main/resources/users.json");
+
+    }
     public static FileUserDataAccessObject instantiate() {
         FileUserDataAccessObject object = new FileUserDataAccessObject("src/test/resources/users.json");
         SignupInteractor signupInteractor = new SignupInteractor(object, new DefaultSignupOutputBoundary());
         signupInteractor.execute(new SignupInputData("Yael", "potatoes", "potatoes"));
         return object;
     }
-
     public Component getView(String viewName) throws InterruptedException, IOException {
         miniMain();
 
@@ -161,43 +162,6 @@ public class TierListTest {
                 app = (JFrame) window;
             }
         }
-    @Test
-    public void testCustomTierList() {
-        FileUserDataAccessObject object = instantiate();
-        CustomTierListInteractor customTierListInteractor = new CustomTierListInteractor(new DefaultCustomTierListOutputBoundary(), object);
-        User user = object.getUser("Yael");
-        String[] items = new String[TierList.LENGTH];
-        for (int i = 0; i < TierList.LENGTH; i++) {
-            items[i] = ("Item " + i);
-        }
-
-        customTierListInteractor.execute(new CustomTierListInputData(user, "Test", items));
-
-        TierListInteractor tierListInteractor = new TierListInteractor(object, new DefaultTierListOutputBoundary());
-        tierListInteractor.execute(new TierListInputData("Yael", "Test", "Item 3", Tier.B));
-        assert user.getTierList("Test").getItem("Item 3").getTier().equals(Tier.B);
-        assert object
-                .getUser("Yael")
-                .getTierList("Test")
-                .getItem("Item 1")
-                .getTier()
-                .equals(Tier.S);
-        object.removeUser("Yael");
-    }
-
-    @Test
-    public void testRandomTierList() {
-        FileUserDataAccessObject object = instantiate();
-        ChatGPTDataAccessObject gptObject = new ChatGPTDataAccessObject();
-        RandomTierListInteractor randomTierListInteractor = new RandomTierListInteractor(gptObject, object, new DefaultRandomTierListOutputBoundary());
-        randomTierListInteractor.execute(new RandomTierListInputData("Conan Gray songs", object.getUser("Yael")));
-        TierList tierList = object.getUser("Yael").getTierList("Conan Gray songs");
-        assert tierList != null;
-        assert tierList.getItems().size() == TierList.LENGTH;
-        assert tierList.getItems().stream().map(Item::getName).anyMatch(s -> s.equals("Heather"));
-        tierList.getItems().stream().map(Item::getTier).forEach(s -> {assert s == Tier.S;});
-        object.removeUser("Yael");
-    }
 
         assertNotNull(app);
         Component root = app.getComponent(0);
@@ -241,7 +205,46 @@ public class TierListTest {
             }
         }
         return null;
-    // TODO add test case for home button once implemented
+    }
+    @Test
+    public void testCustomTierList() {
+        FileUserDataAccessObject object = instantiate();
+        CustomTierListInteractor customTierListInteractor = new CustomTierListInteractor(new DefaultCustomTierListOutputBoundary(), object);
+        User user = object.getUser("Yael");
+        String[] items = new String[TierList.LENGTH];
+        for (int i = 0; i < TierList.LENGTH; i++) {
+            items[i] = ("Item " + i);
+        }
+
+        customTierListInteractor.execute(new CustomTierListInputData(user, "Test", items));
+
+        TierListInteractor tierListInteractor = new TierListInteractor(object, new DefaultTierListOutputBoundary());
+        tierListInteractor.execute(new TierListInputData("Yael", "Test", "Item 3", Tier.B));
+        assert user.getTierList("Test").getItem("Item 3").getTier().equals(Tier.B);
+        assert object
+                .getUser("Yael")
+                .getTierList("Test")
+                .getItem("Item 1")
+                .getTier()
+                .equals(Tier.S);
+        object.removeUser("Yael");
+    }
+
+    @Test
+    public void testRandomTierList() {
+        FileUserDataAccessObject object = instantiate();
+        ChatGPTDataAccessObject gptObject = new ChatGPTDataAccessObject();
+        RandomTierListInteractor randomTierListInteractor = new RandomTierListInteractor(gptObject, object, new DefaultRandomTierListOutputBoundary());
+        randomTierListInteractor.execute(new RandomTierListInputData("Conan Gray songs", object.getUser("Yael")));
+        TierList tierList = object.getUser("Yael").getTierList("Conan Gray songs");
+        assert tierList != null;
+        assert tierList.getItems().size() == TierList.LENGTH;
+        assert tierList.getItems().stream().map(Item::getName).anyMatch(s -> s.equals("Heather"));
+        tierList.getItems().stream().map(Item::getTier).forEach(s -> {assert s == Tier.S;});
+        object.removeUser("Yael");
+    }
+
+
     private static Tier getTierList() throws IOException {
         TierListDataAccessInterface object = new FileUserDataAccessObject("src/test/resources/users.json");
         return object.getUser("Yael").getTierList("Test").getItem("Item 1").getTier();
