@@ -155,14 +155,10 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     if (e.getSource() == button) {
-                        TierListState tierListState = tierListViewModel.getState();
-                        tierListState.setTierList(button.getText());
-                        tierListState.setUser(followViewModel.getState().getFollower());
-                        tierListViewModel.setState(tierListState);
-                        tierListViewModel.firePropertyChanged();
-
-                        viewManagerModel.setActiveView(tierListViewModel.getViewName());
-                        viewManagerModel.firePropertyChanged();
+                        followController.execute(
+                                followViewModel.getState().getFollower().getUsername(),
+                                followViewModel.getState().getUserBeingFollowed().getUsername(),
+                                true);
                     }
                 }
             });

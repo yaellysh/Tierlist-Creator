@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
@@ -18,6 +19,7 @@ import interface_adapter.search_user.SearchController;
 import interface_adapter.search_user.SearchState;
 import interface_adapter.search_user.SearchViewModel;
 import interface_adapter.signup.SignupViewModel;
+import interface_adapter.tierlist.TierListViewModel;
 import interface_adapter.view_user.ViewUserController;
 import interface_adapter.view_user.ViewUserViewModel;
 
@@ -32,13 +34,12 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
 
     private final SearchController searchController;
     private ViewUserController viewUserController;
-    private ViewUserViewModel viewUserViewModel;
+
 
     public SearchView(SearchController searchController, SearchViewModel searchViewModel, ViewUserController viewUserController, ViewUserViewModel viewUserViewModel) {
         this.searchController = searchController;
         this.searchViewModel = searchViewModel;
         this.viewUserController = viewUserController;
-        this.viewUserViewModel = viewUserViewModel;
         searchViewModel.addPropertyChangeListener(this);
 
         searchViewModel.addPropertyChangeListener(this);
@@ -48,6 +49,11 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
 
         JPanel buttons = new JPanel();
 
+        JLabel tierListTitleLabel = new JLabel(TierListViewModel.TITLE_LABEL);
+        tierListTitleLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 10));
+        tierListTitleLabel.setFont(TierListViewModel.TITLE_FONT);
+        tierListTitleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        this.add(tierListTitleLabel);
 
         InputPanel usernameInfo = new InputPanel(searchViewModel.SEARCH_BOX_LABEL);
 
@@ -58,22 +64,20 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
         this.add(buttons);
         this.add(userNotFoundText);
 
-        search.addActionListener(                
-        new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                if (evt.getSource().equals(search)) {
-                    SearchState currentState = searchViewModel.getState();
-                    if (Objects.equals(currentState.getSearch(), "")) {
-                        userNotFoundText.setText("Please enter a Username");
+        search.addActionListener(
+                evt -> {
+                    if (evt.getSource().equals(search)) {
+                        SearchState currentState = searchViewModel.getState();
+                        if (Objects.equals(currentState.getSearch(), "")) {
+                            userNotFoundText.setText("Please enter a Username");
+
+                        }
+                        else {
+                            searchController.execute(currentState.getSearch());
+                        }
 
                     }
-                    else {
-                        searchController.execute(currentState.getSearch());
-                    }
-
-                }
-            }
-        });
+                });
 
         usernameInfo.getTextField().addKeyListener(
         new KeyListener() {

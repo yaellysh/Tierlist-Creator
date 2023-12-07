@@ -23,12 +23,12 @@ public class FollowFactory {
 
     public static FollowView create(ViewManagerModel viewManagerModel, FollowViewModel followViewModel, ViewUserViewModel viewUserViewModel, FollowDataAccessInterface userDataAccessObject, ViewUserDataAccessInterface viewUserDAO, TierListViewModel tierListViewModel) {
 
-        FollowController followController = createFollowUseCase(viewManagerModel, followViewModel, viewUserViewModel, userDataAccessObject);
+        FollowController followController = createFollowUseCase(viewManagerModel, followViewModel, viewUserViewModel, userDataAccessObject, tierListViewModel);
         ViewUserController viewUserController = createViewUserUseCase(viewManagerModel, viewUserViewModel, followViewModel, viewUserDAO);
         return new FollowView(followController, followViewModel, tierListViewModel, viewManagerModel);
     }
-    private static FollowController createFollowUseCase(ViewManagerModel viewManagerModel, FollowViewModel followViewModel, ViewUserViewModel viewUserViewModel, FollowDataAccessInterface userDataAccessObject) {
-        FollowOutputBoundary followOutputBoundary = new FollowPresenter(viewManagerModel, followViewModel, viewUserViewModel);
+    private static FollowController createFollowUseCase(ViewManagerModel viewManagerModel, FollowViewModel followViewModel, ViewUserViewModel viewUserViewModel, FollowDataAccessInterface userDataAccessObject, TierListViewModel tierListViewModel) {
+        FollowOutputBoundary followOutputBoundary = new FollowPresenter(viewManagerModel, followViewModel, viewUserViewModel, tierListViewModel);
         FollowInteractor followInteractor = new FollowInteractor(userDataAccessObject, followOutputBoundary);
         return new FollowController(followInteractor);
     }
