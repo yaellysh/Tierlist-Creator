@@ -1,12 +1,10 @@
 package use_case.follow;
 
 import data_access.FileUserDataAccessObject;
-import data_access.InMemoryUserDataAccessObject;
 import entity.User;
 import factory.FollowFactory;
 import factory.SearchFactory;
 import interface_adapter.ViewManagerModel;
-import interface_adapter.follow.FollowState;
 import interface_adapter.follow.FollowViewModel;
 import interface_adapter.search_user.SearchViewModel;
 import interface_adapter.tierlist.TierListViewModel;
@@ -39,7 +37,7 @@ public class FollowViewTest {
 
 
 
-    private InMemoryUserDataAccessObject userRepository;
+    private FileUserDataAccessObject userRepository;
 
     @Before
     public void setUp() {
@@ -74,15 +72,15 @@ public class FollowViewTest {
         terry.addFollowing("User E");
         terry.addFollowing("User F");
 
-        userRepository = new InMemoryUserDataAccessObject();
-        userRepository.save(userA);
-        userRepository.save(userB);
-        userRepository.save(userC);
-        userRepository.save(userD);
-        userRepository.save(userE);
-        userRepository.save(userF);
-        userRepository.save(tim);
-        userRepository.save(terry);
+        userRepository = new FileUserDataAccessObject("src/test/resources/users.json");
+        userRepository.addUser(userA);
+        userRepository.addUser(userB);
+        userRepository.addUser(userC);
+        userRepository.addUser(userD);
+        userRepository.addUser(userE);
+        userRepository.addUser(userF);
+        userRepository.addUser(tim);
+        userRepository.addUser(terry);
     }
 
 
