@@ -9,7 +9,7 @@ import java.beans.PropertyChangeSupport;
 public class FollowViewModel extends ViewModel {
 
     public final String FOLLOW_BUTTON_LABEL = "Follow";
-    public static final String TITLE_LABEL = "User Profile";
+    public static final String TITLE_LABEL = "User Profile ";
     public static final Font TITLE_FONT = new Font("Arial Bold", Font.PLAIN, 25);
     public static final Font TEXT_FONT = new Font("Arial", Font.PLAIN, 15);
     public static final Font USER_INFO_FONT = new Font("Arial", Font.PLAIN, 15);

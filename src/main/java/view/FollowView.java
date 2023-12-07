@@ -28,12 +28,11 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
     //    private final ViewUserViewModel viewUserViewModel;
 //
     private JLabel followingLabel;
-//    private JButton mutual1;
+    //    private JButton mutual1;
 //    private JButton mutual2;
 //    private JButton mutual3;
     private JLabel followersLabel;
     private ViewManagerModel viewManagerModel;
-    private JButton follow;
     private JLabel username = new JLabel("");
     private JLabel followerCount = new JLabel();
     private JLabel followingCount = new JLabel();
@@ -51,7 +50,7 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
         this.tierListViewModel = tierListViewModel;
         this.add(followerCount);
         followViewModel.addPropertyChangeListener(this);
-        
+
     }
 
     @Override
@@ -62,7 +61,7 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
     public void propertyChange(PropertyChangeEvent evt) {
 
         removeAll();
-        BoxLayout boxLayout = new BoxLayout(this, BoxLayout.PAGE_AXIS);
+        BoxLayout boxLayout = new BoxLayout(this, BoxLayout.Y_AXIS);
         this.setLayout(boxLayout);
 
 
@@ -78,64 +77,60 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
                 .getFollowing()
                 .size()));
 
-        
-        JLabel followTitleLabel = new JLabel(FollowViewModel.TITLE_LABEL);
-        followTitleLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 10));
-        followTitleLabel.setFont(FollowViewModel.TITLE_FONT);
-        followTitleLabel.setAlignmentX(BoxLayout.PAGE_AXIS);
 
-        followTitleLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 10));
+        JLabel followTitleLabel = new JLabel(FollowViewModel.TITLE_LABEL);
+        followTitleLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 30, 10));
+        followTitleLabel.setFont(FollowViewModel.TITLE_FONT);
+        followTitleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
         this.add(followTitleLabel);
         this.add(new JSeparator());
 
+
         JPanel infoPanel = new JPanel();
-        infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.PAGE_AXIS));
+        BoxLayout infoBoxLayout = new BoxLayout(infoPanel, BoxLayout.PAGE_AXIS);
+
+        infoPanel.setLayout(infoBoxLayout);
+
         JLabel userInfo = new JLabel("Username: " + followViewModel.getState().getUserBeingFollowed().getUsername());
-
-//        userInfo.setAlignmentX(BoxLayout.PAGE_AXIS);
         userInfo.setFont(FollowViewModel.USER_INFO_FONT);
-
-        JLabel followerInfo = new JLabel("Followers: " + followerCount.getText());
-
-//        followerInfo.setAlignmentX(BoxLayout.PAGE_AXIS);
-        followerInfo.setFont(FollowViewModel.USER_INFO_FONT);
-        followerInfo.setAlignmentX(BoxLayout.PAGE_AXIS);
+        userInfo.setAlignmentX(Component.CENTER_ALIGNMENT);
+        infoPanel.add(userInfo);
 
         JLabel followingInfo = new JLabel("Following: " + followingCount.getText());
-
-//        followingInfo.setAlignmentX(BoxLayout.PAGE_AXIS);
         followingInfo.setFont(FollowViewModel.USER_INFO_FONT);
-        followingInfo.setAlignmentX(BoxLayout.PAGE_AXIS);
-
-        infoPanel.add(userInfo);
+        followingInfo.setAlignmentX(Component.CENTER_ALIGNMENT);
         infoPanel.add(followingInfo);
-        infoPanel.add(followerInfo);
 
-        this.add(infoPanel);
+        JLabel followersInfo = new JLabel("Followers: " + followerCount.getText());
+        followersInfo.setFont(FollowViewModel.USER_INFO_FONT);
+        followersInfo.setAlignmentX(Component.CENTER_ALIGNMENT);
+        infoPanel.add(followersInfo);
 
+        JLabel tierListTitleLabel = new JLabel("Tierlists");
+        tierListTitleLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 20, 10));
+        tierListTitleLabel.setFont(FollowViewModel.TITLE_FONT);
+        tierListTitleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+
+        JPanel followWrapper = new JPanel();
+        ButtonPanel follow;
         if (followViewModel.getState().getIsFollowing()) {
-            follow = new JButton(followViewModel.FOLLOWING_BUTTON_LABEL);
-
+            follow = new ButtonPanel(followViewModel.FOLLOWING_BUTTON_LABEL);
         } else {
-            follow = new JButton(followViewModel.FOLLOW_BUTTON_LABEL);
+            follow = new ButtonPanel(followViewModel.FOLLOW_BUTTON_LABEL);
         }
+//        followWrapper.setBorder(new EmptyBorder(0, 0, 20, 0));
+        followWrapper.add(follow);
+        infoPanel.add(followWrapper);
+        infoPanel.add(new JSeparator());
+        infoPanel.add(tierListTitleLabel);
 
-        JPanel followPanel = new JPanel();
-        follow.setOpaque(true);
-        follow.setPreferredSize(new Dimension(250, 50));
-        follow.setAlignmentX(BoxLayout.PAGE_AXIS);
-        followPanel.add(follow);
-        this.add(followPanel);
-        followPanel.setBorder(new EmptyBorder(20, 10, 10, 10));
-
-        this.add(new JSeparator());
-
-        JLabel tierlistTitle = new JLabel("Tierlists");
-        tierlistTitle.setFont(FollowViewModel.TITLE_FONT);
-        this.add(tierlistTitle);
 
         JPanel tierlistPanel = new JPanel();
-        tierlistPanel.setLayout(new BoxLayout(tierlistPanel, BoxLayout.PAGE_AXIS));
+        BoxLayout tierListBoxLayout = new BoxLayout(tierlistPanel, BoxLayout.PAGE_AXIS);
+        tierlistPanel.setLayout(tierListBoxLayout);
+
         List<JButton> tierListButtons = new ArrayList<>();
         List<String> tierLists = followViewModel.getState().getTierLists();
         for (String tierList : tierLists) {
@@ -156,19 +151,21 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
             });
         }
 
-        follow.addActionListener(
-                new ActionListener() {
-                    public void actionPerformed(ActionEvent evt) {
-                        if (evt.getSource().equals(follow)) {
-                            FollowState currentState = followViewModel.getState();
-                            followController.execute(currentState.getFollower().getUsername(), currentState.getUserBeingFollowed().getUsername(), currentState.getIsFollowing());
-
-                        }
+        follow.getButton().addActionListener(
+                evt1 -> {
+                    if (evt1.getSource().equals(follow.getButton())) {
+                        FollowState currentState = followViewModel.getState();
+                        followController.execute(currentState.getFollower().getUsername(), currentState.getUserBeingFollowed().getUsername(), currentState.getIsFollowing());
                     }
                 });
 
-//        revalidate();
+
+        infoPanel.add(tierlistPanel);
+        this.add(infoPanel);
+
         this.add(new JSeparator());
+
+        revalidate();
 
     }
 
