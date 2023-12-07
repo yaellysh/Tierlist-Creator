@@ -98,6 +98,7 @@ public class TierListView extends JPanel implements ActionListener, PropertyChan
 
         }
 
+
     }
 
     @Override
