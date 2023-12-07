@@ -83,7 +83,7 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
         JLabel followTitleLabel = new JLabel(FollowViewModel.TITLE_LABEL);
         followTitleLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 10));
         followTitleLabel.setFont(FollowViewModel.TITLE_FONT);
-        followTitleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        followTitleLabel.setAlignmentX(BoxLayout.PAGE_AXIS);
 
         followTitleLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 10));
         this.add(followTitleLabel);
@@ -93,21 +93,21 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
         infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.PAGE_AXIS));
         JLabel userInfo = new JLabel("Username: " + followViewModel.getState().getUserBeingFollowed().getUsername());
 
-        userInfo.setAlignmentX(Component.CENTER_ALIGNMENT);
+        userInfo.setAlignmentX(BoxLayout.PAGE_AXIS);
         userInfo.setFont(FollowViewModel.USER_INFO_FONT);
-        userInfo.setAlignmentX(Component.CENTER_ALIGNMENT);
+        userInfo.setAlignmentX(BoxLayout.PAGE_AXIS);
 
         JLabel followerInfo = new JLabel("Followers: " + followerCount.getText());
 
-        followerInfo.setAlignmentX(Component.CENTER_ALIGNMENT);
+        followerInfo.setAlignmentX(BoxLayout.PAGE_AXIS);
         followerInfo.setFont(FollowViewModel.USER_INFO_FONT);
-        followerInfo.setAlignmentX(Component.CENTER_ALIGNMENT);
+        followerInfo.setAlignmentX(BoxLayout.PAGE_AXIS);
 
         JLabel followingInfo = new JLabel("Following: " + followingCount.getText());
 
-        followingInfo.setAlignmentX(Component.CENTER_ALIGNMENT);
+        followingInfo.setAlignmentX(BoxLayout.PAGE_AXIS);
         followingInfo.setFont(FollowViewModel.USER_INFO_FONT);
-        followingInfo.setAlignmentX(Component.CENTER_ALIGNMENT);
+        followingInfo.setAlignmentX(BoxLayout.PAGE_AXIS);
 
         infoPanel.add(userInfo);
         infoPanel.add(followingInfo);
@@ -125,7 +125,7 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
         JPanel followPanel = new JPanel();
         follow.setOpaque(true);
         follow.setPreferredSize(new Dimension(250, 50));
-        follow.setAlignmentX(Component.CENTER_ALIGNMENT);
+        follow.setAlignmentX(BoxLayout.PAGE_AXIS);
         followPanel.add(follow);
         this.add(followPanel);
         followPanel.setBorder(new EmptyBorder(20, 10, 10, 10));
