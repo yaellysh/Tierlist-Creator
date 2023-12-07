@@ -3,7 +3,7 @@
     "username": "Test",
     "password": "Password",
     "tierLists": {
-      "actresses": {
+      "Test": {
         "name": "Test",
         "items": {
           "Item 1": {
@@ -12,30 +12,30 @@
           },
           "Item 2": {
             "name": "Item 2",
-            "tier": "S"
+            "tier": "A"
           },
           "Item 3": {
-            "name": "Item 2",
-            "tier": "S"
+            "name": "Item 3",
+            "tier": "A"
           },
           "Item 4": {
-            "name": "Item 2",
+            "name": "Item 4",
             "tier": "S"
           },
           "Item 5": {
-            "name": "Item 2",
+            "name": "Item 5",
             "tier": "S"
           },
           "Item 6": {
-            "name": "Item 2",
+            "name": "Item 6",
             "tier": "S"
           },
           "Item 7": {
-            "name": "Item 2",
+            "name": "Item 7",
             "tier": "S"
           },
           "Item 8": {
-            "name": "Item 2",
+            "name": "Item 8",
             "tier": "S"
           }
         }

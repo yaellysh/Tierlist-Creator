@@ -22,6 +22,7 @@ import interface_adapter.view_existing.ViewExistingState;
 import interface_adapter.view_existing.ViewExistingViewModel;
 import interface_adapter.view_user.ViewUserViewModel;
 import org.junit.Test;
+import use_case.tierlist.TierListDataAccessInterface;
 import view.*;
 
 import javax.swing.*;
@@ -35,7 +36,7 @@ import static org.junit.Assert.assertNotNull;
 
 public class TierListTest {
 
-    public static void miniMain() throws InterruptedException {
+    public static void miniMain(String path) throws InterruptedException, IOException {
 
         JFrame application = new JFrame("Tierlist Maker");
         application.setResizable(false);
@@ -90,7 +91,7 @@ public class TierListTest {
         viewExistingState.setUser(user);
         viewExistingViewModel.setState(viewExistingState);
 
-        FileUserDataAccessObject userDataAccessObject = new FileUserDataAccessObject("src/main/resources/users.json");
+        FileUserDataAccessObject userDataAccessObject = new FileUserDataAccessObject(path);
         ChatGPTDataAccessObject chatGPTDataAccessObject = new ChatGPTDataAccessObject();
 
         RandomTierListView randomTierListView = RandomTierListFactory.create(viewManagerModel, randomTierListViewModel, userDataAccessObject, chatGPTDataAccessObject, tierListViewModel, selectorViewModel);
@@ -129,31 +130,11 @@ public class TierListTest {
         application.setVisible(true);
 
     }
-
-    public JComboBox getDropDown() {
-        JFrame app = null;
-        Window[] windows = Window.getWindows();
-        for (Window window : windows) {
-            if (window instanceof JFrame) {
-                app = (JFrame) window;
-            }
-        }
-        assertNotNull(app);
-        Component root = app.getComponent(0);
-        Component cp = ((JRootPane) root).getContentPane();
-        JPanel jp = (JPanel) cp;
-        JPanel jp2 = (JPanel) jp.getComponent(0);
-
-        TierListView sv = (TierListView) jp2.getComponent(0);
-
-        return (JComboBox) sv
-                .getComponent(3)
-                .getComponentAt(0, 0)
-                .getComponentAt(73, 0)
-                .getComponentAt(89, 5);
+    public static void miniMain() throws InterruptedException, IOException {
+        miniMain("src/main/resources/users.json");
     }
 
-    public Component getView(String viewName) throws InterruptedException {
+    public Component getView(String viewName) throws InterruptedException, IOException {
         miniMain();
 
         JFrame app = null;
@@ -195,6 +176,14 @@ public class TierListTest {
                 if (component instanceof CustomTierListView) {
                     return component;
                 }
+            } else if (Objects.equals(viewName, "tierlist")) {
+                if (component instanceof TierListView) {
+                    return component;
+                }
+            } else if (Objects.equals(viewName, "login")) {
+                if (component instanceof LoginView) {
+                    return component;
+                }
             }
         }
         return null;
@@ -227,7 +216,7 @@ public class TierListTest {
     }
 
     @Test
-    public void checkMenuSignUpButton() throws InterruptedException {
+    public void checkMenuSignUpButton() throws InterruptedException, IOException {
         miniMain();
 
         MenuView menuView = (MenuView) getView("menu");
@@ -243,7 +232,7 @@ public class TierListTest {
     }
 
     @Test
-    public void checkMenuLoginButton() throws InterruptedException {
+    public void checkMenuLoginButton() throws InterruptedException, IOException {
         miniMain();
 
         MenuView menuView = (MenuView) getView("menu");
@@ -261,7 +250,7 @@ public class TierListTest {
     }
 
     @Test
-    public void checkSignUp() throws InterruptedException {
+    public void checkSignUp() throws InterruptedException, IOException {
         SignupView signupView = (SignupView) getView("signup");
 
         InputPanel usernameInputPanel = (InputPanel) signupView.getComponent(1);
@@ -282,11 +271,30 @@ public class TierListTest {
         JButton signUpButton = buttonPanel.getButton();
 
         signUpButton.doClick();
-
     }
 
     @Test
-    public void checkViewExistingTierList() throws InterruptedException {
+    public void checkLogin() throws InterruptedException, IOException {
+        LoginView loginView = (LoginView) getView("login");
+
+        InputPanel usernameInputPanel = (InputPanel) loginView.getComponent(1);
+        JTextField usernameInput = usernameInputPanel.getTextField();
+
+        PasswordInputPanel passwordInputPanel = (PasswordInputPanel) loginView.getComponent(3);
+        JTextField passwordInput = passwordInputPanel.getTextField();
+
+        usernameInput.setText("Test");
+        passwordInput.setText("Test");
+
+        JPanel buttonPanelWrapper = (JPanel) loginView.getComponent(5);
+        ButtonPanel buttonPanel = (ButtonPanel) buttonPanelWrapper.getComponent(1);
+        JButton logInButton = buttonPanel.getButton();
+
+        logInButton.doClick();
+    }
+
+    @Test
+    public void checkViewExistingTierList() throws InterruptedException, IOException {
         ViewExistingView viewExistingView = (ViewExistingView) getView("view existing");
         viewExistingView.updateScreen();
 
@@ -305,7 +313,7 @@ public class TierListTest {
     }
 
     @Test
-    public void checkRandomTierList() throws InterruptedException {
+    public void checkRandomTierList() throws InterruptedException, IOException {
         RandomTierListView randomTierListView = (RandomTierListView) getView("random");
 
         JPanel inputPanel = (JPanel) randomTierListView.getComponent(3);
@@ -329,8 +337,8 @@ public class TierListTest {
 
      }
 
-     @Test
-    public void checkCustomTierList() throws InterruptedException {
+    @Test
+    public void checkCustomTierList() throws InterruptedException, IOException {
         CustomTierListView customTierListView = (CustomTierListView) getView("custom");
 
         InputPanel titleInputPanel = (InputPanel) customTierListView.getComponent(2);
@@ -369,24 +377,39 @@ public class TierListTest {
          assert currentView instanceof TierListView;
      }
 
-//    @Test
-//    public void checkDropDown() throws IOException, InterruptedException {
-//        miniMain();
-//        Tier initialTier = getTierList();
-//        assert initialTier.equals(Tier.S);
-//        JComboBox dropDown = getDropDown();
-//        Thread.sleep(100);
-//        dropDown.setSelectedItem("A");
-//        Thread.sleep(100);
-//
-//        Tier updatedTier = getTierList();
-//        assert updatedTier.equals(Tier.A);
-//        dropDown.setSelectedItem("S");
-//        Thread.sleep(100);
-//    }
+    private static Tier getTierList(String item) throws IOException {
+        TierListDataAccessInterface object = new FileUserDataAccessObject("src/main/resources/users.json");
+        return object.getUser("Test").getTierList("Test").getItem(item).getTier();
+    }
+    @Test
+    public void checkTierListDropDown() throws IOException, InterruptedException {
+        miniMain();
+
+        TierListView tierListView = (TierListView) getView("tierlist");
+        tierListView.tierListViewModel.firePropertyChanged();
+        JPanel dropDownPanel = (JPanel) tierListView.getComponent(3);
+        JPanel leftPanel = (JPanel) dropDownPanel.getComponent(0);
+
+        LabelDropDownPanel labelDropDownPanel = (LabelDropDownPanel) leftPanel.getComponent(0);
+        JComboBox<String> labelDropDown = labelDropDownPanel.getDropDown();
+
+        Tier initialTier = getTierList(labelDropDownPanel.getLabelName());
+        assert initialTier.equals(Tier.S);
+
+        Thread.sleep(100);
+        labelDropDown.setSelectedItem("A");
+        Thread.sleep(100);
+
+        Tier updatedTier = getTierList(labelDropDownPanel.getLabelName());
+        assert updatedTier.equals(Tier.A);
+
+        labelDropDown.setSelectedItem("S");
+        Thread.sleep(100);
+
+    }
 
     @Test
-    public void checkSelectorButtons() throws InterruptedException {
+    public void checkSelectorButtons() throws InterruptedException, IOException {
         SelectorView selectorView = (SelectorView) getView("selector");
         assert selectorView != null;
 
