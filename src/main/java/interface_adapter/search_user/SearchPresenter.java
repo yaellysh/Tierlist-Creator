@@ -24,7 +24,8 @@ public class SearchPresenter implements SearchOutputBoundary {
         FollowState followState = followViewModel.getState();
         followState.setUserBeingFollowed(output.getUser());
         followState.setTierLists(output.getTierLists());
-        followState.setFollower(searchViewModel.getState().getCurrentUser().getUsername());
+        followState.setFollower(searchViewModel.getState().getCurrentUser());
+        System.out.println("follower: " + searchViewModel.getState().getCurrentUser());
 
         followViewModel.setState(followState);
         followViewModel.firePropertyChanged();

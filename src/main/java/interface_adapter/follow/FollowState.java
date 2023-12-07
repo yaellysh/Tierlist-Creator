@@ -8,13 +8,13 @@ import java.util.List;
 
 public class FollowState {
     private HashMap<String, Integer> relatedUsers;
-    private String follower;
+    private User follower;
     private User userBeingFollowed;
     private boolean isFollowing;
     private List<String> tierLists;
 
     //maybe temp
-    public FollowState(String follower, User userBeingFollowed, boolean isFollowing, List<String> tierLists) {
+    public FollowState(User follower, User userBeingFollowed, boolean isFollowing, List<String> tierLists) {
         this.follower = follower;
         this.userBeingFollowed = userBeingFollowed;
         this.isFollowing = isFollowing;
@@ -34,7 +34,7 @@ public class FollowState {
 //        return relatedUsers;
 //    }
 
-    public String getFollower() {
+    public User getFollower() {
         return this.follower;
     }
 
@@ -50,7 +50,7 @@ public class FollowState {
 //        this.relatedUsers = relatedUsers;
 //    }
 
-    public void setFollower(String follower) {
+    public void setFollower(User follower) {
         this.follower = follower;
     }
 

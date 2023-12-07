@@ -26,8 +26,8 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
     private final FollowViewModel followViewModel;
 //    private final ViewUserViewModel viewUserViewModel;
 //
-    private final JLabel followingLabel;
-    private final JLabel followersLabel;
+    private JLabel followingLabel;
+    private JLabel followersLabel;
 
     private JButton follow;
 //    private JButton mutual1;
@@ -46,7 +46,7 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
     ArrayList<JButton> mutualButtonList = new ArrayList<JButton>();
     JPanel panely = new JPanel();
     
-    JPanel mutuals = new JPanel();
+//    JPanel mutuals = new JPanel();
     BoxLayout boxLayoutM;
 
     private final FollowController followController;
@@ -58,6 +58,18 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
         this.add(username);
         this.add(followingCount);
         this.add(followerCount);
+        followViewModel.addPropertyChangeListener(this);
+
+
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent evt) {
+        System.out.println("Click " + evt.getActionCommand());
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
 
         JPanel followerPanel = new JPanel();
         this.followersLabel =  new JLabel(followViewModel.FOLLOWERS_LABEL);
@@ -74,15 +86,24 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
 
         followViewModel.addPropertyChangeListener(this);
         BoxLayout boxLayout = new BoxLayout(this, BoxLayout.Y_AXIS);
-        boxLayoutM = new BoxLayout(mutuals, BoxLayout.Y_AXIS);
+//        boxLayoutM = new BoxLayout(mutuals, BoxLayout.Y_AXIS);
         this.setLayout(boxLayout);
 
         this.add(panely);
 
+        System.out.println("get follower: " + followViewModel.getState().getFollower());
 
-        JLabel followerCount = new JLabel(Integer.toString(followViewModel.getState().getNumFollowing()));
+        JLabel followerCount = new JLabel(Integer.toString(followViewModel
+                .getState()
+                .getFollower()
+                .getFollowers()
+                .size()));
         panely.add(followerCount);
-        JLabel followingCount = new JLabel(Integer.toString(viewUserViewModel.getState().getNumFollowers()));
+        JLabel followingCount = new JLabel(Integer.toString(followViewModel.
+                getState()
+                .getFollower()
+                .getFollowing()
+                .size()));
         panely.add(followingCount);
 
         /*
@@ -106,37 +127,29 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
 //        mutualButtonList.add(mutual2);
 //        mutualButtonList.add(mutual3);
 //
-    
-        
+
+
         panely.add(follow);
 
-        follow.addActionListener(                
-        new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                if (evt.getSource().equals(follow)) {
-                    FollowState currentState = followViewModel.getState();
-                    if (!currentState.getIsFollowing()) {
-                        followController.execute(currentState.getFollower(), currentState.getUserBeingFollowed().getUsername(), false);
+        follow.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        if (evt.getSource().equals(follow)) {
+                            FollowState currentState = followViewModel.getState();
+                            if (!currentState.getIsFollowing()) {
+                                followController.execute(currentState.getFollower().getUsername(), currentState.getUserBeingFollowed().getUsername(), false);
+                            }
+                            else {
+                                followController.execute(currentState.getFollower().getUsername(), currentState.getUserBeingFollowed().getUsername(), true);
+                            }
+
+
+                        }
                     }
-                    else {
-                        followController.execute(currentState.getFollower(), currentState.getUserBeingFollowed().getUsername(), true);
-                    }
+                });
 
-                    
-                }
-            }
-        });
-
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent evt) {
-        System.out.println("Click " + evt.getActionCommand());
-    }
-
-    @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-        System.out.println("is this running?");
+            revalidate();
+//        System.out.println("is this running?");
 //        System.out.println(evt.getSource());
 //
 //        System.out.println("propertychanged");
