@@ -5,6 +5,7 @@ import entity.User;
 public class TierListState {
     private User user;
     private String tierList;
+    private String error = null;
 
     public TierListState() {
     }
@@ -25,4 +26,11 @@ public class TierListState {
         this.tierList = tierList;
     }
 
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
+    }
 }
