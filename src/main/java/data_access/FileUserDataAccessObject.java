@@ -3,6 +3,9 @@ package data_access;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+
+import entity.Item;
+import entity.TierList;
 import entity.User;
 import factory.UserFactory;
 import use_case.follow.FollowUserDataAccessInterface;
@@ -18,6 +21,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -84,6 +88,14 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
         accounts.put("User D", userD);
         accounts.put("User E", userE);
         accounts.put("User F", userF);
+
+        Item dummyItem = new Item("dummy");
+        ArrayList<Item> dummyList = new ArrayList<>();
+        dummyList.add(dummyItem);
+        TierList dummyTl1 = new TierList("dummyTl", dummyList);
+        TierList dummyTl2 = new TierList("dummyT2", dummyList);
+        terry.addTierList(dummyTl1);
+        terry.addTierList(dummyTl2);
 
         
 
