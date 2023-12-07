@@ -24,10 +24,8 @@ public class FollowFactory {
 
         FollowController followController = createFollowUseCase(viewManagerModel, followViewModel, viewUserViewModel, userDataAccessObject);
         ViewUserController viewUserController = createViewUserUseCase(viewManagerModel, viewUserViewModel, followViewModel, viewUserDAO);
-        //followViewModel.setState(new FollowState()); // TODO: currently hardcoded, will change when login is implemented
-        return new FollowView(followController, followViewModel, viewUserController, viewUserViewModel);
+        return new FollowView(followController, followViewModel);
     }
-    
     private static FollowController createFollowUseCase(ViewManagerModel viewManagerModel, FollowViewModel followViewModel, ViewUserViewModel viewUserViewModel, FollowUserDataAccessInterface userDataAccessObject) {
         FollowOutputBoundary followOutputBoundary = new FollowPresenter(viewManagerModel, followViewModel, viewUserViewModel);
         FollowInteractor followInteractor = new FollowInteractor(userDataAccessObject, followOutputBoundary);
