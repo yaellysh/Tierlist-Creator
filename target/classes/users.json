@@ -1,18 +1,52 @@
 [
   {
-<<<<<<< HEAD
-    "username": "Yael",
-=======
     "username": "a",
     "password": "a",
-    "tierLists": {},
+    "tierLists": {
+      "sea animals": {
+        "name": "sea animals",
+        "items": {
+          "Jellyfish": {
+            "name": "Jellyfish",
+            "tier": "S"
+          },
+          "Seahorse": {
+            "name": "Seahorse",
+            "tier": "B"
+          },
+          "Humpback whale     ": {
+            "name": "Humpback whale     ",
+            "tier": "S"
+          },
+          "Dolphin": {
+            "name": "Dolphin",
+            "tier": "S"
+          },
+          "Shark": {
+            "name": "Shark",
+            "tier": "S"
+          },
+          "Sea turtle": {
+            "name": "Sea turtle",
+            "tier": "C"
+          },
+          "Octopus": {
+            "name": "Octopus",
+            "tier": "S"
+          },
+          "Clownfish": {
+            "name": "Clownfish",
+            "tier": "S"
+          }
+        }
+      }
+    },
     "following": [],
     "followers": []
   },
   {
     "username": "yael",
     "password": "password",
->>>>>>> 039b7d6bc381297089f4e8d9e38f12016f21c55b
     "tierLists": {
       "actresses": {
         "name": "actresses",
@@ -51,9 +85,6 @@
           }
         }
       }
-<<<<<<< HEAD
-    }
-=======
     },
     "following": [],
     "followers": []
@@ -98,10 +129,83 @@
             "tier": "S"
           }
         }
+      },
+      "dodie songs": {
+        "name": "dodie songs",
+        "items": {
+          "Secret for the Mad ": {
+            "name": "Secret for the Mad ",
+            "tier": "S"
+          },
+          "Sick of Losing Soulmates": {
+            "name": "Sick of Losing Soulmates",
+            "tier": "S"
+          },
+          "Monster": {
+            "name": "Monster",
+            "tier": "A"
+          },
+          "Absolutely Smitten     ": {
+            "name": "Absolutely Smitten     ",
+            "tier": "C"
+          },
+          "Would You Be So Kind? ": {
+            "name": "Would You Be So Kind? ",
+            "tier": "B"
+          },
+          "Arms Unfolding ": {
+            "name": "Arms Unfolding ",
+            "tier": "A"
+          },
+          "When ": {
+            "name": "When ",
+            "tier": "S"
+          },
+          "Guiltless": {
+            "name": "Guiltless",
+            "tier": "S"
+          }
+        }
+      },
+      "KPOP artists": {
+        "name": "KPOP artists",
+        "items": {
+          "BTS ": {
+            "name": "BTS ",
+            "tier": "A"
+          },
+          "Blackpink ": {
+            "name": "Blackpink ",
+            "tier": "S"
+          },
+          "Seventeen     ": {
+            "name": "Seventeen     ",
+            "tier": "C"
+          },
+          "EXO ": {
+            "name": "EXO ",
+            "tier": "S"
+          },
+          "Big Bang ": {
+            "name": "Big Bang ",
+            "tier": "D"
+          },
+          "NCT ": {
+            "name": "NCT ",
+            "tier": "S"
+          },
+          "Twice ": {
+            "name": "Twice ",
+            "tier": "S"
+          },
+          "Red Velvet ": {
+            "name": "Red Velvet ",
+            "tier": "S"
+          }
+        }
       }
     },
     "following": [],
     "followers": []
->>>>>>> 039b7d6bc381297089f4e8d9e38f12016f21c55b
   }
 ]
