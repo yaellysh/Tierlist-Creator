@@ -70,14 +70,14 @@ public class Main {
 
         views.add(searchView, searchView.viewName);
 
-        SelectorView selectorView = SelectorFactory.create(viewManagerModel, selectorViewModel, randomTierListViewModel, customTierListViewModel, userDataAccessObject, viewExistingViewModel, searchViewModel, viewUserViewModel);
-
-        views.add(selectorView, selectorView.viewName);
-
         TierListView tierListView = TierListFactory.create(viewManagerModel, tierListViewModel, userDataAccessObject, selectorViewModel);
 
         MenuView menuView = MenuFactory.create(viewManagerModel, menuViewModel, loginViewModel, signupViewModel);
         views.add(menuView, menuView.viewName);
+
+        SelectorView selectorView = SelectorFactory.create(viewManagerModel, selectorViewModel, randomTierListViewModel, customTierListViewModel, userDataAccessObject, viewExistingViewModel, menuViewModel, searchViewModel);
+
+        views.add(selectorView, selectorView.viewName);
 
         SignupView signupView = SignupFactory.create(viewManagerModel, loginViewModel, signupViewModel, userDataAccessObject);
         assert signupView != null;

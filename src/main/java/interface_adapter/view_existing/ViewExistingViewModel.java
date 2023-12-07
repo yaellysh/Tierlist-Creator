@@ -13,7 +13,7 @@ public class ViewExistingViewModel extends ViewModel {
     public static final Font TITLE_FONT = new Font("Arial Bold", Font.PLAIN, 30);
     public static final String SUBMIT_BUTTON = "Submit";
     public static final String BACK_BUTTON = "Back";
-    public ViewExistingState state;
+    public ViewExistingState state = new ViewExistingState();
 
     public ViewExistingViewModel(String name) {super(name);}
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);

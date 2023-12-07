@@ -26,7 +26,7 @@ public class ViewExistingView extends JPanel implements ActionListener, Property
         this.viewExistingViewModel = viewExistingViewModel;
         viewExistingViewModel.addPropertyChangeListener(this);
 
-        this.updateScreen();
+//        this.updateScreen();
 
     }
 

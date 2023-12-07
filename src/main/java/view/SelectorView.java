@@ -23,6 +23,21 @@ public class SelectorView extends JPanel implements ActionListener, PropertyChan
         BoxLayout boxLayout = new BoxLayout(this, BoxLayout.Y_AXIS);
         this.setLayout(boxLayout);
 
+        LogoutButtonPanel logoutButtonPanel = new LogoutButtonPanel();
+        this.add(logoutButtonPanel);
+        logoutButtonPanel.getLogoutButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource().equals(logoutButtonPanel.getLogoutButton())) {
+                    SelectorState state = selectorViewModel.getState();
+                    selectorController.execute(
+                            logoutButtonPanel.getLogoutButton().getText(),
+                            state.getUser());
+                }
+            }
+        });
+
+
         // added title with padding
         JLabel selectorTitleLabel = new JLabel(SelectorViewModel.TITLE_LABEL);
         selectorTitleLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 10));
