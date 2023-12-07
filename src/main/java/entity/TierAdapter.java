@@ -11,7 +11,7 @@ public class TierAdapter {
     public static final TierAdapter A = new TierAdapter(Tier.A, Color.ORANGE);
     public static final TierAdapter B = new TierAdapter(Tier.B, Color.YELLOW);
     public static final TierAdapter C = new TierAdapter(Tier.C, Color.GREEN);
-    public static final TierAdapter D = new TierAdapter(Tier.D, Color.BLUE);
+    public static final TierAdapter D = new TierAdapter(Tier.D, Color.CYAN);
     public static final TierAdapter[] TIERS = {S, A, B, C, D};
 
     private final Tier tier;
