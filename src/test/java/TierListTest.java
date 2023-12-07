@@ -27,10 +27,8 @@ import view.*;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 import java.util.List;
-import java.util.Objects;
 
 import static org.junit.Assert.assertNotNull;
 
@@ -193,6 +191,10 @@ public class TierListTest {
                 if (component instanceof RandomTierListView) {
                     return component;
                 }
+            } else if (Objects.equals(viewName, "custom")) {
+                if (component instanceof CustomTierListView) {
+                    return component;
+                }
             }
         }
         return null;
@@ -325,6 +327,46 @@ public class TierListTest {
 
         assert currentView instanceof TierListView;
 
+     }
+
+     @Test
+    public void checkCustomTierList() throws InterruptedException {
+        CustomTierListView customTierListView = (CustomTierListView) getView("custom");
+
+        InputPanel titleInputPanel = (InputPanel) customTierListView.getComponent(2);
+        JTextField titleInput = titleInputPanel.getTextField();
+        titleInput.setText("Test");
+
+        JPanel largePanel = (JPanel) customTierListView.getComponent(5);
+        JPanel leftPanel = (JPanel) largePanel.getComponent(0);
+        JPanel rightPanel = (JPanel) largePanel.getComponent(1);
+
+        Map<Integer, String> items = new HashMap<>();
+         for (int i = 0; i < TierList.LENGTH; i++) {
+             items.put(i, "Item " + (i + 1));
+             if (i < TierList.LENGTH / 2) {
+                 InputPanel itemInputPanel = (InputPanel) leftPanel.getComponent(i);
+                 JTextField itemInput = itemInputPanel.getTextField();
+             } else {
+                 InputPanel itemInputPanel = (InputPanel) rightPanel.getComponent((i - TierList.LENGTH/2));
+                 JTextField itemInput = itemInputPanel.getTextField();
+             }
+         }
+
+         CustomTierListState customTierListState=  customTierListView.customTierListViewModel.getState();
+         customTierListState.setTitle("Custom Test");
+         customTierListState.setItems(items);
+
+         customTierListView.customTierListViewModel.setState(customTierListState);
+
+         JPanel submitButtonPanel = (JPanel) customTierListView.getComponent(6);
+         JButton submitButton = (JButton) submitButtonPanel.getComponent(1);
+
+         submitButton.doClick();
+
+         Component currentView = getCurrentView();
+
+         assert currentView instanceof TierListView;
      }
 
 //    @Test
