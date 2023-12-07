@@ -16,10 +16,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
-<<<<<<< HEAD
 import java.lang.reflect.Type;
-=======
->>>>>>> a45df5bdc92d19958134a3eb1c9eccf6a5b160f3
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -28,7 +25,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-<<<<<<< HEAD
 public class FileUserDataAccessObject implements SignupDataAccessInterface, LoginDataAccessInterface, TierListDataAccessInterface, FollowUserDataAccessInterface, ViewUserDataAccessInterface {
   
     private final Path path;
@@ -36,11 +32,6 @@ public class FileUserDataAccessObject implements SignupDataAccessInterface, Logi
 
     private final Map<String, User> users;
     private static final Type USER_MAP_TYPE = new TypeToken<Map<String, User>>() {}.getType();
-=======
-public class FileUserDataAccessObject implements SignupDataAccessInterface, LoginDataAccessInterface, TierListDataAccessInterface, ViewUserDataAccessInterface, SearchUserDataAccessInterface, FollowUserDataAccessInterface {
-    private final Path path;
-    private final Map<String, User> users;
->>>>>>> a45df5bdc92d19958134a3eb1c9eccf6a5b160f3
 
     public FileUserDataAccessObject(String path) {
         this.path = Paths.get(path);
@@ -71,11 +62,6 @@ public class FileUserDataAccessObject implements SignupDataAccessInterface, Logi
     public boolean existsByName(String identifier) {
         return users.containsKey(identifier);
     }
-  
-    @Override
-    public void updateUsers() {
-
-    }
 
     @Override
     public User getUser(String username) {
@@ -87,25 +73,7 @@ public class FileUserDataAccessObject implements SignupDataAccessInterface, Logi
         this.users.put(user.getUsername(), user);
         save();
     }
-<<<<<<< HEAD
-    
-=======
 
-    @Override
-    public void updateFollowing(User user, String username, boolean follow) {
-        if (!follow) {
-            user.addFollowing(username);
-        }
-        else {
-            user.removeFollowing(username);
-        }
-    }
-
-    @Override
-    public void updateFollowers(User follower, String username, boolean follow) {
-
-    }
->>>>>>> a45df5bdc92d19958134a3eb1c9eccf6a5b160f3
 
     public void removeUser(String username) {
         this.users.remove(username);

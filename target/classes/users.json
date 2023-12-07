@@ -118,6 +118,13 @@
     "followers": []
   },
   {
+    "username": "testing",
+    "password": "a",
+    "tierLists": {},
+    "following": [],
+    "followers": []
+  },
+  {
     "username": "jillibean",
     "password": "potato",
     "tierLists": {
@@ -241,9 +248,6 @@
     "username": "i",
     "password": "i",
     "tierLists": {},
-    "following": [],
-    "followers": []
-  }
 =======
     "username": "Testing",
     "password": "a",
@@ -286,9 +290,8 @@
         }
       }
     },
+>>>>>>> a45df5bdc92d19958134a3eb1c9eccf6a5b160f3
     "following": [],
     "followers": []
-    }
-
->>>>>>> a45df5bdc92d19958134a3eb1c9eccf6a5b160f3
+  }
 ]
