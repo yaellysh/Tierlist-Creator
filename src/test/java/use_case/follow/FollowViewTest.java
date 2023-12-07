@@ -107,11 +107,8 @@ public class FollowViewTest {
         FollowState testing = new FollowState("terryfufu", "lt_rui", false);
         followViewModel.setState(testing);
 
-<<<<<<< HEAD
-=======
         FileUserDataAccessObject userDataAccessObject = new FileUserDataAccessObject("src/test/resources/users.json");
 
->>>>>>> a45df5bdc92d19958134a3eb1c9eccf6a5b160f3
         FollowView followView = FollowFactory.create(viewManagerModel, followViewModel, viewUserViewModel, userDataAccessObject, userDataAccessObject);
         views.add(followView, followView.viewName);
 
