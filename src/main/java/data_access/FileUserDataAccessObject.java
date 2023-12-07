@@ -25,7 +25,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class FileUserDataAccessObject implements SignupDataAccessInterface, LoginDataAccessInterface, TierListDataAccessInterface, FollowUserDataAccessInterface, ViewUserDataAccessInterface {
+public class FileUserDataAccessObject implements SignupDataAccessInterface, LoginDataAccessInterface, TierListDataAccessInterface, FollowUserDataAccessInterface, ViewUserDataAccessInterface, SearchUserDataAccessInterface {
   
     private final Path path;
     private Gson gson;
@@ -36,7 +36,7 @@ public class FileUserDataAccessObject implements SignupDataAccessInterface, Logi
     public FileUserDataAccessObject(String path) {
         this.path = Paths.get(path);
         this.users = new HashMap<>();
-
+        /*
         try {
             Reader reader = Files.newBufferedReader(this.path, StandardCharsets.UTF_8);
             List<User> users = new Gson().fromJson(reader, new TypeToken<List<User>>() {}.getType());
@@ -44,6 +44,7 @@ public class FileUserDataAccessObject implements SignupDataAccessInterface, Logi
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        */
     }
 
     public void save() {
