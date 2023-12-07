@@ -71,6 +71,12 @@ public class FollowPresenterTest {
         application.setVisible(true);
 
         assertSame("follow User", viewManagerModel.getActiveView());
+
+        FollowOutputData output = new FollowOutputData.FollowOutputBuilder(52, true).build();
+        FollowPresenter presenter = new FollowPresenter(viewManagerModel, followViewModel, viewUserViewModel);
+        presenter.prepareSuccessView(output);
+
+
     }
 
 
