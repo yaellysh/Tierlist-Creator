@@ -15,7 +15,6 @@ public class ViewUserInteractor implements ViewUserInputBoundary {
     }
 
     public void execute(ViewUserInputData viewUserInputData) {
-        System.out.println("akjhdkashhkashdk");
         // get the selected user from input data
         String selectedUsername = viewUserInputData.getSelectedUser();
         User selectedUser = userDataAccessObject.getUser(selectedUsername);

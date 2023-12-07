@@ -25,20 +25,20 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
     public final String viewName = "search";
     private final SearchViewModel searchViewModel;
 
-    private JTextField usernameInputField = new JTextField(15);
+//    private JTextField usernameInputField = new JTextField(15);
     final JButton search;
     private JButton userfound = new JButton();
     private JLabel userNotFoundText = new JLabel();
-
-
 
     private final SearchController searchController;
     private ViewUserController viewUserController;
     private ViewUserViewModel viewUserViewModel;
 
-    public SearchView(SearchController searchController, SearchViewModel searchViewModel) {
+    public SearchView(SearchController searchController, SearchViewModel searchViewModel, ViewUserController viewUserController, ViewUserViewModel viewUserViewModel) {
         this.searchController = searchController;
         this.searchViewModel = searchViewModel;
+        this.viewUserController = viewUserController;
+        this.viewUserViewModel = viewUserViewModel;
         searchViewModel.addPropertyChangeListener(this);
 
         searchViewModel.addPropertyChangeListener(this);
@@ -47,19 +47,16 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
         this.setLayout(boxLayout);
 
         JPanel buttons = new JPanel();
-        this.add(usernameInputField);
+
 
         InputPanel usernameInfo = new InputPanel(searchViewModel.SEARCH_BOX_LABEL);
-        usernameInputField = usernameInfo.getTextField();
+
         this.add(usernameInfo);
 
         search = new JButton(searchViewModel.SEARCH_BUTTON_LABEL);
         buttons.add(search);
         this.add(buttons);
         this.add(userNotFoundText);
-
-
-        //LabelTextPanel usernameInfo = new LabelTextPanel(new JLabel(searchViewModel.SEARCH_BOX_LABEL), usernameInputField);
 
         search.addActionListener(                
         new ActionListener() {
@@ -78,12 +75,12 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
             }
         });
 
-        usernameInputField.addKeyListener(
+        usernameInfo.getTextField().addKeyListener(
         new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
                 SearchState currentState = searchViewModel.getState();
-                String text = usernameInputField.getText() + e.getKeyChar();
+                String text = usernameInfo.getTextField().getText() + e.getKeyChar();
                 currentState.setSearch(text);
                 searchViewModel.setState(currentState);
             }
@@ -101,31 +98,31 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
 
     @Override
     public void actionPerformed(ActionEvent evt) {
-        System.out.println("Click " + evt.getActionCommand());
     }
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         SearchState state = (SearchState)evt.getNewValue();
-        System.out.println(state.getSearchError());
-        if (state.getSuccess()) {
-            userfound.setText(state.getSearch());
-            this.add(userfound);
-            if (userNotFoundText != null) {
-                userNotFoundText.setVisible(false);
-            }
-            userfound.addActionListener(
-            new ActionListener() {
-                public void actionPerformed(ActionEvent evt) {
-                    if (evt.getSource().equals(userfound)) {
-                       viewUserController.execute(userfound.getText());
 
-                    }
-                }
-            });
+        if (state.getSuccess()) {
+
+//            viewUserController.execute(state.getSearch());
+//
+//            if (userNotFoundText != null) {
+//                userNotFoundText.setVisible(false);
+//            }
+//
+//            userfound.addActionListener(
+//            new ActionListener() {
+//                public void actionPerformed(ActionEvent evt) {
+//                    if (evt.getSource().equals(userfound)) {
+//                       viewUserController.execute(userfound.getText());
+//
+//                    }
+//                }
+//            });
         }
         else {
-            System.out.println("ok");
             userNotFoundText.setText(state.getSearchError());
             this.add(userNotFoundText);
             if (userfound != null) {

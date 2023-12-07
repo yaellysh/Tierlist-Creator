@@ -64,7 +64,7 @@ public class User {
     }
 
     public List<String> getFollowers() {
-        System.out.println(followers + "sldhjflkdj");
+//        System.out.println(followers + "sldhjflkdj");
         return new ArrayList<>(followers);
     }
 

@@ -34,7 +34,8 @@ public class SearchFactory {
     public static SearchView create(ViewManagerModel viewManagerModel, SearchViewModel searchViewModel, ViewUserViewModel viewUserViewModel, FollowViewModel followViewModel, SearchUserDataAccessInterface userDataAccessObject, ViewUserDataAccessInterface viewUserDAO) {
 
         SearchController SearchController = createSearchUseCase(viewManagerModel, searchViewModel, viewUserViewModel, userDataAccessObject);
-        return new SearchView(SearchController, searchViewModel);
+        ViewUserController viewUserController = createViewUserUseCase(viewManagerModel, viewUserViewModel, followViewModel, viewUserDAO);
+        return new SearchView(SearchController, searchViewModel, viewUserController, viewUserViewModel);
     }
     
     private static SearchController createSearchUseCase(ViewManagerModel viewManagerModel, SearchViewModel searchViewModel, ViewUserViewModel viewUserViewModel, SearchUserDataAccessInterface userDataAccessObject) {
