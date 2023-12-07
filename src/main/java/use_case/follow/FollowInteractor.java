@@ -114,19 +114,19 @@ public class FollowInteractor implements FollowInputBoundary {
             */
             }
 
-            userMutualsCount = sortByValue(userMutualsCount);
-            List<String> listy = new ArrayList<>(userMutualsCount.keySet());
-            HashMap<String, Integer> tempy = new HashMap<String, Integer>();
-            tempy.put(listy.get(0), userMutualsCount.get(listy.get(0)));
-            tempy.put(listy.get(1), userMutualsCount.get(listy.get(1)));
-            tempy.put(listy.get(2), userMutualsCount.get(listy.get(2)));
+//            userMutualsCount = sortByValue(userMutualsCount);
+//            List<String> listy = new ArrayList<>(userMutualsCount.keySet());
+//            HashMap<String, Integer> tempy = new HashMap<String, Integer>();
+//            tempy.put(listy.get(0), userMutualsCount.get(listy.get(0)));
+//            tempy.put(listy.get(1), userMutualsCount.get(listy.get(1)));
+//            tempy.put(listy.get(2), userMutualsCount.get(listy.get(2)));
             //add cases where there are less than 3 users in set related users that the user doesn't follow
             //pass forward mutual count for the "followed by x others line."
 
             // end of finding related users
             System.out.println(newFollowerCount + "before builder call");
             FollowOutputData followOutputData = new FollowOutputData.FollowOutputBuilder(newFollowerCount, true)
-                    .buildRelatedUsers(tempy).build();
+                    .build();
             //System.out.println(tempy);
             follower.addFollowing(userBeingFollowedName);
             userBeingFollowed.addFollowers(followerName);
