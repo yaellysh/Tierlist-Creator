@@ -220,17 +220,19 @@ public class TierListView extends JPanel implements ActionListener, PropertyChan
             this.add(buttonPanel);
 
             homeButton.addActionListener(e -> tierListController.execute());
+        } else {
+            JPanel buttonPanel = new JPanel();
+            buttonPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+            JButton homeButton = new JButton(TierListViewModel.HOME_BUTTON);
+            homeButton.setPreferredSize(new Dimension(100, 40));
+            buttonPanel.add(homeButton);
+
+            this.add(buttonPanel);
+
+            homeButton.addActionListener(e -> tierListController.execute());
         }
 
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        JButton homeButton = new JButton(TierListViewModel.HOME_BUTTON);
-        homeButton.setPreferredSize(new Dimension(100, 40));
-        buttonPanel.add(homeButton);
 
-        this.add(buttonPanel);
-
-        homeButton.addActionListener(e -> tierListController.execute());
 
 
     }
