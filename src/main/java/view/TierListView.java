@@ -14,6 +14,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.List;
 import java.util.*;
 
 public class TierListView extends JPanel implements ActionListener, PropertyChangeListener {
@@ -76,7 +77,6 @@ public class TierListView extends JPanel implements ActionListener, PropertyChan
                     label.setFont(new Font("Arial", Font.PLAIN, 10));
 
 
-
                 }
                 for (int j = lenTier; j < TierListViewModel.NUM_ITEMS; j++) {
                     tier = new LabelPanel(new JLabel());
@@ -115,9 +115,6 @@ public class TierListView extends JPanel implements ActionListener, PropertyChan
 
         this.removeAll();
         this.repaint();
-
-        state.setUser(((TierListState) evt.getNewValue()).getUser());
-        state.setTierList(((TierListState) evt.getNewValue()).getTierList());
 
         // setting up the box layout to help formatting
         BoxLayout boxLayout = new BoxLayout(this, BoxLayout.Y_AXIS);
@@ -178,37 +175,38 @@ public class TierListView extends JPanel implements ActionListener, PropertyChan
         TierList tierList = user.getTierList(currentState.getTierList());
 
 
-        java.util.List<String> entries = new ArrayList<>(tierList.getTierList().keySet());
-        for (int i = 0; i < entries.size(); i++) {
-            String entry = entries.get(i);
-            LabelDropDownPanel item = new LabelDropDownPanel(new JLabel(entry), Arrays.stream(TierAdapter.TIERS).map(TierAdapter::getName).toArray(String[]::new));
-            item.getDropDown().setSelectedItem(tierList.getItem(entry).getTier().toString());
-            item.setMaximumSize(new Dimension(400, 70));
-            if (i < (TierListViewModel.NUM_ITEMS + 1) / 2) {
-                leftPanel.add(item);
-            } else {
-                rightPanel.add(item);
-            }
+        if (currentState.getViewUser().equals(user)) {
+            List<String> entries = new ArrayList<>(tierList.getTierList().keySet());
+            for (int i = 0; i < entries.size(); i++) {
+                String entry = entries.get(i);
+                LabelDropDownPanel item = new LabelDropDownPanel(new JLabel(entry), Arrays.stream(TierAdapter.TIERS).map(TierAdapter::getName).toArray(String[]::new));
+                item.getDropDown().setSelectedItem(tierList.getItem(entry).getTier().toString());
+                item.setMaximumSize(new Dimension(400, 70));
+                if (i < (TierListViewModel.NUM_ITEMS + 1) / 2) {
+                    leftPanel.add(item);
+                } else {
+                    rightPanel.add(item);
+                }
 
-            item.getDropDown().addActionListener(
-                    e -> {
-                        if (e.getSource().equals(item.getDropDown())) {
-                            TierListState currentState1 = tierListViewModel.getState();
-                            tierListController.execute(
-                                    currentState1.getUser(),
-                                    currentState1.getTierList(),
-                                    item.getName(),
-                                    Objects.requireNonNull(item.getDropDown().getSelectedItem()).toString()
-                            );
-                            tierListViewModel.setState(currentState1);
-                            tierGrid.removeAll();
-                            loadGrid(tierGrid);
-                            tierGrid.revalidate();
-                            tierGrid.repaint();
+                item.getDropDown().addActionListener(
+                        e -> {
+                            if (e.getSource().equals(item.getDropDown())) {
+                                TierListState currentState1 = tierListViewModel.getState();
+                                tierListController.execute(
+                                        currentState1.getUser(),
+                                        currentState1.getTierList(),
+                                        item.getName(),
+                                        Objects.requireNonNull(item.getDropDown().getSelectedItem()).toString()
+                                );
+                                tierListViewModel.setState(currentState1);
+                                tierGrid.removeAll();
+                                loadGrid(tierGrid);
+                                tierGrid.revalidate();
+                                tierGrid.repaint();
+                            }
                         }
-                    }
-            );
-
+                );
+            }
         }
 
 
