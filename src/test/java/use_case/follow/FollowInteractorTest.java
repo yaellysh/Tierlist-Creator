@@ -2,7 +2,6 @@ package use_case.follow;
 
 import data_access.InMemoryUserDataAccessObject;
 import entity.User;
-import factory.UserFactory;
 import org.junit.Before;
 import org.junit.Test;
 
