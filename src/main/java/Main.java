@@ -1,25 +1,31 @@
 import data_access.ChatGPTDataAccessObject;
-import data_access.FileUserDataAccessObject;
 import factory.*;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.custom_tierlist.CustomTierListViewModel;
+import interface_adapter.follow.FollowController;
 import interface_adapter.follow.FollowState;
 import interface_adapter.follow.FollowViewModel;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.menu.MenuViewModel;
 import interface_adapter.random_tierlist.RandomTierListViewModel;
+import interface_adapter.search_user.SearchViewModel;
 import interface_adapter.selector.SelectorViewModel;
 import interface_adapter.signup.SignupViewModel;
 import interface_adapter.tierlist.TierListViewModel;
 import interface_adapter.view_existing.ViewExistingViewModel;
 import interface_adapter.view_user.ViewUserViewModel;
+import use_case.follow.FollowInputBoundary;
 import view.*;
 
 import javax.swing.*;
+
+import data_access.FileUserDataAccessObject;
+
 import java.awt.*;
+import java.util.HashMap;
 
 public class Main {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
 
         JFrame application = new JFrame("Tierlist Maker");
         application.setResizable(false);
@@ -29,17 +35,26 @@ public class Main {
         CardLayout cardLayout = new CardLayout();
         JPanel views = new JPanel(cardLayout);
         application.add(views);
-      
+
         ViewManagerModel viewManagerModel = new ViewManagerModel();
         new ViewManager(views, cardLayout, viewManagerModel);
 
+        ViewUserViewModel viewUserViewModel = new ViewUserViewModel("view user");
+
         TierListViewModel tierListViewModel = new TierListViewModel("tier list");
+
         SelectorViewModel selectorViewModel = new SelectorViewModel("selector");
+
         RandomTierListViewModel randomTierListViewModel = new RandomTierListViewModel("random");
+
         CustomTierListViewModel customTierListViewModel = new CustomTierListViewModel("custom");
+
         ViewExistingViewModel viewExistingViewModel = new ViewExistingViewModel("view existing");
-        FollowViewModel followViewModel = new FollowViewModel("follow User");
-        ViewUserViewModel viewUserViewModel = new ViewUserViewModel("view User");
+
+        FollowViewModel followViewModel = new FollowViewModel("follow user");
+
+        SearchViewModel searchViewModel = new SearchViewModel("search");
+
         MenuViewModel menuViewModel = new MenuViewModel();
         LoginViewModel loginViewModel = new LoginViewModel();
         SignupViewModel signupViewModel = new SignupViewModel();
@@ -51,23 +66,25 @@ public class Main {
 
         views.add(randomTierListView, randomTierListView.viewName);
 
-//        SearchView searchView = SearchFactory.
+        SearchView searchView = SearchFactory.create(viewManagerModel, searchViewModel, viewUserViewModel, selectorViewModel, userDataAccessObject);
 
-
+        views.add(searchView, searchView.viewName);
 
         TierListView tierListView = TierListFactory.create(viewManagerModel, tierListViewModel, userDataAccessObject, selectorViewModel);
-      
+
         MenuView menuView = MenuFactory.create(viewManagerModel, menuViewModel, loginViewModel, signupViewModel);
         views.add(menuView, menuView.viewName);
 
-        SelectorView selectorView = SelectorFactory.create(viewManagerModel, selectorViewModel, randomTierListViewModel, customTierListViewModel, userDataAccessObject, viewExistingViewModel, menuViewModel);
+        SelectorView selectorView = SelectorFactory.create(viewManagerModel, selectorViewModel, randomTierListViewModel, customTierListViewModel, userDataAccessObject, viewExistingViewModel, menuViewModel, searchViewModel);
 
         views.add(selectorView, selectorView.viewName);
 
         SignupView signupView = SignupFactory.create(viewManagerModel, loginViewModel, signupViewModel, userDataAccessObject);
+        assert signupView != null;
         views.add(signupView, signupView.viewName);
 
         LoginView loginView = LoginFactory.create(viewManagerModel, loginViewModel, userDataAccessObject, selectorViewModel);
+        assert loginView != null;
         views.add(loginView, loginView.viewName);
 
         ViewExistingView viewExistingView = ViewExistingFactory.create(viewManagerModel, viewExistingViewModel, tierListViewModel, selectorViewModel, userDataAccessObject);
@@ -77,9 +94,6 @@ public class Main {
 
         views.add(customTierListView, customTierListView.viewName);
         views.add(tierListView, tierListView.viewName);
-
-//        FollowState testing = new FollowState("terryfufu", "lt_rui", false);
-//        followViewModel.setState(testing);
 
         FollowView followView = FollowFactory.create(viewManagerModel, followViewModel, viewUserViewModel, userDataAccessObject, userDataAccessObject);
         views.add(followView, followView.viewName);

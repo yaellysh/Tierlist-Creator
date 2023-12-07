@@ -14,8 +14,8 @@ public class SearchViewModel extends ViewModel {
 
     private SearchState state = new SearchState();
 
-    public SearchViewModel() {
-        super("search user");
+    public SearchViewModel(String name) {
+        super(name);
     }
 
     public void setState(SearchState state) {
