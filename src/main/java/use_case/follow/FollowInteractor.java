@@ -151,25 +151,25 @@ public class FollowInteractor implements FollowInputBoundary {
 
     }
 
-    private HashMap<String, Integer> sortByValue(HashMap<String, Integer> hm)
-    {
-        // Create a list from elements of HashMap
-        List<Map.Entry<String, Integer> > list
-            = new LinkedList<Map.Entry<String, Integer> >(
-                hm.entrySet());
- 
-        // Sort the list using lambda expression
-        Collections.sort(
-            list,
-            (i1,
-             i2) -> i2.getValue().compareTo(i1.getValue()));
- 
-        // put data from sorted list to hashmap
-        HashMap<String, Integer> temp
-            = new LinkedHashMap<String, Integer>();
-        for (Map.Entry<String, Integer> aa : list) {
-            temp.put(aa.getKey(), aa.getValue());
-        }
-        return temp;
-    }
+//    private HashMap<String, Integer> sortByValue(HashMap<String, Integer> hm)
+//    {
+//        // Create a list from elements of HashMap
+//        List<Map.Entry<String, Integer> > list
+//            = new LinkedList<Map.Entry<String, Integer> >(
+//                hm.entrySet());
+//
+//        // Sort the list using lambda expression
+//        Collections.sort(
+//            list,
+//            (i1,
+//             i2) -> i2.getValue().compareTo(i1.getValue()));
+//
+//        // put data from sorted list to hashmap
+//        HashMap<String, Integer> temp
+//            = new LinkedHashMap<String, Integer>();
+//        for (Map.Entry<String, Integer> aa : list) {
+//            temp.put(aa.getKey(), aa.getValue());
+//        }
+//        return temp;
+//    }
 }
