@@ -4,6 +4,7 @@ import interface_adapter.ViewManagerModel;
 import interface_adapter.follow.FollowController;
 import interface_adapter.follow.FollowPresenter;
 import interface_adapter.follow.FollowViewModel;
+import interface_adapter.tierlist.TierListViewModel;
 import interface_adapter.view_user.ViewUserController;
 import interface_adapter.view_user.ViewUserPresenter;
 import interface_adapter.view_user.ViewUserViewModel;
@@ -20,7 +21,7 @@ public class FollowFactory {
     private FollowFactory() {
     }
 
-    public static FollowView create(ViewManagerModel viewManagerModel, FollowViewModel followViewModel, ViewUserViewModel viewUserViewModel, FollowDataAccessInterface userDataAccessObject, ViewUserDataAccessInterface viewUserDAO) {
+    public static FollowView create(ViewManagerModel viewManagerModel, FollowViewModel followViewModel, ViewUserViewModel viewUserViewModel, FollowDataAccessInterface userDataAccessObject, ViewUserDataAccessInterface viewUserDAO, TierListViewModel tierListViewModel) {
 
         FollowController followController = createFollowUseCase(viewManagerModel, followViewModel, viewUserViewModel, userDataAccessObject);
         ViewUserController viewUserController = createViewUserUseCase(viewManagerModel, viewUserViewModel, followViewModel, viewUserDAO);
