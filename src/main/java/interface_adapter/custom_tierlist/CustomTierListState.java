@@ -46,4 +46,8 @@ public class CustomTierListState {
     public void addItem(String item, Integer i) {
         this.items.put(i, item);
     }
+
+    public void setItems(Map<Integer, String> items) {
+        this.items = items;
+    }
 }
