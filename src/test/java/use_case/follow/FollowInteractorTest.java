@@ -14,19 +14,12 @@ public class FollowInteractorTest {
 
     private User userA;
     private User userB;
-
     private User userC;
     private User userD;
     private User userE;
     private User userF;
-
     private User tim;
-
     private User terry;
-
-
-
-
     private InMemoryUserDataAccessObject userRepository;
 
     @Before
@@ -78,7 +71,6 @@ public class FollowInteractorTest {
     public void followTest() {
 
         // FollowUserDataAccessInterface userRepository = new
-
         //terry follows tim
 
         FollowOutputBoundary successPresenter = new FollowOutputBoundary() {
