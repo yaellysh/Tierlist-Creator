@@ -17,6 +17,7 @@ import interface_adapter.login.LoginViewModel;
 import interface_adapter.menu.MenuViewModel;
 import interface_adapter.random_tierlist.RandomTierListState;
 import interface_adapter.random_tierlist.RandomTierListViewModel;
+import interface_adapter.search_user.SearchViewModel;
 import interface_adapter.selector.SelectorState;
 import interface_adapter.selector.SelectorViewModel;
 import interface_adapter.signup.SignupViewModel;
@@ -72,6 +73,7 @@ public class TierListTest {
         MenuViewModel menuViewModel = new MenuViewModel();
         LoginViewModel loginViewModel = new LoginViewModel();
         SignupViewModel signupViewModel = new SignupViewModel();
+        SearchViewModel searchViewModel = new SearchViewModel("Search User");
 
         User user = new User("Test", "Password");
 
@@ -115,7 +117,7 @@ public class TierListTest {
         MenuView menuView = MenuFactory.create(viewManagerModel, menuViewModel, loginViewModel, signupViewModel);
         views.add(menuView, menuView.viewName);
 
-        SelectorView selectorView = SelectorFactory.create(viewManagerModel, selectorViewModel, randomTierListViewModel, customTierListViewModel, userDataAccessObject, viewExistingViewModel, menuViewModel);
+        SelectorView selectorView = SelectorFactory.create(viewManagerModel, selectorViewModel, randomTierListViewModel, customTierListViewModel, userDataAccessObject, viewExistingViewModel, menuViewModel, searchViewModel);
 
         views.add(selectorView, selectorView.viewName);
 

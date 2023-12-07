@@ -1,7 +1,14 @@
 [
   {
-    "username": "n",
-    "password": "n",
+    "username": "p",
+    "password": "p",
+    "tierLists": {},
+    "following": [],
+    "followers": []
+  },
+  {
+    "username": "o",
+    "password": "o",
     "tierLists": {},
     "following": [],
     "followers": []
