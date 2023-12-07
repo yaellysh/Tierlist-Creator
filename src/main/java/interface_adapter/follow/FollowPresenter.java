@@ -25,11 +25,9 @@ public class FollowPresenter implements FollowOutputBoundary{
 //        followState.setRelatedUsers(output.getRelatedUsers());
         followState.setIsFollowing(output.getFollow());
         viewUserViewModel.getState().setNumFollowers(output.getNewFollowers());
-        System.out.println((output.getNewFollowers() + "look bhere"));
 
         this.followViewModel.setState(followState);
 
-        System.out.println(followState.getIsFollowing() + " afterward");
         followViewModel.firePropertyChanged();
         viewManagerModel.setActiveView(followViewModel.getViewName());
         viewManagerModel.firePropertyChanged();

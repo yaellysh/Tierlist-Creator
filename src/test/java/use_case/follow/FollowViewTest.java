@@ -122,9 +122,6 @@ public class FollowViewTest {
         viewManagerModel.setActiveView(followView.viewName);
         viewManagerModel.firePropertyChanged();
 
-        System.out.println(followViewModel.getViewName());
-        System.out.println(searchViewModel.getViewName());
-
         cardLayout.show(views, "Search User");
 
         application.setVisible(true);

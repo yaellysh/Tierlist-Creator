@@ -31,7 +31,6 @@ public class FollowInteractor implements FollowInputBoundary {
             
             // get new follower count of the user being followed
             int newFollowerCount = userBeingFollowed.getFollowers().size() + 1;
-            System.out.println(newFollowerCount + "at the start");
 
             // update following and followers both in the entity objects and in the database
             // change the entities
@@ -43,7 +42,6 @@ public class FollowInteractor implements FollowInputBoundary {
 
             // Create the list of people you know
             List<String> followerFollowing = follower.getFollowing();
-            System.out.println(followerFollowing);
 
             // Create the list of the users that people you know could know
             List<String> userBeingFollowedFollowers = userBeingFollowed.getFollowers();
@@ -77,7 +75,7 @@ public class FollowInteractor implements FollowInputBoundary {
                 for (String usernameYouFollow : followerFollowing) {
                     User userYouFollow = userDataAccessObject.getUser(usernameYouFollow);
                     List<String> userYouFollowFollowing = userYouFollow.getFollowing();
-                    System.out.println(usernameYouFollow);
+//                    System.out.println(usernameYouFollow);
 
                     // iterate through the following of the user you follow
                     for  (String usernameYouFollowFollowing : userYouFollowFollowing) {
@@ -124,7 +122,6 @@ public class FollowInteractor implements FollowInputBoundary {
             //pass forward mutual count for the "followed by x others line."
 
             // end of finding related users
-            System.out.println(newFollowerCount + "before builder call");
             FollowOutputData followOutputData = new FollowOutputData.FollowOutputBuilder(newFollowerCount, true)
                     .build();
             //System.out.println(tempy);

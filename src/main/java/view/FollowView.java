@@ -2,9 +2,12 @@ package view;
 
 import javax.swing.*;
 
+import interface_adapter.ViewManagerModel;
 import interface_adapter.follow.FollowController;
 import interface_adapter.follow.FollowState;
 import interface_adapter.follow.FollowViewModel;
+import interface_adapter.tierlist.TierListState;
+import interface_adapter.tierlist.TierListViewModel;
 import interface_adapter.view_user.ViewUserController;
 import interface_adapter.view_user.ViewUserState;
 import interface_adapter.view_user.ViewUserViewModel;
@@ -28,6 +31,7 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
 //
     private JLabel followingLabel;
     private JLabel followersLabel;
+    private ViewManagerModel viewManagerModel;
 
     private JButton follow;
 //    private JButton mutual1;
@@ -40,11 +44,12 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
     private JLabel followingCount= new JLabel();
     private boolean tierlistsDisplayed = false;
     private boolean usernameDisplayed = false;
+    private TierListViewModel tierListViewModel;
 
 
-    private boolean mutualsDisplayed = false;
+//    private boolean mutualsDisplayed = false;
     ArrayList<JButton> mutualButtonList = new ArrayList<JButton>();
-    JPanel panely = new JPanel();
+//    JPanel mainPanel = new JPanel();
     
 //    JPanel mutuals = new JPanel();
     BoxLayout boxLayoutM;
@@ -52,11 +57,13 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
     private final FollowController followController;
 
 
-    public FollowView(FollowController followController, FollowViewModel followViewModel) {
+    public FollowView(FollowController followController, FollowViewModel followViewModel, TierListViewModel tierListViewModel, ViewManagerModel viewManagerModel) {
         this.followController = followController;
         this.followViewModel = followViewModel;
+        this.viewManagerModel = viewManagerModel;
         this.add(username);
         this.add(followingCount);
+        this.tierListViewModel = tierListViewModel;
         this.add(followerCount);
         followViewModel.addPropertyChangeListener(this);
 
@@ -65,11 +72,14 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
 
     @Override
     public void actionPerformed(ActionEvent evt) {
-        System.out.println("Click " + evt.getActionCommand());
     }
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
+
+        removeAll();
+        
+        
 
         JPanel followerPanel = new JPanel();
         this.followersLabel =  new JLabel(followViewModel.FOLLOWERS_LABEL);
@@ -84,27 +94,27 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
         this.add(followingPanel);
         this.add(followerPanel);
 
+        JPanel mainPanel = new JPanel();
+
         followViewModel.addPropertyChangeListener(this);
         BoxLayout boxLayout = new BoxLayout(this, BoxLayout.Y_AXIS);
-//        boxLayoutM = new BoxLayout(mutuals, BoxLayout.Y_AXIS);
+
         this.setLayout(boxLayout);
 
-        this.add(panely);
-
-        System.out.println("get follower: " + followViewModel.getState().getFollower());
+        this.add(mainPanel);
 
         JLabel followerCount = new JLabel(Integer.toString(followViewModel
                 .getState()
                 .getFollower()
                 .getFollowers()
                 .size()));
-        panely.add(followerCount);
+        mainPanel.add(followerCount);
         JLabel followingCount = new JLabel(Integer.toString(followViewModel.
                 getState()
                 .getFollower()
                 .getFollowing()
                 .size()));
-        panely.add(followingCount);
+        mainPanel.add(followingCount);
 
         /*
         for (String tl : viewUserViewModel.getState().getTierLists()) {
@@ -129,7 +139,32 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
 //
 
 
-        panely.add(follow);
+        mainPanel.add(follow);
+
+        JPanel tierlistPanel = new JPanel();
+        List<JButton> tierListButtons = new ArrayList<>();
+        List<String> tierLists = followViewModel.getState().getTierLists();
+        for (String tierList: tierLists) {
+            ButtonPanel buttonPanel = new ButtonPanel(tierList);
+            tierlistPanel.add(buttonPanel);
+            tierListButtons.add(buttonPanel.getButton());
+        }
+        this.add(tierlistPanel);
+        for (JButton button: tierListButtons) {
+            button.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if (e.getSource() == button) {
+                        TierListState tierListState = tierListViewModel.getState();
+                        tierListState.setTierList(button.getText());
+                        tierListViewModel.setState(tierListState);
+
+                        viewManagerModel.setActiveView(tierListViewModel.getViewName());
+                        viewManagerModel.firePropertyChanged();
+                    }
+                }
+            });
+        }
 
         follow.addActionListener(
                 new ActionListener() {
@@ -158,7 +193,7 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
 //        if (viewUserState.getUsername() != "" || (evt.getSource().equals(mutual1) || evt.getSource().equals(mutual2) || evt.getSource().equals(mutual3))) {
 //            usernameDisplayed = true;
 //            username.setText(viewUserViewModel.getState().getUsername());
-//            panely.add(username);
+//            mainPanel.add(username);
 //            followingCount.setText(Integer.toString(viewUserViewModel.getState().getNumFollowing()));
 //            followerCount.setText(Integer.toString(viewUserViewModel.getState().getNumFollowers()));
 //
