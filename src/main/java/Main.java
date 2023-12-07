@@ -1,25 +1,17 @@
+import data_access.FileUserDataAccessObject;
 import factory.FollowFactory;
 import factory.SearchFactory;
-import factory.TierListFactory;
 import interface_adapter.ViewManagerModel;
-import interface_adapter.follow.FollowController;
 import interface_adapter.follow.FollowState;
 import interface_adapter.follow.FollowViewModel;
 import interface_adapter.search_user.SearchViewModel;
-import interface_adapter.tierlist.TierListViewModel;
 import interface_adapter.view_user.ViewUserViewModel;
-import use_case.follow.FollowInputBoundary;
 import view.FollowView;
 import view.SearchView;
-import view.TierListView;
 import view.ViewManager;
 
 import javax.swing.*;
-
-import data_access.FileUserDataAccessObject;
-
 import java.awt.*;
-import java.util.HashMap;
 
 public class Main {
     public static void main(String[] args) {
@@ -41,6 +33,9 @@ public class Main {
         SearchViewModel searchViewModel = new SearchViewModel("Search User");
 
         FollowState testing = new FollowState("terryfufu", "lt_rui", false);
+
+
+        //ok
         followViewModel.setState(testing);
 
         FileUserDataAccessObject userDataAccessObject = new FileUserDataAccessObject();
