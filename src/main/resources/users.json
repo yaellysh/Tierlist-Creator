@@ -1,5 +1,50 @@
 [
   {
+    "username": "a",
+    "password": "a",
+    "tierLists": {
+      "sea animals": {
+        "name": "sea animals",
+        "items": {
+          "Jellyfish": {
+            "name": "Jellyfish",
+            "tier": "S"
+          },
+          "Seahorse": {
+            "name": "Seahorse",
+            "tier": "B"
+          },
+          "Humpback whale     ": {
+            "name": "Humpback whale     ",
+            "tier": "S"
+          },
+          "Dolphin": {
+            "name": "Dolphin",
+            "tier": "S"
+          },
+          "Shark": {
+            "name": "Shark",
+            "tier": "S"
+          },
+          "Sea turtle": {
+            "name": "Sea turtle",
+            "tier": "C"
+          },
+          "Octopus": {
+            "name": "Octopus",
+            "tier": "S"
+          },
+          "Clownfish": {
+            "name": "Clownfish",
+            "tier": "S"
+          }
+        }
+      }
+    },
+    "following": [],
+    "followers": []
+  },
+  {
     "username": "yael",
     "password": "password",
     "tierLists": {
