@@ -508,13 +508,7 @@ public class TierListTest {
 
         assert currentView instanceof SelectorView;
     }
-//    @Test
-//    public void checkTierListBackView() throws IOException, InterruptedException {
-//        TierListView tierListView = (TierListView) getView("tierlist");
-//        tierListView.tierListViewModel.firePropertyChanged();
-//
-//
-//    }
+
     @Test
     public void checkCancelButtonLogin() throws IOException, InterruptedException {
         LoginView loginView = (LoginView) getView("login");
