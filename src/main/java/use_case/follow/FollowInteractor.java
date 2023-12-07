@@ -31,7 +31,6 @@ public class FollowInteractor implements FollowInputBoundary {
             
             // get new follower count of the user being followed
             int newFollowerCount = userBeingFollowed.getFollowers().size() + 1;
-            System.out.println(newFollowerCount + "at the start");
 
             List<String> followerFollowing = follower.getFollowing();
 

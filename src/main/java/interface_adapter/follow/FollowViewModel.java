@@ -12,10 +12,10 @@ public class FollowViewModel extends ViewModel {
     public static final String TITLE_LABEL = "User Profile";
     public static final Font TITLE_FONT = new Font("Arial Bold", Font.PLAIN, 25);
     public static final Font TEXT_FONT = new Font("Arial", Font.PLAIN, 15);
-    public static final Font USER_INFO_FONT = new Font("Arial", Font.PLAIN, 20);
+    public static final Font USER_INFO_FONT = new Font("Arial", Font.PLAIN, 15);
     public static final String INSTRUCTIONS = "Enter below the name of an existing user to view their tierlist and follow them.";
-    public final String FOLLOWING_LABEL = "Following";
-    public final String FOLLOWERS_LABEL = "Followers";
+    public final String FOLLOWING_LABEL = "<html><b>Following: </b></html>";
+    public final String FOLLOWERS_LABEL = "<html><b>Followers: </b></html>";
     public final String FOLLOWING_BUTTON_LABEL = "Following";
 
 
