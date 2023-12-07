@@ -10,6 +10,8 @@ import javax.swing.Icon;
 public class FollowViewModel extends ViewModel {
 
     public final String FOLLOW_BUTTON_LABEL = "Follow";
+    public final String FOLLOWING_LABEL = "Following";
+    public final String FOLLOWERS_LABEL = "Followers";
     public final String FOLLOWING_BUTTON_LABEL = "Following";
 
     public final String TITLE_LABEL = "View User";

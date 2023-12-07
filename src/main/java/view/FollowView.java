@@ -26,8 +26,8 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
     private final FollowViewModel followViewModel;
 //    private final ViewUserViewModel viewUserViewModel;
 //
-//    private final JLabel followingLabel;
-//    private final JLabel followersLabel;
+    private final JLabel followingLabel;
+    private final JLabel followersLabel;
 
     private JButton follow;
 //    private JButton mutual1;
@@ -60,14 +60,13 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
         this.add(followerCount);
 
         JPanel followerPanel = new JPanel();
-//        followersLabel =  new JLabel(viewUserViewModel.FOLLOWERS_LABEL);
-//        followerPanel.add(followersLabel);
+        this.followersLabel =  new JLabel(followViewModel.FOLLOWERS_LABEL);
+        followerPanel.add(followersLabel);
         followerPanel.add(followerCount);
 
-
         JPanel followingPanel = new JPanel();
-//        followingLabel = new JLabel(viewUserViewModel.FOLLOWING_LABEL);
-//        followingPanel.add(followingLabel);
+        this.followingLabel = new JLabel(followViewModel.FOLLOWING_LABEL);
+        followingPanel.add(followingLabel);
         followingPanel.add(followingCount);
 
         this.add(followingPanel);
@@ -79,15 +78,12 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
         this.setLayout(boxLayout);
 
         this.add(panely);
-        
-        
-//        System.out.println(viewUserViewModel.getState().getUsername());
 
 
-//        JLabel followerCount = new JLabel(Integer.toString(viewUserViewModel.getState().getNumFollowing()));
-//        panely.add(followerCount);
-//        JLabel followingCount = new JLabel(Integer.toString(viewUserViewModel.getState().getNumFollowers()));
-//        panely.add(followingCount);
+        JLabel followerCount = new JLabel(Integer.toString(followViewModel.getState().getNumFollowing()));
+        panely.add(followerCount);
+        JLabel followingCount = new JLabel(Integer.toString(viewUserViewModel.getState().getNumFollowers()));
+        panely.add(followingCount);
 
         /*
         for (String tl : viewUserViewModel.getState().getTierLists()) {
