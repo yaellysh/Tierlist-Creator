@@ -1,5 +1,6 @@
 package factory;
 
+import com.google.gson.JsonSyntaxException;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.login.LoginController;
 import interface_adapter.login.LoginPresenter;
@@ -24,16 +25,11 @@ public class LoginFactory {
             ViewManagerModel viewManagerModel,
             LoginViewModel loginViewModel,
             LoginDataAccessInterface userDataAccessObject,
-            SelectorViewModel selectorViewModel) {
+            SelectorViewModel selectorViewModel) throws IOException {
 
-        try {
-            LoginController loginController = createLoginUseCase(viewManagerModel, loginViewModel, userDataAccessObject, selectorViewModel);
-            return new LoginView(loginViewModel, loginController, new MenuViewModel());
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Could not open user data file.");
-        }
+        LoginController loginController = createLoginUseCase(viewManagerModel, loginViewModel, userDataAccessObject, selectorViewModel);
+        return new LoginView(loginViewModel, loginController, new MenuViewModel());
 
-        return null;
     }
 
     private static LoginController createLoginUseCase(

@@ -17,9 +17,10 @@ import view.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, IOException {
 
         JFrame application = new JFrame("Tierlist Maker");
         application.setResizable(false);
@@ -29,7 +30,7 @@ public class Main {
         CardLayout cardLayout = new CardLayout();
         JPanel views = new JPanel(cardLayout);
         application.add(views);
-      
+
         ViewManagerModel viewManagerModel = new ViewManagerModel();
         new ViewManager(views, cardLayout, viewManagerModel);
 
@@ -56,7 +57,7 @@ public class Main {
 
 
         TierListView tierListView = TierListFactory.create(viewManagerModel, tierListViewModel, userDataAccessObject, selectorViewModel);
-      
+
         MenuView menuView = MenuFactory.create(viewManagerModel, menuViewModel, loginViewModel, signupViewModel);
         views.add(menuView, menuView.viewName);
 

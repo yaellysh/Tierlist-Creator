@@ -17,14 +17,6 @@ public class SignupState {
         this.error = error;
     }
 
-    public SignupState(SignupState copy) {
-        username = copy.username;
-//        usernameError = copy.usernameError;
-        password = copy.password;
-//        passwordError = copy.passwordError;
-        repeatPassword = copy.repeatPassword;
-//        repeatPasswordError = copy.repeatPasswordError;
-    }
 
     // Because of the previous copy constructor, the default constructor must be explicit.
     public SignupState() {
