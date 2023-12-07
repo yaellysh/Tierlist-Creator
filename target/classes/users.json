@@ -211,124 +211,40 @@
   {
     "username": "Testing",
     "password": "a",
-    "tierLists": {},
-    "following": [],
-    "followers": []
-    },
-    "following": [],
-    "followers": []
-  },
-  {
-    "username": "jillibean",
-    "password": "potato",
     "tierLists": {
-      "Conan Gray songs": {
-        "name": "Conan Gray songs",
+      "percy jackson books": {
+        "name": "percy jackson books",
         "items": {
-          "Wish You Were Sober": {
-            "name": "Wish You Were Sober",
-            "tier": "A"
-          },
-          "The Story": {
-            "name": "The Story",
-            "tier": "C"
-          },
-          "Heather": {
-            "name": "Heather",
+          "\\\"Percy Jackson and the Battle o...": {
+            "name": "\\\"Percy Jackson and the Battle o...",
             "tier": "S"
           },
-          "Checkmate": {
-            "name": "Checkmate",
-            "tier": "A"
-          },
-          "Comfort Crowd": {
-            "name": "Comfort Crowd",
+          "\\\"Percy Jackson and the Sea of M...": {
+            "name": "\\\"Percy Jackson and the Sea of M...",
             "tier": "S"
           },
-          "Crush Culture": {
-            "name": "Crush Culture",
-            "tier": "B"
-          },
-          "Generation Why     ": {
-            "name": "Generation Why     ",
-            "tier": "B"
-          },
-          "Maniac": {
-            "name": "Maniac",
-            "tier": "S"
-          }
-        }
-      },
-      "dodie songs": {
-        "name": "dodie songs",
-        "items": {
-          "Secret for the Mad ": {
-            "name": "Secret for the Mad ",
+          "The Son of Neptune": {
+            "name": "The Son of Neptune",
             "tier": "S"
           },
-          "Sick of Losing Soulmates": {
-            "name": "Sick of Losing Soulmates",
+          "\\\"Percy Jackson and the Lightnin...": {
+            "name": "\\\"Percy Jackson and the Lightnin...",
             "tier": "S"
           },
-          "Monster": {
-            "name": "Monster",
-            "tier": "A"
-          },
-          "Absolutely Smitten     ": {
-            "name": "Absolutely Smitten     ",
-            "tier": "C"
-          },
-          "Would You Be So Kind? ": {
-            "name": "Would You Be So Kind? ",
-            "tier": "B"
-          },
-          "Arms Unfolding ": {
-            "name": "Arms Unfolding ",
-            "tier": "A"
-          },
-          "When ": {
-            "name": "When ",
+          "\\\"Percy Jackson and the Titan\u0027s ...": {
+            "name": "\\\"Percy Jackson and the Titan\u0027s ...",
             "tier": "S"
           },
-          "Guiltless": {
-            "name": "Guiltless",
-            "tier": "S"
-          }
-        }
-      },
-      "KPOP artists": {
-        "name": "KPOP artists",
-        "items": {
-          "BTS ": {
-            "name": "BTS ",
-            "tier": "A"
-          },
-          "Blackpink ": {
-            "name": "Blackpink ",
+          "The Mark of Athena     ": {
+            "name": "The Mark of Athena     ",
             "tier": "S"
           },
-          "Seventeen     ": {
-            "name": "Seventeen     ",
-            "tier": "C"
-          },
-          "EXO ": {
-            "name": "EXO ",
+          "\\\"Percy Jackson and the Last Oly...": {
+            "name": "\\\"Percy Jackson and the Last Oly...",
             "tier": "S"
           },
-          "Big Bang ": {
-            "name": "Big Bang ",
-            "tier": "D"
-          },
-          "NCT ": {
-            "name": "NCT ",
-            "tier": "S"
-          },
-          "Twice ": {
-            "name": "Twice ",
-            "tier": "S"
-          },
-          "Red Velvet ": {
-            "name": "Red Velvet ",
+          "The Lost Hero": {
+            "name": "The Lost Hero",
             "tier": "S"
           }
         }
@@ -337,5 +253,5 @@
     "following": [],
     "followers": []
     }
-  }
+
 ]

@@ -90,6 +90,13 @@
     "followers": []
   },
   {
+    "username": "testing",
+    "password": "a",
+    "tierLists": {},
+    "following": [],
+    "followers": []
+  },
+  {
     "username": "jillibean",
     "password": "potato",
     "tierLists": {
@@ -252,6 +259,5 @@
     },
     "following": [],
     "followers": []
-    }
-
+  }
 ]
