@@ -6,6 +6,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Objects;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -69,7 +70,7 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
                 if (evt.getSource().equals(search)) {
                     
                     SearchState currentState = searchViewModel.getState();
-                    if (currentState.getSearch() == "") {
+                    if (Objects.equals(currentState.getSearch(), "")) {
                         userNotFoundText.setText("Please enter a Username");
                         
                     }
@@ -119,7 +120,7 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
             if (userNotFoundText != null) {
                 userNotFoundText.setVisible(false);
             }
-            userfound.addActionListener(                
+            userfound.addActionListener(
             new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
                     if (evt.getSource().equals(userfound)) {
