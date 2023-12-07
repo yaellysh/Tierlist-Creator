@@ -112,7 +112,6 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
         tierListTitleLabel.setFont(FollowViewModel.TITLE_FONT);
         tierListTitleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-
         JPanel followWrapper = new JPanel();
         ButtonPanel follow;
         if (followViewModel.getState().getIsFollowing()) {
@@ -120,7 +119,7 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
         } else {
             follow = new ButtonPanel(followViewModel.FOLLOW_BUTTON_LABEL);
         }
-//        followWrapper.setBorder(new EmptyBorder(0, 0, 20, 0));
+
         followWrapper.add(follow);
         infoPanel.add(followWrapper);
         infoPanel.add(new JSeparator());

@@ -150,25 +150,7 @@ public class TierListView extends JPanel implements ActionListener, PropertyChan
 
         instructions.setAlignmentX(Component.CENTER_ALIGNMENT);
         instructions.setBorder(BorderFactory.createEmptyBorder(5, 20, 10, 20));
-        this.add(instructions);
 
-        // setting up the container the two frames will be placed in
-        GridLayout doubleFrame = new GridLayout(1, 2);
-
-        JPanel dropDownFramePanel = new JPanel();
-        this.add(dropDownFramePanel);
-        dropDownFramePanel.setLayout(doubleFrame);
-
-        // setting up the two frames to organise the dropdowns into
-        JPanel leftPanel = new JPanel();
-        leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
-
-        JPanel rightPanel = new JPanel();
-        rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
-        rightPanel.setBorder(BorderFactory.createEmptyBorder());
-
-        dropDownFramePanel.add(leftPanel);
-        dropDownFramePanel.add(rightPanel);
 
         TierListState currentState = tierListViewModel.getState();
         User user = currentState.getUser();
@@ -176,7 +158,27 @@ public class TierListView extends JPanel implements ActionListener, PropertyChan
 
 
         if (currentState.getViewUser().equals(user)) {
+            this.add(instructions);
+            // setting up the container the two frames will be placed in
+            GridLayout doubleFrame = new GridLayout(1, 2);
+
+            JPanel dropDownFramePanel = new JPanel();
+            this.add(dropDownFramePanel);
+            dropDownFramePanel.setLayout(doubleFrame);
+
+            // setting up the two frames to organise the dropdowns into
+            JPanel leftPanel = new JPanel();
+            leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
+
+            JPanel rightPanel = new JPanel();
+            rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
+            rightPanel.setBorder(BorderFactory.createEmptyBorder());
+
+            dropDownFramePanel.add(leftPanel);
+            dropDownFramePanel.add(rightPanel);
+
             List<String> entries = new ArrayList<>(tierList.getTierList().keySet());
+
             for (int i = 0; i < entries.size(); i++) {
                 String entry = entries.get(i);
                 LabelDropDownPanel item = new LabelDropDownPanel(new JLabel(entry), Arrays.stream(TierAdapter.TIERS).map(TierAdapter::getName).toArray(String[]::new));
@@ -206,9 +208,19 @@ public class TierListView extends JPanel implements ActionListener, PropertyChan
                             }
                         }
                 );
-            }
-        }
 
+
+            }
+            JPanel buttonPanel = new JPanel();
+            buttonPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+            JButton homeButton = new JButton(TierListViewModel.HOME_BUTTON);
+            homeButton.setPreferredSize(new Dimension(100, 40));
+            buttonPanel.add(homeButton);
+
+            this.add(buttonPanel);
+
+            homeButton.addActionListener(e -> tierListController.execute());
+        }
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
@@ -219,5 +231,7 @@ public class TierListView extends JPanel implements ActionListener, PropertyChan
         this.add(buttonPanel);
 
         homeButton.addActionListener(e -> tierListController.execute());
+
+
     }
 }

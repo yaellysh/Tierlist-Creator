@@ -26,4 +26,5 @@ public class TierListController {
         tierListInteractor.execute();
     }
 
+
 }

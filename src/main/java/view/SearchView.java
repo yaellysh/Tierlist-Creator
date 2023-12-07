@@ -114,32 +114,36 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         SearchState state = (SearchState)evt.getNewValue();
-
-        if (state.getSuccess()) {
-
-//            viewUserController.execute(state.getSearch());
+        if (state.getSearchError() != null) {
+            JOptionPane.showMessageDialog(this, state.getSearchError());
+        }
 //
-//            if (userNotFoundText != null) {
-//                userNotFoundText.setVisible(false);
+//
+//        if (state.getSuccess()) {
+//
+////            viewUserController.execute(state.getSearch());
+////
+////            if (userNotFoundText != null) {
+////                userNotFoundText.setVisible(false);
+////            }
+////
+////            userfound.addActionListener(
+////            new ActionListener() {
+////                public void actionPerformed(ActionEvent evt) {
+////                    if (evt.getSource().equals(userfound)) {
+////                       viewUserController.execute(userfound.getText());
+////
+////                    }
+////                }
+////            });
+//        }
+//        else {
+//            userNotFoundText.setText(state.getSearchError());
+//            this.add(userNotFoundText);
+//            if (userfound != null) {
+//                userfound.setVisible(false);
 //            }
 //
-//            userfound.addActionListener(
-//            new ActionListener() {
-//                public void actionPerformed(ActionEvent evt) {
-//                    if (evt.getSource().equals(userfound)) {
-//                       viewUserController.execute(userfound.getText());
-//
-//                    }
-//                }
-//            });
-        }
-        else {
-            userNotFoundText.setText(state.getSearchError());
-            this.add(userNotFoundText);
-            if (userfound != null) {
-                userfound.setVisible(false);
-            }
-
-        }
+//        }
     }
 }
