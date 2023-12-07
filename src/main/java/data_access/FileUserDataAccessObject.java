@@ -7,8 +7,8 @@ import com.google.gson.reflect.TypeToken;
 import entity.Item;
 import entity.TierList;
 import entity.User;
-import factory.UserFactory;
 import use_case.follow.FollowUserDataAccessInterface;
+<<<<<<< HEAD
 import use_case.login.LoginUserDataAccessInterface;
 import use_case.search_user.SearchUserDataAccessInterface;
 import use_case.signup.SignupUserDataAccessInterface;
@@ -17,16 +17,26 @@ import use_case.view_user.ViewUserDataAccessInterface;
 
 import java.io.*;
 import java.lang.reflect.Type;
+=======
+import use_case.login.LoginDataAccessInterface;
+import use_case.signup.SignupDataAccessInterface;
+import use_case.tierlist.TierListDataAccessInterface;
+import use_case.view_user.ViewUserDataAccessInterface;
+
+import java.io.IOException;
+import java.io.Reader;
+import java.io.Writer;
+>>>>>>> 039b7d6bc381297089f4e8d9e38f12016f21c55b
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+<<<<<<< HEAD
 public class FileUserDataAccessObject implements SignupUserDataAccessInterface, LoginUserDataAccessInterface, TierListDataAccessInterface, FollowUserDataAccessInterface, ViewUserDataAccessInterface, SearchUserDataAccessInterface {
 
     private File csvFile;
@@ -39,9 +49,13 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
     private Map<String, User> accounts = new HashMap<>();
 
     private UserFactory userFactory;
+=======
+public class FileUserDataAccessObject implements SignupDataAccessInterface, LoginDataAccessInterface, TierListDataAccessInterface, FollowUserDataAccessInterface, ViewUserDataAccessInterface {
+>>>>>>> 039b7d6bc381297089f4e8d9e38f12016f21c55b
   
-    private Path path;
+    private final Path path;
 
+<<<<<<< HEAD
 
     //temp
     public FileUserDataAccessObject() {
@@ -132,6 +146,9 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
             }
         }
     }
+=======
+    private final Map<String, User> users;
+>>>>>>> 039b7d6bc381297089f4e8d9e38f12016f21c55b
 
     public FileUserDataAccessObject(String path) {
         this.path = Paths.get(path);
@@ -146,17 +163,6 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
         }
     }
 
-    @Override
-    public void save(User user) {
-        accounts.put(user.getUsername(), user);
-        this.save();
-    }
-
-    @Override
-    public User get(String username) {
-        return accounts.get(username);
-    }
-
     public void save() {
         try {
 
@@ -169,14 +175,9 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
         }
     }
 
-    /**
-     * Return whether a user exists with username identifier.
-     * @param identifier the username to check.
-     * @return whether a user exists with username identifier
-     */
     @Override
     public boolean existsByName(String identifier) {
-        return accounts.containsKey(identifier);
+        return users.containsKey(identifier);
     }
 
     @Override
@@ -184,9 +185,14 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
         return this.accounts.get(username);
     }
 
-    // This will be overridden as a part of the signup DAI
+    @Override
     public void addUser(User user) {
+<<<<<<< HEAD
         this.accounts.put(user.getUsername(), user);
+=======
+        this.users.put(user.getUsername(), user);
+        save();
+>>>>>>> 039b7d6bc381297089f4e8d9e38f12016f21c55b
     }
 
     public void updateUsers() {

@@ -20,7 +20,7 @@ public class SelectorViewModel extends ViewModel {
     public static final Font BUTTON_FONT = new Font("Arial", Font.ITALIC, 25);
     public static final Font TEXT_FONT = new Font("Arial", Font.PLAIN, 15);
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
-    public SelectorState state;
+    public SelectorState state = new SelectorState();
 
     public SelectorViewModel(String name) {
         super(name);

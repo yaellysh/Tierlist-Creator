@@ -4,10 +4,10 @@ import entity.User;
 import interface_adapter.menu.MenuViewModel;
 
 public class LoginInteractor implements LoginInputBoundary {
-    final LoginUserDataAccessInterface userDataAccessObject;
+    final LoginDataAccessInterface userDataAccessObject;
     final LoginOutputBoundary loginPresenter;
 
-    public LoginInteractor(LoginUserDataAccessInterface userDataAccessInterface,
+    public LoginInteractor(LoginDataAccessInterface userDataAccessInterface,
                            LoginOutputBoundary loginOutputBoundary) {
         this.userDataAccessObject = userDataAccessInterface;
         this.loginPresenter = loginOutputBoundary;
@@ -20,14 +20,14 @@ public class LoginInteractor implements LoginInputBoundary {
         if (!userDataAccessObject.existsByName(username)) {
             loginPresenter.prepareFailView(username + ": Account does not exist.");
         } else {
-            String pwd = userDataAccessObject.get(username).getPassword();
+            String pwd = userDataAccessObject.getUser(username).getPassword();
             if (!password.equals(pwd)) {
                 loginPresenter.prepareFailView("Incorrect password for " + username + ".");
             } else {
 
-                User user = userDataAccessObject.get(loginInputData.getUsername());
+                User user = userDataAccessObject.getUser(loginInputData.getUsername());
 
-                LoginOutputData loginOutputData = new LoginOutputData(user.getUsername(), false);
+                LoginOutputData loginOutputData = new LoginOutputData(user, false);
                 loginPresenter.prepareSuccessView(loginOutputData);
             }
         }
