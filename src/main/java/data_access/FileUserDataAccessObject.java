@@ -22,10 +22,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class FileUserDataAccessObject implements SignupDataAccessInterface, LoginDataAccessInterface, TierListDataAccessInterface, FollowUserDataAccessInterface, ViewUserDataAccessInterface, SearchUserDataAccessInterface {
-
+public class FileUserDataAccessObject implements SignupDataAccessInterface, LoginDataAccessInterface, TierListDataAccessInterface, ViewUserDataAccessInterface, SearchUserDataAccessInterface, FollowUserDataAccessInterface {
     private final Path path;
-
     private final Map<String, User> users;
 
     public FileUserDataAccessObject(String path) {
