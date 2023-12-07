@@ -13,6 +13,9 @@ import use_case.login.LoginDataAccessInterface;
 import view.LoginView;
 
 import javax.swing.*;
+
+import data_access.FileUserDataAccessObject;
+
 import java.io.IOException;
 
 public class LoginFactory {
@@ -44,8 +47,7 @@ public class LoginFactory {
         // Notice how we pass this method's parameters to the Presenter.
         LoginOutputBoundary loginOutputBoundary = new LoginPresenter(viewManagerModel, loginViewModel, selectorViewModel);
 
-        LoginInputBoundary loginInteractor = new LoginInteractor(
-                userDataAccessObject, loginOutputBoundary);
+        LoginInputBoundary loginInteractor = new LoginInteractor((FileUserDataAccessObject) userDataAccessObject, loginOutputBoundary);
 
         return new LoginController(loginInteractor);
     }

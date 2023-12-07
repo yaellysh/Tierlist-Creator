@@ -1,5 +1,6 @@
 package use_case.login;
 
+import data_access.FileUserDataAccessObject;
 import entity.User;
 import interface_adapter.menu.MenuViewModel;
 
@@ -7,9 +8,9 @@ public class LoginInteractor implements LoginInputBoundary {
     final LoginDataAccessInterface userDataAccessObject;
     final LoginOutputBoundary loginPresenter;
 
-    public LoginInteractor(LoginDataAccessInterface userDataAccessInterface,
+    public LoginInteractor(FileUserDataAccessObject object,
                            LoginOutputBoundary loginOutputBoundary) {
-        this.userDataAccessObject = userDataAccessInterface;
+        this.userDataAccessObject = object;
         this.loginPresenter = loginOutputBoundary;
     }
 

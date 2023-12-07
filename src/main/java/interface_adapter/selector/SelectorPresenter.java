@@ -19,14 +19,16 @@ public class SelectorPresenter implements SelectorOutputBoundary {
     private final RandomTierListViewModel randomTierListViewModel;
     private final CustomTierListViewModel customTierListViewModel;
     private final ViewExistingViewModel viewExistingViewModel;
+    private final SearchViewModel searchViewModel;
     private final MenuViewModel menuViewModel;
 //    private final SearchViewModel searchViewModel;
-    public SelectorPresenter(ViewManagerModel viewManagerModel, RandomTierListViewModel randomTierListViewModel, CustomTierListViewModel customTierListViewModel, ViewExistingViewModel viewExistingViewModel, MenuViewModel menuViewModel) {
+    public SelectorPresenter(ViewManagerModel viewManagerModel, RandomTierListViewModel randomTierListViewModel, CustomTierListViewModel customTierListViewModel, ViewExistingViewModel viewExistingViewModel, MenuViewModel menuViewModel, SearchViewModel searchViewModel) {
         this.viewManagerModel = viewManagerModel;
         this.randomTierListViewModel = randomTierListViewModel;
         this.customTierListViewModel = customTierListViewModel;
         this.viewExistingViewModel = viewExistingViewModel;
         this.menuViewModel = menuViewModel;
+        this.searchViewModel = searchViewModel;
     }
 
     @Override
@@ -36,9 +38,13 @@ public class SelectorPresenter implements SelectorOutputBoundary {
                 viewManagerModel.setActiveView(menuViewModel.getViewName());
                 viewManagerModel.firePropertyChanged();
             }
-//            case "Search Users" -> {
-//                SearchState searchState =
-//            }
+            case "Search Users" -> {
+                SearchState searchState = searchViewModel.getState();
+                searchState.setSearch(data.getUser().getUsername());
+                searchViewModel.firePropertyChanged();
+                viewManagerModel.setActiveView(searchViewModel.getViewName());
+                viewManagerModel.firePropertyChanged();
+            }
             case "Random" -> {
                 RandomTierListState randomTierListState = randomTierListViewModel.getState();
                 randomTierListState.setUser(data.getUser());

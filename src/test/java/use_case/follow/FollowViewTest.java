@@ -107,8 +107,6 @@ public class FollowViewTest {
         FollowState testing = new FollowState("terryfufu", "lt_rui", false);
         followViewModel.setState(testing);
 
-        FileUserDataAccessObject userDataAccessObject = new FileUserDataAccessObject();
-
         FollowView followView = FollowFactory.create(viewManagerModel, followViewModel, viewUserViewModel, userDataAccessObject, userDataAccessObject);
         views.add(followView, followView.viewName);
 

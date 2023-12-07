@@ -56,11 +56,12 @@ public class SelectorView extends JPanel implements ActionListener, PropertyChan
         this.add(searchButtonPanel);
         searchButtonPanel.getButton().addActionListener(e -> {
             if (e.getSource().equals(searchButtonPanel.getButton())) {
-                SelectorState state = selectorViewModel.getState();
+                SelectorState state = selectorViewModel.getState();;
 
                 selectorController.execute(
-                        searchButtonPanel.getButton().getText(),
-                        state.getUser());
+                    searchButtonPanel.getButton().getText(),
+                    state.getUser()
+                );
             }
         });
         this.add(new JSeparator());
