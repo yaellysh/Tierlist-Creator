@@ -8,7 +8,6 @@ import entity.Item;
 import entity.TierList;
 import entity.User;
 import use_case.follow.FollowUserDataAccessInterface;
-<<<<<<< HEAD
 import use_case.login.LoginUserDataAccessInterface;
 import use_case.search_user.SearchUserDataAccessInterface;
 import use_case.signup.SignupUserDataAccessInterface;
@@ -17,7 +16,7 @@ import use_case.view_user.ViewUserDataAccessInterface;
 
 import java.io.*;
 import java.lang.reflect.Type;
-=======
+
 import use_case.login.LoginDataAccessInterface;
 import use_case.signup.SignupDataAccessInterface;
 import use_case.tierlist.TierListDataAccessInterface;
@@ -26,17 +25,14 @@ import use_case.view_user.ViewUserDataAccessInterface;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
->>>>>>> 039b7d6bc381297089f4e8d9e38f12016f21c55b
+
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-<<<<<<< HEAD
+
 public class FileUserDataAccessObject implements SignupUserDataAccessInterface, LoginUserDataAccessInterface, TierListDataAccessInterface, FollowUserDataAccessInterface, ViewUserDataAccessInterface, SearchUserDataAccessInterface {
 
     private File csvFile;
@@ -48,14 +44,12 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
 
     private Map<String, User> accounts = new HashMap<>();
 
-    private UserFactory userFactory;
-=======
+
 public class FileUserDataAccessObject implements SignupDataAccessInterface, LoginDataAccessInterface, TierListDataAccessInterface, FollowUserDataAccessInterface, ViewUserDataAccessInterface {
->>>>>>> 039b7d6bc381297089f4e8d9e38f12016f21c55b
   
     private final Path path;
 
-<<<<<<< HEAD
+
 
     //temp
     public FileUserDataAccessObject() {
