@@ -24,7 +24,6 @@ public class TierAdapter {
 
     public static Map<String, Tier> getTiers() {
         return Stream.of(TIERS).collect(Collectors.toMap(TierAdapter::getName, TierAdapter::getTier));
-
     }
 
     public String getName() {

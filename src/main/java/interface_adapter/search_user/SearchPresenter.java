@@ -3,7 +3,6 @@ package interface_adapter.search_user;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.follow.FollowState;
 import interface_adapter.follow.FollowViewModel;
-import interface_adapter.view_user.ViewUserViewModel;
 import use_case.search_user.SearchOutputBoundary;
 import use_case.search_user.SearchOutputData;
 

@@ -4,8 +4,6 @@ import entity.User;
 
 import java.util.*;
 
-import javax.sound.midi.Soundbank;
-
 public class FollowInteractor implements FollowInputBoundary {
     final FollowUserDataAccessInterface userDataAccessObject;
     final FollowOutputBoundary followPresenter;

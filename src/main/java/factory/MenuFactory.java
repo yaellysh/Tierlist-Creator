@@ -24,7 +24,6 @@ public class MenuFactory {
     private static MenuController createMenuUseCase(ViewManagerModel viewManagerModel,
                                                     SignupViewModel signupViewModel, LoginViewModel loginViewModel) {
 
-        // Notice how we pass this method's parameters to the Presenter.
         MenuOutputBoundary menuOutputBoundary = new MenuPresenter(viewManagerModel, signupViewModel, loginViewModel);
 
         MenuInputBoundary menuInteractor = new MenuInteractor(menuOutputBoundary);

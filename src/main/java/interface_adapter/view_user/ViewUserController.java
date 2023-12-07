@@ -1,6 +1,5 @@
 package interface_adapter.view_user;
 
-import use_case.search_user.SearchInputData;
 import use_case.view_user.ViewUserInputBoundary;
 import use_case.view_user.ViewUserInputData;
 

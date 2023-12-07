@@ -8,7 +8,6 @@ import java.beans.PropertyChangeSupport;
 
 public class SignupViewModel extends ViewModel {
 
-    public static final String CLEAR_BUTTON_LABEL = "Clear";
     public static final String TITLE_LABEL = "Sign Up View";
     public static final String USERNAME_LABEL = "Username:";
     public static final Font TITLE_FONT = new Font("Arial Bold", Font.PLAIN, 30);
@@ -32,8 +31,6 @@ public class SignupViewModel extends ViewModel {
 
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
-    // This is what the Signup Presenter will call to let the ViewModel know
-    // to alert the View
     public void firePropertyChanged() {
         support.firePropertyChange("state", null, this.state);
     }
