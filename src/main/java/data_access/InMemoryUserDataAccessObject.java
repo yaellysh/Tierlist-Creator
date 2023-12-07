@@ -14,6 +14,16 @@ public class InMemoryUserDataAccessObject implements FollowUserDataAccessInterfa
         return this.accounts.get(username);
     }
 
+    @Override
+    public void updateFollowing(User user, String username, boolean follow) {
+
+    }
+
+    @Override
+    public void updateFollowers(User follower, String username, boolean follow) {
+
+    }
+
     public void updateUsers() {}
 
     public void save(User user) {

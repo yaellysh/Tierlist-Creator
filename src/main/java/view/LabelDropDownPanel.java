@@ -21,4 +21,8 @@ public class LabelDropDownPanel extends JPanel {
     public String getName() {
         return this.labelName;
     }
+
+    public String getLabelName() {
+        return labelName;
+    }
 }

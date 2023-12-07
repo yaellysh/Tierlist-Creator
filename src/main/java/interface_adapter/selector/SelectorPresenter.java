@@ -7,10 +7,10 @@ import interface_adapter.menu.MenuState;
 import interface_adapter.menu.MenuViewModel;
 import interface_adapter.random_tierlist.RandomTierListState;
 import interface_adapter.random_tierlist.RandomTierListViewModel;
-import interface_adapter.search_user.SearchState;
 import interface_adapter.search_user.SearchViewModel;
 import interface_adapter.view_existing.ViewExistingState;
 import interface_adapter.view_existing.ViewExistingViewModel;
+import interface_adapter.view_user.ViewUserViewModel;
 import use_case.selector.SelectorOutputBoundary;
 import use_case.selector.SelectorOutputData;
 
@@ -21,7 +21,11 @@ public class SelectorPresenter implements SelectorOutputBoundary {
     private final ViewExistingViewModel viewExistingViewModel;
     private final SearchViewModel searchViewModel;
     private final MenuViewModel menuViewModel;
+<<<<<<< HEAD
 //    private final SearchViewModel searchViewModel;
+=======
+    private final SearchViewModel searchViewModel;
+>>>>>>> a45df5bdc92d19958134a3eb1c9eccf6a5b160f3
     public SelectorPresenter(ViewManagerModel viewManagerModel, RandomTierListViewModel randomTierListViewModel, CustomTierListViewModel customTierListViewModel, ViewExistingViewModel viewExistingViewModel, MenuViewModel menuViewModel, SearchViewModel searchViewModel) {
         this.viewManagerModel = viewManagerModel;
         this.randomTierListViewModel = randomTierListViewModel;
@@ -39,8 +43,11 @@ public class SelectorPresenter implements SelectorOutputBoundary {
                 viewManagerModel.firePropertyChanged();
             }
             case "Search Users" -> {
+<<<<<<< HEAD
                 SearchState searchState = searchViewModel.getState();
                 searchState.setSearch(data.getUser().getUsername());
+=======
+>>>>>>> a45df5bdc92d19958134a3eb1c9eccf6a5b160f3
                 searchViewModel.firePropertyChanged();
                 viewManagerModel.setActiveView(searchViewModel.getViewName());
                 viewManagerModel.firePropertyChanged();

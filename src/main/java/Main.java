@@ -1,10 +1,30 @@
 import data_access.ChatGPTDataAccessObject;
+<<<<<<< HEAD
 import data_access.FileUserDataAccessObject;
 import factory.*;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.custom_tierlist.CustomTierListViewModel;
 import interface_adapter.follow.FollowState;
 import interface_adapter.follow.FollowViewModel;
+=======
+import factory.*;
+import factory.CustomTierListFactory;
+import factory.FollowFactory;
+import factory.LoginFactory;
+import factory.MenuFactory;
+import factory.RandomTierListFactory;
+import factory.SearchFactory;
+import factory.SelectorFactory;
+import factory.SignupFactory;
+import factory.TierListFactory;
+import factory.ViewExistingFactory;
+import interface_adapter.ViewManagerModel;
+import interface_adapter.custom_tierlist.CustomTierListViewModel;
+import interface_adapter.follow.FollowController;
+import interface_adapter.follow.FollowState;
+import interface_adapter.follow.FollowViewModel;
+import interface_adapter.search_user.SearchViewModel;
+>>>>>>> a45df5bdc92d19958134a3eb1c9eccf6a5b160f3
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.menu.MenuViewModel;
 import interface_adapter.random_tierlist.RandomTierListViewModel;
@@ -14,6 +34,7 @@ import interface_adapter.signup.SignupViewModel;
 import interface_adapter.tierlist.TierListViewModel;
 import interface_adapter.view_existing.ViewExistingViewModel;
 import interface_adapter.view_user.ViewUserViewModel;
+<<<<<<< HEAD
 import view.*;
 
 import javax.swing.*;
@@ -21,6 +42,33 @@ import java.awt.*;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
+=======
+import use_case.follow.FollowInputBoundary;
+import view.CustomTierListView;
+import view.FollowView;
+import view.LoginView;
+import view.MenuView;
+import view.RandomTierListView;
+import view.SearchView;
+import view.SelectorView;
+import view.SignupView;
+import view.TierListView;
+import view.ViewExistingView;
+import view.ViewManager;
+import view.*;
+
+import javax.swing.*;
+
+import data_access.ChatGPTDataAccessObject;
+import data_access.FileUserDataAccessObject;
+
+import java.awt.*;
+import java.io.IOException;
+import java.util.HashMap;
+
+public class Main {
+    public static void main(String[] args) throws InterruptedException, IOException {
+>>>>>>> a45df5bdc92d19958134a3eb1c9eccf6a5b160f3
 
         JFrame application = new JFrame("Tierlist Maker");
         application.setResizable(false);
@@ -34,13 +82,21 @@ public class Main {
         ViewManagerModel viewManagerModel = new ViewManagerModel();
         new ViewManager(views, cardLayout, viewManagerModel);
 
+<<<<<<< HEAD
+=======
+        ViewUserViewModel viewUserViewModel = new ViewUserViewModel("view user");
+
+>>>>>>> a45df5bdc92d19958134a3eb1c9eccf6a5b160f3
         TierListViewModel tierListViewModel = new TierListViewModel("tier list");
         SelectorViewModel selectorViewModel = new SelectorViewModel("selector");
         RandomTierListViewModel randomTierListViewModel = new RandomTierListViewModel("random");
         CustomTierListViewModel customTierListViewModel = new CustomTierListViewModel("custom");
         ViewExistingViewModel viewExistingViewModel = new ViewExistingViewModel("view existing");
-        FollowViewModel followViewModel = new FollowViewModel("follow User");
-        ViewUserViewModel viewUserViewModel = new ViewUserViewModel("view User");
+
+        FollowViewModel followViewModel = new FollowViewModel("follow user");
+
+        SearchViewModel searchViewModel = new SearchViewModel("search");
+
         MenuViewModel menuViewModel = new MenuViewModel();
         LoginViewModel loginViewModel = new LoginViewModel();
         SignupViewModel signupViewModel = new SignupViewModel();
@@ -53,12 +109,12 @@ public class Main {
 
         views.add(randomTierListView, randomTierListView.viewName);
 
-//        SearchView searchView = SearchFactory.
+        SearchView searchView = SearchFactory.create(viewManagerModel, searchViewModel, viewUserViewModel, followViewModel, userDataAccessObject, userDataAccessObject);
 
-
+        views.add(searchView, searchView.viewName);
 
         TierListView tierListView = TierListFactory.create(viewManagerModel, tierListViewModel, userDataAccessObject, selectorViewModel);
-      
+
         MenuView menuView = MenuFactory.create(viewManagerModel, menuViewModel, loginViewModel, signupViewModel);
         views.add(menuView, menuView.viewName);
 
@@ -67,9 +123,11 @@ public class Main {
         views.add(selectorView, selectorView.viewName);
 
         SignupView signupView = SignupFactory.create(viewManagerModel, loginViewModel, signupViewModel, userDataAccessObject);
+
         views.add(signupView, signupView.viewName);
 
         LoginView loginView = LoginFactory.create(viewManagerModel, loginViewModel, userDataAccessObject, selectorViewModel);
+
         views.add(loginView, loginView.viewName);
 
         ViewExistingView viewExistingView = ViewExistingFactory.create(viewManagerModel, viewExistingViewModel, tierListViewModel, selectorViewModel, userDataAccessObject);
@@ -80,9 +138,12 @@ public class Main {
         views.add(customTierListView, customTierListView.viewName);
         views.add(tierListView, tierListView.viewName);
 
+<<<<<<< HEAD
 //        FollowState testing = new FollowState("terryfufu", "lt_rui", false);
 //        followViewModel.setState(testing);
 
+=======
+>>>>>>> a45df5bdc92d19958134a3eb1c9eccf6a5b160f3
         FollowView followView = FollowFactory.create(viewManagerModel, followViewModel, viewUserViewModel, userDataAccessObject, userDataAccessObject);
         views.add(followView, followView.viewName);
 

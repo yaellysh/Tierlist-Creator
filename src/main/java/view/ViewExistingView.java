@@ -17,6 +17,7 @@ import java.util.HashSet;
 import java.util.List;
 
 public class ViewExistingView extends JPanel implements ActionListener, PropertyChangeListener {
+
     public final String viewName = "view existing";
     public ViewExistingController viewExistingController;
 
@@ -29,7 +30,7 @@ public class ViewExistingView extends JPanel implements ActionListener, Property
 
     }
 
-    private void updateScreen() {
+    public void updateScreen() {
         removeAll();
         BoxLayout boxLayout = new BoxLayout(this, BoxLayout.Y_AXIS);
         this.setLayout(boxLayout);
@@ -58,7 +59,6 @@ public class ViewExistingView extends JPanel implements ActionListener, Property
         LabelDropDownPanel tierlistDropDown = new LabelDropDownPanel(new JLabel("Tierlists: "), new HashSet<>(items).toArray(new String[0]));
         this.add(tierlistDropDown);
         tierlistDropDown.setBorder(new EmptyBorder(0,10,-10,10));
-//        this.add(new JSeparator());
         this.add(Box.createRigidArea(new Dimension(50, -30)));
 
         JPanel buttonPanel = new JPanel();

@@ -118,6 +118,13 @@
     "followers": []
   },
   {
+    "username": "testing",
+    "password": "a",
+    "tierLists": {},
+    "following": [],
+    "followers": []
+  },
+  {
     "username": "jillibean",
     "password": "potato",
     "tierLists": {
@@ -237,9 +244,53 @@
     "followers": []
   },
   {
+<<<<<<< HEAD
     "username": "i",
     "password": "i",
     "tierLists": {},
+=======
+    "username": "Testing",
+    "password": "a",
+    "tierLists": {
+      "percy jackson books": {
+        "name": "percy jackson books",
+        "items": {
+          "\\\"Percy Jackson and the Battle o...": {
+            "name": "\\\"Percy Jackson and the Battle o...",
+            "tier": "S"
+          },
+          "\\\"Percy Jackson and the Sea of M...": {
+            "name": "\\\"Percy Jackson and the Sea of M...",
+            "tier": "S"
+          },
+          "The Son of Neptune": {
+            "name": "The Son of Neptune",
+            "tier": "S"
+          },
+          "\\\"Percy Jackson and the Lightnin...": {
+            "name": "\\\"Percy Jackson and the Lightnin...",
+            "tier": "S"
+          },
+          "\\\"Percy Jackson and the Titan\u0027s ...": {
+            "name": "\\\"Percy Jackson and the Titan\u0027s ...",
+            "tier": "S"
+          },
+          "The Mark of Athena     ": {
+            "name": "The Mark of Athena     ",
+            "tier": "S"
+          },
+          "\\\"Percy Jackson and the Last Oly...": {
+            "name": "\\\"Percy Jackson and the Last Oly...",
+            "tier": "S"
+          },
+          "The Lost Hero": {
+            "name": "The Lost Hero",
+            "tier": "S"
+          }
+        }
+      }
+    },
+>>>>>>> a45df5bdc92d19958134a3eb1c9eccf6a5b160f3
     "following": [],
     "followers": []
   }
