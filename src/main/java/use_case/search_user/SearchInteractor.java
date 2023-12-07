@@ -1,6 +1,8 @@
 package use_case.search_user;
 
-import use_case.follow.FollowOutputData;
+import entity.User;
+
+import java.util.List;
 
 public class SearchInteractor implements SearchInputBoundary {
 
@@ -20,8 +22,22 @@ public class SearchInteractor implements SearchInputBoundary {
         }
 
         else {
-            SearchOutputData searchOutputData = new SearchOutputData(false, search);
+
+
+            String selectedUsername = searchInputData.getSearch();
+            User selectedUser = this.userDataAccessObject.getUser(searchInputData.getSearch());;
+//            int followerCount = selectedUser.getFollowers().size();
+//            int followingCount = selectedUser.getFollowing().size();
+            List<String> tierLists = selectedUser.getTierListsAsStrings();
+            System.out.println("tierlists" + tierLists);
+
+            SearchOutputData searchOutputData = new SearchOutputData(false, selectedUser, tierLists);
             searchPresenter.prepareSuccessView(searchOutputData);
+
+//            ViewUserOutputData viewUserOutputData = new ViewUserOutputData(selectedUsername, tierLists, followerCount, followingCount);
+//            viewUserPresenter.prepareSuccessView(viewUserOutputData);
+
+//            searchPresenter.prepareSuccessView(searchOutputData);
         }
 
     }

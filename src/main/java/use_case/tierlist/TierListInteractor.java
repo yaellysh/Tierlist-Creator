@@ -22,6 +22,11 @@ public class TierListInteractor implements TierListInputBoundary {
         String item = data.getItem();
         Tier tier = data.getTier();
         User user = dataAccessInterface.getUser(username);
+        User viewUser = dataAccessInterface.getUser(data.getViewUser());
+
+        if (!viewUser.equals(user)) {
+            this.outputBoundary.prepareFailView("You cannot edit someone else's tierlist!");
+        }
 
         // Update item with new tier.
 

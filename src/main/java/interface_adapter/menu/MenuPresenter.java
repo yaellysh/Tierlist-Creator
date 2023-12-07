@@ -19,13 +19,11 @@ public class MenuPresenter implements MenuOutputBoundary {
     }
 
     public void prepareSignupView() {
-        // Switch to the signup view
         viewManagerModel.setActiveView(signupViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }
 
     public void prepareLoginView() {
-        // Switch to the login view
         viewManagerModel.setActiveView(loginViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }

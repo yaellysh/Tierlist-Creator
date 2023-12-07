@@ -9,7 +9,6 @@ import interface_adapter.selector.SelectorController;
 import interface_adapter.selector.SelectorPresenter;
 import interface_adapter.selector.SelectorViewModel;
 import interface_adapter.view_existing.ViewExistingViewModel;
-import interface_adapter.view_user.ViewUserViewModel;
 import use_case.selector.SelectorInteractor;
 import use_case.selector.SelectorOutputBoundary;
 import use_case.tierlist.TierListDataAccessInterface;

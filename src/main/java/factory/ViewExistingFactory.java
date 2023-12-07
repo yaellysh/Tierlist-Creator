@@ -5,7 +5,6 @@ import interface_adapter.selector.SelectorViewModel;
 import interface_adapter.tierlist.TierListViewModel;
 import interface_adapter.view_existing.ViewExistingController;
 import interface_adapter.view_existing.ViewExistingPresenter;
-import interface_adapter.view_existing.ViewExistingState;
 import interface_adapter.view_existing.ViewExistingViewModel;
 import use_case.tierlist.TierListDataAccessInterface;
 import use_case.view_existing.ViewExistingInteractor;

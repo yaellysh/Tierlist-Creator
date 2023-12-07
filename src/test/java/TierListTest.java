@@ -17,6 +17,7 @@ import interface_adapter.login.LoginViewModel;
 import interface_adapter.menu.MenuViewModel;
 import interface_adapter.random_tierlist.RandomTierListState;
 import interface_adapter.random_tierlist.RandomTierListViewModel;
+import interface_adapter.search_user.SearchViewModel;
 import interface_adapter.selector.SelectorState;
 import interface_adapter.selector.SelectorViewModel;
 import interface_adapter.signup.SignupViewModel;
@@ -24,7 +25,6 @@ import interface_adapter.tierlist.TierListState;
 import interface_adapter.tierlist.TierListViewModel;
 import interface_adapter.view_existing.ViewExistingState;
 import interface_adapter.view_existing.ViewExistingViewModel;
-import interface_adapter.view_user.ViewUserViewModel;
 import org.junit.Test;
 import use_case.custom_tierlist.CustomTierListInputData;
 import use_case.custom_tierlist.CustomTierListInteractor;
@@ -68,7 +68,6 @@ public class TierListTest {
         CustomTierListViewModel customTierListViewModel = new CustomTierListViewModel("custom");
         ViewExistingViewModel viewExistingViewModel = new ViewExistingViewModel("view existing");
         FollowViewModel followViewModel = new FollowViewModel("follow User");
-        ViewUserViewModel viewUserViewModel = new ViewUserViewModel("view User");
         MenuViewModel menuViewModel = new MenuViewModel();
         LoginViewModel loginViewModel = new LoginViewModel();
         SignupViewModel signupViewModel = new SignupViewModel();
@@ -115,7 +114,7 @@ public class TierListTest {
         MenuView menuView = MenuFactory.create(viewManagerModel, menuViewModel, loginViewModel, signupViewModel);
         views.add(menuView, menuView.viewName);
 
-        SelectorView selectorView = SelectorFactory.create(viewManagerModel, selectorViewModel, randomTierListViewModel, customTierListViewModel, userDataAccessObject, viewExistingViewModel, menuViewModel);
+        SelectorView selectorView = SelectorFactory.create(viewManagerModel, selectorViewModel, randomTierListViewModel, customTierListViewModel, userDataAccessObject, viewExistingViewModel, menuViewModel, new SearchViewModel("search"));
 
         views.add(selectorView, selectorView.viewName);
 
@@ -133,7 +132,7 @@ public class TierListTest {
         views.add(customTierListView, customTierListView.viewName);
         views.add(tierListView, tierListView.viewName);
 
-        FollowView followView = FollowFactory.create(viewManagerModel, followViewModel, viewUserViewModel, userDataAccessObject, userDataAccessObject);
+        FollowView followView = FollowFactory.create(viewManagerModel, followViewModel, userDataAccessObject, tierListViewModel);
         views.add(followView, followView.viewName);
 
         viewManagerModel.setActiveView(menuView.viewName);

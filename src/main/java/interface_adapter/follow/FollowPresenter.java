@@ -1,43 +1,48 @@
 package interface_adapter.follow;
 
-import data_access.FileUserDataAccessObject;
-import factory.FollowFactory;
 import interface_adapter.ViewManagerModel;
-import interface_adapter.view_user.ViewUserViewModel;
+import interface_adapter.tierlist.TierListState;
+import interface_adapter.tierlist.TierListViewModel;
 import use_case.follow.FollowOutputBoundary;
 import use_case.follow.FollowOutputData;
-import use_case.view_user.ViewUserOutputBoundary;
-import use_case.view_user.ViewUserOutputData;
-import view.FollowView;
 
 public class FollowPresenter implements FollowOutputBoundary{
 
     private final FollowViewModel followViewModel;
     private final ViewManagerModel viewManagerModel;
-    private final ViewUserViewModel viewUserViewModel;
+    private final TierListViewModel tierListViewModel;
 
-    public FollowPresenter(ViewManagerModel viewManagerModel, FollowViewModel followViewModel, ViewUserViewModel viewUserModel) {
+    public FollowPresenter(ViewManagerModel viewManagerModel, FollowViewModel followViewModel, TierListViewModel tierListViewModel) {
         this.followViewModel = followViewModel;
-        this.viewUserViewModel = viewUserModel;
         this.viewManagerModel = viewManagerModel;
+        this.tierListViewModel = tierListViewModel;
     }
 
 
     @Override
     public void prepareSuccessView(FollowOutputData output) {
-        // On success, pop up mutual users.
-        FollowState followState = followViewModel.getState();
-        followState.setRelatedUsers(output.getRelatedUsers());
-        followState.setIsFollowing(output.getFollow());
-        viewUserViewModel.getState().setNumFollowers(output.getNewFollowers());
-        System.out.println((output.getNewFollowers() + "look bhere"));
 
-        this.followViewModel.setState(followState);
+        if (output.getTierListName() != null) {
+            TierListState tierListState = tierListViewModel.getState();
+            tierListState.setTierList(output.getTierListName());
+            tierListState.setUser(output.getCurrentUser());
+            tierListState.setViewUser(output.getViewUser());
+            tierListViewModel.setState(tierListState);
+            tierListViewModel.firePropertyChanged();
 
-        System.out.println(followState.getIsFollowing() + " afterward");
-        followViewModel.firePropertyChanged();
-        viewManagerModel.setActiveView(followViewModel.getViewName());
-        viewManagerModel.firePropertyChanged();
+            viewManagerModel.setActiveView(tierListViewModel.getViewName());
+            viewManagerModel.firePropertyChanged();
+        } else {
+            FollowState followState = followViewModel.getState();
+            followState.setIsFollowing(output.getFollow());
+
+            this.followViewModel.setState(followState);
+
+            followViewModel.firePropertyChanged();
+            viewManagerModel.setActiveView(followViewModel.getViewName());
+            viewManagerModel.firePropertyChanged();
+        }
+
     }
 
 }

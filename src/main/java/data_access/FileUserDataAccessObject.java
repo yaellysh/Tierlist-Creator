@@ -4,12 +4,11 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import entity.User;
-import use_case.follow.FollowUserDataAccessInterface;
+import use_case.follow.FollowDataAccessInterface;
 import use_case.login.LoginDataAccessInterface;
 import use_case.search_user.SearchUserDataAccessInterface;
 import use_case.signup.SignupDataAccessInterface;
 import use_case.tierlist.TierListDataAccessInterface;
-import use_case.view_user.ViewUserDataAccessInterface;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -22,7 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class FileUserDataAccessObject implements SignupDataAccessInterface, LoginDataAccessInterface, TierListDataAccessInterface, ViewUserDataAccessInterface, SearchUserDataAccessInterface, FollowUserDataAccessInterface {
+public class FileUserDataAccessObject implements SignupDataAccessInterface, LoginDataAccessInterface, TierListDataAccessInterface, SearchUserDataAccessInterface, FollowDataAccessInterface {
     private final Path path;
     private final Map<String, User> users;
 
@@ -56,10 +55,6 @@ public class FileUserDataAccessObject implements SignupDataAccessInterface, Logi
         return users.containsKey(identifier);
     }
 
-    @Override
-    public void updateUsers() {
-
-    }
 
     @Override
     public User getUser(String username) {
@@ -70,21 +65,6 @@ public class FileUserDataAccessObject implements SignupDataAccessInterface, Logi
     public void addUser(User user) {
         this.users.put(user.getUsername(), user);
         save();
-    }
-
-    @Override
-    public void updateFollowing(User user, String username, boolean follow) {
-        if (!follow) {
-            user.addFollowing(username);
-        }
-        else {
-            user.removeFollowing(username);
-        }
-    }
-
-    @Override
-    public void updateFollowers(User follower, String username, boolean follow) {
-
     }
 
     public void removeUser(String username) {

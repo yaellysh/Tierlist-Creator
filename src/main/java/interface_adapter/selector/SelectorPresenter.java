@@ -3,14 +3,13 @@ package interface_adapter.selector;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.custom_tierlist.CustomTierListState;
 import interface_adapter.custom_tierlist.CustomTierListViewModel;
-import interface_adapter.menu.MenuState;
 import interface_adapter.menu.MenuViewModel;
 import interface_adapter.random_tierlist.RandomTierListState;
 import interface_adapter.random_tierlist.RandomTierListViewModel;
+import interface_adapter.search_user.SearchState;
 import interface_adapter.search_user.SearchViewModel;
 import interface_adapter.view_existing.ViewExistingState;
 import interface_adapter.view_existing.ViewExistingViewModel;
-import interface_adapter.view_user.ViewUserViewModel;
 import use_case.selector.SelectorOutputBoundary;
 import use_case.selector.SelectorOutputData;
 
@@ -38,6 +37,10 @@ public class SelectorPresenter implements SelectorOutputBoundary {
                 viewManagerModel.firePropertyChanged();
             }
             case "Search Users" -> {
+                SearchState searchState = searchViewModel.getState();
+                searchState.setCurrentUser(data.getUser());
+                searchViewModel.setState(searchState);
+
                 searchViewModel.firePropertyChanged();
                 viewManagerModel.setActiveView(searchViewModel.getViewName());
                 viewManagerModel.firePropertyChanged();

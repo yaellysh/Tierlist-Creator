@@ -1,1 +1,87 @@
-[]
+[
+  {
+    "username": "User E",
+    "password": "passw",
+    "tierLists": {},
+    "following": [
+      "User A",
+      "User B"
+    ],
+    "followers": []
+  },
+  {
+    "username": "User F",
+    "password": "passw",
+    "tierLists": {},
+    "following": [
+      "User A",
+      "User B",
+      "User C"
+    ],
+    "followers": []
+  },
+  {
+    "username": "lt_rui",
+    "password": "passw",
+    "tierLists": {},
+    "following": [
+      "User A",
+      "User B",
+      "User C"
+    ],
+    "followers": [
+      "User A",
+      "User B",
+      "User C",
+      "terryfufu"
+    ]
+  },
+  {
+    "username": "terryfufu",
+    "password": "passw",
+    "tierLists": {},
+    "following": [
+      "User D",
+      "User E",
+      "User F",
+      "lt_rui"
+    ],
+    "followers": []
+  },
+  {
+    "username": "User A",
+    "password": "passw",
+    "tierLists": {},
+    "following": [
+      "lt_rui"
+    ],
+    "followers": []
+  },
+  {
+    "username": "User B",
+    "password": "passw",
+    "tierLists": {},
+    "following": [
+      "lt_rui"
+    ],
+    "followers": []
+  },
+  {
+    "username": "User C",
+    "password": "passw",
+    "tierLists": {},
+    "following": [
+      "lt_rui"
+    ],
+    "followers": []
+  },
+  {
+    "username": "User D",
+    "password": "passw",
+    "tierLists": {},
+    "following": [
+      "User A"
+    ],
+    "followers": []
+  }
+]

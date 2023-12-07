@@ -41,7 +41,11 @@
         }
       }
     },
-    "following": [],
+    "following": [
+      "yael",
+      "yael",
+      "yael"
+    ],
     "followers": []
   },
   {
@@ -84,10 +88,89 @@
             "tier": "B"
           }
         }
+      },
+      "movies": {
+        "name": "movies",
+        "items": {
+          "The Lion King": {
+            "name": "The Lion King",
+            "tier": "S"
+          },
+          "Jurassic Park": {
+            "name": "Jurassic Park",
+            "tier": "S"
+          },
+          "Avengers: Endgame": {
+            "name": "Avengers: Endgame",
+            "tier": "S"
+          },
+          "The Shawshank Redemption": {
+            "name": "The Shawshank Redemption",
+            "tier": "S"
+          },
+          "The Dark Knight": {
+            "name": "The Dark Knight",
+            "tier": "S"
+          },
+          "Beauty and the Beast     ": {
+            "name": "Beauty and the Beast     ",
+            "tier": "S"
+          },
+          "Titanic": {
+            "name": "Titanic",
+            "tier": "S"
+          },
+          "Harry Potter and the Philosopher...": {
+            "name": "Harry Potter and the Philosopher...",
+            "tier": "S"
+          }
+        }
+      },
+      "songs": {
+        "name": "songs",
+        "items": {
+          "\\\"Therefore I Am\\\" - Billie Eili...": {
+            "name": "\\\"Therefore I Am\\\" - Billie Eili...",
+            "tier": "S"
+          },
+          "\\\"Blinding Lights\\\" - The Weeknd...": {
+            "name": "\\\"Blinding Lights\\\" - The Weeknd...",
+            "tier": "S"
+          },
+          "Levitating - Dua Lipa": {
+            "name": "Levitating - Dua Lipa",
+            "tier": "S"
+          },
+          "\\\"Mood\\\" - 24kGoldn ft. iann dio...": {
+            "name": "\\\"Mood\\\" - 24kGoldn ft. iann dio...",
+            "tier": "S"
+          },
+          "Dynamite - BTS     ": {
+            "name": "Dynamite - BTS     ",
+            "tier": "S"
+          },
+          "\\\"Drivers License\\\" - Olivia Rod...": {
+            "name": "\\\"Drivers License\\\" - Olivia Rod...",
+            "tier": "S"
+          },
+          "Positions - Ariana Grande": {
+            "name": "Positions - Ariana Grande",
+            "tier": "S"
+          },
+          "\\\"Save Your Tears\\\" - The Weeknd...": {
+            "name": "\\\"Save Your Tears\\\" - The Weeknd...",
+            "tier": "S"
+          }
+        }
       }
     },
     "following": [],
-    "followers": []
+    "followers": [
+      "jillibean",
+      "a",
+      "a",
+      "a"
+    ]
   },
   {
     "username": "testing",
@@ -212,7 +295,9 @@
         }
       }
     },
-    "following": [],
+    "following": [
+      "yael"
+    ],
     "followers": []
   },
   {
