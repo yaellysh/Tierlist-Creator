@@ -1,10 +1,19 @@
-import data_access.ChatGPTDataAccessObject;
-import data_access.FileUserDataAccessObject;
-import factory.*;
+import factory.CustomTierListFactory;
+import factory.FollowFactory;
+import factory.LoginFactory;
+import factory.MenuFactory;
+import factory.RandomTierListFactory;
+import factory.SearchFactory;
+import factory.SelectorFactory;
+import factory.SignupFactory;
+import factory.TierListFactory;
+import factory.ViewExistingFactory;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.custom_tierlist.CustomTierListViewModel;
+import interface_adapter.follow.FollowController;
 import interface_adapter.follow.FollowState;
 import interface_adapter.follow.FollowViewModel;
+import interface_adapter.search_user.SearchViewModel;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.menu.MenuViewModel;
 import interface_adapter.random_tierlist.RandomTierListViewModel;
@@ -13,11 +22,27 @@ import interface_adapter.signup.SignupViewModel;
 import interface_adapter.tierlist.TierListViewModel;
 import interface_adapter.view_existing.ViewExistingViewModel;
 import interface_adapter.view_user.ViewUserViewModel;
-import view.*;
+import use_case.follow.FollowInputBoundary;
+import view.CustomTierListView;
+import view.FollowView;
+import view.LoginView;
+import view.MenuView;
+import view.RandomTierListView;
+import view.SearchView;
+import view.SelectorView;
+import view.SignupView;
+import view.TierListView;
+import view.ViewExistingView;
+import view.ViewManager;
 
 import javax.swing.*;
+
+import data_access.ChatGPTDataAccessObject;
+import data_access.FileUserDataAccessObject;
+
 import java.awt.*;
 import java.io.IOException;
+import java.util.HashMap;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException, IOException {
