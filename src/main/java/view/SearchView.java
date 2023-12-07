@@ -11,7 +11,9 @@ import java.util.Objects;
 
 import javax.swing.BoxLayout;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
+import interface_adapter.custom_tierlist.CustomTierListViewModel;
 import interface_adapter.follow.FollowController;
 import interface_adapter.follow.FollowState;
 import interface_adapter.follow.FollowViewModel;
@@ -49,18 +51,35 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
 
         JPanel buttons = new JPanel();
 
-        JLabel tierListTitleLabel = new JLabel(TierListViewModel.TITLE_LABEL);
-        tierListTitleLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 10));
-        tierListTitleLabel.setFont(TierListViewModel.TITLE_FONT);
-        tierListTitleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        this.add(tierListTitleLabel);
+        JLabel searchTitleLabel = new JLabel(SearchViewModel.TITLE_LABEL);
+        searchTitleLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 10));
+        searchTitleLabel.setFont(SearchViewModel.TITLE_FONT);
+        searchTitleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        this.add(searchTitleLabel);
+
+        JLabel instructions = new JLabel();
+        instructions.setText("<html>" + SearchViewModel.INSTRUCTIONS + "</html>");
+        instructions.setFont(SearchViewModel.TEXT_FONT);
+        instructions.setAlignmentX(Component.CENTER_ALIGNMENT);
+        instructions.setBorder(BorderFactory.createEmptyBorder(5, 20, 5, 20));
+        this.add(instructions);
+        this.add(new JSeparator());
+        this.add(Box.createRigidArea(new Dimension(10, -350)));
 
         InputPanel usernameInfo = new InputPanel(searchViewModel.SEARCH_BOX_LABEL);
 
         this.add(usernameInfo);
 
-        search = new JButton(searchViewModel.SEARCH_BUTTON_LABEL);
+
+
+        this.search = new JButton(CustomTierListViewModel.SUBMIT_BUTTON);
+
+        search.setOpaque(true);
+        search.setPreferredSize(new Dimension(250, 50));
+        search.setAlignmentX(Component.CENTER_ALIGNMENT);
+
         buttons.add(search);
+        buttons.setBorder(new EmptyBorder(50, 10, 10,10));
         this.add(buttons);
         this.add(userNotFoundText);
 

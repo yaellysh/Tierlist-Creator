@@ -26,7 +26,7 @@ public class FollowPresenter implements FollowOutputBoundary{
     public void prepareSuccessView(FollowOutputData output) {
 
         TierListState tierListState = tierListViewModel.getState();
-        tierListState.setTierList(button.getText());
+//        tierListState.setTierList(output.);
         tierListState.setUser(followViewModel.getState().getFollower());
         tierListViewModel.setState(tierListState);
         tierListViewModel.firePropertyChanged();
