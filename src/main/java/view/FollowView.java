@@ -1,7 +1,6 @@
 package view;
 
 import interface_adapter.ViewManagerModel;
-import interface_adapter.custom_tierlist.CustomTierListViewModel;
 import interface_adapter.follow.FollowController;
 import interface_adapter.follow.FollowState;
 import interface_adapter.follow.FollowViewModel;
@@ -153,7 +152,7 @@ public class FollowView extends JPanel implements ActionListener, PropertyChange
                     followController.execute(
                             followViewModel.getState().getFollower().getUsername(),
                             followViewModel.getState().getUserBeingFollowed().getUsername(),
-                            true);
+                            button.getText());
                 }
             });
         }

@@ -119,7 +119,6 @@ public class TierListView extends JPanel implements ActionListener, PropertyChan
         state.setUser(((TierListState) evt.getNewValue()).getUser());
         state.setTierList(((TierListState) evt.getNewValue()).getTierList());
 
-
         // setting up the box layout to help formatting
         BoxLayout boxLayout = new BoxLayout(this, BoxLayout.Y_AXIS);
         this.setLayout(boxLayout);

@@ -27,7 +27,8 @@ public class FollowInteractor implements FollowInputBoundary {
         User userBeingFollowed = userDataAccessObject.getUser(userBeingFollowedName);
 
         if (followInputData.getTierListName() != null) {
-            followPresenter.prepareSuccessView(new FollowOutputData(followerName, userBeingFollowedName, followInputData.getTierListName()));
+            followPresenter.prepareSuccessView(new FollowOutputData(userBeingFollowed, follower, followInputData.getTierListName()));
+            return;
         }
 
         if (!follow) {

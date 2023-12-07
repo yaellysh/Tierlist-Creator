@@ -56,7 +56,7 @@
         "items": {
           "Angelina Jolie": {
             "name": "Angelina Jolie",
-            "tier": "B"
+            "tier": "C"
           },
           "Meryl Streep": {
             "name": "Meryl Streep",
@@ -165,9 +165,9 @@
     },
     "following": [],
     "followers": [
-      "jillibean",
       "a",
-      "a"
+      "a",
+      "jillibean"
     ]
   },
   {
