@@ -1,6 +1,6 @@
 package use_case.follow;
 
-import data_access.InMemoryUserDataAccessObject;
+import data_access.FileUserDataAccessObject;
 import entity.User;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,7 +27,7 @@ public class FollowInteractorTest {
 
 
 
-    private InMemoryUserDataAccessObject userRepository;
+    private FileUserDataAccessObject userRepository;
 
     @Before
     public void setUp() {
@@ -62,15 +62,15 @@ public class FollowInteractorTest {
         terry.addFollowing("User E");
         terry.addFollowing("User F");
 
-        userRepository = new InMemoryUserDataAccessObject();
-        userRepository.save(userA);
-        userRepository.save(userB);
-        userRepository.save(userC);
-        userRepository.save(userD);
-        userRepository.save(userE);
-        userRepository.save(userF);
-        userRepository.save(tim);
-        userRepository.save(terry);
+        userRepository = new FileUserDataAccessObject("src/test/resources/users.json");
+        userRepository.addUser(userA);
+        userRepository.addUser(userB);
+        userRepository.addUser(userC);
+        userRepository.addUser(userD);
+        userRepository.addUser(userE);
+        userRepository.addUser(userF);
+        userRepository.addUser(tim);
+        userRepository.addUser(terry);
     }
 
 

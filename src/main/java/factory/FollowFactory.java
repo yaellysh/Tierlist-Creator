@@ -9,7 +9,7 @@ import interface_adapter.view_user.ViewUserPresenter;
 import interface_adapter.view_user.ViewUserViewModel;
 import use_case.follow.FollowInteractor;
 import use_case.follow.FollowOutputBoundary;
-import use_case.follow.FollowUserDataAccessInterface;
+import use_case.follow.FollowDataAccessInterface;
 import use_case.view_user.ViewUserDataAccessInterface;
 import use_case.view_user.ViewUserInteractor;
 import use_case.view_user.ViewUserOutputBoundary;
@@ -20,13 +20,13 @@ public class FollowFactory {
     private FollowFactory() {
     }
 
-    public static FollowView create(ViewManagerModel viewManagerModel, FollowViewModel followViewModel, ViewUserViewModel viewUserViewModel, FollowUserDataAccessInterface userDataAccessObject, ViewUserDataAccessInterface viewUserDAO) {
+    public static FollowView create(ViewManagerModel viewManagerModel, FollowViewModel followViewModel, ViewUserViewModel viewUserViewModel, FollowDataAccessInterface userDataAccessObject, ViewUserDataAccessInterface viewUserDAO) {
 
         FollowController followController = createFollowUseCase(viewManagerModel, followViewModel, viewUserViewModel, userDataAccessObject);
         ViewUserController viewUserController = createViewUserUseCase(viewManagerModel, viewUserViewModel, followViewModel, viewUserDAO);
         return new FollowView(followController, followViewModel);
     }
-    private static FollowController createFollowUseCase(ViewManagerModel viewManagerModel, FollowViewModel followViewModel, ViewUserViewModel viewUserViewModel, FollowUserDataAccessInterface userDataAccessObject) {
+    private static FollowController createFollowUseCase(ViewManagerModel viewManagerModel, FollowViewModel followViewModel, ViewUserViewModel viewUserViewModel, FollowDataAccessInterface userDataAccessObject) {
         FollowOutputBoundary followOutputBoundary = new FollowPresenter(viewManagerModel, followViewModel, viewUserViewModel);
         FollowInteractor followInteractor = new FollowInteractor(userDataAccessObject, followOutputBoundary);
         return new FollowController(followInteractor);

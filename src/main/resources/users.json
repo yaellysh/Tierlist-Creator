@@ -87,7 +87,9 @@
       }
     },
     "following": [],
-    "followers": []
+    "followers": [
+      "jillibean"
+    ]
   },
   {
     "username": "testing",
@@ -212,7 +214,9 @@
         }
       }
     },
-    "following": [],
+    "following": [
+      "yael"
+    ],
     "followers": []
   },
   {
