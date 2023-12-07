@@ -27,7 +27,7 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
     public final String viewName = "Search User";
     private final SearchViewModel searchViewModel;
 
-    private final JTextField usernameInputField = new JTextField(15);
+    private JTextField usernameInputField = new JTextField(15);
     final JButton search;
     private JButton userfound = new JButton();
     private JLabel userNotFoundText = new JLabel();
@@ -51,8 +51,8 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
         JPanel buttons = new JPanel();
         this.add(usernameInputField);
 
-        LabelTextPanel usernameInfo = new LabelTextPanel(
-                new JLabel(searchViewModel.SEARCH_BOX_LABEL), usernameInputField);
+        InputPanel usernameInfo = new InputPanel(searchViewModel.SEARCH_BOX_LABEL);
+        usernameInputField = usernameInfo.getTextField();
         this.add(usernameInfo);
 
         search = new JButton(searchViewModel.SEARCH_BUTTON_LABEL);
