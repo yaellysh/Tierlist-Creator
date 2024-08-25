@@ -25,7 +25,7 @@ We decided we would allow users to create their own tournaments by entering topi
 this personalisation, we can use the **ChatGPT OpenAI API** which can easily be used to generate lists of relevant words
 given a prompt. E.g. when asked 'List the names of 10 famous movies', ChatGPT returns
 '1. Titanic 2. The Godfather 3. Star Wars 4. Gone with the Wind 5. The Shawshank Redemption 6. Inception 7. The Lion
-King 8. Forrest Gump 9.', 10 movies which could then be used to generate a tournament with the Challonge API.
+King 8. Forrest Gump 9.', 10 movies which could then be used to generate a tierlist.
 
 - https://platform.openai.com/docs/guides/gpt
 
